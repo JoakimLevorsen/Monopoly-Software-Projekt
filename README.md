@@ -1,7 +1,7 @@
 #Regler for Monopoly
 ##Spil setup
 ###Spillere
-Et spil består af 2-4 spillere.
+Et spil består af 2-4 spillere, og to terninger.
 Spillere starter med §1500
 
 ###Spillebræt
