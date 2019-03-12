@@ -45,6 +45,12 @@ Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i
 Slå to terninger, flyt det antal på terningen.
 _Hvis_ dobbelt, slå igen, _hvis_ dobbelt 3 gange i streg, gå i fængsel.
 
+### Fængsel
+Hvis man er i fængel skal man starte med at slå for at komme ud.
+Hvis man slår dobbelt er man løsladt, og får en almindelig tur.
+Hvis man betaler sig ud for __§100__ får man også en almindelig tur, istedet for at betale kan man bruge et "Gratis ud af fængsel kort".
+Efter 3 ture i fængsel skal man betale sig ud.
+
 ### Når man har flyttet
 Hvis man lander på noget uejet ejendom, så skal man gøre en af to ting:
 1. Køb den
