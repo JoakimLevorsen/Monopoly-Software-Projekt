@@ -1,3 +1,17 @@
+# Author noter
+### Når man laver Author noter strukureres det som følgende:
+```Java
+/*
+METODENAVN:
+HVAD GØR DEN
+
+@author NAVN, STUDIENUMMER
+@author NAVN PÅ PERSON DER RETTEDE, STUDIENUMMER
+@author NAVN PÅ PERSON DER RETTEDE IGEN, STUDIENUMMER
+*/
+```
+
+
 # Regler for Monopoly
 ## Spil setup
 ### Spillere
