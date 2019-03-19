@@ -37,7 +37,7 @@ En side af brættet har 2 farvegrupper med ejendomme i.
 Jo længere man når på brættet jo højere er ejendomsprisen.
 
 ### Chancekort
-Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 ialt af følgende typer:
+Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i alt af følgende typer:
 * Gå i fængsel
 * Gå til start
 * Gå til _felt_
@@ -52,7 +52,7 @@ Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i
 * Gå til start
 * Bank giver _beløb_
 * Bank tager lille _beløb_
-* \2. præmie i skøndhedskonkurrence modtag _beløb_
+* \2. præmie i skønhedskonkurrence modtag _beløb_
 
 ## Tur komposition
 ### Slå the terning
@@ -60,9 +60,9 @@ Slå to terninger, flyt det antal på terningen.
 _Hvis_ dobbelt, slå igen, _hvis_ dobbelt 3 gange i streg, gå i fængsel.
 
 ### Fængsel
-Hvis man er i fængel skal man starte med at slå for at komme ud.
+Hvis man er i fængsel skal man starte med at slå for at komme ud.
 Hvis man slår dobbelt er man løsladt, og får en almindelig tur.
-Hvis man betaler sig ud for __§100__ får man også en almindelig tur, istedet for at betale kan man bruge et "Gratis ud af fængsel kort".
+Hvis man betaler sig ud for __§100__ får man også en almindelig tur, i stedet for at betale kan man bruge et "Gratis ud af fængsel kort".
 Efter 3 ture i fængsel skal man betale sig ud.
 
 ### Når man har flyttet
@@ -73,12 +73,12 @@ Hvis man lander på noget uejet ejendom, så skal man gøre en af to ting:
 
 Hvis man lander på ejet ejendom, skal man betale `base husleje + (base husleje * antal huse) / 2`.
 Hvis man lander på gå i fængsel, skal du i fængsel og din tur stopper med det samme.
-Hivs du lander på gratis parkering sker der intet.
+Hvis du lander på gratis parkering sker der intet.
 Hvis du lander på chance/Prøv lykken skal man tage et kort og adlyde det.
 
 ### Når man bygger
 Når en spiller ejer __alle__ ejendomme i en farvegruppe, så må de bygge på de ejendomme. 
-Når man bygger må der maks være 1 hus forskelv på den mindst og mest bebyggede ejendom.
+Når man bygger må der maks være 1 hus forskel på den mindst og mest bebyggede ejendom.
 Når man har bygget 5 huse bliver det automagisk til __et__ hotel, der må ikke være mere end __et__ hotel pr ejendom.
 Der må maksimum bygges 32 huse og 12 hoteller på hele brættet i alt for alle spillere.
 Når man sælger huse/hoteller sælges de til halv pris.
