@@ -15,22 +15,22 @@ HVAD GØR DEN
 # Regler for Monopoly
 ## Spil setup
 ### Spillere
-Et spil består af 2-4 spillere, og to terninger.
-Spillere starter med §1500
+Et spil består af 2-4 spillere og to terninger.
+Spillere starter med §1500 og modtager §200 hver gang de passerer Start.
 
 ### Spillebræt
-Et spillebræt består af 4 sider, med 10 felter pr side, så 40 felter i alt.
-Hjørnefelterne er i rækkefølge:
+Et spillebræt består af 4 sider med 10 felter pr. side, dvs. 40 felter i alt.
+Hjørnefelterne er i rækkefølge (i urets retning):
 1. Start
 2. Fængsel/På besøg
 3. Gratis Parkering
 4. Gå i fængsel
 
 På hver side er det 5. felt en togstation.
-Det 4. felt på brættet er indkomstskat.
-Det 2. sidste felt på brættet er topskat.
+Det 4. felt på brættet er Indkomstskat.
+Det 2. sidste felt på brættet er Topskat.
 
-På hver side er der 1 prøv lykken felt og 1 chance felt.
+På hver side er der 1 Prøv Lykken felt og 1 Chance felt.
 
 De resterende felter på brættet er ejendom, og kan bygges på.
 En side af brættet har 2 farvegrupper med ejendomme i. 
@@ -47,7 +47,7 @@ Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i
 * Bank tager _beløb_
 
 ### Prøv lykken kort
-'Prøv lykke' kort er kort der oftes giver en fordel til en spiller, der er 16 kort af følgende typer:
+'Prøv lykken' kort giver oftest en fordel til en spiller, der er 16 kort af følgende typer:
 * Gratis ud af fængsel
 * Gå til start
 * Bank giver _beløb_
@@ -55,26 +55,26 @@ Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i
 * \2. præmie i skøndhedskonkurrence modtag _beløb_
 
 ## Tur komposition
-### Slå the terning
-Slå to terninger, flyt det antal på terningen.
+### Slå terning
+Slå to terninger og flyt det antal på terningen.
 _Hvis_ dobbelt, slå igen, _hvis_ dobbelt 3 gange i streg, gå i fængsel.
 
 ### Fængsel
-Hvis man er i fængel skal man starte med at slå for at komme ud.
+Hvis man er i fængsel skal man starte med at slå for at komme ud.
 Hvis man slår dobbelt er man løsladt, og får en almindelig tur.
 Hvis man betaler sig ud for __§100__ får man også en almindelig tur, istedet for at betale kan man bruge et "Gratis ud af fængsel kort".
 Efter 3 ture i fængsel skal man betale sig ud.
 
 ### Når man har flyttet
-Hvis man lander på noget uejet ejendom, så skal man gøre en af to ting:
-1. Køb den
-2. Sæt den på auktion.
+Hvis man lander på en ejendom uden en ejer, så skal man gøre en af to ting:
+1. Købe den
+2. Sætte den på auktion.
     * Spillere skiftes til at byde, man skal byde mere end top budet, hvis `antal spillere - 1` ikke byder i streg, er det sidst højeste bud vinderen. Hvis ingen byder så er auktionen aflyst.
 
-Hvis man lander på ejet ejendom, skal man betale `base husleje + (base husleje * antal huse) / 2`.
-Hvis man lander på gå i fængsel, skal du i fængsel og din tur stopper med det samme.
-Hivs du lander på gratis parkering sker der intet.
-Hvis du lander på chance/Prøv lykken skal man tage et kort og adlyde det.
+Hvis man lander på en ejet ejendom, skal man betale `base husleje + (base husleje * antal huse) / 2`.
+Hvis man lander på Gå i Fængsel, skal man fængsles og turen slutter med det samme.
+Hivs man lander på Gratis Parkering får man pengene, der ligger på feltet. Hver gang en spiller betaler topskat eller indkomstskat lægges penge på Gratis Parkering.
+Hvis man lander på Chance/Prøv Lykken skal man tage et kort og handle derefter.
 
 ### Når man bygger
 Når en spiller ejer __alle__ ejendomme i en farvegruppe, så må de bygge på de ejendomme. 
@@ -93,6 +93,6 @@ En pantsat grund kan købes tilbage af ejeren fra banken for `(pris / 2) * 1.1`.
 ## Endgame
 
 ### Konkurs
-Hvis en spiller skylder mere til en spiller/bank end en spiller ejer, er de gået konkurs og ude af spillet.
-Hvis spiller A går konkurs fordi de skulle betale spiller B, overtager spiller B alle spiller A´s likvide midler, og ejendom.
-Den sidste spiller efter alle andre er gået konkurs, er vinderen.
+Hvis en spiller skylder mere til en anden spiller/banken end vedkommened ejer, er de gået konkurs og ude af spillet.
+Hvis spiller A går konkurs fordi de skulle betale spiller B, overtager spiller B alle spiller A´s likvide midler, og ejendomme.
+Den spiller, der står tilbage efter alle andre er gået konkurs, er vinderen.
