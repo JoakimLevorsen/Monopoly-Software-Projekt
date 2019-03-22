@@ -1,4 +1,4 @@
-package model;
+package monopoly.model;
 
 import org.json.*;
 
@@ -11,6 +11,6 @@ Et interface med vigtige metoder alle objekter i modellen skal have.
 interface ModelObject {
     public ModelObject getFromJSON(JSONObject object);
 
-    public ModelObject loadFromDatabase(GameObject parent);
+    public ModelObject loadFromDatabase(ModelObject parent);
     public void saveToDatabase();
 }
