@@ -1,4 +1,4 @@
-package gruppe_13a;
+package monopoly;
 
 public final class Monopoly {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package gruppe_13a;
+package monopoly;
 
 import org.junit.Test;
 
