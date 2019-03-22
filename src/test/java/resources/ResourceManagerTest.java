@@ -14,12 +14,14 @@ import org.json.JSONObject;
  * Unit test for simple App.
  */
 public class ResourceManagerTest {
-    /**
-     * Rigorous Test.
+    /*
+     * testAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk
+     * findes i projektet.
+     * 
+     * @author Joakim Levorsen, S185023
      */
     @Test
     public void testAllFilesPresent() {
-        // This test ensures all files declared are present in the project.
         ResourceManager manager = new ResourceManager();
         for (JSONFile file : JSONFile.values()) {
             try {
@@ -31,11 +33,14 @@ public class ResourceManagerTest {
         }
     }
 
+    /*
+     * testAllKeysPresent: Tjekker om alle nøgler nævnt i JSONKey findes mindst en
+     * gang i alle JSON filer nævnt i JSONFile
+     * 
+     * @author Joakim Levorsen, S185023
+     */
     @Test
     public void testAllKeysPresent() {
-        // This test ensures all keys actually exist, to avoid clutter
-        // It also tests all files contain the key, to ensure no files are missing
-        // NOTE only identifies if more than one match exists
         ResourceManager manager = new ResourceManager();
         for (JSONFile file : JSONFile.values()) {
             try {
@@ -51,6 +56,13 @@ public class ResourceManagerTest {
 
     }
 
+    /*
+     * keyExists: Kode taget fra StackOverflow, til at undersøge rekusivt om et
+     * JSONObject indeholder en nøgle mindst en gang. Original kilde:
+     * https://stackoverflow.com/questions/31043606/check-whether-a-key-exists-or-not-in-a-nested-json/31044236
+     * 
+     * @author Joakim Levorsen, S185023
+     */
     private boolean keyExists(JSONObject object, String searchedKey) {
         boolean exists = object.has(searchedKey);
         if (!exists) {
