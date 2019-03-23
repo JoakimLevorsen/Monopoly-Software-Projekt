@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -61,7 +62,8 @@ public class ResourceManagerTest {
     /*
      * keyExists: Kode taget fra StackOverflow, til at undersøge rekusivt om et
      * JSONObject indeholder en nøgle mindst en gang. Original kilde:
-     * https://stackoverflow.com/questions/31043606/check-whether-a-key-exists-or-not-in-a-nested-json/31044236
+     * https://stackoverflow.com/questions/31043606/check-whether-a-key-exists-or-
+     * not-in-a-nested-json/31044236
      * 
      * @author Joakim Levorsen, S185023
      */
@@ -81,16 +83,17 @@ public class ResourceManagerTest {
 
     /*
      * testAllFilesLayoutIdentical: Tjekker om layoutet af JSON filer er identisk,
-     * dvs at alle JSON filer har de samme nøgler. Den tjekker IKKE array indhold,
-     * eller typerne af værdierne ved nøgler(Med untagelse af hvis værdien er at
-     * objekt, så tjekkes den).
+     * dvs at alle JSON filer har de samme nøgler. Den tjekker IKKE typerne af
+     * værdierne ved nøgler(Med untagelse af hvis værdien er at objekt eller array,
+     * så tjekkes den).
      * 
      * @author Joakim Levorsen, S185023
      */
-    @Test public void testAllFilesLayoutIdentical() {
+    @Test
+    public void testAllFilesLayoutIdentical() {
         ResourceManager manager = new ResourceManager();
         Stack<JSONObject> allResourceFiles = new Stack<>();
-        for (JSONFile file: JSONFile.values()) {
+        for (JSONFile file : JSONFile.values()) {
             try {
                 allResourceFiles.push(manager.readFile(file));
             } catch (JSONException e) {
@@ -99,54 +102,96 @@ public class ResourceManagerTest {
         }
         // If there´s only one file, it must match itself.
         if (allResourceFiles.size() > 1) {
-            // This works by verifying all files match the first one, since if everyone matches the first one, they all must match
+            // This works by verifying all files match the first one, since if everyone
+            // matches the first one, they all must match
             JSONObject first = allResourceFiles.pop();
+            int checkIndex = 1;
             while (allResourceFiles.size() > 0) {
                 JSONObject compareTo = allResourceFiles.pop();
                 if (!keysMatch(first, compareTo)) {
-                    fail("Objects do not match key layout");
+                    fail("Objects do not match key layout, compared " + JSONFile.values()[0].getFileName() + " to "
+                            + JSONFile.values()[checkIndex].getFileName());
                 }
+                checkIndex++;
             }
         }
     }
 
     /*
-     * keysMatch: Tjekker to JSON objekter har de samme nøgler (minus arrays).
+     * keysMatch: Tjekker to JSON objekter har de samme nøgler.
      * 
      * @author Joakim Levorsen, S185023
      */
     private boolean keysMatch(JSONObject a, JSONObject b) {
         // First check all keys from a exist in b
-        Iterator aKeys = a.keys();
-        Set bKeySet = b.keySet();
+        Iterator<String> aKeys = a.keys();
+        Set<String> bKeySet = b.keySet();
         while (aKeys.hasNext()) {
-            String key = (String)aKeys.next();
-            if (!bKeySet.contains(key)) return false;
-            if (a.get(key) instanceof JSONObject) {
-                // First we verify b also has an object at this key, then we compare the deeper objects.
-                if (b.get(key) instanceof JSONObject) {
-                    if (!keysMatch((JSONObject) a.get(key), (JSONObject) b.get(key))) return false;
-                } else {
-                    return false;
-                }
+            String key = (String) aKeys.next();
+            if (!bKeySet.contains(key)) {
+                System.out.println(key + " found in object a but not on object a");
+                return false;
             }
+            ;
+            if (!compareObjectsFromJSON(a.get(key), b.get(key)))
+                return false;
         }
         // Then all b keys exist in a
-        Iterator bKeys = b.keys();
-        Set aKeySet = a.keySet();
+        Iterator<String> bKeys = b.keys();
+        Set<String> aKeySet = a.keySet();
         while (bKeys.hasNext()) {
-            String key = (String)bKeys.next();
-            if (!aKeySet.contains(key)) return false;
-            if (b.get(key) instanceof JSONObject) {
-                // First we verify b also has an object at this key, then we compare the deeper objects.
-                if (a.get(key) instanceof JSONObject) {
-                    if (!keysMatch((JSONObject) b.get(key), (JSONObject) a.get(key))) return false;
-                } else {
-                    return false;
-                }
+            String key = (String) bKeys.next();
+            if (!aKeySet.contains(key))
+                return false;
+            if (!compareObjectsFromJSON(b.get(key), a.get(key)))
+                return false;
+        }
+        // Now everything has been compared without returning false, so the objects keys
+        // must match
+        return true;
+    }
+
+    /*
+     * arrayMatch: Sammenlign to JSONArrays, og deres værdier.
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    private boolean arrayMatch(JSONArray a, JSONArray b) {
+        if (a.length() != b.length()) {
+            System.out.println("Arrays not equal length");
+            return false;
+        }
+        for (int i = 0; i < a.length(); i++) {
+            if (!compareObjectsFromJSON(a.get(i), b.get(i))) {
+                System.out.println("Array comparison failed at index " + i);
+                return false;
             }
         }
-        // Now everything has been compared without returning false, so the objects keys must match
+        return true;
+    }
+
+    /*
+     * compareObjectFromJSON: Sammenlign to Objekt typer, om de er dybere JSON
+     * objeckter, og så videre om de stemmer overens.
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    private boolean compareObjectsFromJSON(Object a, Object b) {
+        if (a instanceof JSONObject) {
+            // First we verify b also has an object at this key, then we compare the deeper
+            // objects.
+            if (b instanceof JSONObject) {
+                if (!keysMatch((JSONObject) a, (JSONObject) b))
+                    return false;
+            } else
+                return false;
+        } else if (a instanceof JSONArray) {
+            if (b instanceof JSONArray) {
+                if (!arrayMatch((JSONArray) a, (JSONArray) b))
+                    return false;
+            } else
+                return false;
+        }
         return true;
     }
 }
