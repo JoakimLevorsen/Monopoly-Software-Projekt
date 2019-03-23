@@ -2,7 +2,6 @@ package resources.json;
 
 import org.json.*;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
@@ -22,8 +21,11 @@ public class ResourceManager {
             System.out.println(classLoader.getResource(file.getFileName()));
             InputStream fStream = classLoader.getResourceAsStream(file.getFileName());
             result = IOUtils.toString(fStream);
-        } catch (IOException e) {
+        } catch (NullPointerException e) {
+            throw new JSONExceptionFileNotFound();
+        } catch (Exception e) {
             e.printStackTrace();
+            throw new JSONExceptionFileNotFound();
         }
 
         try {

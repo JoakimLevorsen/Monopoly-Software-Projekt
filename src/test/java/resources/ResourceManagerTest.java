@@ -6,6 +6,8 @@ import resources.json.*;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+import java.util.Stack;
 import java.util.Iterator;
 
 import org.json.JSONObject;
@@ -27,8 +29,8 @@ public class ResourceManagerTest {
             try {
                 manager.readFile(file);
             } catch (JSONException e) {
-                e.printStackTrace();
                 fail("File named " + file.getFileName() + " not found");
+                e.printStackTrace();
             }
         }
     }
@@ -49,8 +51,8 @@ public class ResourceManagerTest {
                     assertTrue("Key " + key + " was not found in " + file, keyExists(jFile, key.getKey()));
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
                 fail("File named " + file.getFileName() + " not found");
+                e.printStackTrace();
             }
         }
 
@@ -75,5 +77,76 @@ public class ResourceManagerTest {
             }
         }
         return exists;
+    }
+
+    /*
+     * testAllFilesLayoutIdentical: Tjekker om layoutet af JSON filer er identisk,
+     * dvs at alle JSON filer har de samme nøgler. Den tjekker IKKE array indhold,
+     * eller typerne af værdierne ved nøgler(Med untagelse af hvis værdien er at
+     * objekt, så tjekkes den).
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    @Test public void testAllFilesLayoutIdentical() {
+        ResourceManager manager = new ResourceManager();
+        Stack<JSONObject> allResourceFiles = new Stack<>();
+        for (JSONFile file: JSONFile.values()) {
+            try {
+                allResourceFiles.push(manager.readFile(file));
+            } catch (JSONException e) {
+                fail("Could not read file " + file.getFileName());
+            }
+        }
+        // If there´s only one file, it must match itself.
+        if (allResourceFiles.size() > 1) {
+            // This works by verifying all files match the first one, since if everyone matches the first one, they all must match
+            JSONObject first = allResourceFiles.pop();
+            while (allResourceFiles.size() > 0) {
+                JSONObject compareTo = allResourceFiles.pop();
+                if (!keysMatch(first, compareTo)) {
+                    fail("Objects do not match key layout");
+                }
+            }
+        }
+    }
+
+    /*
+     * keysMatch: Tjekker to JSON objekter har de samme nøgler (minus arrays).
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    private boolean keysMatch(JSONObject a, JSONObject b) {
+        // First check all keys from a exist in b
+        Iterator aKeys = a.keys();
+        Set bKeySet = b.keySet();
+        while (aKeys.hasNext()) {
+            String key = (String)aKeys.next();
+            if (!bKeySet.contains(key)) return false;
+            if (a.get(key) instanceof JSONObject) {
+                // First we verify b also has an object at this key, then we compare the deeper objects.
+                if (b.get(key) instanceof JSONObject) {
+                    if (!keysMatch((JSONObject) a.get(key), (JSONObject) b.get(key))) return false;
+                } else {
+                    return false;
+                }
+            }
+        }
+        // Then all b keys exist in a
+        Iterator bKeys = b.keys();
+        Set aKeySet = a.keySet();
+        while (bKeys.hasNext()) {
+            String key = (String)bKeys.next();
+            if (!aKeySet.contains(key)) return false;
+            if (b.get(key) instanceof JSONObject) {
+                // First we verify b also has an object at this key, then we compare the deeper objects.
+                if (a.get(key) instanceof JSONObject) {
+                    if (!keysMatch((JSONObject) b.get(key), (JSONObject) a.get(key))) return false;
+                } else {
+                    return false;
+                }
+            }
+        }
+        // Now everything has been compared without returning false, so the objects keys must match
+        return true;
     }
 }
