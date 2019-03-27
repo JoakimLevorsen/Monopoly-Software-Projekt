@@ -26,8 +26,8 @@ Hjørnefelterne er i rækkefølge (i urets retning):
 3. Gratis Parkering
 4. Gå i fængsel
 
-På hver side er det 5. felt en togstation, det 4. felt på brættet er Indkomstskat og det næstsidste felt på brættet er Topskat.
-På hver side er der 1 Prøv Lykken felt og 1 Chance felt.
+På hver side er det 6. felt en togstation og der er 1 Prøv Lykken felt og 1 Chance felt.
+Det 4. felt på brættet er Indkomstskat og det næstsidste felt på brættet er Topskat.
 De resterende felter på brættet er ejendomme, som kan bygges på.
 Hver side af brættet har 2 farvegrupper med ejendomme.
 Jo længere man når på brættet jo højere er ejendomsprisen.
@@ -68,7 +68,7 @@ Hvis man lander på en ejendom/station uden en ejer, så skal man gøre en af to
 
 Hvis man lander på en ejet ejendom/station, skal man betale `base husleje + (base husleje * antal huse) / 2`.
 Hvis man lander på Gå i Fængsel, skal man fængsles og turen slutter med det samme.
-Hivs man lander på Gratis Parkering får man pengene, der ligger på feltet. Hver gang en spiller betaler topskat eller indkomstskat lægges pengene på Gratis Parkering.
+Hvis man lander på Gratis Parkering får man pengene, der ligger på feltet. Hver gang en spiller betaler topskat eller indkomstskat lægges pengene på Gratis Parkering.
 Hvis man lander på Chance/Prøv Lykken skal man tage et kort og handle derefter.
 
 ### Stationer
