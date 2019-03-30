@@ -18,7 +18,6 @@ public class ResourceManager {
 
         ClassLoader classLoader = getClass().getClassLoader();
         try {
-            System.out.println(classLoader.getResource(file.getFileName()));
             InputStream fStream = classLoader.getResourceAsStream(file.getFileName());
             result = IOUtils.toString(fStream);
         } catch (NullPointerException e) {
