@@ -4,6 +4,12 @@ import java.util.List;
 
 import designpatterns.Subject;
 
+/*
+Player:
+Implementering af Player model objektet, med ORM for databasen.
+
+@author Joakim Levorsen, S185023
+*/
 public class Player extends Subject {
     public enum Properties {
         NAME("name"),
@@ -42,8 +48,16 @@ public class Player extends Subject {
         return (int)this.get(Player.Properties.BOARD_POSITION.getProperty());
     }
 
+    public void setBoardPosition(int position) {
+        this.set(Player.Properties.BOARD_POSITION.getProperty(), position);
+    }
+
     public int getAccountBalance() {
         return (int)this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
+    }
+
+    public void setAccountBalance(int newBalance) {
+        this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard

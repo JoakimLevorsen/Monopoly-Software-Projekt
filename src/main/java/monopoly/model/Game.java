@@ -4,6 +4,12 @@ import java.util.List;
 
 import designpatterns.Subject;
 
+/*
+Game:
+Implementering af Game model objektet, med ORM for databasen.
+
+@author Joakim Levorsen, S185023
+*/
 public class Game extends Subject {
     private List<Player> players = null;
 
@@ -55,7 +61,11 @@ public class Game extends Subject {
         return (String)this.get(Game.Properties.SAVE_NAME.getProperty());
     }
 
-    public int currentTurn() {
+    public int getCurrentTurn() {
         return (int)this.get(Game.Properties.CURRENT_TURN.getProperty());
+    }
+
+    public void setCurrentTurn(int turn) {
+        this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
     }
 }
