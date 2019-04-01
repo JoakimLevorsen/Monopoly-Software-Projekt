@@ -60,5 +60,10 @@ public class Player extends Subject {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
+    public void changeAccountBalance(int by) {
+        int newBalance = this.getAccountBalance() + by;
+        this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
+    }
+
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
 }

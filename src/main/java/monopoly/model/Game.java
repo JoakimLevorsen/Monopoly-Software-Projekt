@@ -3,6 +3,7 @@ package monopoly.model;
 import java.util.List;
 
 import designpatterns.Subject;
+import monopoly.model.cards.CardStack;
 
 /*
 Game:
@@ -12,6 +13,7 @@ Implementering af Game model objektet, med ORM for databasen.
 */
 public class Game extends Subject {
     private List<Player> players = null;
+    private List<CardStack> stacks = null;
 
     public enum Properties {
         CURRENT_TURN("currentTurn"),
@@ -52,9 +54,36 @@ public class Game extends Subject {
 
     public List<Player> getPlayers() {
         if (this.players == null) {
-            this.players = this.getAll(Player.class);
+            this.players = this.getAll(Player.class).load();
         }
         return this.players;
+    }
+
+    public Player getPlayerForID(int id) {
+        List<Player> players = this.getPlayers();
+        for (Player p: players) {
+            if ((int)p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public List<CardStack> getCardStacks() {
+        if (this.stacks == null) {
+            this.stacks = this.getAll(CardStack.class).load();
+        }
+        return this.stacks;
+    }
+
+    public CardStack getStackForID(int id) {
+        List<CardStack> stacks = this.getCardStacks();
+        for (CardStack c: stacks) {
+            if ((int)c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public String getGameName() {

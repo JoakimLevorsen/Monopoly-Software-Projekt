@@ -1,3 +1,210 @@
 {
-    "test": "OK"
+    "test": "OK",
+    "spaces": [{
+        "name": "Start",
+        "type": 0,
+        "message": "Modtag M̶2 når du passerer Start",
+        "color": "white",
+        "textColor": "red"
+    },
+    {
+        "name": "Burgerbar",
+        "type": 2,
+        "message": "En god burger til en god pris.",
+        "value": 1,
+        "valueString": "M̶1",
+        "color": "darkGray",
+        "textColor": "white"
+
+    },
+    {
+        "name": "Pizzeria",
+        "type": 2,
+        "message": "Ægte italiensk pizza for næsten ingen penge.",
+        "value": 1,
+        "valueString": "M̶1",
+        "color": "darkGray",
+        "textColor": "white"
+    },
+    {
+        "name": "Chance",
+        "type": 5,
+        "message": "Tag et chancekort.",
+        "color": "lightGray",
+        "textColor": "black"
+    },
+    {
+        "name": "Slikbutik",
+        "type": 2,
+        "message": "Billigere slik fås ikke i byen.",
+        "value": 1,
+        "valueString": "M̶1",
+        "color": "cyan",
+        "textColor": "black"
+    },
+    {
+        "name": "Iskiosk",
+        "type": 2,
+        "message": "Gammeldaws is med det hele.",
+        "value": 1,
+        "valueString": "M̶1",
+        "color": "cyan",
+        "textColor": "black"
+    },
+    {
+        "name": "Fængsel",
+        "type": 3,
+        "message": "På besøg",
+        "value": 1,
+        "valueString": "M̶1",
+        "color": "white",
+        "textColor": "black",
+        "image": "default"
+    },
+    {
+        "name": "Museum",
+        "type": 2,
+        "message": "Hold børnefødselsdag i museet og få kloge børn!",
+        "value": 2,
+        "valueString": "M̶2",
+        "color": "magenta",
+        "textColor": "black"
+    },
+    {
+        "name": "Bibliotek",
+        "type": 2,
+        "message": "Betal dine gebyrer, når du alligevel er forbi!",
+        "value": 2,
+        "valueString": "M̶2",
+        "color": "magenta",
+        "textColor": "black"
+    },
+    {
+        "name": "Chance",
+        "type": 5,
+        "message": "Tag et chancekort.",
+        "color": "lightGray",
+        "textColor": "black"
+    },
+    {
+        "name": "Skaterpark",
+        "type": 2,
+        "message": "Skaterparken er gratis, men sodavandet koster.",
+        "value": 2,
+        "valueString": "M̶2",
+        "color": "orange",
+        "textColor": "black"
+    },
+    {
+        "name": "Swimming Pool",
+        "type": 2,
+        "message": "Tag dig en svømmer for ̶M̶2",
+        "value": 2,
+        "valueString": "M̶2",
+        "color": "orange",
+        "textColor": "black"
+    },
+    {
+        "name": "Gratis Parkering",
+        "type": 1,
+        "message": "Tag dig en Red Bull og læs om Swing på Stack Overflow!",
+        "color": "white",
+        "textColor": "black",
+        "image": "default"
+    },
+    {
+        "name": "Spillehal",
+        "type": 2,
+        "message": "Her kan man spille de sidste nye spil, f.eks. DTU-matador!",
+        "value": 3,
+        "valueString": "M̶3",
+        "color": "red",
+        "textColor": "black"
+    },
+    {
+        "name": "Biograf",
+        "type": 2,
+        "message": "Biografen har 43 sale. Der er penge i de popcorn!",
+        "value": 3,
+        "valueString": "M̶3",
+        "color": "red",
+        "textColor": "black"
+    },
+    {
+        "name": "Chance",
+        "type": 5,
+        "message": "Tag et chancekort.",
+        "color": "lightGray",
+        "textColor": "black"
+    },
+    {
+        "name": "Legetøjsbutik",
+        "type": 2,
+        "message": "Flot legetøjsbutik med masser af aktiviteter for de mindste.",
+        "value": 3,
+        "valueString": "M̶3",
+        "color": "yellow",
+        "textColor": "black"
+    },
+    {
+        "name": "Dyrehandel",
+        "type": 2,
+        "message": "Kæledyr i alle prisklasser.",
+        "value": 3,
+        "valueString": "M̶3",
+        "color": "yellow",
+        "textColor": "black"
+    },
+    {
+        "name": "Gå i fængsel",
+        "type": 4,
+        "message": "Du rykker til fængslet. Det er alvor denne gang.",
+        "color": "white",
+        "textColor": "black",
+        "image": "default"
+    },
+    {
+        "name": "Bowlinghal",
+        "type": 2,
+        "message": "Bowling går aldri helt af mode.",
+        "value": 4,
+        "valueString": "M̶4",
+        "color": "green",
+        "textColor": "black"
+    },
+    {
+        "name": "Zoologisk Have",
+        "type": 2,
+        "message": "Zoologisk Have er en af de helt store turistattraktioner i byen.",
+        "value": 4,
+        "valueString": "M̶4",
+        "color": "green",
+        "textColor": "black"
+    },
+    {
+        "name": "Chance",
+        "type": 5,
+        "message": "Tag et chancekort.",
+        "color": "lightGray",
+        "textColor": "black"
+    },
+    {
+        "name": "Vandland",
+        "type": 2,
+        "message": "Der er ikke sparet på noget i det nye vandland midt i København!",
+        "value": 5,
+        "valueString": "M̶5",
+        "color": "blue",
+        "textColor": "white"
+    },
+    {
+        "name": "Promenade",
+        "type": 2,
+        "message": "Byens fineste gade. Frisk luft, hav og økologisk kaffe.",
+        "value": 5,
+        "valueString": "M̶5",
+        "color": "blue",
+        "textColor": "white"
+    }
+]
 }
