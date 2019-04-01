@@ -1,5 +1,6 @@
 {
     "test": "OK",
+    "startPayment": 200,
     "spaces": [{
         "name": "Start",
         "type": 0,
@@ -9,7 +10,7 @@
     },
     {
         "name": "Burgerbar",
-        "type": 2,
+        "type": 1,
         "message": "En god burger til en god pris.",
         "value": 1,
         "valueString": "M̶1",
@@ -35,7 +36,7 @@
     },
     {
         "name": "Slikbutik",
-        "type": 2,
+        "type": 1,
         "message": "Billigere slik fås ikke i byen.",
         "value": 1,
         "valueString": "M̶1",
@@ -53,7 +54,7 @@
     },
     {
         "name": "Fængsel",
-        "type": 3,
+        "type": 4,
         "message": "På besøg",
         "value": 1,
         "valueString": "M̶1",
@@ -63,7 +64,7 @@
     },
     {
         "name": "Museum",
-        "type": 2,
+        "type": 1,
         "message": "Hold børnefødselsdag i museet og få kloge børn!",
         "value": 2,
         "valueString": "M̶2",
@@ -88,7 +89,7 @@
     },
     {
         "name": "Skaterpark",
-        "type": 2,
+        "type": 1,
         "message": "Skaterparken er gratis, men sodavandet koster.",
         "value": 2,
         "valueString": "M̶2",
@@ -106,7 +107,7 @@
     },
     {
         "name": "Gratis Parkering",
-        "type": 1,
+        "type": 3,
         "message": "Tag dig en Red Bull og læs om Swing på Stack Overflow!",
         "color": "white",
         "textColor": "black",
@@ -114,7 +115,7 @@
     },
     {
         "name": "Spillehal",
-        "type": 2,
+        "type": 1,
         "message": "Her kan man spille de sidste nye spil, f.eks. DTU-matador!",
         "value": 3,
         "valueString": "M̶3",
@@ -139,7 +140,7 @@
     },
     {
         "name": "Legetøjsbutik",
-        "type": 2,
+        "type": 1,
         "message": "Flot legetøjsbutik med masser af aktiviteter for de mindste.",
         "value": 3,
         "valueString": "M̶3",
@@ -165,7 +166,7 @@
     },
     {
         "name": "Bowlinghal",
-        "type": 2,
+        "type": 1,
         "message": "Bowling går aldri helt af mode.",
         "value": 4,
         "valueString": "M̶4",
@@ -190,7 +191,7 @@
     },
     {
         "name": "Vandland",
-        "type": 2,
+        "type": 1,
         "message": "Der er ikke sparet på noget i det nye vandland midt i København!",
         "value": 5,
         "valueString": "M̶5",

@@ -6,7 +6,7 @@ import monopoly.model.Player;
 public class JailSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), TREASURE("treasure");
+        BOARD_POSITION("boardPosition");
 
         private String value;
 
@@ -24,8 +24,14 @@ public class JailSpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
+    public static JailSpace create(int position) {
+        JailSpace space = new JailSpace();
+        space.set(JailSpace.Properties.BOARD_POSITION.getProperty(), position);
+        return space;
+    }
+
     public int getBoardPosition() {
-        return this.getInteger(FreeParkingSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+        return this.getInteger(JailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
     public void jail(Player player) {

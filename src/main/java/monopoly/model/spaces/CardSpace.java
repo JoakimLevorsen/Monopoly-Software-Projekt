@@ -2,7 +2,6 @@ package monopoly.model.spaces;
 
 import monopoly.controller.GameController;
 import monopoly.model.Player;
-import monopoly.model.cards.Card;
 import monopoly.model.cards.CardStack;
 
 /*
@@ -29,6 +28,13 @@ public class CardSpace extends Space {
 
     public int getBoardPosition() {
         return this.getInteger(CardSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+    }
+
+    public static CardSpace create(int position, CardStack stack) {
+        CardSpace space = new CardSpace();
+        space.set(CardSpace.Properties.BOARD_POSITION.getProperty(), position);
+        stack.add(space);
+        return space;
     }
 
     @Override

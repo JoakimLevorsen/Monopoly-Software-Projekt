@@ -3,11 +3,11 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.*;
 
-public class StationSpace extends Space {
+public class PropertySpace extends Space {
 
     public enum Properties {
         BOARD_POSITION("boardPosition"), NAME("name"), MORGAGED("morgaged"), PRICE("price"), BASE_RENT("baseRent"),
-        OWNER("owner");
+        OWNER("owner"), BUILD_LEVEL("buildLevel");
 
         private String value;
 
@@ -25,14 +25,15 @@ public class StationSpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
-    public static StationSpace create(int position, int baseRent, String name) {
+    public static PropertySpace create(int position, int baseRent, String name) {
         // TODO: Correct values
-        StationSpace space = new StationSpace();
-        space.set(StationSpace.Properties.BASE_RENT.getProperty(), baseRent);
-        space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
-        space.set(StationSpace.Properties.PRICE.getProperty(), baseRent);
-        space.set(StationSpace.Properties.NAME.getProperty(), name);
-        space.set(StationSpace.Properties.MORGAGED.getProperty(), false);
+        PropertySpace space = new PropertySpace();
+        space.set(PropertySpace.Properties.BASE_RENT.getProperty(), baseRent);
+        space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);
+        space.set(PropertySpace.Properties.PRICE.getProperty(), baseRent);
+        space.set(PropertySpace.Properties.NAME.getProperty(), name);
+        space.set(PropertySpace.Properties.MORGAGED.getProperty(), false);
+        space.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), 0);
         return space;
     }
 

@@ -24,6 +24,12 @@ public class GoToJailSpace extends Space {
         // TODO: Implement jail routine.
     }
 
+    public static GoToJailSpace create(int position) {
+        GoToJailSpace space = new GoToJailSpace();
+        space.set(GoToJailSpace.Properties.BOARD_POSITION.getProperty(), position);
+        return space;
+    }
+
     public int getBoardPosition() {
         return this.getInteger(GoToJailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }

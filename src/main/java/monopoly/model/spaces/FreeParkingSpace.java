@@ -24,6 +24,13 @@ public class FreeParkingSpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
+    public static FreeParkingSpace create(int position) {
+        FreeParkingSpace space = new FreeParkingSpace();
+        space.set(FreeParkingSpace.Properties.BOARD_POSITION.getProperty(), position);
+        space.set(FreeParkingSpace.Properties.TREASURE.getProperty(), 0);
+        return space;
+    }
+
     public int getBoardPosition() {
         return this.getInteger(FreeParkingSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }

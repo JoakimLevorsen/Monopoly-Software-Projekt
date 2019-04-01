@@ -24,6 +24,13 @@ public class StartSpace extends Space {
         player.changeAccountBalance(this.getPayment());
     }
 
+    public static StartSpace create(int position, int payment) {
+        StartSpace space = new StartSpace();
+        space.set(StartSpace.Properties.BOARD_POSITION.getProperty(), position);
+        space.set(StartSpace.Properties.PAYMENT.getProperty(), payment);
+        return space;
+    }
+
     public int getBoardPosition() {
         return this.getInteger(StartSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
