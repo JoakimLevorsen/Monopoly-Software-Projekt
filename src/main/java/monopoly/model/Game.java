@@ -2,8 +2,12 @@ package monopoly.model;
 
 import java.util.List;
 
+import org.javalite.activejdbc.Model;
+
 import designpatterns.Subject;
 import monopoly.model.cards.CardStack;
+import monopoly.model.spaces.DatabaseSpaceFactory;
+import monopoly.model.spaces.Space;
 
 /*
 Game:
@@ -11,9 +15,10 @@ Implementering af Game model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Game extends Subject {
+public class Game extends Model {
     private List<Player> players = null;
     private List<CardStack> stacks = null;
+    private List<Space> board = null;
 
     public enum Properties {
         CURRENT_TURN("currentTurn"),
@@ -74,6 +79,13 @@ public class Game extends Subject {
             this.stacks = this.getAll(CardStack.class).load();
         }
         return this.stacks;
+    }
+
+    public List<Space> getBoard() {
+        if (this.board == null) {
+            this.board = DatabaseSpaceFactory.getSpacesFor(this);
+        }
+        return this.board;
     }
 
     public CardStack getStackForID(int id) {

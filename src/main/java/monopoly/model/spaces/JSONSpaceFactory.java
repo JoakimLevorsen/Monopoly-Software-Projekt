@@ -15,8 +15,6 @@ public class JSONSpaceFactory {
         Space[] resultSet = new Space[spaceData.length()];
         int startPayment = boardData.getInt(JSONKey.START_PAYMENT.getKey());
 
-        ColorGroup myNewGroup = ColorGroup.create("asdfgh");
-
         CardStack chanceStack = new CardStack();
         CardStack communityStack = new CardStack();
 
@@ -29,7 +27,7 @@ public class JSONSpaceFactory {
                 break;
             case 1:
                 resultSet[i] = PropertySpace.create(i, space.getInt(JSONKey.BASE_RENT.getKey()),
-                        space.getString(JSONKey.NAME.getKey()));
+                        space.getString(JSONKey.NAME.getKey()), "ff00ff");
                 break;
             case 2:
                 resultSet[i] = StationSpace.create(i, space.getInt(JSONKey.BASE_RENT.getKey()),

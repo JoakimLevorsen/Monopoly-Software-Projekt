@@ -6,7 +6,12 @@ import java.util.Stack;
 
 import designpatterns.Subject;
 
-//TODO implement
+/*
+CardStack:
+Implementering af klasse til håndtering af et sæt kort.
+
+@author Cecilie Krog Drejer, s185032
+*/
 
 public class CardStack extends Subject {
 

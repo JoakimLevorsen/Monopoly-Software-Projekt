@@ -7,7 +7,7 @@ public class PropertySpace extends Space {
 
     public enum Properties {
         BOARD_POSITION("boardPosition"), NAME("name"), MORGAGED("morgaged"), PRICE("price"), BASE_RENT("baseRent"),
-        OWNER("owner"), BUILD_LEVEL("buildLevel");
+        OWNER("owner"), BUILD_LEVEL("buildLevel"), COLOUR("colour");
 
         private String value;
 
@@ -25,7 +25,7 @@ public class PropertySpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
-    public static PropertySpace create(int position, int baseRent, String name) {
+    public static PropertySpace create(int position, int baseRent, String name, String colour) {
         // TODO: Correct values
         PropertySpace space = new PropertySpace();
         space.set(PropertySpace.Properties.BASE_RENT.getProperty(), baseRent);
@@ -34,6 +34,7 @@ public class PropertySpace extends Space {
         space.set(PropertySpace.Properties.NAME.getProperty(), name);
         space.set(PropertySpace.Properties.MORGAGED.getProperty(), false);
         space.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), 0);
+        space.set(PropertySpace.Properties.COLOUR.getProperty(), colour);
         return space;
     }
 
