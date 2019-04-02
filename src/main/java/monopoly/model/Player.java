@@ -2,6 +2,8 @@ package monopoly.model;
 
 import java.util.List;
 
+import org.javalite.activejdbc.Model;
+
 import designpatterns.Subject;
 
 /*
@@ -10,7 +12,7 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Player extends Subject {
+public class Player extends Model {
     public enum Properties {
         NAME("name"),
         PLAYER_INDEX("playerIndex"),
