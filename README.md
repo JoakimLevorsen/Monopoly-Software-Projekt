@@ -33,7 +33,7 @@ Hver side af brættet har 2 farvegrupper med ejendomme.
 Jo længere man når på brættet jo højere er ejendomsprisen.
 
 ### Chancekort
-Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i alt af følgende typer:
+__Chancekort__ er risikable kort, der kan være dårlige eller positive. Der er 16 i alt af følgende typer:
 * Gå i fængsel
 * Gå til start
 * Gå til _felt_
@@ -43,7 +43,7 @@ Chancekort er risikable kort, der kan være dårlige eller positive. Der er 16 i
 * Bank tager _beløb_
 
 ### Prøv lykken kort
-'Prøv lykken' kort giver oftest en fordel til en spiller, og der er 16 kort af følgende typer:
+__Prøv lykken__ kort giver oftest en fordel til en spiller, og der er 16 kort af følgende typer:
 * Gratis ud af fængsel
 * Gå til start
 * Bank giver _beløb_
