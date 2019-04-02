@@ -2,11 +2,10 @@ package monopoly;
 
 import java.util.List;
 
-import org.javalite.activejdbc.Base;
 import org.json.JSONObject;
 
+import monopoly.model.DatabaseBase;
 import monopoly.model.Game;
-import monopoly.model.Player;
 import monopoly.model.spaces.JSONSpaceFactory;
 import monopoly.model.spaces.Space;
 import resources.json.JSONException;
@@ -16,8 +15,7 @@ import resources.json.ResourceManager;
 public final class Monopoly {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185023",
-                "s185023", "t0MzfHeQBfHIlo8ociaB2");
+        DatabaseBase.openBase();
         // DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185023?"
         // + "user=s185023&password=t0MzfHeQBfHIlo8ociaB2");
         // Game newGame = Game.newGame("Perter");
@@ -45,6 +43,6 @@ public final class Monopoly {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        Base.close();
+        DatabaseBase.closeBase();
     }
 }
