@@ -8,17 +8,17 @@ import monopoly.model.Game;
 
 public class DatabaseSpaceFactory {
     public static List<Space> getSpacesFor(Game game) {
+
+        Class<? extends Space>[] arr = new Class[] { CardSpace.class, FreeParkingSpace.class, GoToJailSpace.class,
+                JailSpace.class, PropertySpace.class, StartSpace.class, StationSpace.class };
+
         // Get the spaces
         List<Space> allSpaces = new ArrayList<Space>();
-        allSpaces.addAll(game.getAll(CardSpace.class).load());
-        allSpaces.addAll(game.getAll(FreeParkingSpace.class).load());
-        allSpaces.addAll(game.getAll(GoToJailSpace.class).load());
-        allSpaces.addAll(game.getAll(JailSpace.class).load());
-        allSpaces.addAll(game.getAll(PropertySpace.class).load());
-        allSpaces.addAll(game.getAll(StartSpace.class).load());
-        allSpaces.addAll(game.getAll(StationSpace.class).load());
+        for (Class<? extends Space> c : arr) {
+            allSpaces.addAll(game.getAll(c).load());
+        }
 
-        //Sort the spaces
+        // Sort the spaces
         Collections.sort(allSpaces);
 
         return allSpaces;
