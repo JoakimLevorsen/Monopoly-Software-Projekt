@@ -207,5 +207,163 @@
         "color": "blue",
         "textColor": "white"
     }
+],
+    "chanceCards": [{
+        "text": "Du er blevet taget i at stjæle fra en af dine medspillere. Du fængsles og modtager ikke §200, hvis du passerer Start.",
+        "type": 3,
+        "space": 10
+    },
+    {
+        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+        "type": 0,
+        "space": 0
+    },
+    {
+        "text": "Snup en tur med Tullebanen til Vejle Station.",
+        "type": 0,
+        "space": 15
+    },
+    {
+        "text": "Du mangler at købe en fødselsdagsgave til din mor. Gå til Strøget.",
+        "type": 0,
+        "space": 37
+    },
+    {
+        "text": "Du skal betale restskat. Betal banken §250.",
+        "type": 1,
+        "amount": -250
+    },
+    {
+        "text": "Gå til Nørreport Station og kør en tur med metroen.",
+        "type": 0,
+        "space": 25
+    },
+    {
+        "text": "Dine venner inviterer dig i byen. Gå til Jomfru Ane Gade.",
+        "type": 0,
+        "space": 18
+    },
+    {
+        "text": "Du står og mangler et massageapparat. Gå til Istedgade.",
+        "type": 0,
+        "space": 4
+    },
+    {
+        "text": "Du får en parkeringsbøde. Betal banken §75.",
+        "type": 1,
+        "amount": -75
+    },
+    {
+        "text": "Dine forældre er gode kunder hos banken. Du kan komme gratis ud af fængslet.",
+        "type": 2
+    },
+    {
+        "text": "Gå til fængslet. Der er besøgsdag og din far savner dig.",
+        "type": 0,
+        "space": 10
+    },
+    {
+        "text": "Du mangler noget sødt og tager til Christiania for at købe noget brunt sukker",
+        "type": 0,
+        "space": 23
+    },
+    {
+        "text": "Gå til det næste Prøv Lykken-felt.",
+        "type": 0
+    },
+    {
+        "text": "Du modtager en besynderlig SMS fra et ukendt nummer. 7 minutter senere er §133 forsvundet fra din konto.",
+        "type": 1,
+        "amount": -133
+    },
+    {
+        "text": "Du har betalt for meget i skat, og får derfor §200 tilbage.",
+        "type": 1,
+        "amount": 200
+    },
+    {
+        "text": "Du vinder i Lotto! §350 bliver indbetalt på din konto.",
+        "type": 1,
+        "amount": 350
+    }
+],
+    "communityChestCards": [{
+        "text": "Du skal på ferie! Tag Tullebanen til Billund Lufthavn.",
+        "type": 0,
+        "space": 35
+    },
+    {
+        "text": "Du er kommet på andenpladsen i en skønhedskonkurrence! Modtag §60 i præmie.",
+        "type": 1,
+        "amount": 60
+    },
+    {
+        "text": "Gå til det næste Chancefelt.",
+        "type": 0
+    },
+    {
+        "text": "Du har fødselsdag og din mormor sender dig et kort med §5 i. Tillykke!",
+        "type": 1,
+        "amount": 5
+    },
+    {
+        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+        "type": 0,
+        "space": 0
+    },
+    {
+        "text": "Du har en god advokat og kan komme gratis ud af fængsel.",
+        "type": 2
+    },
+    {
+        "text": "Der er gået renter ind på din konto. Du modtager §23.",
+        "type": 1,
+        "amount": 23
+    },
+    {
+        "text": "Du vinder i Lotto! §10 bliver indbetalt på din konto.",
+        "type": 1,
+        "amount": 10
+    },
+    {
+        "text": "Dit Netflix abonnement er udløbet. Du betaler §35 for at forny det.",
+        "type": 1,
+        "amount": -35
+    },
+    {
+        "text": "Du har fået løn for denne måned. §150 bliver indbetalt på din konto.",
+        "type": 1,
+        "amount": 150
+    },
+    {
+        "text": "Du har fået et brev fra kommunen og betaler §5 i posteringsgebyr.",
+        "type": 1,
+        "amount": -5
+    },
+    {
+        "text": "Du har taget toget uden billet. Betal §50 i bøde.",
+        "type": 1,
+        "amount": -50
+    },
+    {
+        "text": "Dine venner havde glemt din fødselsdag, men giver dig §40 som trøst.",
+        "type": 1,
+        "amount": 40
+    },
+    {
+        "text": "En af dine venner skyldte dig §30 og har endelig betalt tilbage!",
+        "type": 1,
+        "amount": 30
+    },
+    {
+        "text": "Du fandt nogle penge på gaden! Modtag §2.",
+        "type": 1,
+        "amount": 2
+    },
+    {
+        "text": "Du får en gratis sodavand i en kiosk, men skal stadig betale pant. Betal §1.",
+        "type": 1,
+        "amount": -1
+    }
 ]
 }
