@@ -38,6 +38,14 @@ public class CardSpace extends Space {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CardSpace))
+            return false;
+        CardSpace other = (CardSpace) obj;
+        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+    }
+
+    @Override
     public void performAction(GameController controller, Player player) {
         // TODO: Implement take card rutine
     }

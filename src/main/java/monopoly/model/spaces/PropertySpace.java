@@ -38,6 +38,15 @@ public class PropertySpace extends Space {
         return space;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CardSpace))
+            return false;
+        CardSpace other = (CardSpace) obj;
+        // TODO: Mange flere gettere
+        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition() && this.parent(Player.class).getId().equals(other.parent(Player.class).getId());
+    }
+
     public int getBoardPosition() {
         this.getId();
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();

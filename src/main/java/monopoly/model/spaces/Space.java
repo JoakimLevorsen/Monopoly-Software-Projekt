@@ -14,4 +14,7 @@ public abstract class Space extends Model implements Comparable<Space> {
     public int compareTo(Space otherSpace) {
         return this.getBoardPosition() - otherSpace.getBoardPosition();
     }
+
+    @Override
+    public abstract boolean equals(Object obj);
 }

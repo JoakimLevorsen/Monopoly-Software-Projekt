@@ -36,6 +36,14 @@ public class StationSpace extends Space {
         return space;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof StationSpace))
+            return false;
+        StationSpace other = (StationSpace) obj;
+        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+    }
+
     public int getBoardPosition() {
         this.getId();
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
