@@ -50,6 +50,16 @@ public class CardStack extends Model implements Subject {
         return null;
     }
 
+    public Card[] getCards() {
+        return new Card[0];
+        // TODO
+    }
+
+    public boolean isChanceCardStack() {
+        return true;
+        // TODO
+    }
+
     @Override
     public void addObserver(Observer observer) {
         //TODO
