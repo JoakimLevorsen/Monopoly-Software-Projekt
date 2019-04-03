@@ -6,7 +6,7 @@ import monopoly.controller.GameController;
 import monopoly.model.Game;
 import monopoly.model.Player;
 
-public abstract class Card extends Model {
+public abstract class Card extends Model implements Comparable<Card> {
     public abstract void execute(GameController gameController, Player player);
 
     public abstract void setStackPosition(int i);
@@ -14,7 +14,6 @@ public abstract class Card extends Model {
     public abstract int getStackPosition();
 
     public int compareTo(Card that) {
-        int compare = this.getStackPosition() - that.getStackPosition();
-        return compare;
+        return (this.getStackPosition() - that.getStackPosition());
     }
 }

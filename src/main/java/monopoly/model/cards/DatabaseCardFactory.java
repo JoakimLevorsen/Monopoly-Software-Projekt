@@ -14,6 +14,7 @@ public class DatabaseCardFactory {
     for (Class<? extends Card> classy : classArray) {
         allCards.addAll(game.getAll(classy).load());
     }
+    Collections.sort(allCards);
     return allCards;
     }
 }

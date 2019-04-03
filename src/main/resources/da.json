@@ -4,208 +4,340 @@
     "spaces": [{
         "name": "Start",
         "type": 0,
-        "message": "Modtag M̶2 når du passerer Start",
-        "color": "white",
-        "textColor": "red"
+        "message": "Modtag §200 når du passerer Start.",
+        "color": "FFFFFF",
+        "textColor": "C60000"
     },
     {
-        "name": "Burgerbar",
+        "name": "Mjølnerparken",
         "type": 1,
-        "message": "En god burger til en god pris.",
-        "value": 1,
-        "valueString": "M̶1",
-        "color": "darkGray",
-        "textColor": "white"
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "1A1B41",
+        "textColor": "000000"
 
     },
     {
-        "name": "Pizzeria",
-        "type": 2,
-        "message": "Ægte italiensk pizza for næsten ingen penge.",
+        "name": "Prøv Lykken",
+        "type": 7,
+        "message": "Træk et Prøv Lykken-kort.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "Indkomstskat",
+        "type": 8,
+        "message": "",
         "value": 1,
-        "valueString": "M̶1",
-        "color": "darkGray",
-        "textColor": "white"
+        "color": "E8A945",
+        "textColor": "000000"
+    },
+    {
+        "name": "Istedgade",
+        "type": 1,
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "1A1B41",
+        "textColor": "000000"
+    },
+    {
+        "name": "Københavns Hovedbanegård",
+        "type": 2,
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Nørregade",
+        "type": 1,
+        "message": "",
+        "price": 2,
+        "baseRent": 2,
+        "color": "F18701",
+        "textColor": "000000"
     },
     {
         "name": "Chance",
-        "type": 5,
-        "message": "Tag et chancekort.",
-        "color": "lightGray",
-        "textColor": "black"
+        "type": 6,
+        "message": "Træk et Chancekort",
+        "color": "EA7C79",
+        "textColor": "000000"
     },
     {
-        "name": "Slikbutik",
+        "name": "Kongevejen",
         "type": 1,
-        "message": "Billigere slik fås ikke i byen.",
-        "value": 1,
-        "valueString": "M̶1",
-        "color": "cyan",
-        "textColor": "black"
+        "message": "",
+        "price": 2,
+        "baseRent": 2,
+        "color": "F18701",
+        "textColor": "000000"
     },
     {
-        "name": "Iskiosk",
-        "type": 2,
-        "message": "Gammeldaws is med det hele.",
-        "value": 1,
-        "valueString": "M̶1",
-        "color": "cyan",
-        "textColor": "black"
+        "name": "Jagtvej",
+        "type": 1,
+        "message": "",
+        "price": 2,
+        "baseRent": 2,
+        "color": "F18701",
+        "textColor": "000000"
     },
     {
         "name": "Fængsel",
         "type": 4,
-        "message": "På besøg",
-        "value": 1,
-        "valueString": "M̶1",
-        "color": "white",
-        "textColor": "black",
+        "message": "",
+        "color": "FFFFFF",
+        "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Museum",
+        "name": "Sjællandsgade",
         "type": 1,
-        "message": "Hold børnefødselsdag i museet og få kloge børn!",
-        "value": 2,
-        "valueString": "M̶2",
-        "color": "magenta",
-        "textColor": "black"
-    },
-    {
-        "name": "Bibliotek",
-        "type": 2,
-        "message": "Betal dine gebyrer, når du alligevel er forbi!",
-        "value": 2,
-        "valueString": "M̶2",
-        "color": "magenta",
-        "textColor": "black"
+        "message": "",
+        "price": 3,
+        "baseRent": 3,
+        "color": "E3B505",
+        "textColor": "000000"
     },
     {
         "name": "Chance",
-        "type": 5,
-        "message": "Tag et chancekort.",
-        "color": "lightGray",
-        "textColor": "black"
+        "type": 6,
+        "message": "Træk et Chancekort",
+        "color": "EA7C79",
+        "textColor": "000000"
     },
     {
-        "name": "Skaterpark",
+        "name": "Kronprinsessegade",
         "type": 1,
-        "message": "Skaterparken er gratis, men sodavandet koster.",
-        "value": 2,
-        "valueString": "M̶2",
-        "color": "orange",
-        "textColor": "black"
+        "message": "",
+        "price": 3,
+        "baseRent": 3,
+        "color": "E3B505",
+        "textColor": "000000"
     },
     {
-        "name": "Swimming Pool",
+        "name": "Kongens Have",
+        "type": 1,
+        "message": "",
+        "price": 3,
+        "baseRent": 3,
+        "color": "E3B505",
+        "textColor": "000000"
+    },
+    {
+        "name": "Vejle Station",
         "type": 2,
-        "message": "Tag dig en svømmer for ̶M̶2",
-        "value": 2,
-        "valueString": "M̶2",
-        "color": "orange",
-        "textColor": "black"
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Anker Engelundsvej",
+        "type": 1,
+        "message": "",
+        "price": 4,
+        "baseRent": 4,
+        "color": "5A0046",
+        "textColor": "000000"
+    },
+    {
+        "name": "Prøv Lykken",
+        "type": 7,
+        "message": "Træk et Prøv Lykken-kort.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "Jomfru Ane Gade",
+        "type": 1,
+        "message": "",
+        "price": 4,
+        "baseRent": 4,
+        "color": "5A0046",
+        "textColor": "000000"
+    },
+    {
+        "name": "Åboulevarden",
+        "type": 1,
+        "message": "",
+        "price": 4,
+        "baseRent": 4,
+        "color": "5A0046",
+        "textColor": "000000"
     },
     {
         "name": "Gratis Parkering",
         "type": 3,
-        "message": "Tag dig en Red Bull og læs om Swing på Stack Overflow!",
-        "color": "white",
-        "textColor": "black",
+        "message": "",
+        "color": "FFFFFF",
+        "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Spillehal",
+        "name": "Kongestien",
         "type": 1,
-        "message": "Her kan man spille de sidste nye spil, f.eks. DTU-matador!",
-        "value": 3,
-        "valueString": "M̶3",
-        "color": "red",
-        "textColor": "black"
-    },
-    {
-        "name": "Biograf",
-        "type": 2,
-        "message": "Biografen har 43 sale. Der er penge i de popcorn!",
-        "value": 3,
-        "valueString": "M̶3",
-        "color": "red",
-        "textColor": "black"
+        "message": "",
+        "price": 5,
+        "baseRent": 5,
+        "color": "1CA351",
+        "textColor": "000000"
     },
     {
         "name": "Chance",
-        "type": 5,
-        "message": "Tag et chancekort.",
-        "color": "lightGray",
-        "textColor": "black"
+        "type": 6,
+        "message": "Træk et Chancekort",
+        "color": "EA7C79",
+        "textColor": "000000"
     },
     {
-        "name": "Legetøjsbutik",
+        "name": "Christiania",
         "type": 1,
-        "message": "Flot legetøjsbutik med masser af aktiviteter for de mindste.",
-        "value": 3,
-        "valueString": "M̶3",
-        "color": "yellow",
-        "textColor": "black"
+        "message": "",
+        "price": 5,
+        "baseRent": 5,
+        "color": "1CA351",
+        "textColor": "000000"
     },
     {
-        "name": "Dyrehandel",
+        "name": "Lærkevej",
+        "type": 1,
+        "message": "",
+        "price": 5,
+        "baseRent": 5,
+        "color": "1CA351",
+        "textColor": "000000"
+    },
+    {
+        "name": "Nørreport Station",
         "type": 2,
-        "message": "Kæledyr i alle prisklasser.",
-        "value": 3,
-        "valueString": "M̶3",
-        "color": "yellow",
-        "textColor": "black"
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Fynsvej",
+        "type": 1,
+        "message": "",
+        "price": 6,
+        "baseRent": 6,
+        "color": "FF8014",
+        "textColor": "000000"
+    },
+    {
+        "name": "Lyngbyvej",
+        "type": 1,
+        "message": "",
+        "price": 6,
+        "baseRent": 6,
+        "color": "FF8014",
+        "textColor": "000000"
+    },
+    {
+        "name": "Prøv Lykken",
+        "type": 7,
+        "message": "Træk et Prøv Lykken-kort.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "H. C. Andersens Gade",
+        "type": 1,
+        "message": "",
+        "price": 6,
+        "baseRent": 6,
+        "color": "FF8014",
+        "textColor": "000000"
     },
     {
         "name": "Gå i fængsel",
-        "type": 4,
-        "message": "Du rykker til fængslet. Det er alvor denne gang.",
-        "color": "white",
-        "textColor": "black",
+        "type": 5,
+        "message": "",
+        "color": "FFFFFF",
+        "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Bowlinghal",
+        "name": "Jyllandsvej",
         "type": 1,
-        "message": "Bowling går aldri helt af mode.",
-        "value": 4,
-        "valueString": "M̶4",
-        "color": "green",
-        "textColor": "black"
+        "message": "",
+        "price": 7,
+        "baseRent": 7,
+        "color": "69A2B0",
+        "textColor": "000000"
     },
     {
-        "name": "Zoologisk Have",
+        "name": "Amalienborg",
+        "type": 1,
+        "message": "",
+        "price": 7,
+        "baseRent": 7,
+        "color": "69A2B0",
+        "textColor": "000000"
+    },
+    {
+        "name": "Prøv Lykken",
+        "type": 7,
+        "message": "Træk et Prøv Lykken-kort.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "Dronninggårds Alle",
+        "type": 1,
+        "message": "",
+        "price": 7,
+        "baseRent": 7,
+        "color": "69A2B0",
+        "textColor": "000000"
+    },
+    {
+        "name": "Billund Lufthavn",
         "type": 2,
-        "message": "Zoologisk Have er en af de helt store turistattraktioner i byen.",
-        "value": 4,
-        "valueString": "M̶4",
-        "color": "green",
-        "textColor": "black"
+        "message": "",
+        "price": 1,
+        "baseRent": 1,
+        "color": "262626",
+        "textColor": "FFFFFF"
     },
     {
         "name": "Chance",
-        "type": 5,
-        "message": "Tag et chancekort.",
-        "color": "lightGray",
-        "textColor": "black"
+        "type": 6,
+        "message": "Træk et Chancekort",
+        "color": "EA7C79",
+        "textColor": "000000"
     },
     {
-        "name": "Vandland",
+        "name": "Strøget",
         "type": 1,
-        "message": "Der er ikke sparet på noget i det nye vandland midt i København!",
-        "value": 5,
-        "valueString": "M̶5",
-        "color": "blue",
-        "textColor": "white"
+        "message": "",
+        "price": 8,
+        "baseRent": 8,
+        "color": "A50822",
+        "textColor": "000000"
     },
     {
-        "name": "Promenade",
-        "type": 2,
-        "message": "Byens fineste gade. Frisk luft, hav og økologisk kaffe.",
-        "value": 5,
-        "valueString": "M̶5",
-        "color": "blue",
-        "textColor": "white"
+        "name": "Topskat",
+        "type": 8,
+        "message": "",
+        "value": 1,
+        "color": "E8A945",
+        "textColor": "000000"
+    },
+    {
+        "name": "Strandvejen",
+        "type": 1,
+        "message": "",
+        "price": 8,
+        "baseRent": 8,
+        "color": "A50822",
+        "textColor": "000000"
     }
 ],
     "chanceCards": [{
