@@ -17,7 +17,7 @@ Implementering af Go To Space Card
 public class GoToSpaceCard extends Card {
 
     public enum Properties {
-        TEXT("text"), SPACE("space");
+        TEXT("text"), SPACE("space"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -39,6 +39,16 @@ public class GoToSpaceCard extends Card {
 
     public int getSpace() {
         return this.getInteger(GoToSpaceCard.Properties.SPACE.getProperty());
+    }
+
+    @Override
+    public void setStackPosition(int i) {
+        this.set(GoToSpaceCard.Properties.STACK_POSITION.getProperty(), i);
+    }
+
+    @Override
+    public int getStackPosition() {
+        return this.getInteger(GoToSpaceCard.Properties.STACK_POSITION.getProperty());
     }
 
     public void execute(GameController gameController, Player player) {

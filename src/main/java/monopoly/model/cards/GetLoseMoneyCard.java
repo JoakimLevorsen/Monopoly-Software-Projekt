@@ -17,7 +17,7 @@ Implementering af Get/Lose Money Card
 public class GetLoseMoneyCard extends Card {
 
     public enum Properties {
-        TEXT("text"), AMOUNT("amount");
+        TEXT("text"), AMOUNT("amount"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -39,6 +39,16 @@ public class GetLoseMoneyCard extends Card {
 
     public int getAmount() {
         return this.getInteger(GetLoseMoneyCard.Properties.AMOUNT.getProperty());
+    }
+
+    @Override
+    public void setStackPosition(int i) {
+        this.set(GetLoseMoneyCard.Properties.STACK_POSITION.getProperty(), i);
+    }
+
+    @Override
+    public int getStackPosition() {
+        return this.getInteger(GetLoseMoneyCard.Properties.STACK_POSITION.getProperty());
     }
 
     public void execute(GameController gameController, Player player) {

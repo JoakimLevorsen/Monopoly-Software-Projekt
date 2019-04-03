@@ -17,7 +17,7 @@ Implementering af Go To Jail Card
 public class GoToJailCard extends Card {
 
     public enum Properties {
-        TEXT("text"), SPACE("space");
+        TEXT("text"), SPACE("space"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -35,6 +35,16 @@ public class GoToJailCard extends Card {
         goToJailCard.set(GoToJailCard.Properties.TEXT.getProperty(), text);
         goToJailCard.set(GoToJailCard.Properties.SPACE.getProperty(), space);
         return goToJailCard;
+    }
+
+    @Override
+    public void setStackPosition(int i) {
+        this.set(GoToJailCard.Properties.STACK_POSITION.getProperty(), i);
+    }
+
+    @Override
+    public int getStackPosition() {
+        return this.getInteger(GoToJailCard.Properties.STACK_POSITION.getProperty());
     }
 
     public void execute(GameController gameController, Player player) {

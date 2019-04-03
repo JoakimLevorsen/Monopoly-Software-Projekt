@@ -17,7 +17,7 @@ Implementering af Get Out of Jail Free Card
 public class GetOutOfJailCard extends Card {
 
     public enum Properties {
-        TEXT("text"), OWNER("owner");
+        TEXT("text"), OWNER("owner"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -53,6 +53,16 @@ public class GetOutOfJailCard extends Card {
 
     public void setOwner(Player player) {
         this.add(player);
+    }
+
+    @Override
+    public void setStackPosition(int i) {
+        this.set(GetOutOfJailCard.Properties.STACK_POSITION.getProperty(), i);
+    }
+
+    @Override
+    public int getStackPosition() {
+        return this.getInteger(GetOutOfJailCard.Properties.STACK_POSITION.getProperty());
     }
 
     public void execute(GameController gameController, Player player) {

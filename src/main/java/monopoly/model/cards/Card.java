@@ -8,4 +8,13 @@ import monopoly.model.Player;
 
 public abstract class Card extends Model {
     public abstract void execute(GameController gameController, Player player);
+
+    public abstract void setStackPosition(int i);
+
+    public abstract int getStackPosition();
+
+    public int compareTo(Card that) {
+        int compare = this.getStackPosition() - that.getStackPosition();
+        return compare;
+    }
 }

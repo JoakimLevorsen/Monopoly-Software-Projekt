@@ -1,5 +1,8 @@
 package monopoly.model.cards;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Stack;
 
 import org.json.JSONArray;
@@ -17,60 +20,66 @@ Implementering af klasse til oprettelse af kort.
 */
 
 public class JSONCardFactory {
-    public static Card[] createChanceCards(JSONObject JSONData, Game game) throws JSONException {
+    public static ArrayList<Card> createChanceCards(JSONObject JSONData, CardStack chanceStack) throws JSONException {
         JSONArray chanceCardData = JSONData.getJSONArray(JSONKey.CHANCE_CARDS.getKey());
-        Card[] chanceCards = new Card[chanceCardData.length()];
+        ArrayList<Card> chanceCards = new ArrayList<Card>();
 
         for (int i = 0; i < JSONData.length(); i++) {
             JSONObject chanceCard = chanceCardData.getJSONObject(i);
             int type = chanceCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
             case 0:
-                chanceCards[i] = GoToSpaceCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey()));
+                chanceCards.add( GoToSpaceCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey())));
                 break;
             case 1:
-                chanceCards[i] = GetLoseMoneyCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.AMOUNT.getKey()));
+                chanceCards.add(GetLoseMoneyCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.AMOUNT.getKey())));
                 break;
             case 2:
-                chanceCards[i] = GetOutOfJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey()));
+                chanceCards.add(GetOutOfJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey())));
                 break;
             case 3:
-                chanceCards[i] = GoToJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey()));
+                chanceCards.add(GoToJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey())));
                 break;
             default:
                 throw new JSONException("Unexpected space type: " + type);
             }
         }
-        for (Card card : chanceCards) {
-            game.add(card);
+        Collections.shuffle(chanceCards);
+        for (int i = 0; i < chanceCards.size(); i++) {
+            Card card = chanceCards.get(i);
+            card.setStackPosition(i);
+            chanceStack.add(card);
             card.save();
         }
         return chanceCards;
     }
 
-    public static Card[] createCommunityChestCards(JSONObject JSONData, Game game) throws JSONException {
+    public static ArrayList<Card> createCommunityChestCards(JSONObject JSONData, CardStack communityChestStack) throws JSONException {
         JSONArray communityChestCardData = JSONData.getJSONArray(JSONKey.CHANCE_CARDS.getKey());
-        Card[] communityChestCards = new Card[communityChestCardData.length()];
+        ArrayList<Card> communityChestCards = new ArrayList<Card>();
 
         for (int i = 0; i < JSONData.length(); i++) {
             JSONObject communityChestCard = communityChestCardData.getJSONObject(i);
             int type = communityChestCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
             case 0:
-                communityChestCards[i] = GoToSpaceCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.SPACE.getKey()));
+                communityChestCards.add(GoToSpaceCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.SPACE.getKey())));
                 break;
             case 1:
-                communityChestCards[i] = GetLoseMoneyCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.AMOUNT.getKey()));
+                communityChestCards.add(GetLoseMoneyCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.AMOUNT.getKey())));
                 break;
             case 2:
-                communityChestCards[i] = GetOutOfJailCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()));
+                communityChestCards.add(GetOutOfJailCard.create(communityChestCard.getString(JSONKey.TEXT.getKey())));
                 break;
             default:
                 throw new JSONException("Unexpected space type: " + type);
             }
         }
-        for (Card card : communityChestCards) {
-            game.add(card);
+        Collections.shuffle(communityChestCards);
+        for (int i = 0; i < communityChestCards.size(); i++) {
+            Card card = communityChestCards.get(i);
+            card.setStackPosition(i);
+            communityChestStack.add(card);
             card.save();
         }
         return communityChestCards;
