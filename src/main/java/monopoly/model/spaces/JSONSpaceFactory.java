@@ -9,14 +9,11 @@ import monopoly.model.cards.CardStack;
 import resources.json.JSONKey;
 
 public class JSONSpaceFactory {
-    public static Space[] createSpaces(JSONObject boardData, Game game) throws JSONException {
+    public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack) throws JSONException {
         // TODO: Fix
         JSONArray spaceData = boardData.getJSONArray(JSONKey.SPACES.getKey());
         Space[] resultSet = new Space[spaceData.length()];
         int startPayment = boardData.getInt(JSONKey.START_PAYMENT.getKey());
-
-        CardStack chanceStack = new CardStack();
-        CardStack communityStack = new CardStack();
 
         for (int i = 0; i < spaceData.length(); i++) {
             JSONObject space = (JSONObject) spaceData.get(i);
