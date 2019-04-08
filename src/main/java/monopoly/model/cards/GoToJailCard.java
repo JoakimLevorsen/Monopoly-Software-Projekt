@@ -30,11 +30,10 @@ public class GoToJailCard extends Card {
         }
     }
 
-    public static GoToJailCard create(String text, Space space) {
+    public static GoToJailCard create(String text, int space) {
         GoToJailCard goToJailCard = new GoToJailCard();
         goToJailCard.set(GoToJailCard.Properties.TEXT.getProperty(), text);
         goToJailCard.set(GoToJailCard.Properties.SPACE.getProperty(), space);
-        // TODO: ^ Man må ikke kører set med et objekt?
         return goToJailCard;
     }
 

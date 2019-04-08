@@ -1,6 +1,6 @@
 package monopoly.model;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,12 +42,12 @@ public class ModelTest {
 
             // Now the game has been created and saved, so we retrive it again, and check.
 
-            Game loadedGame = Game.findFirst("id = ?", (String) newGame.getId());
+            Game loadedGame = Game.findFirst("id = ?", newGame.getId());
             List<Space> loadedBoard = loadedGame.getBoard();
             for (int i = 0; i < loadedBoard.size(); i++) {
                 Space loadedSpace = loadedBoard.get(i);
                 Space oldSpace = board[i];
-                assertEquals(loadedSpace, oldSpace);
+                assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), loadedSpace.equals(oldSpace));
             }
 
             // Card comparison cant be done yet, since the nessecary methods dont exist.

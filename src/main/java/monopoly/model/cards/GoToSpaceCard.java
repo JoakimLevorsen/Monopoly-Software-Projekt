@@ -17,7 +17,7 @@ Implementering af Go To Space Card
 public class GoToSpaceCard extends Card {
 
     public enum Properties {
-        TEXT("text"), SPACE("space"), STACK_POSITION("stackPosition");
+        TEXT("text"), SPACE("finalBoardPosition"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -30,7 +30,7 @@ public class GoToSpaceCard extends Card {
         }
     }
 
-    public static GoToSpaceCard create(String text, Space space) {
+    public static GoToSpaceCard create(String text, int space) {
         GoToSpaceCard goToSpaceCard = new GoToSpaceCard();
         goToSpaceCard.set(GoToSpaceCard.Properties.TEXT.getProperty(), text);
         goToSpaceCard.set(GoToSpaceCard.Properties.SPACE.getProperty(), space);

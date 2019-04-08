@@ -27,7 +27,7 @@
     },
     {
         "name": "Indkomstskat",
-        "type": 8,
+        "type": 7,
         "message": "",
         "value": 1,
         "color": "E8A945",
@@ -324,7 +324,7 @@
     },
     {
         "name": "Topskat",
-        "type": 8,
+        "type": 7,
         "message": "",
         "value": 1,
         "color": "E8A945",
@@ -431,7 +431,8 @@
     },
     {
         "text": "Gå til det næste Chancefelt.",
-        "type": 0
+        "type": 0,
+        "space": 5
     },
     {
         "text": "Du har fødselsdag og din mormor sender dig et kort med §5 i. Tillykke!",
