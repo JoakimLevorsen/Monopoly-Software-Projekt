@@ -1,11 +1,7 @@
 package monopoly.model.cards;
 
-import org.javalite.activejdbc.Model;
-
 import monopoly.controller.GameController;
-import monopoly.model.Game;
 import monopoly.model.Player;
-import monopoly.model.spaces.*;
 
 /*
 GetLoseMoneyCard:
@@ -52,10 +48,6 @@ public class GetLoseMoneyCard extends Card {
     }
 
     public void execute(GameController gameController, Player player) {
-        if (this.getAmount() > 0) {
-            //TODO: increase player balance with absolute value of amount
-        } else if (this.getAmount() < 0) {
-            //TODO: deduct player balance with absolute value of amount
-        }
+        player.changeAccountBalance(this.getAmount());
     }
 }
