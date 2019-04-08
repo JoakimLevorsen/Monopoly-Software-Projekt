@@ -77,7 +77,7 @@ public class PlayerPanel extends JFrame {
                 pLabel = new JLabel("" + propertySpace.getName());
                 propPanel.add(pLabel);
                 propPanel.setBackground(propertySpace.getColour());
-                pLabel = new JLabel("Houses built: " + propertySpace.getHousesBuilt);
+                pLabel = new JLabel("Houses built: " + propertySpace.getHousesBuilt());
                 propPanel.add(pLabel);
                 pLabel = new JLabel("Rent: " + propertySpace.getRent());
                 propPanel.add(pLabel);
@@ -88,7 +88,7 @@ public class PlayerPanel extends JFrame {
                 StationSpace stationSpace =(StationSpace)property;
                 pLabel = new JLabel("" + stationSpace.getName());
                 propPanel.add(pLabel);
-                propPanel.setBackground(stationSpace.getColour());
+                propPanel.setBackground(Color.MAGENTA);
                 pLabel = new JLabel("Rent: " + stationSpace.getRent());
                 propPanel.add(pLabel);
 

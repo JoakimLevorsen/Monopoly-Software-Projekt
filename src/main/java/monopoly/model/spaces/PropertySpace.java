@@ -76,6 +76,15 @@ public class PropertySpace extends Space {
     Henter navnet på ejendommen.
     @Author Anders Brandt, s185016 */
     public String getName() { return this.getString(PropertySpace.Properties.NAME.getProperty()); }
+    /* getHousesBuilt:
+    Henter hvor mange huse der er bygget på ejendommen.
+    @Author Anders Brandt, s185016 */
+    public String getHousesBuilt() { return this.getString(Properties.BUILD_LEVEL.getProperty()); }
+    /* getRent:
+    Henter lejen for ejendommen.
+    @Author Anders Brandt, s185016 */
+    //Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange huse der er på ejendommen.
+    public String getRent() { return this.getString(Properties.BASE_RENT.getProperty());}
 
     // TODO: Tilføj resterende metoder
 
