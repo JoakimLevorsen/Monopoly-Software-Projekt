@@ -7,7 +7,12 @@ import monopoly.model.spaces.PropertySpace;
 import javax.swing.*;
 import java.awt.*;
 
-//@author Anders Brandt, s185016
+/*
+PlayerPanel:
+Opretter paneler med information omkring spilleren og dets ejendomme.
+
+@author Anders Brandt, s185016
+*/
 
 public class PlayerPanel extends JFrame {
 
