@@ -1,5 +1,6 @@
 package monopoly.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.javalite.activejdbc.Model;
@@ -7,7 +8,7 @@ import org.javalite.activejdbc.Model;
 import designpatterns.Subject;
 import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
-import monopoly.model.spaces.Space;
+import monopoly.model.spaces.*;
 
 /*
 Game:
@@ -21,8 +22,7 @@ public class Game extends Model {
     private List<Space> board = null;
 
     public enum Properties {
-        CURRENT_TURN("currentTurn"),
-        SAVE_NAME("saveName");
+        CURRENT_TURN("currentTurn"), SAVE_NAME("saveName");
 
         private String value;
 
@@ -66,8 +66,8 @@ public class Game extends Model {
 
     public Player getPlayerForID(int id) {
         List<Player> players = this.getPlayers();
-        for (Player p: players) {
-            if ((int)p.getId() == id) {
+        for (Player p : players) {
+            if ((int) p.getId() == id) {
                 return p;
             }
         }
@@ -90,8 +90,8 @@ public class Game extends Model {
 
     public CardStack getStackForID(int id) {
         List<CardStack> stacks = this.getCardStacks();
-        for (CardStack c: stacks) {
-            if ((int)c.getId() == id) {
+        for (CardStack c : stacks) {
+            if ((int) c.getId() == id) {
                 return c;
             }
         }
@@ -99,11 +99,28 @@ public class Game extends Model {
     }
 
     public String getGameName() {
-        return (String)this.get(Game.Properties.SAVE_NAME.getProperty());
+        return (String) this.get(Game.Properties.SAVE_NAME.getProperty());
     }
 
     public int getCurrentTurn() {
-        return (int)this.get(Game.Properties.CURRENT_TURN.getProperty());
+        return (int) this.get(Game.Properties.CURRENT_TURN.getProperty());
+    }
+
+    public List<Space> getOwnedSpaces(Player player) {
+        List<Space> board = this.getBoard();
+        List<Space> ownedProperty = new ArrayList<Space>();
+        for (Space boardSpace : board) {
+            if (boardSpace instanceof PropertySpace) {
+                long ownerID = ((PropertySpace) boardSpace).getOwner(this).getLongId();
+                if (player.getLongId() == ownerID)
+                    ownedProperty.add(boardSpace);
+            } else if (boardSpace instanceof StationSpace) {
+                long ownerID = ((StationSpace) boardSpace).getOwner(this).getLongId();
+                if (player.getLongId() == ownerID)
+                    ownedProperty.add(boardSpace);
+            }
+        }
+        return ownedProperty;
     }
 
     public void setCurrentTurn(int turn) {
