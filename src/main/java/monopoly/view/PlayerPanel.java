@@ -60,7 +60,7 @@ public class PlayerPanel extends JFrame {
         this.getContentPane().setLayout(null);
         JPanel propPanel = new JPanel();
 
-        for (Player.Properties : player.){
+        for (PropertySpace : player.getOwndenProperties){
 
             propPanel = new JPanel();
             propPanel.setMinimumSize(new Dimension(150,100));
@@ -70,21 +70,19 @@ public class PlayerPanel extends JFrame {
             propPanel.setBorder(BorderFactory.createLineBorder(Color.black));
             propPanel.setOpaque(true);
 
-            pLabel = new JLabel("" + property.getName());
+            pLabel = new JLabel("" + PropertySpace.getName());
             propPanel.add(pLabel);
-            propPanel.setBackground(Color.PINK);
+            propPanel.setBackground(PropertySpace.getColour());
 
 
-            if (property instanceof RealEstate) {
                 RealEstate realEstate = (RealEstate) property;
 
-                pLabel = new JLabel("Houses built: " + realEstate.getHousesBuilt());
+                pLabel = new JLabel("Houses built: " + PropertySpace.getHousesBuilt());
                 propPanel.add(pLabel);
 
                 pLabel = new JLabel("Rent: " + realEstate.getRent());
                 propPanel.add(pLabel);
 
-            }
             mainPanel.add(propPanel);
         }
         frame.revalidate();

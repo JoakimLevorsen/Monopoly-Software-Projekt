@@ -3,6 +3,8 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.*;
 
+import java.awt.*;
+
 public class PropertySpace extends Space {
 
     public enum Properties {
@@ -60,6 +62,20 @@ public class PropertySpace extends Space {
         }
         return null;
     }
+    /* getColour:
+    Henter hexkoden for ejendommen og ændrer det til rgb.
+    @Author Anders Brandt, s185016 */
+    public Color getColour() {
+        String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
+        return new Color(
+            Integer.valueOf( hex.substring(0 , 2), 16),
+            Integer.valueOf( hex.substring(2 , 4), 16),
+            Integer.valueOf( hex.substring(4 , 6), 16));
+    }
+    /* getName:
+    Henter navnet på ejendommen.
+    @Author Anders Brandt, s185016 */
+    public String getName() { return this.getString(PropertySpace.Properties.NAME.getProperty()); }
 
     // TODO: Tilføj resterende metoder
 
