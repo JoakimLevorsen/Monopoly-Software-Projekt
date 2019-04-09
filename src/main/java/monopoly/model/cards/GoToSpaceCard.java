@@ -2,7 +2,7 @@ package monopoly.model.cards;
 
 import org.javalite.activejdbc.Model;
 
-import monopoly.controller.GameController;
+import monopoly.controller.MovementController;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.spaces.*;
@@ -51,8 +51,9 @@ public class GoToSpaceCard extends Card {
         return this.getInteger(GoToSpaceCard.Properties.STACK_POSITION.getProperty());
     }
 
-    public void execute(GameController gameController, Player player) {
-        int playerPosition = player.getBoardPosition();
+    public void execute(MovementController moveController, Player player) {
         //TODO: move player to new space & make sure §200 is awarded, if player passes Start
+        //      use moveController.goTo('space');
+        saveIt();
     }
 }

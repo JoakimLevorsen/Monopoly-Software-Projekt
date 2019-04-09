@@ -8,7 +8,7 @@ import java.awt.*;
 public class PropertySpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), NAME("name"), MORGAGED("morgaged"), PRICE("price"), BASE_RENT("baseRent"),
+        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
         OWNER("owner"), BUILD_LEVEL("buildLevel"), COLOUR("colour");
 
         private String value;
@@ -34,7 +34,7 @@ public class PropertySpace extends Space {
         space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(PropertySpace.Properties.PRICE.getProperty(), baseRent);
         space.set(PropertySpace.Properties.NAME.getProperty(), name);
-        space.set(PropertySpace.Properties.MORGAGED.getProperty(), false);
+        space.set(PropertySpace.Properties.MORTGAGED.getProperty(), false);
         space.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), 0);
         space.set(PropertySpace.Properties.COLOUR.getProperty(), colour);
         return space;
@@ -91,6 +91,15 @@ public class PropertySpace extends Space {
     Henter navnet på ejendommen.
     @Author Anders Brandt, s185016 */
     public String getName() { return this.getString(PropertySpace.Properties.NAME.getProperty()); }
+    /* getHousesBuilt:
+    Henter hvor mange huse der er bygget på ejendommen.
+    @Author Anders Brandt, s185016 */
+    public String getHousesBuilt() { return this.getString(Properties.BUILD_LEVEL.getProperty()); }
+    /* getRent:
+    Henter lejen for ejendommen.
+    @Author Anders Brandt, s185016 */
+    //Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange huse der er på ejendommen.
+    public String getRent() { return this.getString(Properties.BASE_RENT.getProperty());}
 
     // TODO: Tilføj resterende metoder
 

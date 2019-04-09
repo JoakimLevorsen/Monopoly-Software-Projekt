@@ -2,7 +2,7 @@ package monopoly.model.cards;
 
 import org.javalite.activejdbc.Model;
 
-import monopoly.controller.GameController;
+import monopoly.controller.MovementController;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.spaces.*;
@@ -47,7 +47,9 @@ public class GoToJailCard extends Card {
         return this.getInteger(GoToJailCard.Properties.STACK_POSITION.getProperty());
     }
 
-    public void execute(GameController gameController, Player player) {
-        //TODO: move player to jail and jail them (use jail() method from JailSpace)
+    public void execute(MovementController moveController, Player player) {
+        //TODO: move player to jail (use moveController.goTo('space')) and
+        //      jail them (use jail() method from JailSpace)
+        saveIt();
     }
 }

@@ -6,7 +6,7 @@ import monopoly.model.*;
 public class StationSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), NAME("name"), MORGAGED("morgaged"), PRICE("price"), BASE_RENT("baseRent"),
+        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
         OWNER("owner");
 
         private String value;
@@ -32,7 +32,7 @@ public class StationSpace extends Space {
         space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StationSpace.Properties.PRICE.getProperty(), baseRent);
         space.set(StationSpace.Properties.NAME.getProperty(), name);
-        space.set(StationSpace.Properties.MORGAGED.getProperty(), false);
+        space.set(StationSpace.Properties.MORTGAGED.getProperty(), false);
         return space;
     }
 
@@ -58,6 +58,16 @@ public class StationSpace extends Space {
         return null;
     }
 
+
+    /* getName:
+        Henter navnet på stationen.
+        @Author Anders Brandt, s185016 */
+    public String getName() { return this.getString(Properties.NAME.getProperty()); }
+    /* getName:
+        Henter lejen for stationen.
+        @Author Anders Brandt, s185016 */
+    //TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer spilleren ejer.
+    public String getRent() { return this.getString(Properties.BASE_RENT.getProperty()); }
     // TODO: Tilføj resterende metoder
 
 }
