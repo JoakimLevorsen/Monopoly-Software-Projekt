@@ -66,7 +66,7 @@ public class StationSpace extends Space {
     /* getName:
         Henter lejen for stationen.
         @Author Anders Brandt, s185016 */
-    //Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange stationer spilleren ejer.
+    //TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer spilleren ejer.
     public String getRent() { return this.getString(Properties.BASE_RENT.getProperty()); }
     // TODO: Tilføj resterende metoder
 
