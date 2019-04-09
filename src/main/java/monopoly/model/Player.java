@@ -70,6 +70,13 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
+    public boolean IsBroke(Player player){
+        if (player.getAccountBalance() < 0){
+            return true;
+        }
+        else return false;
+    }
+
     /*
      * getRent: Henter farven for spilleren.
      *

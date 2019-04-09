@@ -1,5 +1,6 @@
 package monopoly.view;
 
+import java.awt.*;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -21,11 +22,51 @@ Klasse til håndtering af spillets UI.
 */
 
 public class View implements Observer {
-    private HashMap<Player, Integer> playerToPosition = new HashMap<Player, Integer>();
-    private HashMap<Space, GUI_Field> spaceToField = new HashMap<Space, GUI_Field>();
-    private HashMap<Player, GUI_Player> playerToGUIPlayer = new HashMap<Player, GUI_Player>();
-    private HashMap<String, Game> saveNameToGame = new HashMap<String, Game>();
-    // private Map<Player, PlayerPanel> panels = new HashMap<>();
+
+    private Game game;
+    private GUI gui;
+
+    private HashMap<Player, Integer> playerToPosition = new HashMap<>();
+    private HashMap<Space, GUI_Field> spaceToField = new HashMap<>();
+    private HashMap<Player, GUI_Player> playerToGUIPlayer = new HashMap<>();
+    private HashMap<String, Game> saveNameToGame = new HashMap<>();
+    private HashMap<Player, PlayerPanel> panels = new HashMap<>();
+    private boolean disposed = false;
+
+    public View(Game game, GUI gui) {
+        this.game = game;
+        this.gui = gui;
+        GUI_Field[] guiFields = gui.getFields();
+
+        int i = 0;
+        for (Space space: game.getBoard()) {
+            // TODO, here we assume that the games fields fit to the GUI's fields;
+            // the GUI fields should actually be created according to the game's
+            // fields
+            space.attach(this);
+            spaceToField.put(space, guiFields[i++]);
+
+            // TODO we should also register with the properties as observer; but
+            // the current version does not update anything for the spaces, so we do not
+            // register the view as an observer for now
+        }
+
+        // create the players in the GUI
+        for (Player player: game.getPlayers()) {
+            GUI_Car car = new GUI_Car(player.getColor(), Color.black, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
+            GUI_Player guiPlayer = new GUI_Player(player.getName(), player.getAccountBalance(), car);
+            playerToGUIPlayer.put(player, guiPlayer);
+            gui.addPlayer(guiPlayer);
+
+            // register this view with the player as an observer, in order to update the
+            // player's state in the GUI
+            player.attach(this);
+            PlayerPanel playerPanel = new PlayerPanel(game, player);
+            panels.put(player, playerPanel);
+            updatePlayer(player);
+        }
+    }
+
 
     public Game chooseGame() {
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
@@ -59,12 +100,101 @@ public class View implements Observer {
     }
 
     public void update(Subject subject) {
-        // TODO
+        if (!disposed) {
+            if (subject instanceof Player) {
+                updatePlayer((Player) subject);
+            }
+            else if (subject instanceof PropertySpace) {
+                updateProperty((PropertySpace) subject);
+            } else if (subject instanceof StationSpace) {
+                updateStation((StationSpace) subject);
+            }
+
+
+            // TODO update other subjects in the GUI
+            //      in particular properties (sold, houses, ...)
+
+        }
     }
 
-    public void update(Player player) {
-        // TODO
+    private void updatePlayer(Player player) {
+        GUI_Player guiPlayer = this.playerToGUIPlayer.get(player);
+        if (guiPlayer != null) {
+            guiPlayer.setBalance(player.getAccountBalance());
+            GUI_Field[] guiFields = gui.getFields();
+            Integer oldPosition = playerToPosition.get(player);
+            if (oldPosition != null && oldPosition < guiFields.length) {
+                guiFields[oldPosition].setCar(guiPlayer, false);
+            }
+            int pos = player.getBoardPosition();
+            if (pos < guiFields.length) {
+                playerToPosition.put(player,pos);
+                guiFields[pos].setCar(guiPlayer, true);
+            }
+
+            String name = player.getName();
+            if (player.IsBroke(player)) {
+            }
+            if (!name.equals(guiPlayer.getName())) {
+                guiPlayer.setName(name);
+            }
+        }
+        panels.get(player).Update();
     }
+
+    private void updateProperty(PropertySpace property) {
+        GUI_Field thisField = this.spaceToField.get(property);
+        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
+        GUI_Street thisStreet = (GUI_Street) thisField;
+        if (thisOwnableField != null) {
+            if (property.getOwner(game) != null) {
+                thisOwnableField.setOwnableLabel("Owned by ");
+                thisOwnableField.setOwnerName(property.getOwner(game).getName());
+                thisOwnableField.setBorder(property.getOwner(game).getColor());
+            } else {
+                thisOwnableField.setOwnableLabel("");
+                thisOwnableField.setOwnerName("");
+                thisOwnableField.setBorder(null);
+            }
+        }
+        if (thisStreet != null) {
+            if (property.getHousesBuilt() == 5) {
+                thisStreet.setHotel(true);
+                thisStreet.setHouses(0);
+            } else {
+                thisStreet.setHotel(false);
+                thisStreet.setHouses(property.getHousesBuilt());
+            }
+            this.updateProperty(property);
+        }
+    }
+
+    private void updateStation(StationSpace station) {
+        GUI_Field thisField = this.spaceToField.get(station);
+        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
+        if (thisOwnableField != null) {
+            if (station.getOwner(game) != null) {
+                thisOwnableField.setOwnableLabel("Owned by ");
+                thisOwnableField.setOwnerName(station.getOwner(game).getName());
+                thisOwnableField.setBorder(station.getOwner(game).getColor());
+            } else {
+                thisOwnableField.setOwnableLabel("");
+                thisOwnableField.setOwnerName("");
+                thisOwnableField.setBorder(null);
+            }
+        }
+    }
+    public void dispose() {
+        if (!disposed) {
+            disposed = true;
+            for (Player player: game.getPlayers()) {
+                // unregister from the player as observer
+                player.detach(this);
+            }
+            for (Space space: game.getBoard()) {
+                space.detach(this);
+            }
+        }
+    }
+
 }
-// Dette skal være en del af updateplayer, for at opdatere panelerne.
-// panels.get(player).Update();

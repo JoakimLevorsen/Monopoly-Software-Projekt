@@ -109,8 +109,8 @@ public class PropertySpace extends Space {
      * 
      * @Author Anders Brandt, s185016
      */
-    public String getHousesBuilt() {
-        return this.getString(Properties.BUILD_LEVEL.getProperty());
+    public int getHousesBuilt() {
+        return this.getInteger(Properties.BUILD_LEVEL.getProperty());
     }
 
     /*
