@@ -19,11 +19,11 @@ public class GetOutOfJailCard extends Card {
         private String value;
 
         private Properties(String value) {
-        this.value = value;
+            this.value = value;
         }
 
         public String getProperty() {
-        return this.value;
+            return this.value;
         }
     }
 
@@ -34,11 +34,10 @@ public class GetOutOfJailCard extends Card {
     }
 
     /*
-    Get Owner:
-    Returnerer ejeren af det pågældende Get Out of Jail Free Card.
-    
-    @author Joakim Levorsen, S185023
-    */
+     * Get Owner: Returnerer ejeren af det pågældende Get Out of Jail Free Card.
+     * 
+     * @author Joakim Levorsen, S185023
+     */
     public Player getOwner(Game game) {
         Player owner = this.parent(Player.class);
         if (owner != null) {
