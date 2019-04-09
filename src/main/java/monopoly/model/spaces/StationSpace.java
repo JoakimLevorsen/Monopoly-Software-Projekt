@@ -6,7 +6,7 @@ import monopoly.model.*;
 public class StationSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), NAME("name"), MORGAGED("morgaged"), PRICE("price"), BASE_RENT("baseRent"),
+        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
         OWNER("owner");
 
         private String value;
@@ -32,7 +32,7 @@ public class StationSpace extends Space {
         space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StationSpace.Properties.PRICE.getProperty(), baseRent);
         space.set(StationSpace.Properties.NAME.getProperty(), name);
-        space.set(StationSpace.Properties.MORGAGED.getProperty(), false);
+        space.set(StationSpace.Properties.MORTGAGED.getProperty(), false);
         return space;
     }
 
