@@ -14,6 +14,13 @@ import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import resources.json.*;
 
+/*
+ModelTest:
+En test til at verificere model klasserne virker korrekt.
+
+@author Joakim Levorsen, S185023
+*/
+
 public class ModelTest {
     @Before
     public void setupTest() {
@@ -60,7 +67,6 @@ public class ModelTest {
             List<Space> readBoard = newGame.getBoard();
             newGame.deleteThisGame();
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

@@ -13,9 +13,6 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- * Unit test for simple App.
- */
 public class ResourceManagerTest {
     /*
      * testAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk

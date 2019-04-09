@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
+/*
+GoToJailSpace:
+Et objekt til at repræsentere gå i fængsel feltet.
+
+@author Joakim Levorsen, S185023
+*/
 public class GoToJailSpace extends Space {
 
     public enum Properties {

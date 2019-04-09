@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
+/*
+StartSpace:
+Et objekt til at repræsentere start feltet.
+
+@author Joakim Levorsen, S185023
+*/
 public class StartSpace extends Space {
 
     public enum Properties {

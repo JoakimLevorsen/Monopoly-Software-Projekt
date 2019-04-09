@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
+/*
+FreeParkingSpace:
+Et objekt til at repræsentere gratis parkering feltet.
+
+@author Joakim Levorsen, S185023
+*/
 public class FreeParkingSpace extends Space {
 
     public enum Properties {

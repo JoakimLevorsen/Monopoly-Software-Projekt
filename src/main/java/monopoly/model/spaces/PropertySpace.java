@@ -5,6 +5,12 @@ import monopoly.model.*;
 
 import java.awt.*;
 
+/*
+PropertySpace:
+Et objekt til at repræsentere ejendoms felter.
+
+@author Joakim Levorsen, S185023
+*/
 public class PropertySpace extends Space {
 
     public enum Properties {

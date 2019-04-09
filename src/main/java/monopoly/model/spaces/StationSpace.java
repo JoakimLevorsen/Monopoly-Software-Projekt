@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.*;
 
+/*
+StationSpace:
+Et objekt til at repræsentere stationer.
+
+@author Joakim Levorsen, S185023
+*/
 public class StationSpace extends Space {
 
     public enum Properties {
