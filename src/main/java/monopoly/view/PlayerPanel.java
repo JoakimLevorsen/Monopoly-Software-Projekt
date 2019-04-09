@@ -88,7 +88,7 @@ public class PlayerPanel extends JFrame {
                 StationSpace stationSpace = (StationSpace) property;
                 pLabel = new JLabel("" + stationSpace.getName());
                 propPanel.add(pLabel);
-                propPanel.setBackground(Color.MAGENTA);
+                propPanel.setBackground(Color.getHSBColor(38,38,38));
                 pLabel = new JLabel("Rent: " + stationSpace.getRent());
                 propPanel.add(pLabel);
             }
