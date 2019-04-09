@@ -11,6 +11,7 @@ public class CashController {
     }
 
     public void offerProperty(PropertySpace property, Player player){
+
         // TODO: Implementering
 
     }
@@ -19,17 +20,17 @@ public class CashController {
         playerFrom.changeAccountBalance(- amount);
         playerReceiver.changeAccountBalance(amount);
         if (playerFrom.getAccountBalance() < 0){
-
-
-
+            controller.propertyController.playerBrokeTo(playerFrom, playerReceiver);
         }
-        // TODO: Håndtering af konkurs
+        if (playerReceiver.getAccountBalance() < 0){
+            controller.propertyController.playerBrokeTo(playerReceiver, playerFrom);
+        }
     }
 
     public void paymentFromBank(Player player, int amount) {
         player.changeAccountBalance(amount);
-        // TODO: Håndtering af konkurs
-
-
+        if (player.getAccountBalance() < 0 ) {
+            controller.propertyController.playerBrokeToBank(player);
+        }
     }
 }

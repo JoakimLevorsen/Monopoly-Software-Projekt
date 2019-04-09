@@ -14,11 +14,11 @@ public class PropertyController {
         // TODO: Implementering
     }
 
-    public void playerBrokeTo(Player player) {
+    public void playerBrokeTo(Player failure, Player responsible) {
         // TODO: Implementering
     }
 
-    public void playerBrokeToBank() {
+    public void playerBrokeToBank(Player failure) {
         // TODO: Implementering
 
     }
