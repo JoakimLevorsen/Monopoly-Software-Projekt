@@ -8,8 +8,15 @@ import monopoly.model.*;
 import monopoly.model.cards.CardStack;
 import resources.json.JSONKey;
 
+/*
+JSONSpaceFactory:
+Et objekt til at hente alle start felter fra vores JSON resourcer.
+
+@author Joakim Levorsen, S185023
+*/
 public class JSONSpaceFactory {
-    public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack) throws JSONException {
+    public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack)
+            throws JSONException {
         // TODO: Fix
         JSONArray spaceData = boardData.getJSONArray(JSONKey.SPACES.getKey());
         Space[] resultSet = new Space[spaceData.length()];

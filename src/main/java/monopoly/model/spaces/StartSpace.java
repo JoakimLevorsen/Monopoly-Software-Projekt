@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
+/*
+StartSpace:
+Et objekt til at repræsentere start feltet.
+
+@author Joakim Levorsen, S185023
+*/
 public class StartSpace extends Space {
 
     public enum Properties {
@@ -36,7 +42,7 @@ public class StartSpace extends Space {
         if (!(obj instanceof StartSpace))
             return false;
         StartSpace other = (StartSpace) obj;
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {

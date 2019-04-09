@@ -3,6 +3,12 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
+/*
+GoToJailSpace:
+Et objekt til at repræsentere gå i fængsel feltet.
+
+@author Joakim Levorsen, S185023
+*/
 public class GoToJailSpace extends Space {
 
     public enum Properties {
@@ -35,7 +41,7 @@ public class GoToJailSpace extends Space {
         if (!(obj instanceof GoToJailSpace))
             return false;
         GoToJailSpace other = (GoToJailSpace) obj;
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {

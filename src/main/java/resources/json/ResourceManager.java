@@ -8,8 +8,7 @@ import org.apache.commons.io.IOUtils;
 
 public class ResourceManager {
     /*
-     * readFile
-     * Metode til at læse en fil fra Resource mappen til et JSON objekt.
+     * readFile Metode til at læse en fil fra Resource mappen til et JSON objekt.
      * 
      * @author Joakim Levorsen, S185023
      */

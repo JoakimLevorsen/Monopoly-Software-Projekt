@@ -14,6 +14,13 @@ import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import resources.json.*;
 
+/*
+ModelTest:
+En test til at verificere model klasserne virker korrekt.
+
+@author Joakim Levorsen, S185023
+*/
+
 public class ModelTest {
     @Before
     public void setupTest() {
@@ -47,7 +54,8 @@ public class ModelTest {
             for (int i = 0; i < loadedBoard.size(); i++) {
                 Space loadedSpace = loadedBoard.get(i);
                 Space oldSpace = board[i];
-                assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), loadedSpace.equals(oldSpace));
+                boolean comparison = loadedSpace.equals(oldSpace);
+                assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), comparison);
             }
 
             // Card comparison cant be done yet, since the nessecary methods dont exist.
@@ -59,7 +67,6 @@ public class ModelTest {
             List<Space> readBoard = newGame.getBoard();
             newGame.deleteThisGame();
         } catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

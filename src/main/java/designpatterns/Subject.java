@@ -10,6 +10,7 @@ public interface Subject {
     public List<Observer> getObservers();
 
     public default void updated() {
-        for (Observer o : this.getObservers()) o.update(this);
+        for (Observer o : this.getObservers())
+            o.update(this);
     }
 }

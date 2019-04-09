@@ -13,16 +13,17 @@ Klasse til at hente kort fra databasen.
 */
 
 public class DatabaseCardFactory {
-    
-    public static List<Card> getCardsFor(Game game) {
-        //TODO: edit to fit different cardstacks
-        Class<? extends Card>[] classArray = new Class[] {GoToSpaceCard.class, GetLoseMoneyCard.class, GetOutOfJailCard.class, GoToJailCard.class};
 
-    List<Card> allCards = new ArrayList<Card>();
-    for (Class<? extends Card> classy : classArray) {
-        allCards.addAll(game.getAll(classy).load());
-    }
-    Collections.sort(allCards);
-    return allCards;
+    public static List<Card> getCardsFor(Game game) {
+        // TODO: edit to fit different cardstacks
+        Class<? extends Card>[] classArray = new Class[] { GoToSpaceCard.class, GetLoseMoneyCard.class,
+                GetOutOfJailCard.class, GoToJailCard.class };
+
+        List<Card> allCards = new ArrayList<Card>();
+        for (Class<? extends Card> classy : classArray) {
+            allCards.addAll(game.getAll(classy).load());
+        }
+        Collections.sort(allCards);
+        return allCards;
     }
 }

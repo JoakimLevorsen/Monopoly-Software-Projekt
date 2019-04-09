@@ -1,5 +1,6 @@
 package monopoly.model;
 
+import java.awt.*;
 import java.util.List;
 
 import org.javalite.activejdbc.Model;
@@ -14,10 +15,7 @@ Implementering af Player model objektet, med ORM for databasen.
 */
 public class Player extends Model {
     public enum Properties {
-        NAME("name"),
-        PLAYER_INDEX("playerIndex"),
-        BOARD_POSITION("boardPosition"),
-        ACCOUNT_BALANCE("accountBalance");
+        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
 
         private final String value;
 
@@ -30,8 +28,13 @@ public class Player extends Model {
         }
     }
 
+    private Color color;
+
     public static Player newPlayer(String name, int index, int balance) {
-        return new Player().set(Player.Properties.NAME.getProperty(), name).set(Player.Properties.PLAYER_INDEX.getProperty(), index).set(Player.Properties.BOARD_POSITION.getProperty(), 0).set(Player.Properties.ACCOUNT_BALANCE.getProperty(), balance);
+        return new Player().set(Player.Properties.NAME.getProperty(), name)
+                .set(Player.Properties.PLAYER_INDEX.getProperty(), index)
+                .set(Player.Properties.BOARD_POSITION.getProperty(), 0)
+                .set(Player.Properties.ACCOUNT_BALANCE.getProperty(), balance);
     }
 
     public static List<Player> playerList() {
@@ -39,15 +42,15 @@ public class Player extends Model {
     }
 
     public String getName() {
-        return (String)this.get(Player.Properties.NAME.getProperty());
+        return (String) this.get(Player.Properties.NAME.getProperty());
     }
 
     public int getPlayerIndex() {
-        return (int)this.get(Player.Properties.PLAYER_INDEX.getProperty());
+        return (int) this.get(Player.Properties.PLAYER_INDEX.getProperty());
     }
 
     public int getBoardPosition() {
-        return (int)this.get(Player.Properties.BOARD_POSITION.getProperty());
+        return (int) this.get(Player.Properties.BOARD_POSITION.getProperty());
     }
 
     public void setBoardPosition(int position) {
@@ -55,7 +58,7 @@ public class Player extends Model {
     }
 
     public int getAccountBalance() {
-        return (int)this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
+        return (int) this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
     }
 
     public void setAccountBalance(int newBalance) {
@@ -65,6 +68,26 @@ public class Player extends Model {
     public void changeAccountBalance(int by) {
         int newBalance = this.getAccountBalance() + by;
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
+    }
+
+    /*
+     * getRent: Henter farven for spilleren.
+     *
+     * @Author Anders Brandt, s185016
+     */
+    // TODO: Implementer
+    public Color getColor() {
+        return color;
+    }
+
+    /*
+     * getRent: sætter farven for spilleren.
+     *
+     * @Author Anders Brandt, s185016
+     */
+    // TODO: Implementer
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
