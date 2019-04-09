@@ -112,8 +112,7 @@ public class PropertySpace extends Space {
      * 
      * @Author Anders Brandt, s185016
      */
-    // Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange
-    // huse der er på ejendommen.
+    // TODO: Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange huse der er på ejendommen.
     public String getRent() {
         return this.getString(Properties.BASE_RENT.getProperty());
     }

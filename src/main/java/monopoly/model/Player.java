@@ -70,11 +70,21 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
+    /*
+     * getRent: Henter farven for spilleren.
+     *
+     * @Author Anders Brandt, s185016
+     */
     // TODO: Implementer
     public Color getColor() {
         return color;
     }
 
+    /*
+     * getRent: sætter farven for spilleren.
+     *
+     * @Author Anders Brandt, s185016
+     */
     // TODO: Implementer
     public void setColor(Color color) {
         this.color = color;
