@@ -2,11 +2,11 @@ package monopoly.model.cards;
 
 import org.javalite.activejdbc.Model;
 
-import monopoly.controller.GameController;
+import monopoly.controller.*;
 import monopoly.model.Player;
 
 public abstract class Card extends Model implements Comparable<Card> {
-    public abstract void execute(GameController gameController, Player player);
+    public abstract void execute(MovementController moveController, Player player);
 
     public abstract void setStackPosition(int i);
 
