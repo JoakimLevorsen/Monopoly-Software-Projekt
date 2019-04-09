@@ -1,5 +1,6 @@
 package monopoly.model;
 
+import java.awt.*;
 import java.util.List;
 
 import org.javalite.activejdbc.Model;
@@ -29,7 +30,7 @@ public class Player extends Model {
             return this.value;
         }
     }
-
+    private Color color;
     public static Player newPlayer(String name, int index, int balance) {
         return new Player().set(Player.Properties.NAME.getProperty(), name).set(Player.Properties.PLAYER_INDEX.getProperty(), index).set(Player.Properties.BOARD_POSITION.getProperty(), 0).set(Player.Properties.ACCOUNT_BALANCE.getProperty(), balance);
     }
@@ -65,6 +66,12 @@ public class Player extends Model {
     public void changeAccountBalance(int by) {
         int newBalance = this.getAccountBalance() + by;
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
+    }
+    //TODO: Implementer
+    public Color getColor() { return color; }
+    //TODO: Implementer
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
