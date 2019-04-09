@@ -29,17 +29,23 @@ public class JSONCardFactory {
             int type = chanceCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
             case 0:
-                chanceCards.add( GoToSpaceCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey())));
+                chanceCards.add(GoToSpaceCard.create(chanceCard.getString(JSONKey.TEXT.getKey()),
+                        chanceCard.getInt(JSONKey.SPACE.getKey())));
                 break;
             case 1:
-                chanceCards.add(GetLoseMoneyCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.AMOUNT.getKey())));
+                chanceCards.add(GetLoseMoneyCard.create(chanceCard.getString(JSONKey.TEXT.getKey()),
+                        chanceCard.getInt(JSONKey.AMOUNT.getKey())));
                 break;
             case 2:
                 chanceCards.add(GetOutOfJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey())));
                 break;
             case 3:
-                chanceCards.add(GoToJailCard.create(chanceCard.getString(JSONKey.TEXT.getKey()), chanceCard.getInt(JSONKey.SPACE.getKey())));
-                // TODO: Den her create kører en Create metode, siden det andet parameter er den forkerte type.
+                String text = chanceCard.getString(JSONKey.TEXT.getKey());
+                int spaceID = chanceCard.getInt(JSONKey.SPACE.getKey());
+                GoToJailCard newCard = GoToJailCard.create(text, spaceID);
+                chanceCards.add(newCard);
+                // TODO: Den her create kører en Create metode, siden det andet parameter er den
+                // forkerte type.
                 break;
             default:
                 throw new JSONException("Unexpected space type: " + type);
@@ -55,8 +61,9 @@ public class JSONCardFactory {
         return chanceCards;
     }
 
-    public static ArrayList<Card> createCommunityChestCards(JSONObject JSONData, CardStack communityChestStack) throws JSONException {
-        JSONArray communityChestCardData = JSONData.getJSONArray(JSONKey.CHANCE_CARDS.getKey());
+    public static ArrayList<Card> createCommunityChestCards(JSONObject JSONData, CardStack communityChestStack)
+            throws JSONException {
+        JSONArray communityChestCardData = JSONData.getJSONArray(JSONKey.COMMUNITY_CHEST_CARDS.getKey());
         ArrayList<Card> communityChestCards = new ArrayList<Card>();
 
         for (int i = 0; i < JSONData.length(); i++) {
@@ -64,10 +71,12 @@ public class JSONCardFactory {
             int type = communityChestCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
             case 0:
-                communityChestCards.add(GoToSpaceCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.SPACE.getKey())));
+                communityChestCards.add(GoToSpaceCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()),
+                        communityChestCard.getInt(JSONKey.SPACE.getKey())));
                 break;
             case 1:
-                communityChestCards.add(GetLoseMoneyCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()), communityChestCard.getInt(JSONKey.AMOUNT.getKey())));
+                communityChestCards.add(GetLoseMoneyCard.create(communityChestCard.getString(JSONKey.TEXT.getKey()),
+                        communityChestCard.getInt(JSONKey.AMOUNT.getKey())));
                 break;
             case 2:
                 communityChestCards.add(GetOutOfJailCard.create(communityChestCard.getString(JSONKey.TEXT.getKey())));

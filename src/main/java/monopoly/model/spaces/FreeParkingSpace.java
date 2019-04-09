@@ -36,7 +36,7 @@ public class FreeParkingSpace extends Space {
         if (!(obj instanceof FreeParkingSpace))
             return false;
         FreeParkingSpace other = (FreeParkingSpace) obj;
-        return other.getId().equals(this.getId()) && this.getTreasure() == other.getTreasure()
+        return other.getLongId() == this.getLongId() && this.getTreasure() == other.getTreasure()
                 && this.getBoardPosition() == other.getBoardPosition();
     }
 

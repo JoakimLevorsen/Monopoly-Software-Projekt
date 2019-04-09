@@ -36,7 +36,7 @@ public class StartSpace extends Space {
         if (!(obj instanceof StartSpace))
             return false;
         StartSpace other = (StartSpace) obj;
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {

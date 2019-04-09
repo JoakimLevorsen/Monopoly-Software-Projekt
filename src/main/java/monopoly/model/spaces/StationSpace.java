@@ -41,7 +41,7 @@ public class StationSpace extends Space {
         if (!(obj instanceof StationSpace))
             return false;
         StationSpace other = (StationSpace) obj;
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {
@@ -58,16 +58,25 @@ public class StationSpace extends Space {
         return null;
     }
 
+    /*
+     * getName: Henter navnet på stationen.
+     * 
+     * @Author Anders Brandt, s185016
+     */
+    public String getName() {
+        return this.getString(Properties.NAME.getProperty());
+    }
 
-    /* getName:
-        Henter navnet på stationen.
-        @Author Anders Brandt, s185016 */
-    public String getName() { return this.getString(Properties.NAME.getProperty()); }
-    /* getName:
-        Henter lejen for stationen.
-        @Author Anders Brandt, s185016 */
-    //TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer spilleren ejer.
-    public String getRent() { return this.getString(Properties.BASE_RENT.getProperty()); }
+    /*
+     * getName: Henter lejen for stationen.
+     * 
+     * @Author Anders Brandt, s185016
+     */
+    // TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer
+    // spilleren ejer.
+    public String getRent() {
+        return this.getString(Properties.BASE_RENT.getProperty());
+    }
     // TODO: Tilføj resterende metoder
 
 }

@@ -52,8 +52,9 @@ public class GoToSpaceCard extends Card {
     }
 
     public void execute(MovementController moveController, Player player) {
-        //TODO: move player to new space & make sure §200 is awarded, if player passes Start
-        //      use moveController.goTo('space');
+        // TODO: move player to new space & make sure §200 is awarded, if player passes
+        // Start
+        // use moveController.goTo('space');
         saveIt();
     }
 }

@@ -62,17 +62,17 @@ public class CardStack extends Model implements Subject {
 
     @Override
     public void addObserver(Observer observer) {
-        //TODO
+        // TODO
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        //TODO
+        // TODO
     }
 
     @Override
     public List<Observer> getObservers() {
-        //TODO
+        // TODO
         return null;
     }
 }

@@ -47,7 +47,8 @@ public class ModelTest {
             for (int i = 0; i < loadedBoard.size(); i++) {
                 Space loadedSpace = loadedBoard.get(i);
                 Space oldSpace = board[i];
-                assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), loadedSpace.equals(oldSpace));
+                boolean comparison = loadedSpace.equals(oldSpace);
+                assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), comparison);
             }
 
             // Card comparison cant be done yet, since the nessecary methods dont exist.

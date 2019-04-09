@@ -9,8 +9,8 @@ import monopoly.model.Game;
 public class DatabaseSpaceFactory {
     public static List<Space> getSpacesFor(Game game) {
 
-        Class<? extends Space>[] classArray = new Class[] { CardSpace.class, FreeParkingSpace.class, GoToJailSpace.class,
-                JailSpace.class, PropertySpace.class, StartSpace.class, StationSpace.class };
+        Class<? extends Space>[] classArray = new Class[] { CardSpace.class, FreeParkingSpace.class,
+                GoToJailSpace.class, JailSpace.class, PropertySpace.class, StartSpace.class, StationSpace.class };
 
         // Get the spaces
         List<Space> allSpaces = new ArrayList<Space>();

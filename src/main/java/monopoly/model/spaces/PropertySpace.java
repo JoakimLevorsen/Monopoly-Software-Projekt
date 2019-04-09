@@ -42,11 +42,26 @@ public class PropertySpace extends Space {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof CardSpace))
+        if (!(obj instanceof PropertySpace))
             return false;
-        CardSpace other = (CardSpace) obj;
+        PropertySpace other = (PropertySpace) obj;
+        Player myOwner = this.parent(Player.class);
+        Player otherOwner = other.parent(Player.class);
+        if (myOwner == null || otherOwner == null) {
+            // This means atleast one of these do not have an owner.
+            if (!(myOwner == null && otherOwner == null)) {
+                // Since only one space has an owner, they can´t be the same.
+                return false;
+            }
+        } else {
+            // This means both have an owner
+            if (myOwner.getLongId() != otherOwner.getLongId()) {
+                // Not the same owner, not the same field.
+                return false;
+            }
+        }
         // TODO: Mange flere gettere
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition() && this.parent(Player.class).getId().equals(other.parent(Player.class).getId());
+        return true;
     }
 
     public int getBoardPosition() {
@@ -62,29 +77,46 @@ public class PropertySpace extends Space {
         }
         return null;
     }
-    /* getColour:
-    Henter hexkoden for ejendommen og ændrer det til rgb.
-    @Author Anders Brandt, s185016 */
+
+    /*
+     * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
+     * 
+     * @Author Anders Brandt, s185016
+     */
     public Color getColour() {
         String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
-        return new Color(
-            Integer.valueOf( hex.substring(0 , 2), 16),
-            Integer.valueOf( hex.substring(2 , 4), 16),
-            Integer.valueOf( hex.substring(4 , 6), 16));
+        return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
+                Integer.valueOf(hex.substring(4, 6), 16));
     }
-    /* getName:
-    Henter navnet på ejendommen.
-    @Author Anders Brandt, s185016 */
-    public String getName() { return this.getString(PropertySpace.Properties.NAME.getProperty()); }
-    /* getHousesBuilt:
-    Henter hvor mange huse der er bygget på ejendommen.
-    @Author Anders Brandt, s185016 */
-    public String getHousesBuilt() { return this.getString(Properties.BUILD_LEVEL.getProperty()); }
-    /* getRent:
-    Henter lejen for ejendommen.
-    @Author Anders Brandt, s185016 */
-    //Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange huse der er på ejendommen.
-    public String getRent() { return this.getString(Properties.BASE_RENT.getProperty());}
+
+    /*
+     * getName: Henter navnet på ejendommen.
+     * 
+     * @Author Anders Brandt, s185016
+     */
+    public String getName() {
+        return this.getString(PropertySpace.Properties.NAME.getProperty());
+    }
+
+    /*
+     * getHousesBuilt: Henter hvor mange huse der er bygget på ejendommen.
+     * 
+     * @Author Anders Brandt, s185016
+     */
+    public String getHousesBuilt() {
+        return this.getString(Properties.BUILD_LEVEL.getProperty());
+    }
+
+    /*
+     * getRent: Henter lejen for ejendommen.
+     * 
+     * @Author Anders Brandt, s185016
+     */
+    // Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor mange
+    // huse der er på ejendommen.
+    public String getRent() {
+        return this.getString(Properties.BASE_RENT.getProperty());
+    }
 
     // TODO: Tilføj resterende metoder
 

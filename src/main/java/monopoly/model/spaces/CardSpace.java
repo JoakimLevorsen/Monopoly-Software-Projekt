@@ -42,7 +42,7 @@ public class CardSpace extends Space {
         if (!(obj instanceof CardSpace))
             return false;
         CardSpace other = (CardSpace) obj;
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition();
+        return this.getBoardPosition() == other.getBoardPosition();
     }
 
     @Override

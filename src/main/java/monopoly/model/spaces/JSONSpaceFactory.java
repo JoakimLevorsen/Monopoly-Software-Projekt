@@ -9,7 +9,8 @@ import monopoly.model.cards.CardStack;
 import resources.json.JSONKey;
 
 public class JSONSpaceFactory {
-    public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack) throws JSONException {
+    public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack)
+            throws JSONException {
         // TODO: Fix
         JSONArray spaceData = boardData.getJSONArray(JSONKey.SPACES.getKey());
         Space[] resultSet = new Space[spaceData.length()];
