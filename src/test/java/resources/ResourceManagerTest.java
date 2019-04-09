@@ -13,9 +13,6 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- * Unit test for simple App.
- */
 public class ResourceManagerTest {
     /*
      * testAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk
@@ -76,9 +73,31 @@ public class ResourceManagerTest {
                 if (object.get(key) instanceof JSONObject) {
                     exists = keyExists((JSONObject) object.get(key), searchedKey);
                 }
+                if (object.get(key) instanceof JSONArray) {
+                    exists = keyExists((JSONArray) object.get(key), searchedKey);
+                }
             }
         }
         return exists;
+    }
+
+    /*
+     * keyExists: Kør key exists på alle elementer i JSONArray
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+
+    private boolean keyExists(JSONArray array, String searchedKey) {
+        for (int i = 0; i < array.length(); i++) {
+            Object item = array.get(i);
+            if (item instanceof JSONObject && keyExists((JSONObject) item, searchedKey)) {
+                return true;
+            }
+            if (item instanceof JSONArray && keyExists((JSONArray) item, searchedKey)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
