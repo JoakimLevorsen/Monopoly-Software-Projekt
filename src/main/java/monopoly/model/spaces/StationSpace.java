@@ -47,7 +47,7 @@ public class StationSpace extends Space {
         if (!(obj instanceof StationSpace))
             return false;
         StationSpace other = (StationSpace) obj;
-        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
+        return this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {

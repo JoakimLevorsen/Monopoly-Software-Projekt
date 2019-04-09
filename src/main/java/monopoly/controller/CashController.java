@@ -1,6 +1,5 @@
 package monopoly.controller;
 
-import jdk.nashorn.internal.objects.annotations.Property;
 import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
 
