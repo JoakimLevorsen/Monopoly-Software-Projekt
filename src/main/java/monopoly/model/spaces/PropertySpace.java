@@ -42,11 +42,26 @@ public class PropertySpace extends Space {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof CardSpace))
+        if (!(obj instanceof PropertySpace))
             return false;
-        CardSpace other = (CardSpace) obj;
+        PropertySpace other = (PropertySpace) obj;
+        Player myOwner = this.parent(Player.class);
+        Player otherOwner = other.parent(Player.class);
+        if (myOwner == null || otherOwner == null) {
+            // This means atleast one of these do not have an owner.
+            if (!(myOwner == null && otherOwner == null))  {
+                // Since only one space has an owner, they can´t be the same.
+                return false;
+            }
+        } else {
+            // This means both have an owner
+            if (myOwner.getLongId() != otherOwner.getLongId()) {
+                // Not the same owner, not the same field.
+                return false;
+            }
+        }
         // TODO: Mange flere gettere
-        return other.getId().equals(this.getId()) && this.getBoardPosition() == other.getBoardPosition() && this.parent(Player.class).getId().equals(other.parent(Player.class).getId());
+        return true;
     }
 
     public int getBoardPosition() {
