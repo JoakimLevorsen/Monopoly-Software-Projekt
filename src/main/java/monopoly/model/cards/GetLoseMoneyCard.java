@@ -1,6 +1,6 @@
 package monopoly.model.cards;
 
-import monopoly.controller.GameController;
+import monopoly.controller.MovementController;
 import monopoly.model.Player;
 
 /*
@@ -47,7 +47,8 @@ public class GetLoseMoneyCard extends Card {
         return this.getInteger(GetLoseMoneyCard.Properties.STACK_POSITION.getProperty());
     }
 
-    public void execute(GameController gameController, Player player) {
+    public void execute(MovementController moveController, Player player) {
         player.changeAccountBalance(this.getAmount());
+        saveIt();
     }
 }
