@@ -78,8 +78,30 @@ public class PropertySpace extends Space {
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
+    /*
+    SetOwner:
+    Sætter en spiller som ejer af ejendommen.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
     public void setOwner(Player player) {
         player.add(this);
+    }
+
+    /*
+    RemoveOwner:
+    Fjerner den nuværende ejer af ejendommen.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void removeOwner(Game game) {
+        Player owner = this.getOwner(game);
+        if (owner == null) {
+            return;
+        }
+        owner.remove(this);
     }
 
     public Player getOwner(Game game) {
@@ -118,6 +140,17 @@ public class PropertySpace extends Space {
      */
     public int getHousesBuilt() {
         return this.getInteger(Properties.BUILD_LEVEL.getProperty());
+    }
+
+    /*
+    SetBuildLevel:
+    Sætter antallet af huse bygget på ejendommen.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void setBuildLevel(int amount) {
+        this.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), amount);
     }
 
     /*

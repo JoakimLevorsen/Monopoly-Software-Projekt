@@ -59,8 +59,30 @@ public class StationSpace extends Space {
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
+    /*
+    SetOwner:
+    Sætter en spiller som ejer af stationen.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
     public void setOwner(Player player) {
         player.add(this);
+    }
+
+    /*
+    RemoveOwner:
+    Fjerner den nuværende ejer af stationen.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void removeOwner(Game game) {
+        Player owner = this.getOwner(game);
+        if (owner == null) {
+            return;
+        }
+        owner.remove(this);
     }
 
     public Player getOwner(Game game) {

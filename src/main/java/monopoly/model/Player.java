@@ -102,6 +102,17 @@ public class Player extends Model implements Subject {
     }
 
     /*
+    RemoveFromOwnedProperties:
+    Fjerner ejendom fra liste af ejendomme ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void removeFromOwnedProperties(PropertySpace property) {
+        ownedProperties.remove(property);
+    }
+
+    /*
     GetOwnedStations:
     Henter og returnerer liste af stationer ejet af brugeren.
 
@@ -123,11 +134,19 @@ public class Player extends Model implements Subject {
         ownedStations.add(station);
     }
 
-    public boolean isBroke(Player player){
-        if (player.getAccountBalance() < 0){
-            return true;
-        }
-        else return false;
+    /*
+    RemoveFromOwnedStations:
+    Fjerner station fra liste af stationer ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void removeFromOwnedStations(StationSpace station) {
+        ownedStations.remove(station);
+    }
+
+    public boolean isBroke(){
+        return this.getAccountBalance() < 0;
     }
 
     /*
