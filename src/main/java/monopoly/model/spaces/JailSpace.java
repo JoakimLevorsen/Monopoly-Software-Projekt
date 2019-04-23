@@ -57,6 +57,7 @@ public class JailSpace extends Space {
     public void release(Player player) {
         this.remove(player);
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -74,7 +75,7 @@ public class JailSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

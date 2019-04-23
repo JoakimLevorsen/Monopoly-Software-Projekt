@@ -24,8 +24,6 @@ public class MovementController {
        player.setBoardPosition(moveAmount);
 
 
-    }
-
 
 
     public void goToJail(Player player) {

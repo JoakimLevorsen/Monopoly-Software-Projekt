@@ -51,6 +51,7 @@ public class GoToJailSpace extends Space {
     public int getBoardPosition() {
         return this.getInteger(GoToJailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -68,7 +69,7 @@ public class GoToJailSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

@@ -66,6 +66,7 @@ public class FreeParkingSpace extends Space {
         int newBalance = this.getTreasure() + amount;
         this.set(FreeParkingSpace.Properties.TREASURE.getProperty(), newBalance);
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -83,7 +84,7 @@ public class FreeParkingSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

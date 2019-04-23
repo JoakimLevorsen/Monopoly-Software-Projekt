@@ -26,19 +26,19 @@ public class View implements Observer {
     private boolean disposed = false;
 
     /*
-    View:
-    opretter felter og spillere
-
-    @author Ekkart Kindler
-    @author Anders Brandt s185016
-    */
+     * View: opretter felter og spillere
+     * 
+     * @author Ekkart Kindler
+     * 
+     * @author Anders Brandt s185016
+     */
     public View(Game game, GUI gui) {
         this.game = game;
         this.gui = gui;
         GUI_Field[] guiFields = gui.getFields();
 
         int i = 0;
-        for (Space space: game.getBoard()) {
+        for (Space space : game.getBoard()) {
             // TODO, here we assume that the games fields fit to the GUI's fields;
             // the GUI fields should actually be created according to the game's
             // fields
@@ -51,7 +51,7 @@ public class View implements Observer {
         }
 
         // create the players in the GUI
-        for (Player player: game.getPlayers()) {
+        for (Player player : game.getPlayers()) {
             GUI_Car car = new GUI_Car(player.getColor(), Color.black, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
             GUI_Player guiPlayer = new GUI_Player(player.getName(), player.getAccountBalance(), car);
             playerToGUIPlayer.put(player, guiPlayer);
@@ -65,7 +65,6 @@ public class View implements Observer {
             updatePlayer(player);
         }
     }
-
 
     public Game chooseGame() {
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
@@ -97,37 +96,37 @@ public class View implements Observer {
             return Game.newGame(saveName);
         }
     }
-    /*
-  View:
-  opdaterer brættet
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /*
+     * View: opdaterer brættet
+     * 
+     * @author Ekkart Kindler
+     * 
+     * @author Anders Brandt s185016
+     */
     public void update(Subject subject) {
         if (!disposed) {
             if (subject instanceof Player) {
                 updatePlayer((Player) subject);
-            }
-            else if (subject instanceof PropertySpace) {
+            } else if (subject instanceof PropertySpace) {
                 updateProperty((PropertySpace) subject);
             } else if (subject instanceof StationSpace) {
                 updateStation((StationSpace) subject);
             }
 
-
             // TODO update other subjects in the GUI
-            //      in particular properties (sold, houses, ...)
+            // in particular properties (sold, houses, ...)
 
         }
     }
-    /*
-  View:
-  Opdaterer spilleren
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /*
+     * View: Opdaterer spilleren
+     * 
+     * @author Ekkart Kindler
+     * 
+     * @author Anders Brandt s185016
+     */
     private void updatePlayer(Player player) {
         GUI_Player guiPlayer = this.playerToGUIPlayer.get(player);
         if (guiPlayer != null) {
@@ -139,7 +138,7 @@ public class View implements Observer {
             }
             int pos = player.getBoardPosition();
             if (pos < guiFields.length) {
-                playerToPosition.put(player,pos);
+                playerToPosition.put(player, pos);
                 guiFields[pos].setCar(guiPlayer, true);
             }
 
@@ -152,16 +151,17 @@ public class View implements Observer {
         }
         panels.get(player).Update();
     }
-    /*
-  View:
-  Opdaterer ejendommene
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /*
+     * View: Opdaterer ejendommene
+     * 
+     * @author Ekkart Kindler
+     * 
+     * @author Anders Brandt s185016
+     */
     private void updateProperty(PropertySpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
-        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
+        GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
         GUI_Street thisStreet = (GUI_Street) thisField;
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
@@ -185,16 +185,17 @@ public class View implements Observer {
             this.updateProperty(property);
         }
     }
-    /*
-  View:
-  Opdaterer stationerne
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /*
+     * View: Opdaterer stationerne
+     * 
+     * @author Ekkart Kindler
+     * 
+     * @author Anders Brandt s185016
+     */
     private void updateStation(StationSpace station) {
         GUI_Field thisField = this.spaceToField.get(station);
-        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
+        GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
         if (thisOwnableField != null) {
             if (station.getOwner(game) != null) {
                 thisOwnableField.setOwnableLabel("Owned by ");
@@ -211,10 +212,10 @@ public class View implements Observer {
     public void dispose() {
         if (!disposed) {
             disposed = true;
-            for (Player player: game.getPlayers()) {
+            for (Player player : game.getPlayers()) {
                 player.removeObserver(this);
             }
-            for (Space space: game.getBoard()) {
+            for (Space space : game.getBoard()) {
                 space.removeObserver(this);
             }
         }
