@@ -187,6 +187,15 @@ public class View implements Observer {
     }
 
     /*
+     * getGUI: Retuner dette views gui
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    public GUI getGUI() {
+        return gui;
+    }
+
+    /*
      * View: Opdaterer stationerne
      * 
      * @author Ekkart Kindler
