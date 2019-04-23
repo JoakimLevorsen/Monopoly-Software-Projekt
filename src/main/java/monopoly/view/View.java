@@ -143,7 +143,7 @@ public class View implements Observer {
             }
 
             String name = player.getName();
-            if (player.IsBroke(player)) {
+            if (player.isBroke(player)) {
             }
             if (!name.equals(guiPlayer.getName())) {
                 guiPlayer.setName(name);
