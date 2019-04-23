@@ -50,5 +50,6 @@ public class GoToJailCard extends Card {
     public void execute(MovementController moveController, Player player) {
         // TODO: move player to jail (use moveController.goTo('space')) and
         // jail them (use jail() method from JailSpace)
+
     }
 }
