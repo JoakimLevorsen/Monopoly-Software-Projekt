@@ -14,25 +14,25 @@ public class MovementController {
     }
 
     public void moveForward(int amount, Player player) {
-       int moveAmount = player.getBoardPosition() + amount;
+        int moveAmount = player.getBoardPosition() + amount;
 
-       if (moveAmount > 40) {
-           moveAmount =- 40;
-           StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
-           player.changeAccountBalance(s.getPayment());
-       }
-       player.setBoardPosition(moveAmount);
-
-
-
-
-    public void goToJail(Player player) {
-        JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
-        player.setBoardPosition(j.getBoardPosition());
+        if (moveAmount > 40) {
+            moveAmount = -40;
+            StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
+            player.changeAccountBalance(s.getPayment());
+        }
+        player.setBoardPosition(moveAmount);
     }
 
-    public void goTo(Space space, Boolean ignoreStart, Player player) {
-        player.setBoardPosition(space.getBoardPosition());
-        //TODO: Tjek for start kryds
+
+        public void goToJail (Player player){
+            JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
+            player.setBoardPosition(j.getBoardPosition());
+        }
+
+
+        public void goTo (Space space, Boolean ignoreStart, Player player){
+            player.setBoardPosition(space.getBoardPosition());
+            //TODO: Tjek for start kryds
+        }
     }
-}
