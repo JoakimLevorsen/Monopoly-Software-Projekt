@@ -39,7 +39,7 @@ public class Game extends Model {
         Game g = new Game();
         g.set(Game.Properties.CURRENT_TURN.getProperty(), 0);
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
-        g.saveIt();
+
         return g;
     }
 
@@ -54,7 +54,7 @@ public class Game extends Model {
     public void addPlayer(Player player) {
         this.add(player);
         this.players.add(player);
-        this.saveIt();
+
     }
 
     public List<Player> getPlayers() {
