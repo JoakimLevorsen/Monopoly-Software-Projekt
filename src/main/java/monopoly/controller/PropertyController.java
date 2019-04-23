@@ -19,6 +19,7 @@ public class PropertyController {
     }
 
     public void playerBrokeToBank(Player failure) {
+
         // TODO: Implementering
 
     }

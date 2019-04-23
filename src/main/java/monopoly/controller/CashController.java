@@ -11,7 +11,6 @@ public class CashController {
     }
 
     public void offerProperty(PropertySpace property, Player player){
-
         // TODO: Implementering
 
     }
