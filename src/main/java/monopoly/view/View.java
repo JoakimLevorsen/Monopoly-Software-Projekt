@@ -8,18 +8,10 @@ import javax.swing.JOptionPane;
 import java.util.HashMap;
 
 import designpatterns.*;
-import monopoly.model.Game;
-import monopoly.model.Player;
-import monopoly.model.spaces.*;
 import gui_fields.*;
 import gui_main.GUI;
-
-/*
-View:
-Klasse til håndtering af spillets UI.
-
-@author Cecilie Krog Drejer, s185032
-*/
+import monopoly.model.*;
+import monopoly.model.spaces.*;
 
 public class View implements Observer {
 
@@ -50,7 +42,7 @@ public class View implements Observer {
             // TODO, here we assume that the games fields fit to the GUI's fields;
             // the GUI fields should actually be created according to the game's
             // fields
-            space.attach(this);
+            space.addObserver(this);
             spaceToField.put(space, guiFields[i++]);
 
             // TODO we should also register with the properties as observer; but
@@ -67,7 +59,7 @@ public class View implements Observer {
 
             // register this view with the player as an observer, in order to update the
             // player's state in the GUI
-            player.attach(this);
+            player.addObserver(this);
             PlayerPanel playerPanel = new PlayerPanel(game, player);
             panels.put(player, playerPanel);
             updatePlayer(player);
@@ -220,10 +212,10 @@ public class View implements Observer {
         if (!disposed) {
             disposed = true;
             for (Player player: game.getPlayers()) {
-                player.detach(this);
+                player.removeObserver(this);
             }
             for (Space space: game.getBoard()) {
-                space.detach(this);
+                space.removeObserver(this);
             }
         }
     }

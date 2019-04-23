@@ -1,9 +1,12 @@
 package monopoly.model.spaces;
 
+import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.*;
 
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 PropertySpace:
@@ -75,6 +78,10 @@ public class PropertySpace extends Space {
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
+    public void setOwner(Player player) {
+        player.add(this);
+    }
+
     public Player getOwner(Game game) {
         Player owner = this.parent(Player.class);
         if (owner != null) {
@@ -124,5 +131,27 @@ public class PropertySpace extends Space {
     }
 
     // TODO: Tilføj resterende metoder
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
 
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }

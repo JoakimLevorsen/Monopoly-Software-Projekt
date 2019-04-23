@@ -15,6 +15,10 @@ public class MovementController {
 
     public void moveForward(int amount) {
         // TODO: Implementering
+        int doublesCount = 0;
+        Boolean doubles;
+        int die1 = (int) (1 + 6.0 * Math.random());
+        int die2 = (int) (1 + 6.0 * Math.random());
         doubles = (die1 == die2);
         gui.setDice(die1, die2);
         amount = die1 + die2;

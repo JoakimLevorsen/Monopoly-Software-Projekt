@@ -1,11 +1,17 @@
 package monopoly.model;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
+import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.StationSpace;
 
 /*
 Player:
@@ -13,7 +19,12 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Player extends Model {
+    
+public class Player extends Model implements Subject {
+    private Color color;
+    private ArrayList<PropertySpace> ownedProperties;
+    private ArrayList<StationSpace> ownedStations;
+    
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
 
@@ -27,8 +38,6 @@ public class Player extends Model {
             return this.value;
         }
     }
-
-    private Color color;
 
     public static Player newPlayer(String name, int index, int balance) {
         return new Player().set(Player.Properties.NAME.getProperty(), name)
@@ -70,7 +79,51 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
-    public boolean IsBroke(Player player){
+    /*
+    GetOwnedProperties:
+    Henter og returnerer liste af ejendomme ejet af brugeren.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public ArrayList<PropertySpace> getOwnedProperties() {
+        return ownedProperties;
+    }
+
+    /*
+    AddToOwnedProperties:
+    Tilføjer ejendom til liste af ejendomme ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void addToOwnedProperties(PropertySpace property) {
+        ownedProperties.add(property);
+    }
+
+    /*
+    GetOwnedStations:
+    Henter og returnerer liste af stationer ejet af brugeren.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public ArrayList<StationSpace> getOwnedStations() {
+        return ownedStations;
+    }
+
+    /*
+    AddToOwnedStations:
+    Tilføjer station til liste af stationer ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
+
+    public void addToOwnedStations(StationSpace station) {
+        ownedStations.add(station);
+    }
+
+    public boolean isBroke(Player player){
         if (player.getAccountBalance() < 0){
             return true;
         }
@@ -98,4 +151,28 @@ public class Player extends Model {
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
+
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
+
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }
