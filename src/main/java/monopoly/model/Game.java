@@ -1,8 +1,11 @@
 package monopoly.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
@@ -16,7 +19,7 @@ Implementering af Game model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Game extends Model {
+public class Game extends Model implements Subject {
     private List<Player> players = null;
     private List<CardStack> stacks = null;
     private List<Space> board = null;
@@ -39,7 +42,7 @@ public class Game extends Model {
         Game g = new Game();
         g.set(Game.Properties.CURRENT_TURN.getProperty(), 0);
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
-        g.saveIt();
+
         return g;
     }
 
@@ -54,7 +57,7 @@ public class Game extends Model {
     public void addPlayer(Player player) {
         this.add(player);
         this.players.add(player);
-        this.saveIt();
+
     }
 
     public List<Player> getPlayers() {
@@ -125,5 +128,28 @@ public class Game extends Model {
 
     public void setCurrentTurn(int turn) {
         this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
+    }
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
+
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
     }
 }

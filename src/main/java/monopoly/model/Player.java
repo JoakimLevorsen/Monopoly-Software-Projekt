@@ -1,8 +1,11 @@
 package monopoly.model;
 
 import java.awt.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
@@ -13,7 +16,7 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Player extends Model {
+public class Player extends Model implements Subject {
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
 
@@ -70,6 +73,13 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
+    public boolean IsBroke(Player player){
+        if (player.getAccountBalance() < 0){
+            return true;
+        }
+        else return false;
+    }
+
     /*
      * getRent: Henter farven for spilleren.
      *
@@ -91,4 +101,28 @@ public class Player extends Model {
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
+
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
+
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }
