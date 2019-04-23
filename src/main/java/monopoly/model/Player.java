@@ -78,7 +78,7 @@ public class Player extends Model {
     }
 
     /*
-     * getRent: Henter farven for spilleren.
+     * getColor: Henter farven for spilleren.
      *
      * @Author Anders Brandt, s185016
      */
@@ -88,7 +88,7 @@ public class Player extends Model {
     }
 
     /*
-     * getRent: sætter farven for spilleren.
+     * setColor: sætter farven for spilleren.
      *
      * @Author Anders Brandt, s185016
      */
