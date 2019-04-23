@@ -20,6 +20,7 @@ public class PropertyController {
 	private CashController MrMonopoly;
 	private GUI gooey;
 	private Game game;
+    private GameController controller;
 
 	public PropertyController(GameController owner) {
 		this.gameController = owner;
@@ -29,21 +30,19 @@ public class PropertyController {
 	 * Auction: Metode til at sælge en ejendom ved auktion.
 	 * 
 	 * @author Anders Brandt, s185016
-	 * 
 	 * @author Cecilie Krog Drejer, s185032
-	 * 
 	 * @author Helle Achari, s180317
-	 * 
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
 
-	public void auctionProperty(PropertySpace property) {
-		gooey.showMessage("The property " + property.getName() + " will now be auctioned off.");
+    public void auctionProperty(PropertySpace property) {
+		GUI gooey = controller.view.getGUI();
+        gooey.showMessage("The property " + property.getName() + " will now be auctioned off.");
 		int currentBidderIndex = 0;
 		int topBid = 0;
 		int noBidCounter = 0;
 		Player topBidder = null;
-		List<Player> players = game.getPlayers();
+		List<Player> players = controller.getGame().getPlayers();
 		while ((noBidCounter < players.size() - 1 && topBid != 0) || noBidCounter < players.size()) {
 			Player currentBidder = players.get(currentBidderIndex);
 			int bid = gooey.getUserInteger("Do you want to bid Player " + (currentBidderIndex + 1)
@@ -64,9 +63,9 @@ public class PropertyController {
 		}
 		if (topBidder != null) {
 			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
-			MrMonopoly.paymentToBank(topBidder, topBid);
-			property.setOwner(topBidder);
-			topBidder.addToOwnedProperties(property);
+			controller.cashController.paymentToBank(topBidder, topBid);
+            property.setOwner(topBidder);
+            topBidder.addToOwnedProperties(property);
 			return;
 		}
 	}
@@ -75,21 +74,19 @@ public class PropertyController {
 	 * Auction: Metode til at sælge en station ved auktion.
 	 * 
 	 * @author Anders Brandt, s185016
-	 * 
 	 * @author Cecilie Krog Drejer, s185032
-	 * 
 	 * @author Helle Achari, s180317
-	 * 
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
 
-	public void auctionStation(StationSpace station) {
-		gooey.showMessage("The station " + station.getName() + " will now be auctioned off.");
+    public void auctionStation(StationSpace station) {
+		GUI gooey = controller.view.getGUI();
+        gooey.showMessage("The station " + station.getName() + " will now be auctioned off.");
 		int currentBidderIndex = 0;
 		int topBid = 0;
 		int noBidCounter = 0;
 		Player topBidder = null;
-		List<Player> players = game.getPlayers();
+		List<Player> players = controller.getGame().getPlayers();
 		while ((noBidCounter < players.size() - 1 && topBid != 0) || noBidCounter < players.size()) {
 			Player currentBidder = players.get(currentBidderIndex);
 			int bid = gooey.getUserInteger("Do you want to bid Player " + (currentBidderIndex + 1)
@@ -110,9 +107,9 @@ public class PropertyController {
 		}
 		if (topBidder != null) {
 			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
-			MrMonopoly.paymentToBank(topBidder, topBid);
-			station.setOwner(topBidder);
-			topBidder.addToOwnedStations(station);
+			controller.cashController.paymentToBank(topBidder, topBid);
+            station.setOwner(topBidder);
+            topBidder.addToOwnedStations(station);
 			return;
 		}
 	}

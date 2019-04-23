@@ -53,9 +53,10 @@ public class StartSpace extends Space {
         return this.getInteger(StartSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
-    private int getPayment() {
+    public int getPayment() {
         return this.getInteger(StartSpace.Properties.PAYMENT.getProperty()).intValue();
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -73,7 +74,7 @@ public class StartSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

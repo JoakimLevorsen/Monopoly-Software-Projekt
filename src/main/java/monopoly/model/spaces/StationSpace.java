@@ -113,6 +113,7 @@ public class StationSpace extends Space {
     public String getRent() {
         return this.getString(Properties.BASE_RENT.getProperty());
     }
+
     // TODO: Tilføj resterende metoder
     /**
      * Variabler og metoder til at implementere Subject
@@ -131,7 +132,7 @@ public class StationSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

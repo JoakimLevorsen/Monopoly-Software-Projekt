@@ -19,14 +19,14 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-    
+
 public class Player extends Model implements Subject {
     private Color color;
     private ArrayList<PropertySpace> ownedProperties;
     private ArrayList<StationSpace> ownedStations;
-    
+
     public enum Properties {
-        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
+        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace");
 
         private final String value;
 
@@ -70,6 +70,13 @@ public class Player extends Model implements Subject {
         return (int) this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
     }
 
+    /*
+     * getPrisonStatus: Henter om spilleren er på fængsels feltet eller ej,
+     *
+     * @Author Anders Brandt, s185016
+     */
+    public boolean getIsInPrisonStatus() {return this.get(Properties.JAIL_SPACE.getProperty()) != null;}
+
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
@@ -80,66 +87,61 @@ public class Player extends Model implements Subject {
     }
 
     /*
-    GetOwnedProperties:
-    Henter og returnerer liste af ejendomme ejet af brugeren.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * GetOwnedProperties: Henter og returnerer liste af ejendomme ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public ArrayList<PropertySpace> getOwnedProperties() {
         return ownedProperties;
     }
 
     /*
-    AddToOwnedProperties:
-    Tilføjer ejendom til liste af ejendomme ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * AddToOwnedProperties: Tilføjer ejendom til liste af ejendomme ejet af
+     * brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void addToOwnedProperties(PropertySpace property) {
         ownedProperties.add(property);
     }
 
     /*
-    RemoveFromOwnedProperties:
-    Fjerner ejendom fra liste af ejendomme ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * RemoveFromOwnedProperties: Fjerner ejendom fra liste af ejendomme ejet af brugeren.
+     *
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void removeFromOwnedProperties(PropertySpace property) {
         ownedProperties.remove(property);
     }
 
     /*
-    GetOwnedStations:
-    Henter og returnerer liste af stationer ejet af brugeren.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * GetOwnedStations: Henter og returnerer liste af stationer ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public ArrayList<StationSpace> getOwnedStations() {
         return ownedStations;
     }
 
     /*
-    AddToOwnedStations:
-    Tilføjer station til liste af stationer ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * AddToOwnedStations: Tilføjer station til liste af stationer ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void addToOwnedStations(StationSpace station) {
         ownedStations.add(station);
     }
 
     /*
-    RemoveFromOwnedStations:
-    Fjerner station fra liste af stationer ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * RemoveFromOwnedStations: Fjerner station fra liste af stationer ejet af brugeren.
+     *
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void removeFromOwnedStations(StationSpace station) {
         ownedStations.remove(station);
@@ -188,7 +190,7 @@ public class Player extends Model implements Subject {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

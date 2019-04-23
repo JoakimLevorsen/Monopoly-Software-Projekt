@@ -1,47 +1,60 @@
 package monopoly.controller;
 
-import gui_main.GUI;
 import monopoly.model.Player;
+import monopoly.model.spaces.JailSpace;
 import monopoly.model.spaces.Space;
+import monopoly.model.spaces.StartSpace;
+
 
 public class MovementController {
     public GameController controller;
-    private GUI gui;
-    private Player player;
 
+    /*
+     * MovementController: kontrollerer de forskellige måder at rykke spilleren
+     *
+     * @Author Anders Brandt, s185016
+     */
     public MovementController(GameController owner) {
         this.controller = owner;
     }
 
-    public void moveForward(int amount) {
-        // TODO: Implementering
-        int doublesCount = 0;
-        Boolean doubles;
-        int die1 = (int) (1 + 6.0 * Math.random());
-        int die2 = (int) (1 + 6.0 * Math.random());
-        doubles = (die1 == die2);
-        gui.setDice(die1, die2);
-        amount = die1 + die2;
+    /*
+     * moveForward: rykker spilleren frem ud fra hvad de har slået med terningen.
+     *
+     * @Author Anders Brandt, s185016
+     */
+    public void moveForward(int amount, Player player) {
+        int moveAmount = player.getBoardPosition() + amount;
 
-       int moveAmount = player.getBoardPosition() + amount;
-
-       if (moveAmount > 40) {
-           moveAmount =- 40;
-           player.setBoardPosition(moveAmount);
-       } else {
-           player.setBoardPosition(moveAmount);
-       }
-
-
+        if (moveAmount > 40) {
+            moveAmount = -40;
+            StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
+            player.changeAccountBalance(s.getPayment());
+        }
+        player.setBoardPosition(moveAmount);
+        Space destination = controller.getGame().getBoard().get(player.getBoardPosition());
+        destination.performAction(controller, player);
     }
 
-    public void goToJail() {
-        // TODO: Implementering
+    /*
+     * goToJail: rykker spilleren i fængsel
+     *
+     * @Author Anders Brandt, s185016
+     */
+        public void goToJail(Player player) {
+            JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
+            player.setBoardPosition(j.getBoardPosition());
+        }
+
+    /*
+     * goTo: rykker spilleren til et bestemt felt.
+     *
+     * @Author Anders Brandt, s185016
+     */
+        public void goTo(Space space, Boolean ignoreStart, Player player) {
+            player.setBoardPosition(space.getBoardPosition());
+            space.performAction(controller, player);
+            //TODO: Tjek for start kryds
+        }
 
     }
-
-    public void goTo(Space space) {
-        // TODO: Implementering
-
-    }
-}

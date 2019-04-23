@@ -10,32 +10,32 @@ public class CashController {
         this.controller = owner;
     }
 
-    public void offerProperty(PropertySpace property, Player player){
+    public void offerProperty(PropertySpace property, Player player) {
         // TODO: Implementering
 
     }
 
     public void payment(Player playerFrom, int amount, Player playerReceiver) {
-        playerFrom.changeAccountBalance(- amount);
+        playerFrom.changeAccountBalance(-amount);
         playerReceiver.changeAccountBalance(amount);
-        if (playerFrom.getAccountBalance() < 0){
+        if (playerFrom.getAccountBalance() < 0) {
             controller.propertyController.playerBrokeTo(playerFrom, playerReceiver);
         }
-        if (playerReceiver.getAccountBalance() < 0){
+        if (playerReceiver.getAccountBalance() < 0) {
             controller.propertyController.playerBrokeTo(playerReceiver, playerFrom);
         }
     }
 
     public void paymentToBank(Player player, int amount) {
-        player.changeAccountBalance(- amount);
-        if (player.getAccountBalance() < 0 ) {
+        player.changeAccountBalance(-amount);
+        if (player.getAccountBalance() < 0) {
             controller.propertyController.playerBrokeToBank(player);
         }
     }
 
     public void paymentFromBank(Player player, int amount) {
         player.changeAccountBalance(amount);
-        if (player.getAccountBalance() < 0 ) {
+        if (player.getAccountBalance() < 0) {
             controller.propertyController.playerBrokeToBank(player);
         }
     }
