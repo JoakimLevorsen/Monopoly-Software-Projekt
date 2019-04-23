@@ -1,47 +1,40 @@
 package monopoly.controller;
 
-import gui_main.GUI;
 import monopoly.model.Player;
+import monopoly.model.spaces.JailSpace;
 import monopoly.model.spaces.Space;
+import monopoly.model.spaces.StartSpace;
 
 public class MovementController {
     public GameController controller;
-    private GUI gui;
-    private Player player;
+
 
     public MovementController(GameController owner) {
         this.controller = owner;
     }
 
-    public void moveForward(int amount) {
-        // TODO: Implementering
-        int doublesCount = 0;
-        Boolean doubles;
-        int die1 = (int) (1 + 6.0 * Math.random());
-        int die2 = (int) (1 + 6.0 * Math.random());
-        doubles = (die1 == die2);
-        gui.setDice(die1, die2);
-        amount = die1 + die2;
-
+    public void moveForward(int amount, Player player) {
        int moveAmount = player.getBoardPosition() + amount;
 
        if (moveAmount > 40) {
            moveAmount =- 40;
-           player.setBoardPosition(moveAmount);
-       } else {
-           player.setBoardPosition(moveAmount);
+           StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
+           player.changeAccountBalance(s.getPayment());
        }
+       player.setBoardPosition(moveAmount);
 
 
     }
 
-    public void goToJail() {
-        // TODO: Implementering
 
+
+    public void goToJail(Player player) {
+        JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
+        player.setBoardPosition(j.getBoardPosition());
     }
 
-    public void goTo(Space space) {
-        // TODO: Implementering
-
+    public void goTo(Space space, Boolean ignoreStart, Player player) {
+        player.setBoardPosition(space.getBoardPosition());
+        //TODO: Tjek for start kryds
     }
 }

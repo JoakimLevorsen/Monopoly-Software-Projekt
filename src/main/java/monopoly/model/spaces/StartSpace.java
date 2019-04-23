@@ -53,7 +53,7 @@ public class StartSpace extends Space {
         return this.getInteger(StartSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
-    private int getPayment() {
+    public int getPayment() {
         return this.getInteger(StartSpace.Properties.PAYMENT.getProperty()).intValue();
     }
     /**
