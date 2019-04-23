@@ -26,7 +26,7 @@ public class Player extends Model implements Subject {
     private ArrayList<StationSpace> ownedStations;
 
     public enum Properties {
-        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
+        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace");
 
         private final String value;
 
@@ -69,6 +69,13 @@ public class Player extends Model implements Subject {
     public int getAccountBalance() {
         return (int) this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
     }
+
+    /*
+     * getPrisonStatus: Henter om spilleren er på fængsels feltet eller ej,
+     *
+     * @Author Anders Brandt, s185016
+     */
+    public boolean getIsInPrisonStatus() {return this.get(Properties.JAIL_SPACE.getProperty()) != null;}
 
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
