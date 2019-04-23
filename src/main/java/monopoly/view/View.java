@@ -8,18 +8,6 @@ import javax.swing.JOptionPane;
 import java.util.HashMap;
 
 import designpatterns.*;
-import monopoly.model.Game;
-import monopoly.model.Player;
-import monopoly.model.spaces.*;
-import gui_fields.*;
-import gui_main.GUI;
-
-/*
-View:
-Klasse til håndtering af spillets UI.
-
-@author Cecilie Krog Drejer, s185032
-*/
 
 public class View implements Observer {
 
