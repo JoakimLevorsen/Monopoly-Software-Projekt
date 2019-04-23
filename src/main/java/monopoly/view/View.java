@@ -33,6 +33,13 @@ public class View implements Observer {
     private HashMap<Player, PlayerPanel> panels = new HashMap<>();
     private boolean disposed = false;
 
+    /*
+    View:
+    opretter felter og spillere
+
+    @author Ekkart Kindler
+    @author Anders Brandt s185016
+    */
     public View(Game game, GUI gui) {
         this.game = game;
         this.gui = gui;
@@ -98,7 +105,13 @@ public class View implements Observer {
             return Game.newGame(saveName);
         }
     }
+    /*
+  View:
+  opdaterer brættet
 
+  @author Ekkart Kindler
+  @author Anders Brandt s185016
+  */
     public void update(Subject subject) {
         if (!disposed) {
             if (subject instanceof Player) {
@@ -116,7 +129,13 @@ public class View implements Observer {
 
         }
     }
+    /*
+  View:
+  Opdaterer spilleren
 
+  @author Ekkart Kindler
+  @author Anders Brandt s185016
+  */
     private void updatePlayer(Player player) {
         GUI_Player guiPlayer = this.playerToGUIPlayer.get(player);
         if (guiPlayer != null) {
@@ -141,7 +160,13 @@ public class View implements Observer {
         }
         panels.get(player).Update();
     }
+    /*
+  View:
+  Opdaterer ejendommene
 
+  @author Ekkart Kindler
+  @author Anders Brandt s185016
+  */
     private void updateProperty(PropertySpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
         GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
@@ -168,7 +193,13 @@ public class View implements Observer {
             this.updateProperty(property);
         }
     }
+    /*
+  View:
+  Opdaterer stationerne
 
+  @author Ekkart Kindler
+  @author Anders Brandt s185016
+  */
     private void updateStation(StationSpace station) {
         GUI_Field thisField = this.spaceToField.get(station);
         GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
@@ -184,11 +215,11 @@ public class View implements Observer {
             }
         }
     }
+
     public void dispose() {
         if (!disposed) {
             disposed = true;
             for (Player player: game.getPlayers()) {
-                // unregister from the player as observer
                 player.detach(this);
             }
             for (Space space: game.getBoard()) {
