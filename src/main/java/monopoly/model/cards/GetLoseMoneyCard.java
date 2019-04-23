@@ -49,6 +49,6 @@ public class GetLoseMoneyCard extends Card {
 
     public void execute(MovementController moveController, Player player) {
         player.changeAccountBalance(this.getAmount());
-        saveIt();
+
     }
 }

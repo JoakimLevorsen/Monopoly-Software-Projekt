@@ -23,7 +23,11 @@ public class PropertyController {
     Auction:
 	Metode til at sælge en ejendom ved auktion.
 	 
-	@author Anders Brandt, s185016, Cecilie Krog Drejer, s185032, Helle Achari, s180317, Joakim Bøegh Levorsen, s185023
+	@author Anders Brandt, s185016
+			Cecilie Krog Drejer, s185032
+			Helle Achari, s180317
+			Joakim Bøegh Levorsen, s185023
+	@author Cecilie Krog Drejer, s185032
 	*/
 
     public void auctionProperty(PropertySpace property) {
@@ -57,6 +61,17 @@ public class PropertyController {
 			return;
 		}
     }
+
+	/*
+    Auction:
+	Metode til at sælge en ejendom ved auktion.
+	 
+	@author Anders Brandt, s185016
+			Cecilie Krog Drejer, s185032
+			Helle Achari, s180317
+			Joakim Bøegh Levorsen, s185023
+	@author Cecilie Krog Drejer, s185032
+	*/
 
     public void auctionStation(StationSpace station) {
         gooey.showMessage("The station " + station.getName() + " will now be auctioned off.");
@@ -100,11 +115,12 @@ public class PropertyController {
         }
     }
 
-    public void playerBrokeTo(Player player) {
+    public void playerBrokeTo(Player failure, Player responsible) {
         // TODO: Implementering
     }
 
-    public void playerBrokeToBank() {
+    public void playerBrokeToBank(Player failure) {
+
         // TODO: Implementering
 
     }

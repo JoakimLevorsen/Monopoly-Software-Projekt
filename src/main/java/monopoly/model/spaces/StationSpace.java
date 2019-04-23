@@ -1,7 +1,11 @@
 package monopoly.model.spaces;
 
+import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /*
 StationSpace:
@@ -88,5 +92,27 @@ public class StationSpace extends Space {
         return this.getString(Properties.BASE_RENT.getProperty());
     }
     // TODO: Tilføj resterende metoder
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
 
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }

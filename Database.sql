@@ -11,21 +11,21 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema monopoly
+-- Schema pisd19_group_a
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema monopoly
+-- Schema pisd19_group_a
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `monopoly` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `monopoly` ;
+CREATE SCHEMA IF NOT EXISTS `pisd19_group_a` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `pisd19_group_a` ;
 
 -- -----------------------------------------------------
--- Table `monopoly`.`games`
+-- Table `pisd19_group_a`.`games`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`games` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`games` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`games` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`games` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `currentTurn` INT(11) NOT NULL DEFAULT '0',
   `saveName` VARCHAR(45) NULL DEFAULT NULL,
@@ -38,11 +38,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`card_stacks`
+-- Table `pisd19_group_a`.`card_stacks`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`card_stacks` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`card_stacks` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`card_stacks` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`card_stacks` (
   `game_id` INT(11) NOT NULL,
   `nextCardIndex` INT(11) NULL DEFAULT NULL,
   `chanceCard` INT(1) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`card_stacks` (
   INDEX `game_idx` (`game_id` ASC) VISIBLE,
   CONSTRAINT `gameCardStack`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 147
 DEFAULT CHARACTER SET = utf8mb4
@@ -59,11 +59,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`card_spaces`
+-- Table `pisd19_group_a`.`card_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`card_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`card_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`card_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`card_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NULL DEFAULT NULL COMMENT 'Disse er optional fordi ellers virker ActiveJDBC ikke ordenligt',
@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`card_spaces` (
   INDEX `stack_idx` (`card_stack_id` ASC) VISIBLE,
   CONSTRAINT `gameCardSpace`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`),
+    REFERENCES `pisd19_group_a`.`games` (`id`),
   CONSTRAINT `stackCardSpace`
     FOREIGN KEY (`card_stack_id`)
-    REFERENCES `monopoly`.`card_stacks` (`id`))
+    REFERENCES `pisd19_group_a`.`card_stacks` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 315
 DEFAULT CHARACTER SET = utf8mb4
@@ -84,11 +84,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`free_parking_spaces`
+-- Table `pisd19_group_a`.`free_parking_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`free_parking_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`free_parking_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`free_parking_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`free_parking_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`free_parking_spaces` (
   INDEX `game_idx` (`game_id` ASC) VISIBLE,
   CONSTRAINT `gameFreeParking`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 36
 DEFAULT CHARACTER SET = utf8mb4
@@ -105,11 +105,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`get_lose_money_cards`
+-- Table `pisd19_group_a`.`get_lose_money_cards`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`get_lose_money_cards` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`get_lose_money_cards` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`get_lose_money_cards` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`get_lose_money_cards` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `amount` INT(11) NOT NULL,
   `card_stack_id` INT(11) NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`get_lose_money_cards` (
   INDEX `stack_idx` (`card_stack_id` ASC) VISIBLE,
   CONSTRAINT `stackLooseCard`
     FOREIGN KEY (`card_stack_id`)
-    REFERENCES `monopoly`.`card_stacks` (`id`))
+    REFERENCES `pisd19_group_a`.`card_stacks` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 127
 DEFAULT CHARACTER SET = utf8mb4
@@ -127,11 +127,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`jail_spaces`
+-- Table `pisd19_group_a`.`jail_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`jail_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`jail_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`jail_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`jail_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`jail_spaces` (
   INDEX `game_idx` (`game_id` ASC) VISIBLE,
   CONSTRAINT `game`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 40
 DEFAULT CHARACTER SET = utf8mb4
@@ -147,11 +147,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`players`
+-- Table `pisd19_group_a`.`players`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`players` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`players` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`players` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`players` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -164,21 +164,21 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`players` (
   INDEX `jail_idx` (`jailSpace` ASC) VISIBLE,
   CONSTRAINT `jail`
     FOREIGN KEY (`jailSpace`)
-    REFERENCES `monopoly`.`jail_spaces` (`id`),
+    REFERENCES `pisd19_group_a`.`jail_spaces` (`id`),
   CONSTRAINT `part of`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`get_out_of_jail_cards`
+-- Table `pisd19_group_a`.`get_out_of_jail_cards`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`get_out_of_jail_cards` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`get_out_of_jail_cards` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`get_out_of_jail_cards` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`get_out_of_jail_cards` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `card_stack_id` INT(11) NOT NULL,
   `player_id` INT(11) NULL DEFAULT NULL,
@@ -189,21 +189,21 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`get_out_of_jail_cards` (
   INDEX `stack_idx` (`card_stack_id` ASC) VISIBLE,
   CONSTRAINT `ownerOutOfJail`
     FOREIGN KEY (`player_id`)
-    REFERENCES `monopoly`.`players` (`id`),
+    REFERENCES `pisd19_group_a`.`players` (`id`),
   CONSTRAINT `stackOutOfJail`
     FOREIGN KEY (`card_stack_id`)
-    REFERENCES `monopoly`.`card_stacks` (`id`))
+    REFERENCES `pisd19_group_a`.`card_stacks` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`go_to_jail_cards`
+-- Table `pisd19_group_a`.`go_to_jail_cards`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`go_to_jail_cards` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`go_to_jail_cards` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_jail_cards` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`go_to_jail_cards` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `card_stack_id` INT(11) NOT NULL,
   `text` VARCHAR(255) NOT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_jail_cards` (
   INDEX `goToJailCardToStack_idx` (`card_stack_id` ASC) VISIBLE,
   CONSTRAINT `goToJailCardToStack`
     FOREIGN KEY (`card_stack_id`)
-    REFERENCES `monopoly`.`card_stacks` (`id`))
+    REFERENCES `pisd19_group_a`.`card_stacks` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 44
 DEFAULT CHARACTER SET = utf8mb4
@@ -221,11 +221,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`go_to_jail_spaces`
+-- Table `pisd19_group_a`.`go_to_jail_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`go_to_jail_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`go_to_jail_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_jail_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`go_to_jail_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_jail_spaces` (
   INDEX `game_idx` (`game_id` ASC) VISIBLE,
   CONSTRAINT `gameGoToJailSpace`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 48
 DEFAULT CHARACTER SET = utf8mb4
@@ -243,11 +243,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`go_to_space_cards`
+-- Table `pisd19_group_a`.`go_to_space_cards`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`go_to_space_cards` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`go_to_space_cards` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_space_cards` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`go_to_space_cards` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `card_stack_id` INT(11) NOT NULL,
   `finalBoardPosition` INT(11) NOT NULL,
@@ -257,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`go_to_space_cards` (
   INDEX `stack_idx` (`card_stack_id` ASC) VISIBLE,
   CONSTRAINT `goToSpaceCardStack`
     FOREIGN KEY (`card_stack_id`)
-    REFERENCES `monopoly`.`card_stacks` (`id`))
+    REFERENCES `pisd19_group_a`.`card_stacks` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 253
 DEFAULT CHARACTER SET = utf8mb4
@@ -265,11 +265,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`property_spaces`
+-- Table `pisd19_group_a`.`property_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`property_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`property_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`property_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`property_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -286,10 +286,10 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`property_spaces` (
   INDEX `gamePropOwner_idx` (`player_id` ASC) VISIBLE,
   CONSTRAINT `gamePropOwner`
     FOREIGN KEY (`player_id`)
-    REFERENCES `monopoly`.`players` (`id`),
+    REFERENCES `pisd19_group_a`.`players` (`id`),
   CONSTRAINT `gamePropSpace`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 719
 DEFAULT CHARACTER SET = utf8mb4
@@ -297,11 +297,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`start_spaces`
+-- Table `pisd19_group_a`.`start_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`start_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`start_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`start_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`start_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -310,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`start_spaces` (
   INDEX `game_idx` (`game_id` ASC) VISIBLE,
   CONSTRAINT `gameStartSpace`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`))
+    REFERENCES `pisd19_group_a`.`games` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 44
 DEFAULT CHARACTER SET = utf8mb4
@@ -318,11 +318,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `monopoly`.`station_spaces`
+-- Table `pisd19_group_a`.`station_spaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monopoly`.`station_spaces` ;
+DROP TABLE IF EXISTS `pisd19_group_a`.`station_spaces` ;
 
-CREATE TABLE IF NOT EXISTS `monopoly`.`station_spaces` (
+CREATE TABLE IF NOT EXISTS `pisd19_group_a`.`station_spaces` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `boardPosition` INT(6) UNSIGNED NOT NULL,
   `game_id` INT(11) NOT NULL,
@@ -336,10 +336,10 @@ CREATE TABLE IF NOT EXISTS `monopoly`.`station_spaces` (
   INDEX `owner_idx` (`owner` ASC) VISIBLE,
   CONSTRAINT `gameStationSpace`
     FOREIGN KEY (`game_id`)
-    REFERENCES `monopoly`.`games` (`id`),
+    REFERENCES `pisd19_group_a`.`games` (`id`),
   CONSTRAINT `ownerStation`
     FOREIGN KEY (`owner`)
-    REFERENCES `monopoly`.`players` (`id`))
+    REFERENCES `pisd19_group_a`.`players` (`id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 157
 DEFAULT CHARACTER SET = utf8mb4

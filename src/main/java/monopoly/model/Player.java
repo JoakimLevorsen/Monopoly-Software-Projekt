@@ -2,8 +2,11 @@ package monopoly.model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
@@ -16,7 +19,8 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-public class Player extends Model {
+    
+public class Player extends Model implements Subject {
     private Color color;
     private ArrayList<PropertySpace> ownedProperties;
     private ArrayList<StationSpace> ownedStations;
@@ -75,17 +79,45 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
+    /*
+    GetOwnedProperties:
+    Henter og returnerer liste af ejendomme ejet af brugeren.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
     public ArrayList<PropertySpace> getOwnedProperties() {
         return ownedProperties;
     }
+
+    /*
+    AddToOwnedProperties:
+    Tilføjer ejendom til liste af ejendomme ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
 
     public void addToOwnedProperties(PropertySpace property) {
         ownedProperties.add(property);
     }
 
+    /*
+    GetOwnedStations:
+    Henter og returnerer liste af stationer ejet af brugeren.
+
+    @author Cecilie Krog Drejer, s185032
+    */
+
     public ArrayList<StationSpace> getOwnedStations() {
         return ownedStations;
     }
+
+    /*
+    AddToOwnedStations:
+    Tilføjer station til liste af stationer ejet af brugeren.
+    
+    @author Cecilie Krog Drejer, s185032
+    */
 
     public void addToOwnedStations(StationSpace station) {
         ownedStations.add(station);
@@ -119,4 +151,28 @@ public class Player extends Model {
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
+
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    private Set<Observer> observers = new HashSet<Observer>();
+
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+    @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }

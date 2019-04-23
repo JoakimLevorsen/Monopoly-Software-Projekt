@@ -63,6 +63,6 @@ public class GetOutOfJailCard extends Card {
 
     public void execute(MovementController moveController, Player player) {
         setOwner(player);
-        saveIt();
+
     }
 }

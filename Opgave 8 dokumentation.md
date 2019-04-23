@@ -8,6 +8,8 @@ Når man kører spillet kommer der en dialog op der kan vise alle spil gemt i da
 
 ##Opsætning af projektet
 Til vores projekt bruger vi __ActiveJDBC__ som framework til at forbinde til databasen, dog for at det kan køre korrekt, skal man verificere projektstrukturen med maven først. Når maven-cli er installeret gøres det med:
-`mvn verify`. Vi har googlet ihærdigt, og kan ikke finde ud af hvordan man gør det med IntelliJ.
+`mvn verify`. 
+For at verify igennem intelliJ skal man åbene fanen 'Maven Projects' i højre side af vinduet, og så under 'Lifecycle' ligger verify. 
+__Note__ når man kører verify vil en enkelt test fejle, men dette er ikke relateret til database delen af projektet.
 
 Vi har vedhæftet et __SQL__ script til at opsætte databasestrukturen koden forventer. For at informere koden om placeringen af databasen, skal man redigere i `DatabaseBase.java`, der ligger i `src/main/java/monopoly/model/DatabaseBase.java`.
