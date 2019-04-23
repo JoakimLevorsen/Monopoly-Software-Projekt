@@ -53,6 +53,7 @@ public class CardSpace extends Space {
     public void performAction(GameController controller, Player player) {
         // TODO: Implement take card rutine
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -70,7 +71,7 @@ public class CardSpace extends Space {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

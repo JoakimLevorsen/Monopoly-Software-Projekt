@@ -129,6 +129,7 @@ public class Game extends Model implements Subject {
     public void setCurrentTurn(int turn) {
         this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
     }
+
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -146,7 +147,7 @@ public class Game extends Model implements Subject {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {

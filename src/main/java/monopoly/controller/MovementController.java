@@ -23,15 +23,14 @@ public class MovementController {
         gui.setDice(die1, die2);
         amount = die1 + die2;
 
-       int moveAmount = player.getBoardPosition() + amount;
+        int moveAmount = player.getBoardPosition() + amount;
 
-       if (moveAmount > 40) {
-           moveAmount =- 40;
-           player.setBoardPosition(moveAmount);
-       } else {
-           player.setBoardPosition(moveAmount);
-       }
-
+        if (moveAmount > 40) {
+            moveAmount -= 40;
+            player.setBoardPosition(moveAmount);
+        } else {
+            player.setBoardPosition(moveAmount);
+        }
 
     }
 

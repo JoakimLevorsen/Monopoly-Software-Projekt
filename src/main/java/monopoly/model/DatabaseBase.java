@@ -10,7 +10,7 @@ En klasse til at åbne og lukke forbindelser til databasen.
 */
 public class DatabaseBase {
     public static void openBase() {
-        // Følgende er: 
+        // Følgende er:
         // Driver der skal bruges (MÅ IKKE ÆNDRES)
         // URL til databasen
         // Brugernavn til databasen

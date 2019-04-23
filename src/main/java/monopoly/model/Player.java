@@ -19,12 +19,12 @@ Implementering af Player model objektet, med ORM for databasen.
 
 @author Joakim Levorsen, S185023
 */
-    
+
 public class Player extends Model implements Subject {
     private Color color;
     private ArrayList<PropertySpace> ownedProperties;
     private ArrayList<StationSpace> ownedStations;
-    
+
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
 
@@ -80,54 +80,52 @@ public class Player extends Model implements Subject {
     }
 
     /*
-    GetOwnedProperties:
-    Henter og returnerer liste af ejendomme ejet af brugeren.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * GetOwnedProperties: Henter og returnerer liste af ejendomme ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public ArrayList<PropertySpace> getOwnedProperties() {
         return ownedProperties;
     }
 
     /*
-    AddToOwnedProperties:
-    Tilføjer ejendom til liste af ejendomme ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * AddToOwnedProperties: Tilføjer ejendom til liste af ejendomme ejet af
+     * brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void addToOwnedProperties(PropertySpace property) {
         ownedProperties.add(property);
     }
 
     /*
-    GetOwnedStations:
-    Henter og returnerer liste af stationer ejet af brugeren.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * GetOwnedStations: Henter og returnerer liste af stationer ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public ArrayList<StationSpace> getOwnedStations() {
         return ownedStations;
     }
 
     /*
-    AddToOwnedStations:
-    Tilføjer station til liste af stationer ejet af brugeren.
-    
-    @author Cecilie Krog Drejer, s185032
-    */
+     * AddToOwnedStations: Tilføjer station til liste af stationer ejet af brugeren.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void addToOwnedStations(StationSpace station) {
         ownedStations.add(station);
     }
 
-    public boolean isBroke(Player player){
-        if (player.getAccountBalance() < 0){
+    public boolean isBroke(Player player) {
+        if (player.getAccountBalance() < 0) {
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 
     /*
@@ -169,7 +167,7 @@ public class Player extends Model implements Subject {
     }
 
     /*
-    @author Helle Achari, s180317
+     * @author Helle Achari, s180317
      */
 
     public Set<Observer> getObservers() {
