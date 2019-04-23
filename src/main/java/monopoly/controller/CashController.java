@@ -15,12 +15,15 @@ public class CashController {
 
     }
 
-    public void payment(Player playerFrom, int amount, Player playerReceiver) {
+    public void paymentToPlayer(Player playerFrom, int amount, Player playerReceiver) {
         // TODO: Implementering
     }
 
     public void paymentFromBank(Player player, int amount) {
         // TODO: Implementering
+    }
 
+    public void paymentToBank(Player player, int amount) {
+        // TODO: Implementering
     }
 }

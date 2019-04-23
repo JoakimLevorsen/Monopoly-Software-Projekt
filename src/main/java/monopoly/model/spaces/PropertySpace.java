@@ -75,6 +75,10 @@ public class PropertySpace extends Space {
         return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
+    public void setOwner(Player player) {
+        player.add(this);
+    }
+
     public Player getOwner(Game game) {
         Player owner = this.parent(Player.class);
         if (owner != null) {

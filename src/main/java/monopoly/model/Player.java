@@ -1,11 +1,14 @@
 package monopoly.model;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
+import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.StationSpace;
 
 /*
 Player:
@@ -14,6 +17,10 @@ Implementering af Player model objektet, med ORM for databasen.
 @author Joakim Levorsen, S185023
 */
 public class Player extends Model {
+    private Color color;
+    private ArrayList<PropertySpace> ownedProperties;
+    private ArrayList<StationSpace> ownedStations;
+    
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance");
 
@@ -27,8 +34,6 @@ public class Player extends Model {
             return this.value;
         }
     }
-
-    private Color color;
 
     public static Player newPlayer(String name, int index, int balance) {
         return new Player().set(Player.Properties.NAME.getProperty(), name)
@@ -70,7 +75,23 @@ public class Player extends Model {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
     }
 
-    public boolean IsBroke(Player player){
+    public ArrayList<PropertySpace> getOwnedProperties() {
+        return ownedProperties;
+    }
+
+    public void addToOwnedProperties(PropertySpace property) {
+        ownedProperties.add(property);
+    }
+
+    public ArrayList<StationSpace> getOwnedStations() {
+        return ownedStations;
+    }
+
+    public void addToOwnedStations(StationSpace station) {
+        ownedStations.add(station);
+    }
+
+    public boolean isBroke(Player player){
         if (player.getAccountBalance() < 0){
             return true;
         }
