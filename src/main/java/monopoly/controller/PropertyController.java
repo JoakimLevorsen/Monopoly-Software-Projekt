@@ -16,14 +16,11 @@ import gui_main.GUI;
 
 public class PropertyController {
 	private HashMap<String, Space> nameToSpace = new HashMap<>();
-	private GameController gameController;
-	private CashController MrMonopoly;
-	private GUI gooey;
 	private Game game;
     private GameController controller;
 
 	public PropertyController(GameController owner) {
-		this.gameController = owner;
+		this.controller = owner;
 	}
 
 	/*
@@ -121,6 +118,7 @@ public class PropertyController {
 	 */
 
 	public void playerBroke(Player failure) {
+		GUI gooey = controller.view.getGUI();
 		ArrayList<PropertySpace> ownedProperties = failure.getOwnedProperties();
 		ArrayList<StationSpace> ownedStations = failure.getOwnedStations();
 		do {

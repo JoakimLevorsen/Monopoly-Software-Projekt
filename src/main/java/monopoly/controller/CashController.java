@@ -19,24 +19,24 @@ public class CashController {
         playerFrom.changeAccountBalance(-amount);
         playerReceiver.changeAccountBalance(amount);
         if (playerFrom.getAccountBalance() < 0) {
-            controller.propertyController.playerBrokeTo(playerFrom, playerReceiver);
+            controller.propertyController.playerBroke(playerFrom);
         }
         if (playerReceiver.getAccountBalance() < 0) {
-            controller.propertyController.playerBrokeTo(playerReceiver, playerFrom);
+            controller.propertyController.playerBroke(playerReceiver);
         }
     }
 
     public void paymentToBank(Player player, int amount) {
         player.changeAccountBalance(-amount);
         if (player.getAccountBalance() < 0) {
-            controller.propertyController.playerBrokeToBank(player);
+            controller.propertyController.playerBroke(player);
         }
     }
 
     public void paymentFromBank(Player player, int amount) {
         player.changeAccountBalance(amount);
         if (player.getAccountBalance() < 0) {
-            controller.propertyController.playerBrokeToBank(player);
+            controller.propertyController.playerBroke(player);
         }
     }
 }
