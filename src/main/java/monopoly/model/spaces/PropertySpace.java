@@ -100,5 +100,34 @@ public class PropertySpace extends StationSpace {
         this.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), amount);
     }
 
-    // TODO: Tilføj resterende metoder
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
+    public int getPrice() {
+        return this.getInteger(Properties.PRICE.getProperty());
+    }
+    /*
+    * @author Helle Achari, s180317
+    * */
+
+    private Set<Observer> observers = new HashSet<Observer>();
+
+    final public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    final public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    /*
+     * @author Helle Achari, s180317
+     */
+
+    public Set<Observer> getObservers() {
+        return observers;
+    }
 }
