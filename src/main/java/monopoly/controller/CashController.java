@@ -1,9 +1,7 @@
 package monopoly.controller;
-
-import com.sun.deploy.jcp.CertificatesCache;
 import gui_main.GUI;
 import monopoly.model.Player;
-import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.StationSpace;
 
 public class CashController {
     public GameController controller;
@@ -12,7 +10,7 @@ public class CashController {
         this.controller = owner;
     }
 
-    public void offerProperty(PropertySpace property, Player player) {
+    public void offerProperty(StationSpace property, Player player) {
         GUI gui = controller.view.getGUI();
         boolean didChoose = gui.getUserLeftButtonPressed(" Do you want to buy this property? " + property.getBoardPosition()
             + "at the cost of: " + property.getPrice(), "Yes", "No");
@@ -21,9 +19,7 @@ public class CashController {
             controller.cashController.paymentToBank(player, property.getPrice());
             property.setOwner(player);
         }
-
     }
-
     public void payment(Player playerFrom, int amount, Player playerReceiver) {
         playerFrom.changeAccountBalance(-amount);
         playerReceiver.changeAccountBalance(amount);

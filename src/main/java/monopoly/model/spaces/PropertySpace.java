@@ -71,18 +71,18 @@ public class PropertySpace extends StationSpace {
 
     /*
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
-     * 
+     *
      * @Author Anders Brandt, s185016
      */
     public Color getColour() {
         String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
         return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
-                Integer.valueOf(hex.substring(4, 6), 16));
+            Integer.valueOf(hex.substring(4, 6), 16));
     }
 
     /*
      * getHousesBuilt: Henter hvor mange huse der er bygget på ejendommen.
-     * 
+     *
      * @Author Anders Brandt, s185016
      */
     public int getHousesBuilt() {
@@ -106,7 +106,4 @@ public class PropertySpace extends StationSpace {
      * @author Ekkart Kindler, ekki@dtu.dk
      *
      */
-    public int getPrice() {
-        return this.getInteger(Properties.PRICE.getProperty());
-    }
 }
