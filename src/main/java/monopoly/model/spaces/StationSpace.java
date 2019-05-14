@@ -35,17 +35,17 @@ public class StationSpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
-    public static StationSpace create(int position, int baseRent, String name) {
-        // TODO: Correct values
+    public static StationSpace create(int position, String name, int price, int baseRent) {
         StationSpace space = new StationSpace();
-        space.set(StationSpace.Properties.BASE_RENT.getProperty(), baseRent);
         space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
-        space.set(StationSpace.Properties.PRICE.getProperty(), baseRent);
         space.set(StationSpace.Properties.NAME.getProperty(), name);
         space.set(StationSpace.Properties.MORTGAGED.getProperty(), false);
+        space.set(StationSpace.Properties.PRICE.getProperty(), price);
+        space.set(StationSpace.Properties.BASE_RENT.getProperty(), baseRent);
         return space;
     }
 
+    //TODO: look equals through
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof StationSpace))

@@ -1,12 +1,9 @@
 package monopoly.model.spaces;
 
-import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.*;
 
 import java.awt.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /*
 PropertySpace:
@@ -14,7 +11,7 @@ Et objekt til at repræsentere ejendoms felter.
 
 @author Joakim Levorsen, S185023
 */
-public class PropertySpace extends Space {
+public class PropertySpace extends StationSpace {
 
     public enum Properties {
         BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
@@ -36,14 +33,13 @@ public class PropertySpace extends Space {
         // TODO: Maybe implement behavior here depending on rules.
     }
 
-    public static PropertySpace create(int position, int baseRent, String name, String colour) {
-        // TODO: Correct values
+    public static PropertySpace create(int position, String name, int price, int baseRent, String colour) {
         PropertySpace space = new PropertySpace();
-        space.set(PropertySpace.Properties.BASE_RENT.getProperty(), baseRent);
         space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);
-        space.set(PropertySpace.Properties.PRICE.getProperty(), baseRent);
         space.set(PropertySpace.Properties.NAME.getProperty(), name);
         space.set(PropertySpace.Properties.MORTGAGED.getProperty(), false);
+        space.set(PropertySpace.Properties.PRICE.getProperty(), price);
+        space.set(PropertySpace.Properties.BASE_RENT.getProperty(), baseRent);
         space.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), 0);
         space.set(PropertySpace.Properties.COLOUR.getProperty(), colour);
         return space;
@@ -73,46 +69,6 @@ public class PropertySpace extends Space {
         return true;
     }
 
-    public int getBoardPosition() {
-        this.getId();
-        return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
-    /*
-    SetOwner:
-    Sætter en spiller som ejer af ejendommen.
-
-    @author Cecilie Krog Drejer, s185032
-    */
-
-    public void setOwner(Player player) {
-        player.add(this);
-    }
-
-    /*
-    RemoveOwner:
-    Fjerner den nuværende ejer af ejendommen.
-
-    @author Cecilie Krog Drejer, s185032
-    */
-
-    public void removeOwner(Game game) {
-        Player owner = this.getOwner(game);
-        if (owner == null) {
-            return;
-        }
-        owner.remove(this);
-    }
-
-    public Player getOwner(Game game) {
-        Player owner = this.parent(Player.class);
-        if (owner != null) {
-            int id = (int) owner.getId();
-            return game.getPlayerForID(id);
-        }
-        return null;
-    }
-
     /*
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      * 
@@ -122,15 +78,6 @@ public class PropertySpace extends Space {
         String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
         return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
                 Integer.valueOf(hex.substring(4, 6), 16));
-    }
-
-    /*
-     * getName: Henter navnet på ejendommen.
-     * 
-     * @Author Anders Brandt, s185016
-     */
-    public String getName() {
-        return this.getString(PropertySpace.Properties.NAME.getProperty());
     }
 
     /*
@@ -153,39 +100,5 @@ public class PropertySpace extends Space {
         this.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), amount);
     }
 
-    /*
-     * getRent: Henter lejen for ejendommen.
-     * 
-     * @Author Anders Brandt, s185016
-     */
-    // TODO: Denne skal ændres så den udregner hvad lejen skal være, ud fra hvor
-    // mange huse der er på ejendommen.
-    public String getRent() {
-        return this.getString(Properties.BASE_RENT.getProperty());
-    }
-
     // TODO: Tilføj resterende metoder
-    /**
-     * Variabler og metoder til at implementere Subject
-     *
-     * @author Ekkart Kindler, ekki@dtu.dk
-     *
-     */
-    private Set<Observer> observers = new HashSet<Observer>();
-
-    final public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    final public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    /*
-     * @author Helle Achari, s180317
-     */
-
-    public Set<Observer> getObservers() {
-        return observers;
-    }
 }

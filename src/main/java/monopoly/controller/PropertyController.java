@@ -31,7 +31,7 @@ public class PropertyController {
 	 * @author Helle Achari, s180317
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
-
+	
     public void auctionProperty(PropertySpace property) {
 		GUI gooey = controller.view.getGUI();
         gooey.showMessage("The property " + property.getName() + " will now be auctioned off.");
@@ -110,6 +110,12 @@ public class PropertyController {
 			return;
 		}
 	}
+
+	/*
+	 * MortgageProperty: Metode til at pantsætte en ejendom
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
 
 	/*
 	 * PlayerBroke: Metode til konkurshåndtering
