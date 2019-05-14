@@ -23,4 +23,7 @@ public abstract class Card extends Model implements Comparable<Card> {
     public int compareTo(Card that) {
         return (this.getStackPosition() - that.getStackPosition());
     }
+
+    public abstract String getText();
+
 }
