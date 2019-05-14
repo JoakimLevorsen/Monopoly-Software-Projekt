@@ -114,9 +114,6 @@ public class View implements Observer {
                 updateStation((StationSpace) subject);
             }
 
-            // TODO update other subjects in the GUI
-            // in particular properties (sold, houses, ...)
-
         }
     }
 
