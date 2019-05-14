@@ -76,7 +76,8 @@ public class PropertyController {
 	public void mortgage(StationSpace property) {
 		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() == 0) {
 			Player owner = property.getOwner(controller.getGame());
-			owner.changeAccountBalance(property.getPrice() / 2);
+			int amount = property.getPrice() / 2;
+			controller.cashController.paymentFromBank(owner, amount);
 			property.setMortgaged(true);
 		} else {
 			
@@ -91,9 +92,31 @@ public class PropertyController {
 
 	public void unmortgage(StationSpace property) {
 		Player owner = property.getOwner(controller.getGame());
-		owner.changeAccountBalance((int) -((property.getPrice() / 2) * 1.1));
+		int amount = (int) ((property.getPrice() / 2) * 1.1);
+		controller.cashController.paymentToBank(owner, amount);
 		property.setMortgaged(false);
 	}
+
+	/*
+	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber den
+	 * 
+	 * @author Helle Achari, s180317
+	 */
+
+    public void offerProperty(StationSpace property, Player player) {
+        boolean didChoose = gooey.getUserLeftButtonPressed(" Do you want to buy this property? "
+                + property.getBoardPosition() + "at the cost of: " + property.getPrice(), "Yes", "No");
+        if (didChoose) {
+            gooey.showMessage("Yeah, you bought the" + property.getName() + "property!");
+            controller.cashController.paymentToBank(player, property.getPrice());
+            property.setOwner(player);
+        }
+    }
+	/*
+	 * SellToBank: Metode til at sælge ejendom til banken
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
 
 	public void sellToBank(StationSpace property) {
 		Player owner = property.getOwner(controller.getGame());
@@ -101,23 +124,38 @@ public class PropertyController {
 			gooey.showMessage("Houses built on property must be sold in order to sell property. All houses on this property will now be sold.");
 			sellHouses((PropertySpace) property, ((PropertySpace) property).getHousesBuilt());
 		}
-		owner.changeAccountBalance(property.getPrice() / 2);
+		int amount = property.getPrice() / 2;
+		controller.cashController.paymentFromBank(owner, amount);
 		owner.removeFromOwnedProperties(property);
 		property.removeOwner(controller.getGame());
 	}
+
+	/*
+	 * BuildHouses: Metode til at bygge huse på ejendomme af typen PropertySpace
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
 
 	public void buildHouses(PropertySpace property, int houses) {
 		Player owner = property.getOwner(controller.getGame());
 		int houseValue = property.getPrice() / 2;
 		//Hvis man prøver at bygge så mange huse, at det samlede antal overstiger 5, bygges der op til 5 huse i alt
 		if (property.getHousesBuilt() + houses <= 5) {
-			owner.changeAccountBalance(houseValue * houses);
+			int amount = houseValue * houses;
+			controller.cashController.paymentToBank(owner, amount);
 			property.setBuildLevel(property.getHousesBuilt() + houses);
 		} else {
-			owner.changeAccountBalance(-(houseValue * (5 - property.getHousesBuilt())));
+			int amount = houseValue * (5 - property.getHousesBuilt());
+			controller.cashController.paymentToBank(owner, amount);
 			property.setBuildLevel(5);
 		}
 	}
+
+	/*
+	 * sellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
 
 	public void sellHouses(PropertySpace property, int houses) {
 		Player owner = property.getOwner(controller.getGame());
@@ -125,10 +163,12 @@ public class PropertyController {
 		int houseValue = property.getPrice() / 2;
 		//Hvis man prøver at sælge flere huse, end der er, sælges alle huse
 		if (property.getHousesBuilt() >= houses) {
-			owner.changeAccountBalance((houseValue / 2) * houses);
+			int amount = (houseValue / 2) * houses;
+			controller.cashController.paymentFromBank(owner, amount);
 			property.setBuildLevel(currentBuildLevel - houses);
 		} else {
-			owner.changeAccountBalance((houseValue / 2) * currentBuildLevel);
+			int amount = (houseValue / 2) * currentBuildLevel;
+			controller.cashController.paymentFromBank(owner, amount);
 			property.setBuildLevel(0);
 		}
 	}
