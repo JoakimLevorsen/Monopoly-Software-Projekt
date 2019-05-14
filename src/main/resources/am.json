@@ -1,0 +1,471 @@
+{
+    "test": "OK",
+    "startPayment": 200,
+    "spaces": [{
+        "name": "Start",
+        "type": 0,
+        "message": "Receive §200 when you pass Start.",
+        "color": "FFFFFF",
+        "textColor": "C60000"
+    },
+    {
+        "name": "South Street Seaport",
+        "type": 1,
+        "price": 60,
+        "baseRent": 20,
+        "color": "1A1B41",
+        "textColor": "000000"
+    },
+    {
+        "name": "Community Chest",
+        "type": 7,
+        "message": "Draw a Community Chest card.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "Income Tax",
+        "type": 7,
+        "value": 1,
+        "color": "E8A945",
+        "textColor": "000000"
+    },
+    {
+        "name": "Ellis Island",
+        "type": 1,
+        "price": 60,
+        "baseRent": 20,
+        "color": "1A1B41",
+        "textColor": "000000"
+    },
+    {
+        "name": "La Guardia Airport",
+        "type": 2,
+        "price": 200,
+        "baseRent": 70,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Holland Tunnel",
+        "type": 1,
+        "price": 100,
+        "baseRent": 35,
+        "color": "F18701",
+        "textColor": "000000"
+    },
+    {
+        "name": "Chance",
+        "type": 6,
+        "message": "Draw a Chance card",
+        "color": "EA7C79",
+        "textColor": "000000"
+    },
+    {
+        "name": "Brooklyn Bridge",
+        "type": 1,
+        "price": 100,
+        "baseRent": 35,
+        "color": "F18701",
+        "textColor": "000000"
+    },
+    {
+        "name": "George Washington Bridge",
+        "type": 1,
+        "price": 120,
+        "baseRent": 40,
+        "color": "F18701",
+        "textColor": "000000"
+    },
+    {
+        "name": "Jail",
+        "type": 4,
+        "color": "FFFFFF",
+        "textColor": "000000",
+        "image": "default"
+    },
+    {
+        "name": "Central Park",
+        "type": 1,
+        "price": 140,
+        "baseRent": 50,
+        "color": "E3B505",
+        "textColor": "000000"
+    },
+    {
+        "name": "Chance",
+        "type": 6,
+        "message": "Draw a Chance card",
+        "color": "EA7C79",
+        "textColor": "000000"
+    },
+    {
+        "name": "Statue of Liberty",
+        "type": 1,
+        "price": 140,
+        "baseRent": 50,
+        "color": "E3B505",
+        "textColor": "000000"
+    },
+    {
+        "name": "Empire State Building",
+        "type": 1,
+        "price": 160,
+        "baseRent": 55,
+        "color": "E3B505",
+        "textColor": "000000"
+    },
+    {
+        "name": "Penn Station",
+        "type": 2,
+        "price": 200,
+        "baseRent": 70,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Times Square",
+        "type": 1,
+        "price": 180,
+        "baseRent": 60,
+        "color": "5A0046",
+        "textColor": "000000"
+    },
+    {
+        "name": "Community Chest",
+        "type": 7,
+        "message": "Draw a Community Chest card.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "American Museum of Natural History",
+        "type": 1,
+        "price": 180,
+        "baseRent": 60,
+        "color": "5A0046",
+        "textColor": "000000"
+    },
+    {
+        "name": "Lincoln Center",
+        "type": 1,
+        "price": 200,
+        "baseRent": 70,
+        "color": "5A0046",
+        "textColor": "000000"
+    },
+    {
+        "name": "Free Parking",
+        "type": 3,
+        "color": "FFFFFF",
+        "textColor": "000000",
+        "image": "default"
+    },
+    {
+        "name": "Macy's",
+        "type": 1,
+        "price": 220,
+        "baseRent": 75,
+        "color": "1CA351",
+        "textColor": "000000"
+    },
+    {
+        "name": "Chance",
+        "type": 6,
+        "message": "Draw a Chance card",
+        "color": "EA7C79",
+        "textColor": "000000"
+    },
+    {
+        "name": "Fifth Avenue",
+        "type": 1,
+        "price": 220,
+        "baseRent": 75,
+        "color": "1CA351",
+        "textColor": "000000"
+    },
+    {
+        "name": "Bloomingdale's",
+        "type": 1,
+        "price": 240,
+        "baseRent": 80,
+        "color": "1CA351",
+        "textColor": "000000"
+    },
+    {
+        "name": "John F Kennedy International Airport",
+        "type": 2,
+        "price": 200,
+        "baseRent": 70,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Federal Reserve Bank",
+        "type": 1,
+        "price": 260,
+        "baseRent": 85,
+        "color": "FF8014",
+        "textColor": "000000"
+    },
+    {
+        "name": "The Rainbow Room",
+        "type": 1,
+        "price": 260,
+        "baseRent": 85,
+        "color": "FF8014",
+        "textColor": "000000"
+    },
+    {
+        "name": "Community Chest",
+        "type": 7,
+        "message": "Draw a Community Chest card.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "The Four Seasons",
+        "type": 1,
+        "price": 280,
+        "baseRent": 90,
+        "color": "FF8014",
+        "textColor": "000000"
+    },
+    {
+        "name": "Go to jail",
+        "type": 5,
+        "color": "FFFFFF",
+        "textColor": "000000",
+        "image": "default"
+    },
+    {
+        "name": "The Regency Hotel",
+        "type": 1,
+        "price": 300,
+        "baseRent": 100,
+        "color": "69A2B0",
+        "textColor": "000000"
+    },
+    {
+        "name": "Essex House",
+        "type": 1,
+        "price": 300,
+        "baseRent": 100,
+        "color": "69A2B0",
+        "textColor": "000000"
+    },
+    {
+        "name": "Community Chest",
+        "type": 7,
+        "message": "Draw a Community Chest card.",
+        "color": "FFFFFF",
+        "textColor": "00A8E8"
+    },
+    {
+        "name": "The Plaza",
+        "type": 1,
+        "price": 320,
+        "baseRent": 105,
+        "color": "69A2B0",
+        "textColor": "000000"
+    },
+    {
+        "name": "Grand Central Station",
+        "type": 2,
+        "price": 200,
+        "baseRent": 70,
+        "color": "262626",
+        "textColor": "FFFFFF"
+    },
+    {
+        "name": "Chance",
+        "type": 6,
+        "message": "Draw a Chance card",
+        "color": "EA7C79",
+        "textColor": "000000"
+    },
+    {
+        "name": "Tiffany & Co.",
+        "type": 1,
+        "price": 350,
+        "baseRent": 120,
+        "color": "A50822",
+        "textColor": "000000"
+    },
+    {
+        "name": "Luxury Tax",
+        "type": 7,
+        "value": 1,
+        "color": "E8A945",
+        "textColor": "000000"
+    },
+    {
+        "name": "Trump Tower",
+        "type": 1,
+        "price": 400,
+        "baseRent": 135,
+        "color": "A50822",
+        "textColor": "000000"
+    }
+],
+    "chanceCards": [{
+        "text": "You have been caught stealing from one of your fellow players. You are sent to jail and will not receive §200, if you pass Start.",
+        "type": 3,
+        "space": 10
+    },
+    {
+        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
+        "type": 0,
+        "space": 0
+    },
+    {
+        "text": "Take a trip to Washington D.C. via Penn Station.",
+        "type": 0,
+        "space": 15
+    },
+    {
+        "text": "You have yet to buy a birthday present for your mum. Go to Fifth Avenue.",
+        "type": 0,
+        "space": 33
+    },
+    {
+        "text": "You have outstanding taxes. Pay the bank §250.",
+        "type": 1,
+        "amount": -250
+    },
+    {
+        "text": "Go to Grand Central Station to take in the architecture.",
+        "type": 0,
+        "space": 35
+    },
+    {
+        "text": "Your friends invite you out for a drink. Go to The Rainbow Room.",
+        "type": 0,
+        "space": 27
+    },
+    {
+        "text": "You fancy looking at old stuff. Go to American Museum of Natural History.",
+        "type": 0,
+        "space": 18
+    },
+    {
+        "text": "You got a parking ticket. Pay the bank §75.",
+        "type": 1,
+        "amount": -75
+    },
+    {
+        "text": "Your parents are very good customers at the bank. You can get out of jail for free.",
+        "type": 2
+    },
+    {
+        "text": "Go to jail. It is visiting day and your uncle misses you.",
+        "type": 0,
+        "space": 10
+    },
+    {
+        "text": "You miss nature and go visit Central Park.",
+        "type": 0,
+        "space": 37
+    },
+    {
+        "text": "Go to the first Community Chest field on the board.",
+        "type": 0,
+        "space": 2
+    },
+    {
+        "text": "You receive a strange text from an unknown number. 7 minutes later §133 has disappeared from your account.",
+        "type": 1,
+        "amount": -133
+    },
+    {
+        "text": "You have paid too much in taxes and get §200 back.",
+        "type": 1,
+        "amount": 200
+    },
+    {
+        "text": "You win the lottery! §350 is added to your account.",
+        "type": 1,
+        "amount": 350
+    }
+],
+    "communityChestCards": [{
+        "text": "You are going on holiday! Go to John F Kennedy Airport.",
+        "type": 0,
+        "space": 35
+    },
+    {
+        "text": "You placed second in a beauty contest! Receive §60 in prize money.",
+        "type": 1,
+        "amount": 60
+    },
+    {
+        "text": "Go to the first Chance field on the board.",
+        "type": 0,
+        "space": 7
+    },
+    {
+        "text": "It is your birthday and your grandmother sends you a card with §5 in it. Congratulations!",
+        "type": 1,
+        "amount": 5
+    },
+    {
+        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
+        "type": 0,
+        "space": 0
+    },
+    {
+        "text": "You have a good lawyer and can get out of jail for free.",
+        "type": 2
+    },
+    {
+        "text": "Interest has been added to your account. You receive §23.",
+        "type": 1,
+        "amount": 23
+    },
+    {
+        "text": "You won the lottery! §10 are added to your account.",
+        "type": 1,
+        "amount": 10
+    },
+    {
+        "text": "Your Netflix subscription is expired. You pay §35 to renew it.",
+        "type": 1,
+        "amount": -35
+    },
+    {
+        "text": "Your salary has been paid. §150 are added to your account.",
+        "type": 1,
+        "amount": 150
+    },
+    {
+        "text": "You have received a letter from the government and pay §5 in postage.",
+        "type": 1,
+        "amount": -5
+    },
+    {
+        "text": "You rode the subway without a ticket. Pay a fine of §50.",
+        "type": 1,
+        "amount": -50
+    },
+    {
+        "text": "Your friends forgot your birthday, but give you §40 to make up for it.",
+        "type": 1,
+        "amount": 40
+    },
+    {
+        "text": "One of your friends owed you §30 and finally paid you back!",
+        "type": 1,
+        "amount": 30
+    },
+    {
+        "text": "You found some money on the street! Receive §2.",
+        "type": 1,
+        "amount": 2
+    },
+    {
+        "text": "You get a free soda in a kiosk, but still have to pay the sugar tax. Pay §1.",
+        "type": 1,
+        "amount": -1
+    }
+]
+}
