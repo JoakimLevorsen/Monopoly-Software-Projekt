@@ -31,7 +31,14 @@ public class GoToJailSpace extends Space {
 
     @Override
     public void performAction(GameController controller, Player player) {
-        // TODO: Implement jail routine.
+        JailSpace target = null;
+        for (Space space : controller.getGame().getBoard()){
+            if (space instanceof JailSpace){
+                target = (JailSpace) space;
+            }
+        }
+        controller.movementController.goTo(target, true, player);
+        target.jail(player);
     }
 
     public static GoToJailSpace create(int position) {
