@@ -166,6 +166,7 @@ public class Game extends Model implements Subject {
 
     public void setCurrentTurn(int turn) {
         this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
+        this.updated();
     }
 
     /**

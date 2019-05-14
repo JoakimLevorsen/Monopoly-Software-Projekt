@@ -64,6 +64,7 @@ public class Player extends Model implements Subject {
 
     public void setBoardPosition(int position) {
         this.set(Player.Properties.BOARD_POSITION.getProperty(), position);
+        this.updated();
     }
 
     public int getAccountBalance() {
@@ -79,11 +80,13 @@ public class Player extends Model implements Subject {
 
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
+        this.updated();
     }
 
     public void changeAccountBalance(int by) {
         int newBalance = this.getAccountBalance() + by;
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
+        this.updated();
     }
 
     /*
@@ -169,6 +172,7 @@ public class Player extends Model implements Subject {
     // TODO: Implementer
     public void setColor(Color color) {
         this.color = color;
+        this.updated();
     }
 
     // TODO: Tilføj klasse til at finde GetOutOfJailCard
