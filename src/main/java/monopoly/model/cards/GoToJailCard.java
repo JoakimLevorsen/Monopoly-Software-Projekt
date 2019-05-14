@@ -3,7 +3,6 @@ package monopoly.model.cards;
 import org.javalite.activejdbc.Model;
 
 import monopoly.controller.MovementController;
-import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.spaces.*;
 
@@ -48,8 +47,13 @@ public class GoToJailCard extends Card {
     }
 
     public void execute(MovementController moveController, Player player) {
-        // TODO: move player to jail (use moveController.goTo('space')) and
-        // jail them (use jail() method from JailSpace)
-
+        JailSpace target = null;
+        for (Space space : moveController.controller.getGame().getBoard()){
+            if (space instanceof JailSpace){
+                target = (JailSpace) space;
+            }
+        }
+        moveController.goTo(target, true, player);
+        target.jail(player);
     }
 }
