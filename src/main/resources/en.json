@@ -1,6 +1,13 @@
 {
     "test": "OK",
     "startPayment": 200,
+    "currentlyBroke": "You are currently broke, but you own several spaces on the board. Which space do you want to process?",
+    "playerBrokeTitle": "Player Broke: Save Yourself",
+    "sellProperty": "Sell property",
+    "mortgageProperty": "Mortgage property",
+    "youHaveChosen": "You have chosen: ",
+    "whatDo": "\nWhat do you want to do?",
+    "housesOnProperty": "\nThe property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?",
     "spaces": [{
         "name": "Start",
         "type": 0,

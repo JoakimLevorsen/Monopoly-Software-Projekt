@@ -3,6 +3,7 @@ package monopoly.controller;
 import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
 import monopoly.model.spaces.StationSpace;
+import resources.json.JSONKey;
 import monopoly.model.spaces.Space;
 
 import java.util.ArrayList;
@@ -11,12 +12,15 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.json.JSONObject;
+
 import gui_main.GUI;
 
 public class PropertyController {
 	private HashMap<String, Space> nameToSpace = new HashMap<>();
 	private GameController controller;
 	private GUI gooey = controller.view.getGUI();
+	private JSONObject jsonData;
 
 	public PropertyController(GameController owner) {
 		this.controller = owner;
@@ -187,31 +191,31 @@ public class PropertyController {
 			}
 			//Spilleren bliver promptet for at vælge en ejendom at bearbejde og mulighederne afhænger af ejendomstypen
 			String selection = JOptionPane.showInputDialog(null,
-					"You are currently broke, but you own several spaces on the board. Which space do you want to process?",
-					"Player Broke: Save Yourself", JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+					jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
+					jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
 			Space selectedSpace = nameToSpace.get(selection);
 			String action;
 			//Hvis den valgte ejendom er af typen PropertySpace og der ikke er bygget huse på ejendommen
 			if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() == 0) {
-				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?", "Sell property", "Mortgage property");
-				if (action == "Sell property") {
+				action = gooey.getUserButtonPressed(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey()) + selection + jsonData.getString(JSONKey.WHAT_DO.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
+				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
 					sellToBank((PropertySpace) selectedSpace);
-				} else if (action == "Mortgage property") {
+				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
 					mortgage((PropertySpace) selectedSpace);
 				}
 			//Hvis den valgte ejendom er af typen PropertySpace og der er bygget huse på ejendommen
 			} else if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
 				int currentBuildLevel = ((PropertySpace) selectedSpace).getHousesBuilt();
-				int housesToSell = gooey.getUserInteger("You have chosen " + selection
-						+ ". The property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?",
+				int housesToSell = gooey.getUserInteger(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey()) + selection
+						+ jsonData.getString(JSONKey.HOUSES_ON_PROPERTY.getKey()),
 						0, currentBuildLevel);
 				sellHouses((PropertySpace) selectedSpace, housesToSell);
 			//Hvis den valgte ejendom er af typen StationSpace
 			} else if (selectedSpace instanceof StationSpace) {
-				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?", "Sell station", "Mortgage station");
-				if (action == "Sell station") {
+				action = gooey.getUserButtonPressed(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey() + selection + jsonData.getString(JSONKey.WHAT_DO.getKey())), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
+				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
 					sellToBank((StationSpace) selectedSpace);
-				} else if (action == "Mortgage station") {
+				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}
