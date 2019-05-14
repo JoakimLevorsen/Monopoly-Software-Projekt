@@ -10,7 +10,7 @@ public enum JSONKey {
     TEST("test"), SPACES("spaces"), NAME("name"), TYPE("type"), START_PAYMENT("startPayment"), PRICE("price"),
     BASE_RENT("baseRent"), VALUE("value"), COLOR("color"), TEXT_COLOR("textColor"), IMAGE("image"),
     CHANCE_CARDS("chanceCards"), COMMUNITY_CHEST_CARDS("communityChestCards"), TEXT("text"), SPACE("space"),
-    AMOUNT("amount");
+    AMOUNT("amount"), TAX("tax");
 
     private final String keyValue;
 

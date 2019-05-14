@@ -162,7 +162,7 @@ public class View implements Observer {
             } else if (subject instanceof PropertySpace) {
                 updateProperty((PropertySpace) subject);
             } else if (subject instanceof StationSpace) {
-                updateStation((StationSpace) subject);
+                updateProperty((StationSpace) subject);
             }
 
         }

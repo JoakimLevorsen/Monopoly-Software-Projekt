@@ -7,16 +7,9 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
-JailSpace:
-Et objekt til at repræsentere fængsels feltet.
-
-@author Joakim Levorsen, S185023
-*/
-public class JailSpace extends Space {
-
+public class TaxSpace extends Space {
     public enum Properties {
-        BOARD_POSITION("boardPosition");
+        BOARD_POSITION("boardPosition"), TAX("tax");
 
         private String value;
 
@@ -28,34 +21,43 @@ public class JailSpace extends Space {
             return this.value;
         }
     }
-
+    /*
+     * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet til gevinsten på gratis parkering.
+     *
+     * @Author Anders Brandt, s185016
+     */
     @Override
     public void performAction(GameController controller, Player player) {
-        //Da man bare på besøg, sker der ikke noget når man lander på dette felt.
+        player.changeAccountBalance(-getTax());
+
+        for (Space space : controller.getGame().getBoard()) {
+            if (space instanceof FreeParkingSpace) {
+                ((FreeParkingSpace) space).addToTreasure(getTax());
+            }
+        }
     }
 
-    public static JailSpace create(int position) {
-        JailSpace space = new JailSpace();
-        space.set(JailSpace.Properties.BOARD_POSITION.getProperty(), position);
+    public static TaxSpace create(int position, int tax) {
+        TaxSpace space = new TaxSpace();
+        space.set(Properties.BOARD_POSITION.getProperty(), position);
+        space.set(Properties.TAX.getProperty(), tax);
         return space;
     }
 
     @Override
     public boolean equals(Object obj) {
-        // FIX THIS, URGENT
-        return true;
+        if (!(obj instanceof StartSpace))
+            return false;
+        StartSpace other = (StartSpace) obj;
+        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getBoardPosition() {
-        return this.getInteger(JailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+        return this.getInteger(Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
-    public void jail(Player player) {
-        this.add(player);
-    }
-
-    public void release(Player player) {
-        this.remove(player);
+    public int getTax() {
+        return this.getInteger(Properties.TAX.getProperty()).intValue();
     }
 
     /**
@@ -82,3 +84,4 @@ public class JailSpace extends Space {
         return observers;
     }
 }
+
