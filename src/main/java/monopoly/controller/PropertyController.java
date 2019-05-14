@@ -4,7 +4,6 @@ import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
 import monopoly.model.spaces.StationSpace;
 import monopoly.model.spaces.Space;
-import monopoly.model.Game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +15,6 @@ import gui_main.GUI;
 
 public class PropertyController {
 	private HashMap<String, Space> nameToSpace = new HashMap<>();
-	private Game game;
 	private GameController controller;
 	private GUI gooey = controller.view.getGUI();
 
@@ -181,5 +179,13 @@ public class PropertyController {
 		if (failure.hasOverdrawnAccount()) {
 			failure.setBrokeStatus(true);
 		}
+	}
+
+	public void trade() {
+		// TODO: Implementer
+	}
+
+	public void offerToBuild() {
+		// TODO: Implementer
 	}
 }
