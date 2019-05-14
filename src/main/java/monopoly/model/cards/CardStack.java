@@ -6,15 +6,20 @@ import java.util.List;
 import java.util.Stack;
 
 import org.javalite.activejdbc.Model;
+import org.json.JSONObject;
+
+import monopoly.model.Game;
 
 /*
 CardStack:
 Implementering af klasse til håndtering af et sæt kort.
 
 @author Cecilie Krog Drejer, s185032
+@author Joakim Levorsen, s185023
 */
 
 public class CardStack extends Model {
+    private List<Card> cards = null;
 
     public enum Properties {
         CHANCE_CARD("chanceCard"), NEXT_CARD_INDEX("nextCardIndex");
@@ -30,30 +35,49 @@ public class CardStack extends Model {
         }
     }
 
-    public static CardStack create(boolean chanceCard, int nextCardIndex) {
+    public static CardStack create(JSONObject cardData, Game game,boolean chanceCard, int nextCardIndex) {
         CardStack cardStack = new CardStack();
         cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), chanceCard);
         cardStack.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), 0);
+        if (chanceCard) {
+            JSONCardFactory.createChanceCards(cardData, cardStack);
+        } else {
+            JSONCardFactory.createCommunityChestCards(cardData, cardStack);
+        }
         return cardStack;
     }
 
-    public Card drawChanceCard() {
-        // TODO: Implementer card klasser og returner kort
-        return null;
+    public Card drawCard() {
+        this.setNextIndex(this.getNextIndex() + 1);
+        if (this.getNextIndex() == this.getCards().size()) {
+            // We get the cards, shuffle them and save their new position
+            List<Card> cards = this.getCards();
+            Collections.shuffle(cards);
+            for (int i = 0; i < cards.size(); i++) {
+                Card card = cards.get(i);
+                card.setStackPosition(i);
+            }
+            this.setNextIndex(0);
+        }
+        return this.getCards().get(this.getNextIndex());
     }
 
-    public Card drawCommunityChestCard() {
-        // TODO: Implementer card klasser og returner kort
-        return null;
+    private int getNextIndex() {
+        return this.getInteger(CardStack.Properties.NEXT_CARD_INDEX.getProperty());
     }
 
-    public Card[] getCards() {
-        return new Card[0];
-        // TODO
+    private void setNextIndex(int to) {
+        this.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), to);
+    }
+
+    public List<Card> getCards() {
+        if (this.cards == null) {
+            this.cards = DatabaseCardFactory.getCardsFor(this);
+        }
+        return this.cards;
     }
 
     public boolean isChanceCardStack() {
-        return true;
-        // TODO
+        return this.getBoolean(CardStack.Properties.CHANCE_CARD.getProperty());
     }
 }
