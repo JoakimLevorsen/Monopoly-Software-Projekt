@@ -13,7 +13,6 @@ Klasse til at hente kort fra databasen.
 public class DatabaseCardFactory {
 
     public static List<Card> getCardsFor(CardStack stack) {
-        // TODO: edit to fit different cardstacks
         Class<? extends Card>[] classArray = new Class[] { GoToSpaceCard.class, GetLoseMoneyCard.class,
                 GetOutOfJailCard.class, GoToJailCard.class };
 
