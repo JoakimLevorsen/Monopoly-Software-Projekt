@@ -206,29 +206,36 @@ public class View implements Observer {
      * @author Ekkart Kindler
      * 
      * @author Anders Brandt s185016
+     * @author Cecilie Krog Drejer, s185032
      */
-    private void updateProperty(PropertySpace property) {
+    private void updateProperty(StationSpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
         GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
         GUI_Street thisStreet = (GUI_Street) thisField;
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
-                thisOwnableField.setOwnableLabel("Owned by ");
-                thisOwnableField.setOwnerName(property.getOwner(game).getName());
-                thisOwnableField.setBorder(property.getOwner(game).getColor());
+                if (property.isMortgaged()) {
+                    thisOwnableField.setOwnableLabel("Mortgaged by: ");
+                    thisOwnableField.setOwnerName(property.getOwner(game).getName());
+                    thisOwnableField.setBorder(Color.BLACK);
+                } else {
+                    thisOwnableField.setOwnableLabel("Owned by: ");
+                    thisOwnableField.setOwnerName(property.getOwner(game).getName());
+                    thisOwnableField.setBorder(property.getOwner(game).getColor());
+                }
             } else {
                 thisOwnableField.setOwnableLabel("");
                 thisOwnableField.setOwnerName("");
                 thisOwnableField.setBorder(null);
             }
         }
-        if (thisStreet != null) {
-            if (property.getHousesBuilt() == 5) {
+        if (thisStreet != null && (property instanceof PropertySpace)) {
+            if (((PropertySpace) property).getHousesBuilt() == 5) {
                 thisStreet.setHotel(true);
                 thisStreet.setHouses(0);
             } else {
                 thisStreet.setHotel(false);
-                thisStreet.setHouses(property.getHousesBuilt());
+                thisStreet.setHouses(((PropertySpace) property).getHousesBuilt());
             }
             this.updateProperty(property);
         }
@@ -241,29 +248,6 @@ public class View implements Observer {
      */
     public GUI getGUI() {
         return gui;
-    }
-
-    /*
-     * View: Opdaterer stationerne
-     * 
-     * @author Ekkart Kindler
-     * 
-     * @author Anders Brandt s185016
-     */
-    private void updateStation(StationSpace station) {
-        GUI_Field thisField = this.spaceToField.get(station);
-        GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
-        if (thisOwnableField != null) {
-            if (station.getOwner(game) != null) {
-                thisOwnableField.setOwnableLabel("Owned by ");
-                thisOwnableField.setOwnerName(station.getOwner(game).getName());
-                thisOwnableField.setBorder(station.getOwner(game).getColor());
-            } else {
-                thisOwnableField.setOwnableLabel("");
-                thisOwnableField.setOwnerName("");
-                thisOwnableField.setBorder(null);
-            }
-        }
     }
 
     public void dispose() {
