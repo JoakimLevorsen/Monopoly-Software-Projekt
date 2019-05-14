@@ -7,7 +7,7 @@ Enum der indeholder alle JSON fil navne i projektet, det kan også retunere filn
 @author Joakim Levorsen, S185023
 */
 public enum JSONFile {
-    DA("da");
+    DA("da"), EN("en"), AM("am");
 
     private final String value;
 
@@ -17,5 +17,9 @@ public enum JSONFile {
 
     public String getFileName() {
         return this.value + ".json";
+    }
+
+    public String getPackName() {
+        return this.value;
     }
 }
