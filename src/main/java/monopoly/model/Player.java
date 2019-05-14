@@ -22,8 +22,7 @@ Implementering af Player model objektet, med ORM for databasen.
 
 public class Player extends Model implements Subject {
     private Color color;
-    private ArrayList<PropertySpace> ownedProperties;
-    private ArrayList<StationSpace> ownedStations;
+    private ArrayList<StationSpace> ownedProperties;
 
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace");
@@ -76,7 +75,7 @@ public class Player extends Model implements Subject {
      *
      * @Author Anders Brandt, s185016
      */
-    public boolean getIsInPrisonStatus() {return this.get(Properties.JAIL_SPACE.getProperty()) != null;}
+    public boolean isInJail() {return this.get(Properties.JAIL_SPACE.getProperty()) != null;}
 
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
@@ -95,7 +94,7 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public ArrayList<PropertySpace> getOwnedProperties() {
+    public ArrayList<StationSpace> getOwnedProperties() {
         return ownedProperties;
     }
 
@@ -106,7 +105,7 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public void addToOwnedProperties(PropertySpace property) {
+    public void addToOwnedProperties(StationSpace property) {
         ownedProperties.add(property);
     }
 
@@ -116,38 +115,8 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public void removeFromOwnedProperties(PropertySpace property) {
+    public void removeFromOwnedProperties(StationSpace property) {
         ownedProperties.remove(property);
-    }
-
-    /*
-     * GetOwnedStations: Henter og returnerer liste af stationer ejet af brugeren.
-     * 
-     * @author Cecilie Krog Drejer, s185032
-     */
-
-    public ArrayList<StationSpace> getOwnedStations() {
-        return ownedStations;
-    }
-
-    /*
-     * AddToOwnedStations: Tilføjer station til liste af stationer ejet af brugeren.
-     * 
-     * @author Cecilie Krog Drejer, s185032
-     */
-
-    public void addToOwnedStations(StationSpace station) {
-        ownedStations.add(station);
-    }
-
-    /*
-     * RemoveFromOwnedStations: Fjerner station fra liste af stationer ejet af brugeren.
-     *
-     * @author Cecilie Krog Drejer, s185032
-     */
-
-    public void removeFromOwnedStations(StationSpace station) {
-        ownedStations.remove(station);
     }
 
     public boolean isBroke(){

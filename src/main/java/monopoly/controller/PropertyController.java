@@ -62,7 +62,7 @@ public class PropertyController {
 			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
 			controller.cashController.paymentToBank(topBidder, topBid);
 			property.setOwner(topBidder);
-			topBidder.addToOwnedStations(property);
+			topBidder.addToOwnedProperties(property);
 			return;
 		}
 	}
@@ -99,17 +99,12 @@ public class PropertyController {
 
 	public void playerBroke(Player failure) {
 		GUI gooey = controller.view.getGUI();
-		ArrayList<PropertySpace> ownedProperties = failure.getOwnedProperties();
-		ArrayList<StationSpace> ownedStations = failure.getOwnedStations();
+		ArrayList<StationSpace> ownedProperties = failure.getOwnedProperties();
 		do {
-			String[] names = new String[ownedProperties.size() + ownedStations.size()];
+			String[] names = new String[ownedProperties.size()];
 			for (int i = 0; i < ownedProperties.size(); i++) {
 				names[i] = ownedProperties.get(i).getName();
 				nameToSpace.put(names[i], ownedProperties.get(i));
-			}
-			for (int i = ownedProperties.size() - 1; i < names.length; i++) {
-				names[i] = ownedStations.get(i).getName();
-				nameToSpace.put(names[i], ownedStations.get(i));
 			}
 			String selection = JOptionPane.showInputDialog(null,
 					"You are currently broke, but you own several spaces on the board. Which space do you want to process?",
@@ -136,12 +131,12 @@ public class PropertyController {
 						"Sell station", "Mortgage station");
 				if (action == "Sell station") {
 					((StationSpace) selectedSpace).removeOwner(game);
-					failure.removeFromOwnedStations((StationSpace) selectedSpace);
+					failure.removeFromOwnedProperties((StationSpace) selectedSpace);
 				} else if (action == "Mortgage station") {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}
-		} while (failure.isBroke() && (!ownedProperties.isEmpty() || !ownedStations.isEmpty()));
+		} while (failure.isBroke() && !ownedProperties.isEmpty());
 		if (failure.isBroke()) {
 			// TODO: remove failure from game
 		}
