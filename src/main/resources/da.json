@@ -26,8 +26,9 @@
     },
     {
         "name": "Indkomstskat",
-        "type": 7,
+        "type": 8,
         "value": 1,
+        "tax": 200,
         "color": "E8A945",
         "textColor": "000000"
     },
@@ -295,8 +296,9 @@
     },
     {
         "name": "Topskat",
-        "type": 7,
+        "type": 8,
         "value": 1,
+        "tax": 100,
         "color": "E8A945",
         "textColor": "000000"
     },
