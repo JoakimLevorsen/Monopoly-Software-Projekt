@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import designpatterns.*;
@@ -12,6 +15,8 @@ import gui_fields.*;
 import gui_main.GUI;
 import monopoly.model.*;
 import monopoly.model.spaces.*;
+import resources.json.JSONFile;
+import resources.json.ResourceManager;
 
 public class View implements Observer {
 
@@ -67,6 +72,7 @@ public class View implements Observer {
 
     public static Game chooseGame() {
         HashMap<String, Game> saveNameToGame = new HashMap<>();
+        ResourceManager rm = new ResourceManager();
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
 
         boolean loadGame = chooseGameGUI.getUserLeftButtonPressed(
@@ -77,7 +83,16 @@ public class View implements Observer {
             if (savedGames.isEmpty()) {
                 String saveName = chooseGameGUI
                         .getUserString("Der er ingen gemte spil. Angiv et navn for at starte et nyt spil.");
-                return Game.newGame(saveName);
+                int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 1, 4);
+                try {
+                    JSONFile language = chooseLanguage();
+                    JSONObject languageData = rm.readFile(language);
+                    return Game.newGame(saveName, language, languageData, playerAmount);
+                } catch (resources.json.JSONException e) {
+                    System.out.println("Could not find resource");
+                    System.err.println(e);
+                    return null;
+                }
             } else {
                 String[] saveNames = new String[savedGames.size()];
                 for (int i = 0; i < savedGames.size(); i++) {
@@ -93,8 +108,44 @@ public class View implements Observer {
             }
         } else {
             String saveName = chooseGameGUI.getUserString("Angiv et navn til dit nye spil.");
-            return Game.newGame(saveName);
+            int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 1, 4);
+            try {
+                JSONFile language = chooseLanguage();
+                JSONObject languageData = rm.readFile(language);
+                return Game.newGame(saveName, language, languageData, playerAmount);
+            } catch (resources.json.JSONException e) {
+                System.out.println("Could not find resource");
+                System.err.println(e);
+                return null;
+            }
         }
+    }
+
+    public static JSONFile chooseLanguage() throws resources.json.JSONException {
+        HashMap<String, JSONFile> languageChoices = new HashMap<String, JSONFile>();
+        List<String> stringChoices = new ArrayList<String>();
+        for (JSONFile file : JSONFile.values()) {
+            String text;
+            switch (file.getFileName()) {
+            case "da":
+                text = "Dansk";
+                break;
+            case "en":
+                text = "English";
+                break;
+            case "am":
+                text = "American";
+                break;
+            default:
+                text = "Unknown Language: " + file.getFileName();
+            }
+            languageChoices.put(text, file);
+            stringChoices.add(text);
+        }
+        String[] stringArray = (String[]) stringChoices.toArray();
+        String choice = JOptionPane.showInputDialog(null, "Choose a language", "Choose language",
+                JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
+        return languageChoices.get(choice);
     }
 
     /*

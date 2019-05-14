@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import designpatterns.Subject;
 import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
+import resources.json.JSONFile;
 import resources.json.JSONKey;
 import monopoly.model.spaces.*;
 
@@ -27,7 +28,7 @@ public class Game extends Model implements Subject {
     private List<Space> board = null;
 
     public enum Properties {
-        CURRENT_TURN("currentTurn"), SAVE_NAME("saveName");
+        CURRENT_TURN("currentTurn"), SAVE_NAME("saveName"), JSON_PACK("jsonPack");
 
         private String value;
 
@@ -40,10 +41,11 @@ public class Game extends Model implements Subject {
         }
     }
 
-    public static Game newGame(String saveName, JSONObject jsonData, int playerCount) {
+    public static Game newGame(String saveName, JSONFile languagePack, JSONObject jsonData, int playerCount) {
         Game g = new Game();
         g.set(Game.Properties.CURRENT_TURN.getProperty(), 0);
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
+        g.set(Properties.JSON_PACK.getProperty(), languagePack.getPackName());
         CardStack chanceStack = CardStack.create(jsonData.getJSONObject(JSONKey.CHANCE_CARDS.getKey()), g, true, 0);
         CardStack communityStack = CardStack.create(jsonData.getJSONObject(JSONKey.COMMUNITY_CHEST_CARDS.getKey()), g, false, 0);
         JSONSpaceFactory.createSpaces(jsonData, g, chanceStack, communityStack);
