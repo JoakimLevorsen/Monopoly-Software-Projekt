@@ -46,6 +46,12 @@ public class GoToJailCard extends Card {
         return this.getInteger(GoToJailCard.Properties.STACK_POSITION.getProperty());
     }
 
+
+    /*
+     * execute: sørger for at spilleren bliver rykket hen til fængsels feltet samt ryger i fængsel status.
+     *
+     * @Author Anders Brandt, s185016
+     */
     public void execute(MovementController moveController, Player player) {
         JailSpace target = null;
         for (Space space : moveController.controller.getGame().getBoard()){
