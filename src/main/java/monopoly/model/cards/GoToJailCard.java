@@ -46,6 +46,12 @@ public class GoToJailCard extends Card {
         return this.getInteger(GoToJailCard.Properties.STACK_POSITION.getProperty());
     }
 
+    /*
+     * GetText: Returnerer teksten der står på kortet.
+     *
+     * @author Anders Brandt, S185016
+     */
+    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
 
     /*
      * execute: sørger for at spilleren bliver rykket hen til fængsels feltet samt ryger i fængsel status.

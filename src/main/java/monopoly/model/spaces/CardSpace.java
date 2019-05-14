@@ -2,6 +2,7 @@ package monopoly.model.spaces;
 
 import monopoly.controller.GameController;
 import monopoly.model.Player;
+import monopoly.model.cards.Card;
 import monopoly.model.cards.CardStack;
 import designpatterns.Observer;
 
@@ -17,7 +18,7 @@ Implementering af CardSpace
 public class CardSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition");
+        BOARD_POSITION("boardPosition"), CARD_STACK_ID("card_stack_id");
 
         private String value;
 
@@ -32,6 +33,10 @@ public class CardSpace extends Space {
 
     public int getBoardPosition() {
         return this.getInteger(CardSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+    }
+
+    public long getCardStackId(){
+        return this.getLong(Properties.CARD_STACK_ID.getProperty()).longValue();
     }
 
     public static CardSpace create(int position, CardStack stack) {
@@ -49,9 +54,22 @@ public class CardSpace extends Space {
         return this.getBoardPosition() == other.getBoardPosition();
     }
 
+    /*
+     * performAction: trækker et chancekort og ekskverer det.
+     *
+     * @Author Anders Brandt, s185016
+     */
     @Override
     public void performAction(GameController controller, Player player) {
-        // TODO: Implement take card rutine
+
+        for (CardStack stack : controller.getGame().getCardStacks()){
+            if (stack.getLongId() == this.getCardStackId()){
+                Card drawnCard = stack.drawCard();
+                controller.view.getGUI().displayChanceCard(drawnCard.getText());
+                drawnCard.execute(controller.movementController, player);
+            }
+
+        }
     }
 
     /**

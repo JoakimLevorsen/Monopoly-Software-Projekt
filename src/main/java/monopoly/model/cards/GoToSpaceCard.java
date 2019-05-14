@@ -51,6 +51,13 @@ public class GoToSpaceCard extends Card {
         return this.getInteger(GoToSpaceCard.Properties.STACK_POSITION.getProperty());
     }
 
+    /*
+     * GetText: Returnerer teksten der står på kortet.
+     *
+     * @author Anders Brandt, S185016
+     */
+    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
+
     public void execute(MovementController moveController, Player player) {
         moveController.goTo(moveController.controller.getGame().getBoard().get(getSpace()), false, player);
         saveIt();

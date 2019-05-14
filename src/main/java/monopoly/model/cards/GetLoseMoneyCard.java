@@ -33,6 +33,13 @@ public class GetLoseMoneyCard extends Card {
         return getLoseMoneyCard;
     }
 
+    /*
+     * GetText: Returnerer teksten der står på kortet.
+     *
+     * @author Anders Brandt, S185016
+     */
+    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
+
     public int getAmount() {
         return this.getInteger(GetLoseMoneyCard.Properties.AMOUNT.getProperty());
     }

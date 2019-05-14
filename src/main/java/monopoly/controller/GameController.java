@@ -25,8 +25,4 @@ public class GameController {
         // TODO: Implementering
 
     }
-
-    public void takeCard(Card card, Player player) {
-        // TODO: Implementering
-    }
 }
