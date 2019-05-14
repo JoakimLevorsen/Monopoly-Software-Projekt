@@ -7,10 +7,12 @@ import java.util.Set;
 
 import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
+import org.json.JSONObject;
 
 import designpatterns.Subject;
 import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
+import resources.json.JSONKey;
 import monopoly.model.spaces.*;
 
 /*
@@ -38,11 +40,17 @@ public class Game extends Model implements Subject {
         }
     }
 
-    public static Game newGame(String saveName) {
+    public static Game newGame(String saveName, JSONObject jsonData, int playerCount) {
         Game g = new Game();
         g.set(Game.Properties.CURRENT_TURN.getProperty(), 0);
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
-
+        CardStack chanceStack = CardStack.create(jsonData.getJSONObject(JSONKey.CHANCE_CARDS.getKey()), g, true, 0);
+        CardStack communityStack = CardStack.create(jsonData.getJSONObject(JSONKey.COMMUNITY_CHEST_CARDS.getKey()), g, false, 0);
+        JSONSpaceFactory.createSpaces(jsonData, g, chanceStack, communityStack);
+        for (int i = 0; i < playerCount; i++) {
+            Player newPlayer = Player.newPlayer("Player " + (i + 1), i, 2000);
+            g.addPlayer(newPlayer);
+        }
         return g;
     }
 
