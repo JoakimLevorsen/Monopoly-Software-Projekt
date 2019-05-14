@@ -54,6 +54,44 @@ public class Game extends Model implements Subject {
         return Game.findAll().orderBy(Game.Properties.CURRENT_TURN.getProperty() + " asc").load();
     }
 
+    /*
+     * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne" elementer.
+     *
+     * @Author Anders Brandt, s185016
+     */
+    @Override
+    public boolean saveIt() {
+
+        if(super.saveIt() == false){
+            return false;
+        }
+
+        if (players != null){
+            for (Player player : players){
+                if(player.saveIt() == false){
+                    return false;
+                }
+            }
+        }
+
+        if (stacks != null){
+            for (CardStack cardStack : stacks){
+                if(cardStack.saveIt() == false){
+                    return false;
+                }
+            }
+        }
+
+        if (board != null){
+            for (Space space : board){
+                if(space.saveIt() == false){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void addPlayer(Player player) {
         this.add(player);
         this.players.add(player);
