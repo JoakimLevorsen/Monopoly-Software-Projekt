@@ -141,8 +141,8 @@ public class PropertyController {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}
-		} while (failure.isBroke() && (!ownedProperties.isEmpty() || !ownedStations.isEmpty()));
-		if (failure.isBroke()) {
+		} while (failure.hasOverdrawnAccount() && (!ownedProperties.isEmpty() || !ownedStations.isEmpty()));
+		if (failure.hasOverdrawnAccount()) {
 			// TODO: remove failure from game
 		}
 	}

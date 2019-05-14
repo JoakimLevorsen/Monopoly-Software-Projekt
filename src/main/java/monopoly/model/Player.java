@@ -26,7 +26,7 @@ public class Player extends Model implements Subject {
     private ArrayList<StationSpace> ownedStations;
 
     public enum Properties {
-        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace");
+        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace"), BROKE("broke");
 
         private final String value;
 
@@ -150,7 +150,7 @@ public class Player extends Model implements Subject {
         ownedStations.remove(station);
     }
 
-    public boolean isBroke(){
+    public boolean hasOverdrawnAccount(){
         return this.getAccountBalance() < 0;
     }
 
@@ -159,7 +159,6 @@ public class Player extends Model implements Subject {
      *
      * @Author Anders Brandt, s185016
      */
-    // TODO: Implementer
     public Color getColor() {
         return color;
     }
@@ -169,9 +168,27 @@ public class Player extends Model implements Subject {
      *
      * @Author Anders Brandt, s185016
      */
-    // TODO: Implementer
     public void setColor(Color color) {
         this.color = color;
+        this.updated();
+    }
+
+    /*
+     * isBroke: Viser om spiller er gået konkurs
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public boolean isBroke() {
+        return this.getBoolean(Properties.BROKE.getProperty());
+    }
+
+    /*
+     * setBrokeStatus: Sætter konkurs status.
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public void setBrokeStatus(boolean to) {
+        this.set(Properties.BROKE.getProperty(), to);
         this.updated();
     }
 
