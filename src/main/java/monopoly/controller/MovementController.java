@@ -54,7 +54,10 @@ public class MovementController {
         public void goTo(Space space, Boolean ignoreStart, Player player) {
             player.setBoardPosition(space.getBoardPosition());
             space.performAction(controller, player);
-            //TODO: Tjek for start kryds
+            if (player.getBoardPosition() > space.getBoardPosition() && !ignoreStart){
+                StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
+                player.changeAccountBalance(s.getPayment());
+            }
         }
 
     }
