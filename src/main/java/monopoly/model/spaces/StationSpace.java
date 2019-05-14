@@ -138,4 +138,12 @@ public class StationSpace extends Space {
     public Set<Observer> getObservers() {
         return observers;
     }
+
+    /*
+    * @author Helle Achari, s180317
+    */
+
+    public int getPrice() {
+        return this.getInteger(Properties.PRICE.getProperty());
+    }
 }
