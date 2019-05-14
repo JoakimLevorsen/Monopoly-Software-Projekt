@@ -35,11 +35,11 @@ public class CardStack extends Model {
         }
     }
 
-    public static CardStack create(JSONObject cardData, Game game,boolean chanceCard, int nextCardIndex) {
+    public static CardStack create(JSONObject cardData, Game game,boolean isChanceCardStack, int nextCardIndex) {
         CardStack cardStack = new CardStack();
-        cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), chanceCard);
+        cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), isChanceCardStack);
         cardStack.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), 0);
-        if (chanceCard) {
+        if (isChanceCardStack) {
             JSONCardFactory.createChanceCards(cardData, cardStack);
         } else {
             JSONCardFactory.createCommunityChestCards(cardData, cardStack);

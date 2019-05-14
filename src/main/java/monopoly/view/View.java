@@ -21,7 +21,6 @@ public class View implements Observer {
     private HashMap<Player, Integer> playerToPosition = new HashMap<>();
     private HashMap<Space, GUI_Field> spaceToField = new HashMap<>();
     private HashMap<Player, GUI_Player> playerToGUIPlayer = new HashMap<>();
-    private HashMap<String, Game> saveNameToGame = new HashMap<>();
     private HashMap<Player, PlayerPanel> panels = new HashMap<>();
     private boolean disposed = false;
 
@@ -66,7 +65,8 @@ public class View implements Observer {
         }
     }
 
-    public Game chooseGame() {
+    public static Game chooseGame() {
+        HashMap<String, Game> saveNameToGame = new HashMap<>();
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
 
         boolean loadGame = chooseGameGUI.getUserLeftButtonPressed(
