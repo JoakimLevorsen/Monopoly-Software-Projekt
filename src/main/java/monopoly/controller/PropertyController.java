@@ -179,7 +179,7 @@ public class PropertyController {
 			}
 		} while (failure.hasOverdrawnAccount() && (!ownedProperties.isEmpty() || !ownedProperties.isEmpty()));
 		if (failure.hasOverdrawnAccount()) {
-			// TODO: remove failure from game
+			failure.setBrokeStatus(true);
 		}
 	}
 }
