@@ -4,35 +4,34 @@
     "spaces": [{
         "name": "Start",
         "type": 0,
-        "message": "Modtag §200 når du passerer Start.",
+        "message": "Receive §200 when you pass Start.",
         "color": "FFFFFF",
         "textColor": "C60000"
     },
     {
-        "name": "Mjølnerparken",
+        "name": "South Street Seaport",
         "type": 1,
         "price": 60,
         "baseRent": 20,
         "color": "1A1B41",
         "textColor": "000000"
-
     },
     {
-        "name": "Prøv Lykken",
+        "name": "Community Chest",
         "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
+        "message": "Draw a Community Chest card.",
         "color": "FFFFFF",
         "textColor": "00A8E8"
     },
     {
-        "name": "Indkomstskat",
+        "name": "Income Tax",
         "type": 7,
         "value": 1,
         "color": "E8A945",
         "textColor": "000000"
     },
     {
-        "name": "Istedgade",
+        "name": "Ellis Island",
         "type": 1,
         "price": 60,
         "baseRent": 20,
@@ -40,7 +39,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Københavns Hovedbanegård",
+        "name": "La Guardia Airport",
         "type": 2,
         "price": 200,
         "baseRent": 70,
@@ -48,7 +47,7 @@
         "textColor": "FFFFFF"
     },
     {
-        "name": "Nørregade",
+        "name": "Holland Tunnel",
         "type": 1,
         "price": 100,
         "baseRent": 35,
@@ -58,12 +57,12 @@
     {
         "name": "Chance",
         "type": 6,
-        "message": "Træk et Chancekort",
+        "message": "Draw a Chance card",
         "color": "EA7C79",
         "textColor": "000000"
     },
     {
-        "name": "Kongevejen",
+        "name": "Brooklyn Bridge",
         "type": 1,
         "price": 100,
         "baseRent": 35,
@@ -71,7 +70,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Jagtvej",
+        "name": "George Washington Bridge",
         "type": 1,
         "price": 120,
         "baseRent": 40,
@@ -79,14 +78,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Fængsel",
+        "name": "Jail",
         "type": 4,
         "color": "FFFFFF",
         "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Sjællandsgade",
+        "name": "Central Park",
         "type": 1,
         "price": 140,
         "baseRent": 50,
@@ -96,12 +95,12 @@
     {
         "name": "Chance",
         "type": 6,
-        "message": "Træk et Chancekort",
+        "message": "Draw a Chance card",
         "color": "EA7C79",
         "textColor": "000000"
     },
     {
-        "name": "Kronprinsessegade",
+        "name": "Statue of Liberty",
         "type": 1,
         "price": 140,
         "baseRent": 50,
@@ -109,7 +108,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Kongens Have",
+        "name": "Empire State Building",
         "type": 1,
         "price": 160,
         "baseRent": 55,
@@ -117,7 +116,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Vejle Station",
+        "name": "Penn Station",
         "type": 2,
         "price": 200,
         "baseRent": 70,
@@ -125,7 +124,7 @@
         "textColor": "FFFFFF"
     },
     {
-        "name": "Anker Engelundsvej",
+        "name": "Times Square",
         "type": 1,
         "price": 180,
         "baseRent": 60,
@@ -133,14 +132,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Prøv Lykken",
+        "name": "Community Chest",
         "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
+        "message": "Draw a Community Chest card.",
         "color": "FFFFFF",
         "textColor": "00A8E8"
     },
     {
-        "name": "Jomfru Ane Gade",
+        "name": "American Museum of Natural History",
         "type": 1,
         "price": 180,
         "baseRent": 60,
@@ -148,7 +147,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Åboulevarden",
+        "name": "Lincoln Center",
         "type": 1,
         "price": 200,
         "baseRent": 70,
@@ -156,14 +155,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Gratis Parkering",
+        "name": "Free Parking",
         "type": 3,
         "color": "FFFFFF",
         "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Kongestien",
+        "name": "Macy's",
         "type": 1,
         "price": 220,
         "baseRent": 75,
@@ -173,12 +172,12 @@
     {
         "name": "Chance",
         "type": 6,
-        "message": "Træk et Chancekort",
+        "message": "Draw a Chance card",
         "color": "EA7C79",
         "textColor": "000000"
     },
     {
-        "name": "Christiania",
+        "name": "Fifth Avenue",
         "type": 1,
         "price": 220,
         "baseRent": 75,
@@ -186,7 +185,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Lærkevej",
+        "name": "Bloomingdale's",
         "type": 1,
         "price": 240,
         "baseRent": 80,
@@ -194,7 +193,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Nørreport Station",
+        "name": "John F Kennedy International Airport",
         "type": 2,
         "price": 200,
         "baseRent": 70,
@@ -202,7 +201,7 @@
         "textColor": "FFFFFF"
     },
     {
-        "name": "Fynsvej",
+        "name": "Federal Reserve Bank",
         "type": 1,
         "price": 260,
         "baseRent": 85,
@@ -210,7 +209,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Lyngbyvej",
+        "name": "The Rainbow Room",
         "type": 1,
         "price": 260,
         "baseRent": 85,
@@ -218,14 +217,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Prøv Lykken",
+        "name": "Community Chest",
         "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
+        "message": "Draw a Community Chest card.",
         "color": "FFFFFF",
         "textColor": "00A8E8"
     },
     {
-        "name": "H. C. Andersens Gade",
+        "name": "The Four Seasons",
         "type": 1,
         "price": 280,
         "baseRent": 90,
@@ -233,14 +232,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Gå i fængsel",
+        "name": "Go to jail",
         "type": 5,
         "color": "FFFFFF",
         "textColor": "000000",
         "image": "default"
     },
     {
-        "name": "Jyllandsvej",
+        "name": "The Regency Hotel",
         "type": 1,
         "price": 300,
         "baseRent": 100,
@@ -248,7 +247,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Amalienborg",
+        "name": "Essex House",
         "type": 1,
         "price": 300,
         "baseRent": 100,
@@ -256,14 +255,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Prøv Lykken",
+        "name": "Community Chest",
         "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
+        "message": "Draw a Community Chest card.",
         "color": "FFFFFF",
         "textColor": "00A8E8"
     },
     {
-        "name": "Dronninggårds Alle",
+        "name": "The Plaza",
         "type": 1,
         "price": 320,
         "baseRent": 105,
@@ -271,7 +270,7 @@
         "textColor": "000000"
     },
     {
-        "name": "Billund Lufthavn",
+        "name": "Grand Central Station",
         "type": 2,
         "price": 200,
         "baseRent": 70,
@@ -281,12 +280,12 @@
     {
         "name": "Chance",
         "type": 6,
-        "message": "Træk et Chancekort",
+        "message": "Draw a Chance card",
         "color": "EA7C79",
         "textColor": "000000"
     },
     {
-        "name": "Strøget",
+        "name": "Tiffany & Co.",
         "type": 1,
         "price": 350,
         "baseRent": 120,
@@ -294,14 +293,14 @@
         "textColor": "000000"
     },
     {
-        "name": "Topskat",
+        "name": "Luxury Tax",
         "type": 7,
         "value": 1,
         "color": "E8A945",
         "textColor": "000000"
     },
     {
-        "name": "Strandvejen",
+        "name": "Trump Tower",
         "type": 1,
         "price": 400,
         "baseRent": 135,
@@ -310,161 +309,161 @@
     }
 ],
     "chanceCards": [{
-        "text": "Du er blevet taget i at stjæle fra en af dine medspillere. Du fængsles og modtager ikke §200, hvis du passerer Start.",
+        "text": "You have been caught stealing from one of your fellow players. You are sent to jail and will not receive §200, if you pass Start.",
         "type": 3,
         "space": 10
     },
     {
-        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
         "type": 0,
         "space": 0
     },
     {
-        "text": "Snup en tur med Tullebanen til Vejle Station.",
+        "text": "Take a trip to Washington D.C. via Penn Station.",
         "type": 0,
         "space": 15
     },
     {
-        "text": "Du mangler at købe en fødselsdagsgave til din mor. Gå til Strøget.",
+        "text": "You have yet to buy a birthday present for your mum. Go to Fifth Avenue.",
         "type": 0,
-        "space": 37
+        "space": 33
     },
     {
-        "text": "Du skal betale restskat. Betal banken §250.",
+        "text": "You have outstanding taxes. Pay the bank §250.",
         "type": 1,
         "amount": -250
     },
     {
-        "text": "Gå til Nørreport Station og kør en tur med metroen.",
+        "text": "Go to Grand Central Station to take in the architecture.",
         "type": 0,
-        "space": 25
+        "space": 35
     },
     {
-        "text": "Dine venner inviterer dig i byen. Gå til Jomfru Ane Gade.",
+        "text": "Your friends invite you out for a drink. Go to The Rainbow Room.",
+        "type": 0,
+        "space": 27
+    },
+    {
+        "text": "You fancy looking at old stuff. Go to American Museum of Natural History.",
         "type": 0,
         "space": 18
     },
     {
-        "text": "Du står og mangler et massageapparat. Gå til Istedgade.",
-        "type": 0,
-        "space": 4
-    },
-    {
-        "text": "Du får en parkeringsbøde. Betal banken §75.",
+        "text": "You got a parking ticket. Pay the bank §75.",
         "type": 1,
         "amount": -75
     },
     {
-        "text": "Dine forældre er gode kunder hos banken. Du kan komme gratis ud af fængslet.",
+        "text": "Your parents are very good customers at the bank. You can get out of jail for free.",
         "type": 2
     },
     {
-        "text": "Gå til fængslet. Der er besøgsdag og din onkel savner dig.",
+        "text": "Go to jail. It is visiting day and your uncle misses you.",
         "type": 0,
         "space": 10
     },
     {
-        "text": "Du mangler noget sødt og tager til Christiania for at købe noget brunt sukker",
+        "text": "You miss nature and go visit Central Park.",
         "type": 0,
-        "space": 23
+        "space": 37
     },
     {
-        "text": "Gå til det første Prøv Lykken-felt på brættet.",
+        "text": "Go to the first Community Chest field on the board.",
         "type": 0,
         "space": 2
     },
     {
-        "text": "Du modtager en besynderlig SMS fra et ukendt nummer. 7 minutter senere er §133 forsvundet fra din konto.",
+        "text": "You receive a strange text from an unknown number. 7 minutes later §133 has disappeared from your account.",
         "type": 1,
         "amount": -133
     },
     {
-        "text": "Du har betalt for meget i skat, og får derfor §200 tilbage.",
+        "text": "You have paid too much in taxes and get §200 back.",
         "type": 1,
         "amount": 200
     },
     {
-        "text": "Du vinder i Lotto! §350 bliver indbetalt på din konto.",
+        "text": "You win the lottery! §350 is added to your account.",
         "type": 1,
         "amount": 350
     }
 ],
     "communityChestCards": [{
-        "text": "Du skal på ferie! Tag Tullebanen til Billund Lufthavn.",
+        "text": "You are going on holiday! Go to John F Kennedy Airport.",
         "type": 0,
         "space": 35
     },
     {
-        "text": "Du er kommet på andenpladsen i en skønhedskonkurrence! Modtag §60 i præmie.",
+        "text": "You placed second in a beauty contest! Receive §60 in prize money.",
         "type": 1,
         "amount": 60
     },
     {
-        "text": "Gå til det første Chancefelt på brættet.",
+        "text": "Go to the first Chance field on the board.",
         "type": 0,
         "space": 7
     },
     {
-        "text": "Du har fødselsdag og din mormor sender dig et kort med §5 i. Tillykke!",
+        "text": "It is your birthday and your grandmother sends you a card with §5 in it. Congratulations!",
         "type": 1,
         "amount": 5
     },
     {
-        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
         "type": 0,
         "space": 0
     },
     {
-        "text": "Du har en god advokat og kan komme gratis ud af fængsel.",
+        "text": "You have a good lawyer and can get out of jail for free.",
         "type": 2
     },
     {
-        "text": "Der er gået renter ind på din konto. Du modtager §23.",
+        "text": "Interest has been added to your account. You receive §23.",
         "type": 1,
         "amount": 23
     },
     {
-        "text": "Du vinder i Lotto! §10 bliver indbetalt på din konto.",
+        "text": "You won the lottery! §10 are added to your account.",
         "type": 1,
         "amount": 10
     },
     {
-        "text": "Dit Netflix abonnement er udløbet. Du betaler §35 for at forny det.",
+        "text": "Your Netflix subscription is expired. You pay §35 to renew it.",
         "type": 1,
         "amount": -35
     },
     {
-        "text": "Du har fået løn for denne måned. §150 bliver indbetalt på din konto.",
+        "text": "Your salary has been paid. §150 are added to your account.",
         "type": 1,
         "amount": 150
     },
     {
-        "text": "Du har fået et brev fra kommunen og betaler §5 i posteringsgebyr.",
+        "text": "You have received a letter from the government and pay §5 in postage.",
         "type": 1,
         "amount": -5
     },
     {
-        "text": "Du har taget toget uden billet. Betal §50 i bøde.",
+        "text": "You rode the subway without a ticket. Pay a fine of §50.",
         "type": 1,
         "amount": -50
     },
     {
-        "text": "Dine venner havde glemt din fødselsdag, men giver dig §40 som trøst.",
+        "text": "Your friends forgot your birthday, but give you §40 to make up for it.",
         "type": 1,
         "amount": 40
     },
     {
-        "text": "En af dine venner skyldte dig §30 og har endelig betalt tilbage!",
+        "text": "One of your friends owed you §30 and finally paid you back!",
         "type": 1,
         "amount": 30
     },
     {
-        "text": "Du fandt nogle penge på gaden! Modtag §2.",
+        "text": "You found some money on the street! Receive §2.",
         "type": 1,
         "amount": 2
     },
     {
-        "text": "Du får en gratis sodavand i en kiosk, men skal stadig betale pant. Betal §1.",
+        "text": "You get a free soda in a kiosk, but still have to pay the sugar tax. Pay §1.",
         "type": 1,
         "amount": -1
     }

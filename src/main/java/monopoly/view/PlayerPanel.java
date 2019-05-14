@@ -44,9 +44,7 @@ public class PlayerPanel extends JFrame {
         panel.setMaximumSize(new Dimension(100, 100));
         panel.setBorder(BorderFactory.createLineBorder(Color.black));
         panel.setOpaque(true);
-        // TODO implementer så baggrunden bliver til spillerens farve, eventuelt med en
-        // getColour metode?
-        // panel.setBackground();
+        panel.setBackground(player.getColor());
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
@@ -55,11 +53,9 @@ public class PlayerPanel extends JFrame {
 
         pLabel = new JLabel("Balance " + player.getAccountBalance());
         panel.add(pLabel);
-        // TODO så der kommer en status på panelet når spilleren er i fængsel
-        /*
-         * if (player.isInPrison()) { pLabel = new JLabel("You're in prison lmao");
-         * panel.add(pLabel); }
-         */
+         if (player.getIsInPrisonStatus()) { pLabel = new JLabel("You're in prison lmao");
+         panel.add(pLabel); }
+
         mainPanel.add(panel);
         this.getContentPane().setLayout(null);
         JPanel propPanel = new JPanel();
