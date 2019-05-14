@@ -54,6 +54,11 @@ public class CardSpace extends Space {
         return this.getBoardPosition() == other.getBoardPosition();
     }
 
+    /*
+     * performAction: trækker et chancekort og ekskverer det.
+     *
+     * @Author Anders Brandt, s185016
+     */
     @Override
     public void performAction(GameController controller, Player player) {
 
