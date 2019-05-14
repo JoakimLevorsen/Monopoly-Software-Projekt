@@ -50,6 +50,9 @@ public class JSONSpaceFactory {
             case 7:
                 resultSet[i] = CardSpace.create(i, type == 6 ? chanceStack : communityStack);
                 break;
+            case 8:
+                resultSet[i] = TaxSpace.create(i, space.getInt(JSONKey.TAX.getKey()));
+                break;
             default:
                 throw new JSONException("Unexpected space type " + type);
             }

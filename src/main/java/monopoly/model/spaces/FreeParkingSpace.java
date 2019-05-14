@@ -28,10 +28,15 @@ public class FreeParkingSpace extends Space {
             return this.value;
         }
     }
-
+    /*
+     * performAction: Udbetaler gevinsten til spilleren samt nulstiller gevinst beløbet.
+     *
+     * @Author Anders Brandt, s185016
+     */
     @Override
     public void performAction(GameController controller, Player player) {
-        // TODO: Maybe implement behavior here depending on rules.
+        player.changeAccountBalance(getTreasure());
+        resetTreasure();
     }
 
     public static FreeParkingSpace create(int position) {
