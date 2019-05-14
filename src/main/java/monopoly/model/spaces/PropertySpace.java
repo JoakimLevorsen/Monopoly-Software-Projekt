@@ -171,6 +171,13 @@ public class PropertySpace extends Space {
      * @author Ekkart Kindler, ekki@dtu.dk
      *
      */
+    public int getPrice() {
+        return this.getInteger(Properties.PRICE.getProperty());
+    }
+    /*
+    * @author Helle Achari, s180317
+    * */
+
     private Set<Observer> observers = new HashSet<Observer>();
 
     final public void addObserver(Observer observer) {
