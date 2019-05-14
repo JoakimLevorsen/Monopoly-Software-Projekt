@@ -17,7 +17,7 @@ import gui_main.GUI;
 public class PropertyController {
 	private HashMap<String, Space> nameToSpace = new HashMap<>();
 	private Game game;
-    private GameController controller;
+	private GameController controller;
 
 	public PropertyController(GameController owner) {
 		this.controller = owner;
@@ -32,9 +32,9 @@ public class PropertyController {
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
 
-    public void auction(StationSpace property) {
+	public void auction(StationSpace property) {
 		GUI gooey = controller.view.getGUI();
-        gooey.showMessage("The station " + property.getName() + " will now be auctioned off.");
+		gooey.showMessage("The station " + property.getName() + " will now be auctioned off.");
 		int currentBidderIndex = 0;
 		int topBid = 0;
 		int noBidCounter = 0;
@@ -61,20 +61,34 @@ public class PropertyController {
 		if (topBidder != null) {
 			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
 			controller.cashController.paymentToBank(topBidder, topBid);
-            property.setOwner(topBidder);
-            topBidder.addToOwnedStations(property);
+			property.setOwner(topBidder);
+			topBidder.addToOwnedStations(property);
 			return;
 		}
 	}
 
 	/*
-	 * MortgageProperty: Metode til at pantsætte en ejendom
+	 * Mortgage: Metode til at pantsætte en ejendom
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void mortgage(StationSpace property) {
-		//TODO: implement
+		Player owner = property.getOwner(controller.getGame());
+		owner.changeAccountBalance(property.getPrice() / 2);
+		property.setMortgaged(true);
+	}
+
+	/*
+	 * Unmortgage: Metode til at tilbagekøbe en pantsat ejendom
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
+
+	public void unmortgage(StationSpace property) {
+		Player owner = property.getOwner(controller.getGame());
+		owner.changeAccountBalance((int) -((property.getPrice() / 2) * 1.1));
+		property.setMortgaged(false);
 	}
 
 	/*
@@ -97,34 +111,39 @@ public class PropertyController {
 				names[i] = ownedStations.get(i).getName();
 				nameToSpace.put(names[i], ownedStations.get(i));
 			}
-			String selection = JOptionPane.showInputDialog(null, "You are currently broke, but you own several spaces on the board. Which space do you want to process?", "Player Broke: Save Yourself", JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+			String selection = JOptionPane.showInputDialog(null,
+					"You are currently broke, but you own several spaces on the board. Which space do you want to process?",
+					"Player Broke: Save Yourself", JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
 			Space selectedSpace = nameToSpace.get(selection);
 			String action;
-			if (selectedSpace instanceof StationSpace) {
-				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?", "Sell station", "Mortgage station");
-				if (action == "Sell station") {
-					((StationSpace) selectedSpace).removeOwner(game);
-					failure.removeFromOwnedStations((StationSpace) selectedSpace);
-				} else if (action == "Mortgage station") {
-					// TODO: implement
-				}
-			} else if (selectedSpace instanceof PropertySpace
-					&& ((PropertySpace) selectedSpace).getHousesBuilt() == 0) {
-				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?", "Sell property", "Mortgage property");
+			if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() == 0) {
+				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?",
+						"Sell property", "Mortgage property");
 				if (action == "Sell property") {
 					((PropertySpace) selectedSpace).removeOwner(game);
 					failure.removeFromOwnedProperties((PropertySpace) selectedSpace);
 				} else if (action == "Mortgage property") {
-					// TODO: implement
+					mortgage((PropertySpace) selectedSpace);
 				}
 			} else if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
 				int currentBuildLevel = ((PropertySpace) selectedSpace).getHousesBuilt();
-				int housesToSell = gooey.getUserInteger("You have chosen " + selection + ". The property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?", 0, currentBuildLevel);
+				int housesToSell = gooey.getUserInteger("You have chosen " + selection
+						+ ". The property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?",
+						0, currentBuildLevel);
 				((PropertySpace) selectedSpace).setBuildLevel(currentBuildLevel - housesToSell);
+			} else if (selectedSpace instanceof StationSpace) {
+				action = gooey.getUserButtonPressed("You have chosen " + selection + ". What do you want to do?",
+						"Sell station", "Mortgage station");
+				if (action == "Sell station") {
+					((StationSpace) selectedSpace).removeOwner(game);
+					failure.removeFromOwnedStations((StationSpace) selectedSpace);
+				} else if (action == "Mortgage station") {
+					mortgage((StationSpace) selectedSpace);
+				}
 			}
 		} while (failure.isBroke() && (!ownedProperties.isEmpty() || !ownedStations.isEmpty()));
 		if (failure.isBroke()) {
-			//TODO: remove failure from game
+			// TODO: remove failure from game
 		}
 	}
 }

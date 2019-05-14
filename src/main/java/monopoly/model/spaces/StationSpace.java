@@ -146,4 +146,12 @@ public class StationSpace extends Space {
     public int getPrice() {
         return this.getInteger(Properties.PRICE.getProperty());
     }
+
+    public boolean isMortgaged() {
+        return this.getBoolean(Properties.MORTGAGED.getProperty());
+    }
+
+    public void setMortgaged(boolean mortgaged) {
+        this.set(Properties.MORTGAGED.getProperty(), mortgaged);
+    }
 }
