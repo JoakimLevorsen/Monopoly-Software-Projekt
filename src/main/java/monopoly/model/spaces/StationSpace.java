@@ -110,8 +110,10 @@ public class StationSpace extends Space {
      */
     // TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer
     // spilleren ejer.
-    public String getRent() {
-        return this.getString(Properties.BASE_RENT.getProperty());
+    public int getRent() {
+        int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
+        int amountOwned = 1; //TODO: <-- Fix this
+        return baseRent * amountOwned;
     }
 
     // TODO: Tilføj resterende metoder
