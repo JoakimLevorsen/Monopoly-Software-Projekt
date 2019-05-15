@@ -1,10 +1,14 @@
 package monopoly.view;
 
+import gui_fields.GUI_Player;
+import monopoly.controller.GameController;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
 import monopoly.model.spaces.Space;
 import monopoly.model.spaces.StationSpace;
+import resources.json.JSONKey;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +21,7 @@ Opretter paneler med information omkring spilleren og dets ejendomme.
 */
 
 public class PlayerPanel extends JFrame {
+    private JSONObject jsonData; 
     private Game game;
     private Player player;
     final JFrame frame = new JFrame();
@@ -26,6 +31,7 @@ public class PlayerPanel extends JFrame {
     public PlayerPanel(Game game, Player player) {
         this.player = player;
         this.game = game;
+        this.jsonData = game.getLanguageData();
         frame.setTitle(player.getName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(700, game.getPlayers().indexOf(player) * 300);
@@ -47,15 +53,13 @@ public class PlayerPanel extends JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-        JLabel pLabel = new JLabel("Name: " + player.getName());
+        JLabel pLabel = new JLabel(jsonData.getString(JSONKey.NAME.getKey()) + player.getName());
         panel.add(pLabel);
 
-        pLabel = new JLabel("Balance " + player.getAccountBalance());
+        pLabel = new JLabel(jsonData.getString(JSONKey.BALANCE.getKey()) + player.getAccountBalance());
         panel.add(pLabel);
-        if (player.isInJail()) {
-            pLabel = new JLabel("You're in prison lmao");
-            panel.add(pLabel);
-        }
+         if (player.isInJail()) { pLabel = new JLabel(jsonData.getString(JSONKey.PLAYER_IS_IN_JAIL.getKey()));
+         panel.add(pLabel); }
 
         mainPanel.add(panel);
         this.getContentPane().setLayout(null);
@@ -72,12 +76,12 @@ public class PlayerPanel extends JFrame {
 
             if (property instanceof PropertySpace) {
                 PropertySpace propertySpace = (PropertySpace) property;
-                pLabel = new JLabel("" + propertySpace.getName());
+                pLabel = new JLabel(propertySpace.getName());
                 propPanel.add(pLabel);
                 propPanel.setBackground(propertySpace.getColour());
-                pLabel = new JLabel("Houses built: " + propertySpace.getHousesBuilt());
+                pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey())+ propertySpace.getHousesBuilt());
                 propPanel.add(pLabel);
-                pLabel = new JLabel("Rent: " + propertySpace.getRent(game));
+                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent(game));
                 propPanel.add(pLabel);
             }
 
@@ -86,7 +90,7 @@ public class PlayerPanel extends JFrame {
                 pLabel = new JLabel("" + stationSpace.getName());
                 propPanel.add(pLabel);
                 propPanel.setBackground(Color.getHSBColor(38, 38, 38));
-                pLabel = new JLabel("Rent: " + stationSpace.getRent(game));
+                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + stationSpace.getRent(game));
                 propPanel.add(pLabel);
             }
 

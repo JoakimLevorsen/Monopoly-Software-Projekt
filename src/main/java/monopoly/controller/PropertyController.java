@@ -18,11 +18,13 @@ import gui_main.GUI;
 
 public class PropertyController {
 	private GameController controller;
-	private GUI gooey = controller.view.getGUI();
+	private GUI gooey;
 	private JSONObject jsonData;
 
 	public PropertyController(GameController owner) {
 		this.controller = owner;
+		this.jsonData = owner.getGame().getLanguageData(); 
+		this.gooey = owner.view.getGUI();
 	}
 
 	/*
@@ -38,7 +40,7 @@ public class PropertyController {
 	 */
 
 	public void auction(StationSpace property) {
-		gooey.showMessage("The station " + property.getName() + " will now be auctioned off.");
+		gooey.showMessage(jsonData.getString(JSONKey.STATION.getKey()) + property.getName() + jsonData.getString(JSONKey.AUCTIONED_OFF.getKey())); 
 		int currentBidderIndex = 0;
 		int topBid = 0;
 		int noBidCounter = 0;
@@ -46,15 +48,14 @@ public class PropertyController {
 		List<Player> players = controller.getGame().getPlayers();
 		while ((noBidCounter < players.size() - 1 && topBid != 0) || noBidCounter < players.size()) {
 			Player currentBidder = players.get(currentBidderIndex);
-			int bid = gooey.getUserInteger("Do you want to bid Player " + (currentBidderIndex + 1)
-					+ "? (enter 0 if no), current bid is " + topBid, 0, currentBidder.getAccountBalance());
+			int bid = gooey.getUserInteger(jsonData.getString(JSONKey.BID.getKey()) + (currentBidderIndex + 1) + jsonData.getString(JSONKey.ANSWER_TO_BID.getKey())  + topBid, 0, currentBidder.getAccountBalance());
 			if (bid > topBid) {
 				topBid = bid;
 				topBidder = currentBidder;
 				noBidCounter = 0;
 			} else {
 				if (bid != 0) {
-					gooey.showMessage("Your bid was not valid, you have been skipped!");
+					gooey.showMessage(jsonData.getString(JSONKey.BID_NOT_VALID.getKey()));
 				}
 				noBidCounter++;
 			}
@@ -63,7 +64,7 @@ public class PropertyController {
 				currentBidderIndex = 0;
 		}
 		if (topBidder != null) {
-			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
+			gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + (currentBidderIndex + 1) +  jsonData.getString(JSONKey.WINNER.getKey()) + topBid);
 			controller.cashController.paymentToBank(topBidder, topBid);
 			property.setOwner(topBidder);
 			topBidder.addToOwnedProperties(property, controller.getGame());
@@ -111,12 +112,12 @@ public class PropertyController {
 	 * @author Helle Achari, s180317
 	 */
 
-	public void offerProperty(StationSpace property, Player player) {
-		boolean didChoose = gooey.getUserLeftButtonPressed(" Do you want to buy this property? "
-				+ property.getBoardPosition() + "at the cost of: " + property.getPrice(), "Yes", "No");
-		if (didChoose) {
-			gooey.showMessage("Yeah, you bought the" + property.getName() + "property!");
-			controller.cashController.paymentToBank(player, property.getPrice());
+    public void offerProperty(StationSpace property, Player player) {
+        boolean didChoose = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.OFFER_PROPERTY.getKey())
+                + property.getBoardPosition() + jsonData.getString(JSONKey.PROPERTY_COST.getKey()) + property.getPrice(), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
+        if (didChoose) {
+            gooey.showMessage(jsonData.getString(JSONKey.BOUGHT_PROPERTY.getKey()) + property.getName() + jsonData.getString(JSONKey.PROPERTY.getKey()));
+            controller.cashController.paymentToBank(player, property.getPrice());
 			property.setOwner(player);
 			player.addToOwnedProperties(property, controller.getGame());
 		}
@@ -130,8 +131,7 @@ public class PropertyController {
 	public void sellToBank(StationSpace property) {
 		Player owner = property.getOwner(controller.getGame());
 		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() > 0) {
-			gooey.showMessage(
-					"Houses built on property must be sold in order to sell property. All houses on this property will now be sold.");
+			gooey.showMessage(jsonData.getString(JSONKey.SELL_PROPERTY_TO_BANK.getKey()));
 			sellHouses((PropertySpace) property, ((PropertySpace) property).getHousesBuilt());
 		}
 		int amount = property.getPrice() / 2;
@@ -253,11 +253,10 @@ public class PropertyController {
 	 */
 
 	public void trade(Player trader) {
-		boolean trade = gooey.getUserLeftButtonPressed(trader.getName() + ", do you want to trade with another player?",
-				"Yes", "No");
+		boolean trade = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE_WTIH_ANOTHER_PLAYER.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())); 
 		while (trade) {
-			boolean sell = gooey.getUserLeftButtonPressed("Do you want to sell or buy property?", "Sell property",
-					"Buy property");
+			boolean sell = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.BUY_OR_SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.BUY_PROPERTY.getKey())); 
+			
 			if (sell) {
 				HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
 				HashMap<String, Player> nameToPlayer = new HashMap<>();
@@ -267,12 +266,10 @@ public class PropertyController {
 					propertyNames[i] = traderOwnedProperties.get(i).getName();
 					nameToOwnableSpace.put(propertyNames[i], traderOwnedProperties.get(i));
 				}
-				String selection = JOptionPane.showInputDialog(null, "Choose property.", "Sell property",
-						JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
+				String selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.WHICH_PROPERTY_DO_YOU_WANT.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
 				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
 				if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
-					gooey.showMessage(
-							"The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.");
+					gooey.showMessage(jsonData.getString(JSONKey.CANT_SELL_PROPERTY.getKey()));
 					sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
 				}
 				List<Player> otherPlayers = controller.getGame().getPlayers();
@@ -381,15 +378,15 @@ public class PropertyController {
 					if (max > 5)
 						max = 5;
 					int houseChosen = controller.view.getGUI()
-							.getUserInteger("How many houses do you want there to be on the property?", 0, max);
+							.getUserInteger(jsonData.getString(JSONKey.MAX_BUILT_HOUSES.getKey()), 0, max);
 					if (houseChosen > chosen.getHousesBuilt()) {
 						buildHouses(chosen, houseChosen - chosen.getHousesBuilt());
 					} else if (houseChosen < chosen.getHousesBuilt()) {
 						sellHouses(chosen, chosen.getHousesBuilt() - houseChosen);
 					}
 				}
-			} while (gooey.getUserLeftButtonPressed("Do you want to build more?", "yes", "no"));
-		} else
-			gooey.showMessage("You are not able to build on any of your properties.");
+			} while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TO_BUILD_MORE.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
+        } else gooey.showMessage(jsonData.getString(JSONKey.CANT_BUILD_ANYMORE.getKey()));
+	    gooey.showMessage(jsonData.getString(JSONKey.BUILD_ON_PROPERTY.getKey())); 
 	}
 }
