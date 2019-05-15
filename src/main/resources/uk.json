@@ -1,6 +1,5 @@
 {
     "test": "OK",
-    "startPayment": 200,
     "currentlyBroke": "You are currently broke, but you own several spaces on the board. Which space do you want to process?",
     "playerBrokeTitle": "Player Broke: Save Yourself",
     "sellProperty": "Sell property",
@@ -10,48 +9,42 @@
     "housesOnProperty": "\nThe property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?",
     "rolledDouble":"You rolled a double and got out of prison for free", 
     "outOfJail":"Do you want to get out of jail?", 
-    "yes":"Yes.", 
-    "no": "No.", 
-    "name": "Name",
-    "balance": "Balance", 
-    "playerIsInJail":"You're in jail HAHA", 
-    "housesBuilt": "Houses built:" ,
-    "rent": "rent:",
-    "mortagedBy":" Mortgage by:", 
-    "ownedBy": "ownedBy", 
-    "station": "The station:", 
+    "yes":"Yes", 
+    "no": "No", 
+    "name": "Name: ",
+    "balance": "Balance: ", 
+    "playerIsInJail": "You're in jail", 
+    "housesBuilt": "Houses built: " ,
+    "rent": "Rent: ",
+    "mortagedBy":" Mortgage by: ", 
+    "ownedBy": "Owned by: ", 
+    "station": "The station: ", 
     "auctionedOff": " will now be auctioned off.", 
-    "bid":"Do you want to bid, Player ", 
+    "bid": "Do you want to bid, Player ", 
     "answerToBid": "? (enter 0 if no), current bid is ", 
-    "bidNotValid":"Your bid was not valid, you have been skipped!", 
+    "bidNotValid": "Your bid was not valid, you have been skipped!", 
     "player": "Player ", 
     "winner": "won with a price of ", 
     "offerProperty": "Do you want to buy this property ", 
     "propertyCost": ". At the cost of: ", 
-    "boughtProperty":"Yes, you bought the ","property":"property!",
-    "sellPropertyToBank":" Houses built on property must be sold in order to sell property. All houses on this property will now be sold.", 
-     "tradeWithAnotherPlayer":"Do you want to trade with another player?", 
-     "buyORSellProperty":"Do you want to sell or buy property?", 
-     "buyProperty": "Buy property", 
-     "whichPropertyDoYouWantToSell":"Which property do you want to sell", 
-     "cantSellProperty":"The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.",
-     "choosePlayerToSell": "Which player do you wish to sell to?",
-     "amountToPayForProperty":", how much do you want to pay for the property?",
-     "maxBuiltHouses":"How many houses do you want there to be on the property?", 
-     "toBuildMore":"Do you want to build more?", 
-     "cantBuildAnymore":"You are not able to build on any of your properties.", 
-     "buildOnProperty":"Do you want to build houses on a property?", 
-
-
-
-
-
-
-
+    "boughtProperty": "Yes, you bought the ",
+    "property": "property!",
+    "sellPropertyToBank": " Houses built on property must be sold in order to sell property. All houses on this property will now be sold.", 
+    "tradeWithAnotherPlayer": "Do you want to trade with another player?", 
+    "buyOrSellProperty": "Do you want to sell or buy property?", 
+    "buyProperty": "Buy property", 
+    "whichPropertyDoYouWantToSell": "Which property do you want to sell", 
+    "cantSellProperty": "The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.",
+    "choosePlayerToSell": "Which player do you wish to sell to?",
+    "amountToPayForProperty": ", how much do you want to pay for the property?",
+    "maxBuiltHouses": "How many houses do you want there to be on the property?", 
+    "toBuildMore": "Do you want to build more?", 
+    "cantBuildAnymore": "You are not able to build on any of your properties.", 
+    "buildOnProperty": "Do you want to build houses on a property?",
     "spaces": [{
-        "name": "Start",
+        "name": "Go",
         "type": 0,
-        "message": "Receive §200 when you pass Start.",
+        "message": "Receive §200 when you pass Go.",
         "color": "FFFFFF",
         "textColor": "C60000"
     },
@@ -356,12 +349,12 @@
     }
 ],
     "chanceCards": [{
-        "text": "You have been caught stealing from one of your fellow players. You are sent to jail and will not receive §200, if you pass Start.",
+        "text": "You have been caught stealing from one of your fellow players. You are sent to jail and will not receive §200, if you pass Go.",
         "type": 3,
         "space": 10
     },
     {
-        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
+        "text": "Go to Go. You will receive §200 when you pass Go on you next turn.",
         "type": 0,
         "space": 0
     },
@@ -456,7 +449,7 @@
         "amount": 5
     },
     {
-        "text": "Go to Start. You will receive §200 when you pass Start on you next turn.",
+        "text": "Go to Go. You will receive §200 when you pass Go on you next turn.",
         "type": 0,
         "space": 0
     },
