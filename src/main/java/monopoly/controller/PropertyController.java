@@ -233,7 +233,6 @@ public class PropertyController {
 	 */
 
 	public void trade(Player trader) {
-		// TODO: Implementer
 		boolean trade = gooey.getUserLeftButtonPressed(trader.getName() + ", do you want to trade with another player?", "Yes", "No");
 		while (trade) {
 			boolean sell = gooey.getUserLeftButtonPressed("Do you want to sell or buy property?", "Sell property", "Buy property");
