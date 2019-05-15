@@ -329,9 +329,7 @@ public class PropertyController {
 	    List<PropertySpace> propertiesYouCanBuildOn = new ArrayList<PropertySpace>();
 	    for (Color color : colors){
 	        List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
-	        for (Space space : controller.getGame().getBoard()){
-	            if (space instanceof PropertySpace){
-	                PropertySpace property = (PropertySpace) space;
+	        for (PropertySpace property : controller.getGame().getSpacesForType(PropertySpace.class)){
 	                if (property.getColour().equals(color)){
 	                    if(property.getOwner(controller.getGame()).equals(player)){
 	                        matchedProperties.add(property);
@@ -341,7 +339,6 @@ public class PropertyController {
 	                        break;
                         }
                     }
-                }
             }
 	        propertiesYouCanBuildOn.addAll(matchedProperties);
         }
@@ -349,7 +346,9 @@ public class PropertyController {
 	        do {
                 PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn();
                 if (chosen != null) {
-                    int houseChosen = controller.view.getGUI().getUserInteger("How many houses do you want there to be on the property?", 0, 5);
+                    int max = chosen.getHousesBuilt() + player.getAccountBalance()/(chosen.getPrice()/2);
+                    if (max > 5) max = 5;
+                    int houseChosen = controller.view.getGUI().getUserInteger("How many houses do you want there to be on the property?", 0, max);
                     if (houseChosen > chosen.getHousesBuilt()) {
                         buildHouses(chosen, houseChosen - chosen.getHousesBuilt());
                     } else if (houseChosen < chosen.getHousesBuilt()) {
@@ -358,7 +357,5 @@ public class PropertyController {
                 }
             } while (gooey.getUserLeftButtonPressed("Do you want to build more?", "yes", "no"));
         } else gooey.showMessage("You are not able to build on any of your properties.");
-	    gooey.showMessage("Do you want to build houses on a property?");
-		// TODO: Tjek om spiller rent faktisk har råd til at bygge
 	}
 }
