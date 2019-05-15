@@ -48,9 +48,9 @@ public class Game extends Model implements Subject {
         g.set(Game.Properties.CURRENT_TURN.getProperty(), 0);
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
         g.set(Properties.JSON_PACK.getProperty(), languagePack.getPackName());
-        CardStack chanceStack = CardStack.create(jsonData.getJSONObject(JSONKey.CHANCE_CARDS.getKey()), g, true, 0);
-        CardStack communityStack = CardStack.create(jsonData.getJSONObject(JSONKey.COMMUNITY_CHEST_CARDS.getKey()), g,
-                false, 0);
+        g.save();
+        CardStack chanceStack = CardStack.create(jsonData, g, true, 0);
+        CardStack communityStack = CardStack.create(jsonData, g, false, 0);
         JSONSpaceFactory.createSpaces(jsonData, g, chanceStack, communityStack);
         for (int i = 0; i < playerCount; i++) {
             Player newPlayer = Player.newPlayer("Player " + (i + 1), i, 2000);
@@ -108,8 +108,7 @@ public class Game extends Model implements Subject {
 
     public void addPlayer(Player player) {
         this.add(player);
-        this.players.add(player);
-
+        this.getPlayers().add(player);
     }
 
     public List<Player> getPlayers() {
@@ -176,13 +175,19 @@ public class Game extends Model implements Subject {
         List<Space> ownedProperty = new ArrayList<Space>();
         for (Space boardSpace : board) {
             if (boardSpace instanceof PropertySpace) {
-                long ownerID = ((PropertySpace) boardSpace).getOwner(this).getLongId();
-                if (player.getLongId() == ownerID)
-                    ownedProperty.add(boardSpace);
+                Player owner = ((PropertySpace) boardSpace).getOwner(this);
+                if (owner != null) {
+                    long ownerID = owner.getLongId();
+                    if (player.getLongId() == ownerID)
+                        ownedProperty.add(boardSpace);
+                }
             } else if (boardSpace instanceof StationSpace) {
-                long ownerID = ((StationSpace) boardSpace).getOwner(this).getLongId();
-                if (player.getLongId() == ownerID)
-                    ownedProperty.add(boardSpace);
+                Player owner = ((StationSpace) boardSpace).getOwner(this);
+                if (owner != null) {
+                    long ownerID = owner.getLongId();
+                    if (player.getLongId() == ownerID)
+                        ownedProperty.add(boardSpace);
+                }
             }
         }
         return ownedProperty;

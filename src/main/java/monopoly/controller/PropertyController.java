@@ -18,11 +18,12 @@ import gui_main.GUI;
 
 public class PropertyController {
 	private GameController controller;
-	private GUI gooey = controller.view.getGUI();
+	private GUI gooey;
 	private JSONObject jsonData;
 
 	public PropertyController(GameController owner) {
 		this.controller = owner;
+		this.gooey = owner.view.getGUI();
 	}
 
 	/*

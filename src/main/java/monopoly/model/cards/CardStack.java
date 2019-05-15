@@ -38,6 +38,7 @@ public class CardStack extends Model {
         CardStack cardStack = new CardStack();
         cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), isChanceCardStack);
         cardStack.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), 0);
+        game.add(cardStack);
         if (isChanceCardStack) {
             JSONCardFactory.createChanceCards(cardData, cardStack);
         } else {
@@ -62,6 +63,7 @@ public class CardStack extends Model {
     }
 
     public Card drawCard() {
+        // TODO: DONT GIVE GET OUT OF JAIL CARDS WITH AN OWNER OUT
         this.setNextIndex(this.getNextIndex() + 1);
         if (this.getNextIndex() == this.getCards().size()) {
             // We get the cards, shuffle them and save their new position

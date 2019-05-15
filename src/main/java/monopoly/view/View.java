@@ -138,7 +138,7 @@ public class View implements Observer {
             languageChoices.put(text, file);
             stringChoices.add(text);
         }
-        String[] stringArray = (String[]) stringChoices.toArray();
+        String[] stringArray = stringChoices.toArray(new String[stringChoices.size()]);
         String choice = JOptionPane.showInputDialog(null, "Choose a language", "Choose language",
                 JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
         return languageChoices.get(choice);
@@ -151,7 +151,7 @@ public class View implements Observer {
             targets.put(p.getName(), p);
             choices.add(p.getName());
         }
-        String[] stringArray = (String[]) choices.toArray();
+        String[] stringArray = choices.toArray(new String[choices.size()]);
         String choice = JOptionPane.showInputDialog(null, "Which property do you want to build on?", "Choose",
                 JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
         return targets.get(choice);

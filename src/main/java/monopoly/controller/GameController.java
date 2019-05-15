@@ -7,15 +7,18 @@ import monopoly.model.spaces.*;
 import monopoly.view.View;
 
 public class GameController {
-    public CashController cashController = new CashController(this);
-    public MovementController movementController = new MovementController(this);
-    public PropertyController propertyController = new PropertyController(this);
+    public CashController cashController;
+    public MovementController movementController;
+    public PropertyController propertyController;
     public View view;
     private Game game;
 
     public GameController(Game game, View view) {
         this.game = game;
         this.view = view;
+        this.movementController = new MovementController(this);
+        this.cashController = new CashController(this);
+        this.propertyController = new PropertyController(this);
     }
 
     public Game getGame() {
