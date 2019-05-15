@@ -2,7 +2,6 @@ package monopoly.controller;
 
 import monopoly.model.Game;
 import monopoly.model.Player;
-import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import monopoly.view.View;
 
@@ -51,7 +50,7 @@ public class GameController {
                 }
                 // Kom spiller i fængsel i sit ryk?
                 if (!playerWithTurn.isInJail()) {
-                    propertyController.trade();
+                    propertyController.trade(playerWithTurn);
                     propertyController.offerToBuild(playerWithTurn);
                 }
             } 
