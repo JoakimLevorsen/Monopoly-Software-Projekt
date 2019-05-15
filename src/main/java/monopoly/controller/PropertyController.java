@@ -6,8 +6,8 @@ import monopoly.model.spaces.StationSpace;
 import resources.json.JSONKey;
 import monopoly.model.spaces.Space;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -230,7 +230,46 @@ public class PropertyController {
 		// TODO: Implementer
 	}
 
-	public void offerToBuild() {
-		// TODO: Implementer
+	public void offerToBuild(Player player) {
+        Set<Color> colors = new HashSet<Color>();
+	    for (StationSpace property : player.getOwnedProperties(controller.getGame())){
+	        if (property instanceof PropertySpace){
+	            colors.add(((PropertySpace) property).getColour());
+            }
+        }
+	    List<PropertySpace> propertiesYouCanBuildOn = new ArrayList<PropertySpace>();
+	    for (Color color : colors){
+	        List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
+	        for (Space space : controller.getGame().getBoard()){
+	            if (space instanceof PropertySpace){
+	                PropertySpace property = (PropertySpace) space;
+	                if (property.getColour().equals(color)){
+	                    if(property.getOwner(controller.getGame()).equals(player)){
+	                        matchedProperties.add(property);
+
+                        } else {
+	                        matchedProperties.clear();
+	                        break;
+                        }
+                    }
+                }
+            }
+	        propertiesYouCanBuildOn.addAll(matchedProperties);
+        }
+	    if (!propertiesYouCanBuildOn.isEmpty()){
+	        do {
+                PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn();
+                if (chosen != null) {
+                    int houseChosen = controller.view.getGUI().getUserInteger("How many houses do you want there to be on the property?", 0, 5);
+                    if (houseChosen > chosen.getHousesBuilt()) {
+                        buildHouses(chosen, houseChosen - chosen.getHousesBuilt());
+                    } else if (houseChosen < chosen.getHousesBuilt()) {
+                        sellHouses(chosen, chosen.getHousesBuilt() - houseChosen);
+                    }
+                }
+            } while (gooey.getUserLeftButtonPressed("Do you want to build more?", "yes", "no"));
+        } else gooey.showMessage("You are not able to build on any of your properties.");
+	    gooey.showMessage("Do you want to build houses on a property?");
+		// TODO: Tjek om spiller rent faktisk har råd til at bygge
 	}
 }

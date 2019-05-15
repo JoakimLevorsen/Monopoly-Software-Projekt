@@ -148,6 +148,10 @@ public class View implements Observer {
         return languageChoices.get(choice);
     }
 
+    public PropertySpace whichPropertyDoWantToBuildOn(){
+        return null;
+    }
+
     /*
      * View: opdaterer brættet
      * 
