@@ -34,7 +34,7 @@ public class CardStack extends Model {
         }
     }
 
-    public static CardStack create(JSONObject cardData, Game game,boolean isChanceCardStack, int nextCardIndex) {
+    public static CardStack create(JSONObject cardData, Game game, boolean isChanceCardStack, int nextCardIndex) {
         CardStack cardStack = new CardStack();
         cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), isChanceCardStack);
         cardStack.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), 0);
@@ -55,7 +55,7 @@ public class CardStack extends Model {
         List<C> matches = new ArrayList<C>();
         for (Card card : getCards()) {
             if (type.isInstance(card)) {
-                matches.add((C)card);
+                matches.add((C) card);
             }
         }
         return matches;

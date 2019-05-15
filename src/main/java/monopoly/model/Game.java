@@ -49,7 +49,8 @@ public class Game extends Model implements Subject {
         g.set(Game.Properties.SAVE_NAME.getProperty(), saveName);
         g.set(Properties.JSON_PACK.getProperty(), languagePack.getPackName());
         CardStack chanceStack = CardStack.create(jsonData.getJSONObject(JSONKey.CHANCE_CARDS.getKey()), g, true, 0);
-        CardStack communityStack = CardStack.create(jsonData.getJSONObject(JSONKey.COMMUNITY_CHEST_CARDS.getKey()), g, false, 0);
+        CardStack communityStack = CardStack.create(jsonData.getJSONObject(JSONKey.COMMUNITY_CHEST_CARDS.getKey()), g,
+                false, 0);
         JSONSpaceFactory.createSpaces(jsonData, g, chanceStack, communityStack);
         for (int i = 0; i < playerCount; i++) {
             Player newPlayer = Player.newPlayer("Player " + (i + 1), i, 2000);
@@ -67,36 +68,37 @@ public class Game extends Model implements Subject {
     }
 
     /*
-     * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne" elementer.
+     * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
+     * elementer.
      *
      * @Author Anders Brandt, s185016
      */
     @Override
     public boolean saveIt() {
 
-        if(super.saveIt() == false){
+        if (super.saveIt() == false) {
             return false;
         }
 
-        if (players != null){
-            for (Player player : players){
-                if(player.saveIt() == false){
+        if (players != null) {
+            for (Player player : players) {
+                if (player.saveIt() == false) {
                     return false;
                 }
             }
         }
 
-        if (stacks != null){
-            for (CardStack cardStack : stacks){
-                if(cardStack.saveIt() == false){
+        if (stacks != null) {
+            for (CardStack cardStack : stacks) {
+                if (cardStack.saveIt() == false) {
                     return false;
                 }
             }
         }
 
-        if (board != null){
-            for (Space space : board){
-                if(space.saveIt() == false){
+        if (board != null) {
+            for (Space space : board) {
+                if (space.saveIt() == false) {
                     return false;
                 }
             }
@@ -131,7 +133,7 @@ public class Game extends Model implements Subject {
         List<C> matches = new ArrayList<C>();
         for (Space space : getBoard()) {
             if (type.isInstance(space)) {
-                matches.add((C)space);
+                matches.add((C) space);
             }
         }
         return matches;
@@ -194,7 +196,8 @@ public class Game extends Model implements Subject {
     public JSONObject getLanguageData() throws JSONException {
         String packName = this.getString(Properties.JSON_PACK.getProperty());
         JSONFile file = JSONFile.getFile(packName);
-        if (file == null) throw new JSONException("Json pakken med navnet " + packName + " was not found");
+        if (file == null)
+            throw new JSONException("Json pakken med navnet " + packName + " was not found");
         ResourceManager rm = new ResourceManager();
         return rm.readFile(file);
     }

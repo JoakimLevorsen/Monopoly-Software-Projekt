@@ -52,7 +52,9 @@ public class GoToSpaceCard extends Card {
      *
      * @author Anders Brandt, S185016
      */
-    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
+    public String getText() {
+        return this.getString(Properties.TEXT.getProperty());
+    }
 
     public void execute(MovementController moveController, Player player) {
         moveController.goTo(moveController.controller.getGame().getBoard().get(getSpace()), false, player);

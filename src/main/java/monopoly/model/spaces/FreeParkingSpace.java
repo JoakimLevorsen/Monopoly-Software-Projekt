@@ -28,8 +28,10 @@ public class FreeParkingSpace extends Space {
             return this.value;
         }
     }
+
     /*
-     * performAction: Udbetaler gevinsten til spilleren samt nulstiller gevinst beløbet.
+     * performAction: Udbetaler gevinsten til spilleren samt nulstiller gevinst
+     * beløbet.
      *
      * @Author Anders Brandt, s185016
      */

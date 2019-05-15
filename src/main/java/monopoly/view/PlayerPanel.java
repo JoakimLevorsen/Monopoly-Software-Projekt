@@ -52,8 +52,10 @@ public class PlayerPanel extends JFrame {
 
         pLabel = new JLabel("Balance " + player.getAccountBalance());
         panel.add(pLabel);
-         if (player.isInJail()) { pLabel = new JLabel("You're in prison lmao");
-         panel.add(pLabel); }
+        if (player.isInJail()) {
+            pLabel = new JLabel("You're in prison lmao");
+            panel.add(pLabel);
+        }
 
         mainPanel.add(panel);
         this.getContentPane().setLayout(null);

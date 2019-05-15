@@ -47,7 +47,7 @@ public class View implements Observer {
 
             space.addObserver(this);
             spaceToField.put(space, guiFields[i++]);
-            
+
         }
 
         // create the players in the GUI
@@ -144,7 +144,7 @@ public class View implements Observer {
         return languageChoices.get(choice);
     }
 
-    public PropertySpace whichPropertyDoWantToBuildOn(){
+    public PropertySpace whichPropertyDoWantToBuildOn() {
         return null;
     }
 
@@ -206,6 +206,7 @@ public class View implements Observer {
      * @author Ekkart Kindler
      * 
      * @author Anders Brandt s185016
+     * 
      * @author Cecilie Krog Drejer, s185032
      */
     private void updateProperty(StationSpace property) {

@@ -23,7 +23,7 @@ public class GameController {
     }
 
     public void play() {
-        while(playersLeft() > 1) {
+        while (playersLeft() > 1) {
             int currentPlayerTurn = game.getCurrentTurn();
             Player playerWithTurn = getGame().getPlayers().get(currentPlayerTurn);
             // Hvis spilleren er gået konkurs, ignorer dem
@@ -38,9 +38,9 @@ public class GameController {
                     do {
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
-                            for (Space space: game.getBoard()) {
+                            for (Space space : game.getBoard()) {
                                 if (space instanceof JailSpace) {
-                                    ((JailSpace)space).jail(playerWithTurn);
+                                    ((JailSpace) space).jail(playerWithTurn);
                                 }
                             }
                         } else {
@@ -54,11 +54,12 @@ public class GameController {
                     propertyController.trade(playerWithTurn);
                     propertyController.offerToBuild(playerWithTurn);
                 }
-            } 
+            }
             incrementTurn(currentPlayerTurn);
             if (!game.saveIt()) {
                 System.out.println("Save of game failed");
-            };
+            }
+            ;
         }
     }
 
@@ -74,17 +75,18 @@ public class GameController {
         DiceRoll r = new DiceRoll();
         if (r.isDoubles()) {
             view.getGUI().showMessage("Du slog dobbelt og kom gratis ud");
-            for (Space space: game.getBoard()) {
+            for (Space space : game.getBoard()) {
                 if (space instanceof JailSpace) {
-                    ((JailSpace)space).release(player);
+                    ((JailSpace) space).release(player);
                 }
             }
         } else {
             if (view.getGUI().getUserLeftButtonPressed("Vil du ud af fængsel?", "Ja", "Nej")) {
                 GetOutOfJailCard jailCard = player.getGetOutOfJailCard(game);
-                if (jailCard == null){
+                if (jailCard == null) {
                     player.changeAccountBalance(-50);
-                } else jailCard.setOwner(null);
+                } else
+                    jailCard.setOwner(null);
                 game.getSpacesForType(JailSpace.class).get(0).release(player);
             }
         }
@@ -95,8 +97,8 @@ public class GameController {
         int roll2;
 
         public DiceRoll() {
-            this.roll1 = (int)(Math.random() * 6 + 1);
-            this.roll2 = (int)(Math.random() * 6 + 1);
+            this.roll1 = (int) (Math.random() * 6 + 1);
+            this.roll2 = (int) (Math.random() * 6 + 1);
             view.getGUI().setDice(roll1, roll2);
         }
 
@@ -104,13 +106,16 @@ public class GameController {
             return roll1 == roll2;
         }
 
-        public int sum() {return roll1 + roll2;}
+        public int sum() {
+            return roll1 + roll2;
+        }
     }
 
     public int playersLeft() {
         int count = 0;
         for (Player player : getGame().getPlayers()) {
-            if (!player.isBroke()) count++;
+            if (!player.isBroke())
+                count++;
         }
         return count;
     }

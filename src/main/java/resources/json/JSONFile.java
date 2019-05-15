@@ -25,7 +25,8 @@ public enum JSONFile {
 
     public static JSONFile getFile(String name) {
         for (JSONFile file : JSONFile.values()) {
-            if (file.getPackName().equals(name)) return file;
+            if (file.getPackName().equals(name))
+                return file;
         }
         return null;
     }

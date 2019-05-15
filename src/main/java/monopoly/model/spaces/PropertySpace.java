@@ -70,13 +70,14 @@ public class PropertySpace extends StationSpace {
     public Color getColour() {
         String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
         return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
-            Integer.valueOf(hex.substring(4, 6), 16));
+                Integer.valueOf(hex.substring(4, 6), 16));
     }
 
     /*
      * getName: Henter lejen for ejendommen.
      * 
      * @Author Anders Brandt, s185016
+     * 
      * @Author Joakim Levorsen, s185023
      */
     public int getRent(Game game) {
@@ -95,11 +96,10 @@ public class PropertySpace extends StationSpace {
     }
 
     /*
-    SetBuildLevel:
-    Sætter antallet af huse bygget på ejendommen.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * SetBuildLevel: Sætter antallet af huse bygget på ejendommen.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void setBuildLevel(int amount) {
         this.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), amount);

@@ -35,7 +35,7 @@ public class CardSpace extends Space {
         return this.getInteger(CardSpace.Properties.BOARD_POSITION.getProperty()).intValue();
     }
 
-    public long getCardStackId(){
+    public long getCardStackId() {
         return this.getLong(Properties.CARD_STACK_ID.getProperty()).longValue();
     }
 
@@ -62,8 +62,8 @@ public class CardSpace extends Space {
     @Override
     public void performAction(GameController controller, Player player) {
 
-        for (CardStack stack : controller.getGame().getCardStacks()){
-            if (stack.getLongId() == this.getCardStackId()){
+        for (CardStack stack : controller.getGame().getCardStacks()) {
+            if (stack.getLongId() == this.getCardStackId()) {
                 Card drawnCard = stack.drawCard();
                 controller.view.getGUI().displayChanceCard(drawnCard.getText());
                 drawnCard.execute(controller.movementController, player);

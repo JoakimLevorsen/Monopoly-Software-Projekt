@@ -32,8 +32,8 @@ public class GoToJailSpace extends Space {
     @Override
     public void performAction(GameController controller, Player player) {
         JailSpace target = null;
-        for (Space space : controller.getGame().getBoard()){
-            if (space instanceof JailSpace){
+        for (Space space : controller.getGame().getBoard()) {
+            if (space instanceof JailSpace) {
                 target = (JailSpace) space;
             }
         }

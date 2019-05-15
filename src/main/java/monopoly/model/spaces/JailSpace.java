@@ -31,7 +31,7 @@ public class JailSpace extends Space {
 
     @Override
     public void performAction(GameController controller, Player player) {
-        //Da man bare på besøg, sker der ikke noget når man lander på dette felt.
+        // Da man bare på besøg, sker der ikke noget når man lander på dette felt.
     }
 
     public static JailSpace create(int position) {
