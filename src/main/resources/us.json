@@ -1,5 +1,6 @@
 {
     "test": "OK",
+    "startPayment": 200,
     "currentlyBroke": "You are currently broke, but you own several spaces on the board. Which space do you want to process?",
     "playerBrokeTitle": "Player Broke: Save Yourself",
     "sellProperty": "Sell property",

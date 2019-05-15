@@ -1,5 +1,6 @@
 {
     "test": "OK",
+    "startPayment": 200,
     "currentlyBroke": "Du er i øjeblikket gået konkurs, men du ejer flere felter på brættet. Hvilket felt vil du bearbejde?",
     "playerBrokeTitle": "Spiller Konkurs: Red Dig Selv",
     "sellProperty": "Sælg ejendom",
