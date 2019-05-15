@@ -28,11 +28,6 @@ public class PropertySpace extends StationSpace {
         }
     }
 
-    @Override
-    public void performAction(GameController controller, Player player) {
-        // TODO: Maybe implement behavior here depending on rules.
-    }
-
     public static PropertySpace create(int position, String name, int price, int baseRent, String colour) {
         PropertySpace space = new PropertySpace();
         space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);

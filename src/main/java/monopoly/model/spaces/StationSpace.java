@@ -32,7 +32,12 @@ public class StationSpace extends Space {
 
     @Override
     public void performAction(GameController controller, Player player) {
-        // TODO: Maybe implement behavior here depending on rules.
+        Player owner = this.getOwner(controller.getGame());
+        if (owner != null) {
+            if (!owner.equals(player)) {
+                controller.cashController.payment(player, this.getRent(), owner);
+            }
+        }
     }
 
     public static StationSpace create(int position, String name, int price, int baseRent) {
