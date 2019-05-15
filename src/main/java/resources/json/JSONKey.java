@@ -11,7 +11,7 @@ public enum JSONKey {
     MORTGAGE_PROPERTY("mortgageProperty"), YOU_HAVE_CHOSEN("youHaveChosen"), WHAT_DO("whatDo"), HOUSES_ON_PROPERTY("housesOnProperty"), SPACES("spaces"), 
     NAME("name"), TYPE("type"), PRICE("price"),BASE_RENT("baseRent"), VALUE("value"), COLOR("color"), TEXT_COLOR("textColor"), IMAGE("image"),
     CHANCE_CARDS("chanceCards"), COMMUNITY_CHEST_CARDS("communityChestCards"), TEXT("text"), SPACE("space"),
-    AMOUNT("amount"), TAX("tax"), ROLLED_DOUBLE("rolledDouble"), OUT_OF_JAIL("OutOfJail"), YES("yes)"), NO("no"), BALANCE("balance"), PLAYER_IS_IN_JAIL("playerIsInJail"),
+    AMOUNT("amount"), TAX("tax"), ROLLED_DOUBLE("rolledDouble"), OUT_OF_JAIL("OutOfJail"), YES("yes"), NO("no"), BALANCE("balance"), PLAYER_IS_IN_JAIL("playerIsInJail"),
     HOUSES_BUILT ("housesBuilt"), RENT ("rent"), MORTGAGE_BY("mortgageBY"), 
     OWNED_BY("ownedby"),
     STATION ("station"), 
