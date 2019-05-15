@@ -107,7 +107,7 @@ public class View implements Observer {
             }
         } else {
             String saveName = chooseGameGUI.getUserString("Angiv et navn til dit nye spil.");
-            int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 1, 4);
+            int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 2, 4);
             try {
                 JSONFile language = chooseLanguage();
                 JSONObject languageData = rm.readFile(language);
