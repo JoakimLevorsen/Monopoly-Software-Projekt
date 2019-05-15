@@ -1,5 +1,6 @@
 package monopoly.model.cards;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,6 +44,21 @@ public class CardStack extends Model {
             JSONCardFactory.createCommunityChestCards(cardData, cardStack);
         }
         return cardStack;
+    }
+
+    /*
+     * getCardForType: Finder alle kort af en type i sig selv.
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public <C extends Card> List<C> getCardForType(Class<C> type) {
+        List<C> matches = new ArrayList<C>();
+        for (Card card : getCards()) {
+            if (type.isInstance(card)) {
+                matches.add((C)card);
+            }
+        }
+        return matches;
     }
 
     public Card drawCard() {
