@@ -125,18 +125,18 @@ public class View implements Observer {
         List<String> stringChoices = new ArrayList<String>();
         for (JSONFile file : JSONFile.values()) {
             String text;
-            switch (file.getFileName()) {
+            switch (file.getPackName()) {
             case "da":
                 text = "Dansk";
                 break;
-            case "en":
-                text = "English";
+            case "uk":
+                text = "English (UK)";
                 break;
-            case "am":
-                text = "American";
+            case "us":
+                text = "English (US)";
                 break;
             default:
-                text = "Unknown Language: " + file.getFileName();
+                text = "Unknown Language: " + file.getPackName();
             }
             languageChoices.put(text, file);
             stringChoices.add(text);
