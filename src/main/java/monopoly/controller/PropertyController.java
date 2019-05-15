@@ -375,7 +375,7 @@ public class PropertyController {
 		}
 		if (!propertiesYouCanBuildOn.isEmpty()) {
 			do {
-				PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn();
+				PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn(propertiesYouCanBuildOn);
 				if (chosen != null) {
 					int max = chosen.getHousesBuilt() + player.getAccountBalance() / (chosen.getPrice() / 2);
 					if (max > 5)

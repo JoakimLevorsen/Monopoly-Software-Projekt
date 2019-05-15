@@ -144,8 +144,17 @@ public class View implements Observer {
         return languageChoices.get(choice);
     }
 
-    public PropertySpace whichPropertyDoWantToBuildOn() {
-        return null;
+    public PropertySpace whichPropertyDoWantToBuildOn(List<PropertySpace> possibleChoices) {
+        HashMap<String, PropertySpace> targets = new HashMap<String, PropertySpace>();
+        List<String> choices = new ArrayList<String>();
+        for (PropertySpace p : possibleChoices) {
+            targets.put(p.getName(), p);
+            choices.add(p.getName());
+        }
+        String[] stringArray = (String[]) choices.toArray();
+        String choice = JOptionPane.showInputDialog(null, "Which property do you want to build on?", "Choose",
+                JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
+        return targets.get(choice);
     }
 
     /*
