@@ -14,7 +14,7 @@ public class GameController {
     public PropertyController propertyController;
     public View view;
     private Game game;
-    private JSONObject jsonData; 
+    private JSONObject jsonData;
 
     public GameController(Game game, View view) {
         this.game = game;
@@ -43,6 +43,8 @@ public class GameController {
                     DiceRoll r;
                     int doubleCount = 0;
                     do {
+                        //TODO: nedenstående er udkommenteret for hurtig debugging. Fjern kommentar inden aflevering
+                        //view.getGUI().showMessage(playerWithTurn.getName() + ", roll the dice");
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
                             for (Space space : game.getBoard()) {
