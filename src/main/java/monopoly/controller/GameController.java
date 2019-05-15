@@ -52,7 +52,7 @@ public class GameController {
                 // Kom spiller i fængsel i sit ryk?
                 if (!playerWithTurn.isInJail()) {
                     propertyController.trade();
-                    propertyController.offerToBuild();
+                    propertyController.offerToBuild(playerWithTurn);
                 }
             } 
             incrementTurn(currentPlayerTurn);

@@ -110,7 +110,7 @@ public class PropertyController {
         if (didChoose) {
             gooey.showMessage("Yeah, you bought the" + property.getName() + "property!");
             controller.cashController.paymentToBank(player, property.getPrice());
-            property.setOwner(player);
+			property.setOwner(player);
 			player.addToOwnedProperties(property, controller.getGame());
         }
     }
@@ -226,8 +226,45 @@ public class PropertyController {
 		}
 	}
 
-	public void trade() {
+	public void trade(Player trader) {
 		// TODO: Implementer
+		HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
+		boolean trade = gooey.getUserLeftButtonPressed("Do you want to trade with another player?", "Yes", "No");
+		while (trade) {
+			boolean sell = gooey.getUserLeftButtonPressed("Do you want to sell or buy property?", "Sell property", "Buy property");
+			if (sell) {
+				ArrayList<StationSpace> traderOwnedProperties = trader.getOwnedProperties(controller.getGame());
+				String[] names = new String[traderOwnedProperties.size()];
+				for (int i = 0; i < traderOwnedProperties.size(); i++) {
+					names[i] = traderOwnedProperties.get(i).getName();
+					nameToOwnableSpace.put(names[i], traderOwnedProperties.get(i));
+				}
+				String selection = JOptionPane.showInputDialog(null,
+					"Which property do you wish to sell?",
+					"Sell property", JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
+				if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
+					gooey.showMessage("The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.");
+					sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
+				}
+				HashMap<String, Player> nameToPlayer = new HashMap<>();
+				List<Player> otherPlayers = controller.getGame().getPlayers();
+				otherPlayers.remove(trader);
+				String[] otherPlayersNames = new String[otherPlayers.size()];
+				for (int i = 0; i < otherPlayers.size(); i++) {
+					otherPlayersNames[i] = otherPlayers.get(i).getName();
+					nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
+				}
+				String choice = JOptionPane.showInputDialog(null, "Which player do you wish to sell to?", "Sell property", JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
+				Player tradee = nameToPlayer.get(choice);
+				int amount = gooey.getUserInteger(tradee.getName() + ", how much do you wish to pay for the property?", 0, tradee.getAccountBalance());
+				trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
+				selectedSpace.removeOwner(controller.getGame());
+				tradee.addToOwnedProperties(selectedSpace, controller.getGame());
+				selectedSpace.setOwner(tradee);
+				controller.cashController.payment(tradee, amount, trader);
+			}
+		}
 	}
     /*
      * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine ejendomme.
