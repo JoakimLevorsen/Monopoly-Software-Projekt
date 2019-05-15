@@ -127,7 +127,7 @@ public class Game extends Model implements Subject {
         return null;
     }
 
-    public <C extends Space> List<C> getSpaceForType(Class<C> type) {
+    public <C extends Space> List<C> getSpacesForType(Class<C> type) {
         List<C> matches = new ArrayList<C>();
         for (Space space : getBoard()) {
             if (type.isInstance(space)) {
