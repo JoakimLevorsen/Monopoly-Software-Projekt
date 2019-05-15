@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class View implements Observer {
                     JSONFile language = chooseLanguage();
                     JSONObject languageData = rm.readFile(language);
                     return Game.newGame(saveName, language, languageData, playerAmount);
-                } catch (resources.json.JSONException e) {
+                } catch (JSONException e) {
                     System.out.println("Could not find resource");
                     System.err.println(e);
                     return null;
@@ -113,7 +114,7 @@ public class View implements Observer {
                 JSONFile language = chooseLanguage();
                 JSONObject languageData = rm.readFile(language);
                 return Game.newGame(saveName, language, languageData, playerAmount);
-            } catch (resources.json.JSONException e) {
+            } catch (JSONException e) {
                 System.out.println("Could not find resource");
                 System.err.println(e);
                 return null;
@@ -121,7 +122,7 @@ public class View implements Observer {
         }
     }
 
-    public static JSONFile chooseLanguage() throws resources.json.JSONException {
+    public static JSONFile chooseLanguage() throws JSONException {
         HashMap<String, JSONFile> languageChoices = new HashMap<String, JSONFile>();
         List<String> stringChoices = new ArrayList<String>();
         for (JSONFile file : JSONFile.values()) {
