@@ -107,8 +107,8 @@ public class Game extends Model implements Subject {
     }
 
     public void addPlayer(Player player) {
-        this.add(player);
         this.getPlayers().add(player);
+        this.add(player);
     }
 
     public List<Player> getPlayers() {
