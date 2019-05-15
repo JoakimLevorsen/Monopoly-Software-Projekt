@@ -7,7 +7,7 @@ Enum der indeholder alle JSON fil navne i projektet, det kan også retunere filn
 @author Joakim Levorsen, S185023
 */
 public enum JSONFile {
-    DA("da"), EN("en"), AM("am");
+    DA("da"), UK("uk"), US("us");
 
     private final String value;
 
