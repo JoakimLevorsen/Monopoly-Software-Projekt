@@ -21,7 +21,7 @@ public class JSONCardFactory {
         JSONArray chanceCardData = JSONData.getJSONArray(JSONKey.CHANCE_CARDS.getKey());
         ArrayList<Card> chanceCards = new ArrayList<Card>();
 
-        for (int i = 0; i < JSONData.length(); i++) {
+        for (int i = 0; i < chanceCardData.length(); i++) {
             JSONObject chanceCard = chanceCardData.getJSONObject(i);
             int type = chanceCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
@@ -62,7 +62,7 @@ public class JSONCardFactory {
         JSONArray communityChestCardData = JSONData.getJSONArray(JSONKey.COMMUNITY_CHEST_CARDS.getKey());
         ArrayList<Card> communityChestCards = new ArrayList<Card>();
 
-        for (int i = 0; i < JSONData.length(); i++) {
+        for (int i = 0; i < communityChestCardData.length(); i++) {
             JSONObject communityChestCard = communityChestCardData.getJSONObject(i);
             int type = communityChestCard.getInt(JSONKey.TYPE.getKey());
             switch (type) {
