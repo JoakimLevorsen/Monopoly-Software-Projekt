@@ -17,7 +17,6 @@ Et objekt til at hente alle start felter fra vores JSON resourcer.
 public class JSONSpaceFactory {
     public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack)
             throws JSONException {
-        // TODO: Fix
         JSONArray spaceData = boardData.getJSONArray(JSONKey.SPACES.getKey());
         Space[] resultSet = new Space[spaceData.length()];
         int startPayment = boardData.getInt(JSONKey.START_PAYMENT.getKey());

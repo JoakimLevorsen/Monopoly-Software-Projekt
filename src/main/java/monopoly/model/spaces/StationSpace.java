@@ -35,7 +35,7 @@ public class StationSpace extends Space {
         Player owner = this.getOwner(controller.getGame());
         if (owner != null) {
             if (!owner.equals(player)) {
-                controller.cashController.payment(player, this.getRent(), owner);
+                controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
             }
         }
     }
@@ -112,11 +112,16 @@ public class StationSpace extends Space {
      * 
      * @Author Anders Brandt, s185016
      */
-    // TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer
-    // spilleren ejer.
-    public int getRent() {
+    public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
-        int amountOwned = 1; //TODO: <-- Fix this
+        int amountOwned = 0;
+        Player owner = this.getOwner(game);
+        if (owner == null) return 0;
+        for (Space space : game.getBoard()) {
+            if (space instanceof StationSpace && !(space instanceof PropertySpace)) {
+                if (((StationSpace)space).getOwner(game).equals(owner)) amountOwned++;
+            }
+        }
         return baseRent * amountOwned;
     }
 

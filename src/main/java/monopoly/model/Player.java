@@ -10,9 +10,7 @@ import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
-import monopoly.model.spaces.PropertySpace;
-import monopoly.model.spaces.Space;
-import monopoly.model.spaces.StationSpace;
+import monopoly.model.spaces.*;
 
 /*
 Player:
