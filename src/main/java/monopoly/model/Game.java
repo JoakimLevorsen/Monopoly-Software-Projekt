@@ -129,11 +129,11 @@ public class Game extends Model implements Subject {
         return null;
     }
 
-    public <C extends Space> List<C> getSpacesForType(Class<C> type) {
-        List<C> matches = new ArrayList<C>();
+    public <S extends Space> List<S> getSpacesForType(Class<S> type) {
+        List<S> matches = new ArrayList<S>();
         for (Space space : getBoard()) {
             if (type.isInstance(space)) {
-                matches.add((C) space);
+                matches.add((S) space);
             }
         }
         return matches;
