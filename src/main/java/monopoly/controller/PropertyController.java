@@ -75,14 +75,14 @@ public class PropertyController {
 	 */
 
 	public void mortgage(StationSpace property) {
-		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() == 0) {
-			Player owner = property.getOwner(controller.getGame());
-			int amount = property.getPrice() / 2;
-			controller.cashController.paymentFromBank(owner, amount);
-			property.setMortgaged(true);
-		} else {
-			
+		Player owner = property.getOwner(controller.getGame());
+		int amount = property.getPrice() / 2;
+		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() > 0) {
+			gooey.showMessage("A property cannot be mortgaged when houses are built on it. All houses will now be sold in order to mortgage the property.");
+			sellHouses((PropertySpace) property, ((PropertySpace) property).getHousesBuilt());
 		}
+		controller.cashController.paymentFromBank(owner, amount);
+		property.setMortgaged(true);
 	}
 
 	/*
@@ -94,8 +94,10 @@ public class PropertyController {
 	public void unmortgage(StationSpace property) {
 		Player owner = property.getOwner(controller.getGame());
 		int amount = (int) ((property.getPrice() / 2) * 1.1);
-		controller.cashController.paymentToBank(owner, amount);
-		property.setMortgaged(false);
+		if (owner.getAccountBalance() > amount) {
+			controller.cashController.paymentToBank(owner, amount);
+			property.setMortgaged(false);
+		}
 	}
 
 	/*
