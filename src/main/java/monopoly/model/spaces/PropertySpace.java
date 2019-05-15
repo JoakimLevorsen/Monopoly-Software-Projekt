@@ -1,6 +1,5 @@
 package monopoly.model.spaces;
 
-import monopoly.controller.GameController;
 import monopoly.model.*;
 
 import java.awt.*;
@@ -60,7 +59,6 @@ public class PropertySpace extends StationSpace {
                 return false;
             }
         }
-        // TODO: Mange flere gettere
         return true;
     }
 
@@ -81,7 +79,7 @@ public class PropertySpace extends StationSpace {
      * @Author Anders Brandt, s185016
      * @Author Joakim Levorsen, s185023
      */
-    public int getRent() {
+    public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         baseRent += (this.getHousesBuilt() * baseRent) / 2;
         return baseRent;
