@@ -32,13 +32,8 @@ public enum JSONKey {
     CHOOSE_PLAYER_TO_SELL("choosePlayerToSell"),
     AMOUNT_TO_PAY_FOR_PROPERTY("amountToPayForProperty"), 
     MAX_BUILT_HOUSES("maxBuiltHouses"),
-    TO_BUILD_MORE("toBuildMore"), 
-     CANT_BUILD_ANYMORE("cantBuildAnymore"), 
-     BUILD_ON_PROPERTY("buildOnYourProperty")
-
-
-
-    ; 
+    CANT_BUILD_ANYMORE("cantBuildAnymore"), 
+    BUILD_ON_PROPERTY("buildOnYourProperty"); 
 
     private final String keyValue;
 

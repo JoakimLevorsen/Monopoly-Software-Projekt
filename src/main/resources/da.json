@@ -38,8 +38,7 @@
     "cantSellProperty": "Den valgte ejendom har huse på og kan dderfor ikke sælges. Alle huse sælges nu for at sælge ejendommen.",
     "choosePlayerToSell": "Hvilken spiller vil du sælge til?",
     "amountToPayForProperty":", hvor meget vil du betale for ejendommen?",
-    "maxBuiltHouses": "Hvor mange huse skal der være på ejendommen?", 
-    "toBuildMore": "Vil du bygge mere?", 
+    "maxBuiltHouses": "Hvor mange huse skal der være på ejendommen?",
     "cantBuildAnymore": "Du kan ikke bygge på nogle af dine ejendomme.", 
     "buildOnProperty": "Vil du bygge huse på en ejendom?",
     "spaces": [{

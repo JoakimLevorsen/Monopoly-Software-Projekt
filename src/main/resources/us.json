@@ -38,8 +38,7 @@
     "cantSellProperty": "The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.",
     "choosePlayerToSell": "Which player do you wish to sell to?",
     "amountToPayForProperty": ", how much do you want to pay for the property?",
-    "maxBuiltHouses": "How many houses do you want there to be on the property?", 
-    "toBuildMore": "Do you want to build more?", 
+    "maxBuiltHouses": "How many houses do you want there to be on the property?",
     "cantBuildAnymore": "You are not able to build on any of your properties.", 
     "buildOnProperty": "Do you want to build houses on a property?",
     "spaces": [{
