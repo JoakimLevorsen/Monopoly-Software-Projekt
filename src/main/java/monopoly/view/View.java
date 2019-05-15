@@ -17,12 +17,14 @@ import gui_main.GUI;
 import monopoly.model.*;
 import monopoly.model.spaces.*;
 import resources.json.JSONFile;
+import resources.json.JSONKey;
 import resources.json.ResourceManager;
 
 public class View implements Observer {
 
     private Game game;
     private GUI gui;
+    private JSONObject jsonData; 
 
     private HashMap<Player, Integer> playerToPosition = new HashMap<>();
     private HashMap<Space, GUI_Field> spaceToField = new HashMap<>();
@@ -40,6 +42,7 @@ public class View implements Observer {
     public View(Game game, GUI gui) {
         this.game = game;
         this.gui = gui;
+        this.jsonData = game.getLanguageData(); 
         GUI_Field[] guiFields = gui.getFields();
 
         int i = 0;
@@ -220,11 +223,11 @@ public class View implements Observer {
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
                 if (property.isMortgaged()) {
-                    thisOwnableField.setOwnableLabel("Mortgaged by: ");
+                    thisOwnableField.setOwnableLabel(jsonData.getString(JSONKey.MORTGAGE_BY.getKey())); 
                     thisOwnableField.setOwnerName(property.getOwner(game).getName());
                     thisOwnableField.setBorder(Color.BLACK);
                 } else {
-                    thisOwnableField.setOwnableLabel("Owned by: ");
+                    thisOwnableField.setOwnableLabel(jsonData.getString(JSONKey.OWNED_BY.getKey()));
                     thisOwnableField.setOwnerName(property.getOwner(game).getName());
                     thisOwnableField.setBorder(property.getOwner(game).getColor());
                 }

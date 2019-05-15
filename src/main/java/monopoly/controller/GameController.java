@@ -5,6 +5,8 @@ import monopoly.model.Player;
 import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import monopoly.view.View;
+import resources.json.JSONKey;
+import org.json.JSONObject;
 
 public class GameController {
     public CashController cashController = new CashController(this);
@@ -12,10 +14,12 @@ public class GameController {
     public PropertyController propertyController = new PropertyController(this);
     public View view;
     private Game game;
+    private JSONObject jsonData; 
 
     public GameController(Game game, View view) {
         this.game = game;
         this.view = view;
+        this.jsonData = game.getLanguageData(); 
     }
 
     public Game getGame() {
@@ -73,14 +77,15 @@ public class GameController {
     public void prisonTurn(Player player) {
         DiceRoll r = new DiceRoll();
         if (r.isDoubles()) {
-            view.getGUI().showMessage("Du slog dobbelt og kom gratis ud");
+            view.getGUI().showMessage(jsonData.getString(JSONKey.ROLLED_DOUBLE.getKey()));
             for (Space space: game.getBoard()) {
                 if (space instanceof JailSpace) {
                     ((JailSpace)space).release(player);
                 }
             }
         } else {
-            if (view.getGUI().getUserLeftButtonPressed("Vil du ud af fængsel?", "Ja", "Nej")) {
+            if (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.OUT_OF_JAIL.getKey()), 
+            jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
                 // TODO: Alt det her
             }
         }
