@@ -56,6 +56,9 @@ public class GameController {
                 }
             } 
             incrementTurn(currentPlayerTurn);
+            if (!game.saveIt()) {
+                System.out.println("Save of game failed");
+            };
         }
     }
 
