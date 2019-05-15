@@ -2,6 +2,7 @@ package monopoly.controller;
 
 import monopoly.model.Game;
 import monopoly.model.Player;
+import monopoly.model.cards.GetOutOfJailCard;
 import monopoly.model.spaces.*;
 import monopoly.view.View;
 
@@ -80,7 +81,11 @@ public class GameController {
             }
         } else {
             if (view.getGUI().getUserLeftButtonPressed("Vil du ud af fængsel?", "Ja", "Nej")) {
-                // TODO: Alt det her
+                GetOutOfJailCard jailCard = player.getGetOutOfJailCard(game);
+                if (jailCard == null){
+                    player.changeAccountBalance(-50);
+                } else jailCard.setOwner(null);
+                game.getSpacesForType(JailSpace.class).get(0).release(player);
             }
         }
     }
