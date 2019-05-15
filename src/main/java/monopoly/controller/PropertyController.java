@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import gui_main.GUI;
 
 public class PropertyController {
-	private HashMap<String, Space> nameToSpace = new HashMap<>();
 	private GameController controller;
 	private GUI gooey = controller.view.getGUI();
 	private JSONObject jsonData;
@@ -64,7 +63,7 @@ public class PropertyController {
 			gooey.showMessage("Player " + (currentBidderIndex + 1) + " won with a price of " + topBid);
 			controller.cashController.paymentToBank(topBidder, topBid);
 			property.setOwner(topBidder);
-			topBidder.addToOwnedProperties(property);
+			topBidder.addToOwnedProperties(property, controller.getGame());
 			return;
 		}
 	}
@@ -112,6 +111,7 @@ public class PropertyController {
             gooey.showMessage("Yeah, you bought the" + property.getName() + "property!");
             controller.cashController.paymentToBank(player, property.getPrice());
             property.setOwner(player);
+			player.addToOwnedProperties(property, controller.getGame());
         }
     }
 	/*
@@ -128,7 +128,7 @@ public class PropertyController {
 		}
 		int amount = property.getPrice() / 2;
 		controller.cashController.paymentFromBank(owner, amount);
-		owner.removeFromOwnedProperties(property);
+		owner.removeFromOwnedProperties(property, controller.getGame());
 		property.removeOwner(controller.getGame());
 	}
 
@@ -182,7 +182,8 @@ public class PropertyController {
 	 */
 
 	public void playerBroke(Player failure) {
-		ArrayList<StationSpace> ownedProperties = failure.getOwnedProperties();
+		HashMap<String, Space> nameToSpace = new HashMap<>();
+		ArrayList<StationSpace> ownedProperties = failure.getOwnedProperties(controller.getGame());
 		do {
 			String[] names = new String[ownedProperties.size()];
 			for (int i = 0; i < ownedProperties.size(); i++) {
