@@ -1,7 +1,5 @@
 package monopoly.view;
 
-import gui_fields.GUI_Player;
-import monopoly.controller.GameController;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
