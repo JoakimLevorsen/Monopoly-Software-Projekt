@@ -229,7 +229,11 @@ public class PropertyController {
 	public void trade() {
 		// TODO: Implementer
 	}
-
+    /*
+     * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine ejendomme.
+     *
+     * @author Anders Brandt, s185016
+     */
 	public void offerToBuild(Player player) {
         Set<Color> colors = new HashSet<Color>();
 	    for (StationSpace property : player.getOwnedProperties(controller.getGame())){
