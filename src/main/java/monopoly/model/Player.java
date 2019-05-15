@@ -11,6 +11,7 @@ import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
 import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.Space;
 import monopoly.model.spaces.StationSpace;
 
 /*
@@ -94,7 +95,19 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public ArrayList<StationSpace> getOwnedProperties() {
+    public ArrayList<StationSpace> getOwnedProperties(Game game) {
+        if (ownedProperties == null) {
+            List<Space> allProperties = game.getBoard();
+            ownedProperties = new ArrayList<StationSpace>();
+            for (Space space : allProperties) {
+                if (space instanceof StationSpace) {
+                    StationSpace thisSpace = (StationSpace)space;
+                    if (thisSpace.getOwner(game) != null && thisSpace.getOwner(game).equals(this)) {
+                        ownedProperties.add(thisSpace);
+                    }
+                }
+            }        
+        }
         return ownedProperties;
     }
 
@@ -105,8 +118,9 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public void addToOwnedProperties(StationSpace property) {
-        ownedProperties.add(property);
+    public void addToOwnedProperties(StationSpace property, Game game) {
+        this.getOwnedProperties(game).add(property);
+        this.add(property);
     }
 
     /*
@@ -115,8 +129,9 @@ public class Player extends Model implements Subject {
      * @author Cecilie Krog Drejer, s185032
      */
 
-    public void removeFromOwnedProperties(StationSpace property) {
-        ownedProperties.remove(property);
+    public void removeFromOwnedProperties(StationSpace property, Game game) {
+        this.getOwnedProperties(game).remove(property);
+        this.remove(property);
     }
 
     public boolean hasOverdrawnAccount(){

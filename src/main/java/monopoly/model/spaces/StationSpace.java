@@ -50,7 +50,6 @@ public class StationSpace extends Space {
         return space;
     }
 
-    //TODO: look equals through
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof StationSpace))
