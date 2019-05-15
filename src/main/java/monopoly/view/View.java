@@ -47,15 +47,10 @@ public class View implements Observer {
 
         int i = 0;
         for (Space space : game.getBoard()) {
-            // TODO, here we assume that the games fields fit to the GUI's fields;
-            // the GUI fields should actually be created according to the game's
-            // fields
+
             space.addObserver(this);
             spaceToField.put(space, guiFields[i++]);
 
-            // TODO we should also register with the properties as observer; but
-            // the current version does not update anything for the spaces, so we do not
-            // register the view as an observer for now
         }
 
         // create the players in the GUI
@@ -146,14 +141,23 @@ public class View implements Observer {
             languageChoices.put(text, file);
             stringChoices.add(text);
         }
-        String[] stringArray = (String[]) stringChoices.toArray();
+        String[] stringArray = stringChoices.toArray(new String[stringChoices.size()]);
         String choice = JOptionPane.showInputDialog(null, "Choose a language", "Choose language",
                 JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
         return languageChoices.get(choice);
     }
 
-    public PropertySpace whichPropertyDoWantToBuildOn(){
-        return null;
+    public PropertySpace whichPropertyDoWantToBuildOn(List<PropertySpace> possibleChoices) {
+        HashMap<String, PropertySpace> targets = new HashMap<String, PropertySpace>();
+        List<String> choices = new ArrayList<String>();
+        for (PropertySpace p : possibleChoices) {
+            targets.put(p.getName(), p);
+            choices.add(p.getName());
+        }
+        String[] stringArray = choices.toArray(new String[choices.size()]);
+        String choice = JOptionPane.showInputDialog(null, "Which property do you want to build on?", "Choose",
+                JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
+        return targets.get(choice);
     }
 
     /*
@@ -214,6 +218,7 @@ public class View implements Observer {
      * @author Ekkart Kindler
      * 
      * @author Anders Brandt s185016
+     * 
      * @author Cecilie Krog Drejer, s185032
      */
     private void updateProperty(StationSpace property) {

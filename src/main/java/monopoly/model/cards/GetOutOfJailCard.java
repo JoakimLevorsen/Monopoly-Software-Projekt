@@ -47,12 +47,15 @@ public class GetOutOfJailCard extends Card {
         }
         return null;
     }
+
     /*
      * GetText: Returnerer teksten der står på kortet.
      *
      * @author Anders Brandt, S185016
      */
-    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
+    public String getText() {
+        return this.getString(Properties.TEXT.getProperty());
+    }
 
     public void setOwner(Player player) {
         this.add(player);

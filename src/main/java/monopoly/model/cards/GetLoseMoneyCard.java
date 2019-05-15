@@ -38,7 +38,9 @@ public class GetLoseMoneyCard extends Card {
      *
      * @author Anders Brandt, S185016
      */
-    public String getText(){ return this.getString(Properties.TEXT.getProperty()); }
+    public String getText() {
+        return this.getString(Properties.TEXT.getProperty());
+    }
 
     public int getAmount() {
         return this.getInteger(GetLoseMoneyCard.Properties.AMOUNT.getProperty());

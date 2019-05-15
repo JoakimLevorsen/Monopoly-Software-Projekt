@@ -5,7 +5,6 @@ import monopoly.model.spaces.JailSpace;
 import monopoly.model.spaces.Space;
 import monopoly.model.spaces.StartSpace;
 
-
 public class MovementController {
     public GameController controller;
 
@@ -41,23 +40,23 @@ public class MovementController {
      *
      * @Author Anders Brandt, s185016
      */
-        public void goToJail(Player player) {
-            JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
-            player.setBoardPosition(j.getBoardPosition());
-        }
+    public void goToJail(Player player) {
+        JailSpace j = (JailSpace) controller.getGame().getAll(JailSpace.class).load().get(0);
+        player.setBoardPosition(j.getBoardPosition());
+    }
 
     /*
      * goTo: rykker spilleren til et bestemt felt.
      *
      * @Author Anders Brandt, s185016
      */
-        public void goTo(Space space, Boolean ignoreStart, Player player) {
-            player.setBoardPosition(space.getBoardPosition());
-            space.performAction(controller, player);
-            if (player.getBoardPosition() > space.getBoardPosition() && !ignoreStart){
-                StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
-                player.changeAccountBalance(s.getPayment());
-            }
+    public void goTo(Space space, Boolean ignoreStart, Player player) {
+        player.setBoardPosition(space.getBoardPosition());
+        space.performAction(controller, player);
+        if (player.getBoardPosition() > space.getBoardPosition() && !ignoreStart) {
+            StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
+            player.changeAccountBalance(s.getPayment());
         }
-
     }
+
+}

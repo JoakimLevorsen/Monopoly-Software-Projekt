@@ -41,14 +41,13 @@ public class JSONCardFactory {
                 int spaceID = chanceCard.getInt(JSONKey.SPACE.getKey());
                 GoToJailCard newCard = GoToJailCard.create(text, spaceID);
                 chanceCards.add(newCard);
-                // TODO: Den her create kører en Create metode, siden det andet parameter er den
-                // forkerte type.
                 break;
             default:
                 throw new JSONException("Unexpected space type: " + type);
             }
         }
         Collections.shuffle(chanceCards);
+        chanceStack.save();
         for (int i = 0; i < chanceCards.size(); i++) {
             Card card = chanceCards.get(i);
             card.setStackPosition(i);
@@ -83,6 +82,7 @@ public class JSONCardFactory {
             }
         }
         Collections.shuffle(communityChestCards);
+        communityChestStack.save();
         for (int i = 0; i < communityChestCards.size(); i++) {
             Card card = communityChestCards.get(i);
             card.setStackPosition(i);

@@ -10,6 +10,8 @@ import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
 
 import designpatterns.Subject;
+import monopoly.model.cards.CardStack;
+import monopoly.model.cards.GetOutOfJailCard;
 import monopoly.model.spaces.*;
 
 /*
@@ -24,7 +26,8 @@ public class Player extends Model implements Subject {
     private ArrayList<StationSpace> ownedProperties;
 
     public enum Properties {
-        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"), JAIL_SPACE("jailSpace"), BROKE("broke");
+        NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"),
+        JAIL_SPACE("jailSpace"), BROKE("broke");
 
         private final String value;
 
@@ -74,7 +77,9 @@ public class Player extends Model implements Subject {
      *
      * @Author Anders Brandt, s185016
      */
-    public boolean isInJail() {return this.get(Properties.JAIL_SPACE.getProperty()) != null;}
+    public boolean isInJail() {
+        return this.get(Properties.JAIL_SPACE.getProperty()) != null;
+    }
 
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
@@ -99,12 +104,12 @@ public class Player extends Model implements Subject {
             ownedProperties = new ArrayList<StationSpace>();
             for (Space space : allProperties) {
                 if (space instanceof StationSpace) {
-                    StationSpace thisSpace = (StationSpace)space;
+                    StationSpace thisSpace = (StationSpace) space;
                     if (thisSpace.getOwner(game) != null && thisSpace.getOwner(game).equals(this)) {
                         ownedProperties.add(thisSpace);
                     }
                 }
-            }        
+            }
         }
         return ownedProperties;
     }
@@ -122,7 +127,8 @@ public class Player extends Model implements Subject {
     }
 
     /*
-     * RemoveFromOwnedProperties: Fjerner ejendom fra liste af ejendomme ejet af brugeren.
+     * RemoveFromOwnedProperties: Fjerner ejendom fra liste af ejendomme ejet af
+     * brugeren.
      *
      * @author Cecilie Krog Drejer, s185032
      */
@@ -132,7 +138,7 @@ public class Player extends Model implements Subject {
         this.remove(property);
     }
 
-    public boolean hasOverdrawnAccount(){
+    public boolean hasOverdrawnAccount() {
         return this.getAccountBalance() < 0;
     }
 
@@ -174,7 +180,20 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
-    // TODO: Tilføj klasse til at finde GetOutOfJailCard
+    /*
+     * getOutOfJailFreeCard: Finder get out of jailFreeCard.
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public GetOutOfJailCard getGetOutOfJailCard(Game game) {
+        for (CardStack stack : game.getCardStacks()) {
+            for (GetOutOfJailCard getOutCard : stack.getCardForType(GetOutOfJailCard.class)) {
+                if (getOutCard.getOwner(game).equals(this))
+                    return getOutCard;
+            }
+        }
+        return null;
+    }
 
     /**
      * Variabler og metoder til at implementere Subject

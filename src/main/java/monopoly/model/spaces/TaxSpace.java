@@ -21,8 +21,10 @@ public class TaxSpace extends Space {
             return this.value;
         }
     }
+
     /*
-     * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet til gevinsten på gratis parkering.
+     * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet
+     * til gevinsten på gratis parkering.
      *
      * @Author Anders Brandt, s185016
      */
@@ -84,4 +86,3 @@ public class TaxSpace extends Space {
         return observers;
     }
 }
-

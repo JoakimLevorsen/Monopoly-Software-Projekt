@@ -10,7 +10,6 @@ public final class Monopoly {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        // TODO: The game and stuffs.
         DatabaseBase.openBase();
         Game ourGame = View.chooseGame();
         GUI gameGUI = new GUI();

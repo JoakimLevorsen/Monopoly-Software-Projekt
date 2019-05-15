@@ -81,7 +81,7 @@ public class PlayerPanel extends JFrame {
                 propPanel.setBackground(propertySpace.getColour());
                 pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey())+ propertySpace.getHousesBuilt());
                 propPanel.add(pLabel);
-                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent());
+                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent(game));
                 propPanel.add(pLabel);
             }
 
@@ -90,7 +90,7 @@ public class PlayerPanel extends JFrame {
                 pLabel = new JLabel("" + stationSpace.getName());
                 propPanel.add(pLabel);
                 propPanel.setBackground(Color.getHSBColor(38, 38, 38));
-                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + stationSpace.getRent());
+                pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + stationSpace.getRent(game));
                 propPanel.add(pLabel);
             }
 

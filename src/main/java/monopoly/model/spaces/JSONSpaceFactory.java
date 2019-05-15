@@ -29,12 +29,13 @@ public class JSONSpaceFactory {
                 resultSet[i] = StartSpace.create(i, startPayment);
                 break;
             case 1:
-                resultSet[i] = PropertySpace.create(i, space.getInt(JSONKey.BASE_RENT.getKey()),
-                        space.getString(JSONKey.NAME.getKey()), "ff00ff");
+                resultSet[i] = PropertySpace.create(i, space.getString(JSONKey.NAME.getKey()),
+                        space.getInt(JSONKey.PRICE.getKey()), space.getInt(JSONKey.BASE_RENT.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 2:
-                resultSet[i] = StationSpace.create(i, space.getInt(JSONKey.BASE_RENT.getKey()),
-                        space.getString(JSONKey.NAME.getKey()));
+                resultSet[i] = StationSpace.create(i, space.getString(JSONKey.NAME.getKey()),
+                        space.getInt(JSONKey.PRICE.getKey()), space.getInt(JSONKey.BASE_RENT.getKey()));
                 break;
             case 3:
                 resultSet[i] = FreeParkingSpace.create(i);

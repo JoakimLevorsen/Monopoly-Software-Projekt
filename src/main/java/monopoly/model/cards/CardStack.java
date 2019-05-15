@@ -1,5 +1,6 @@
 package monopoly.model.cards;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,10 +34,11 @@ public class CardStack extends Model {
         }
     }
 
-    public static CardStack create(JSONObject cardData, Game game,boolean isChanceCardStack, int nextCardIndex) {
+    public static CardStack create(JSONObject cardData, Game game, boolean isChanceCardStack, int nextCardIndex) {
         CardStack cardStack = new CardStack();
         cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), isChanceCardStack);
         cardStack.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), 0);
+        game.add(cardStack);
         if (isChanceCardStack) {
             JSONCardFactory.createChanceCards(cardData, cardStack);
         } else {
@@ -45,7 +47,23 @@ public class CardStack extends Model {
         return cardStack;
     }
 
+    /*
+     * getCardForType: Finder alle kort af en type i sig selv.
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public <C extends Card> List<C> getCardForType(Class<C> type) {
+        List<C> matches = new ArrayList<C>();
+        for (Card card : getCards()) {
+            if (type.isInstance(card)) {
+                matches.add((C) card);
+            }
+        }
+        return matches;
+    }
+
     public Card drawCard() {
+        // TODO: DONT GIVE GET OUT OF JAIL CARDS WITH AN OWNER OUT
         this.setNextIndex(this.getNextIndex() + 1);
         if (this.getNextIndex() == this.getCards().size()) {
             // We get the cards, shuffle them and save their new position

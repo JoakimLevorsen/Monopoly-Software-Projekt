@@ -18,20 +18,24 @@ import gui_main.GUI;
 
 public class PropertyController {
 	private GameController controller;
-	private GUI gooey = controller.view.getGUI();
+	private GUI gooey;
 	private JSONObject jsonData;
 
 	public PropertyController(GameController owner) {
 		this.controller = owner;
 		this.jsonData = owner.getGame().getLanguageData(); 
+		this.gooey = owner.view.getGUI();
 	}
 
 	/*
 	 * Auction: Metode til at sælge en ejendom ved auktion.
 	 * 
 	 * @author Anders Brandt, s185016
+	 * 
 	 * @author Cecilie Krog Drejer, s185032
+	 * 
 	 * @author Helle Achari, s180317
+	 * 
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
 
@@ -75,14 +79,15 @@ public class PropertyController {
 	 */
 
 	public void mortgage(StationSpace property) {
-		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() == 0) {
-			Player owner = property.getOwner(controller.getGame());
-			int amount = property.getPrice() / 2;
-			controller.cashController.paymentFromBank(owner, amount);
-			property.setMortgaged(true);
-		} else {
-			
+		Player owner = property.getOwner(controller.getGame());
+		int amount = property.getPrice() / 2;
+		if (property instanceof PropertySpace && ((PropertySpace) property).getHousesBuilt() > 0) {
+			gooey.showMessage(
+					"A property cannot be mortgaged when houses are built on it. All houses will now be sold in order to mortgage the property.");
+			sellHouses((PropertySpace) property, ((PropertySpace) property).getHousesBuilt());
 		}
+		controller.cashController.paymentFromBank(owner, amount);
+		property.setMortgaged(true);
 	}
 
 	/*
@@ -94,12 +99,15 @@ public class PropertyController {
 	public void unmortgage(StationSpace property) {
 		Player owner = property.getOwner(controller.getGame());
 		int amount = (int) ((property.getPrice() / 2) * 1.1);
-		controller.cashController.paymentToBank(owner, amount);
-		property.setMortgaged(false);
+		if (owner.getAccountBalance() > amount) {
+			controller.cashController.paymentToBank(owner, amount);
+			property.setMortgaged(false);
+		}
 	}
 
 	/*
-	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber den
+	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber
+	 * den
 	 * 
 	 * @author Helle Achari, s180317
 	 */
@@ -112,8 +120,8 @@ public class PropertyController {
             controller.cashController.paymentToBank(player, property.getPrice());
 			property.setOwner(player);
 			player.addToOwnedProperties(property, controller.getGame());
-        }
-    }
+		}
+	}
 	/*
 	 * SellToBank: Metode til at sælge ejendom til banken
 	 * 
@@ -141,7 +149,8 @@ public class PropertyController {
 	public void buildHouses(PropertySpace property, int houses) {
 		Player owner = property.getOwner(controller.getGame());
 		int houseValue = property.getPrice() / 2;
-		//Hvis man prøver at bygge så mange huse, at det samlede antal overstiger 5, bygges der op til 5 huse i alt
+		// Hvis man prøver at bygge så mange huse, at det samlede antal overstiger 5,
+		// bygges der op til 5 huse i alt
 		if (property.getHousesBuilt() + houses <= 5) {
 			int amount = houseValue * houses;
 			controller.cashController.paymentToBank(owner, amount);
@@ -163,7 +172,7 @@ public class PropertyController {
 		Player owner = property.getOwner(controller.getGame());
 		int currentBuildLevel = property.getHousesBuilt();
 		int houseValue = property.getPrice() / 2;
-		//Hvis man prøver at sælge flere huse, end der er, sælges alle huse
+		// Hvis man prøver at sælge flere huse, end der er, sælges alle huse
 		if (property.getHousesBuilt() >= houses) {
 			int amount = (houseValue / 2) * houses;
 			controller.cashController.paymentFromBank(owner, amount);
@@ -190,30 +199,40 @@ public class PropertyController {
 				names[i] = ownedProperties.get(i).getName();
 				nameToSpace.put(names[i], ownedProperties.get(i));
 			}
-			//Spilleren bliver promptet for at vælge en ejendom at bearbejde og mulighederne afhænger af ejendomstypen
-			String selection = JOptionPane.showInputDialog(null,
-					jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
-					jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+			// Spilleren bliver promptet for at vælge en ejendom at bearbejde og
+			// mulighederne afhænger af ejendomstypen
+			String selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
+					jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names,
+					names[0]).toString();
 			Space selectedSpace = nameToSpace.get(selection);
 			String action;
-			//Hvis den valgte ejendom er af typen PropertySpace og der ikke er bygget huse på ejendommen
+			// Hvis den valgte ejendom er af typen PropertySpace og der ikke er bygget huse
+			// på ejendommen
 			if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() == 0) {
-				action = gooey.getUserButtonPressed(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey()) + selection + jsonData.getString(JSONKey.WHAT_DO.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
+				action = gooey.getUserButtonPressed(
+						jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey()) + selection
+								+ jsonData.getString(JSONKey.WHAT_DO.getKey()),
+						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
+						jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
 				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
 					sellToBank((PropertySpace) selectedSpace);
 				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
 					mortgage((PropertySpace) selectedSpace);
 				}
-			//Hvis den valgte ejendom er af typen PropertySpace og der er bygget huse på ejendommen
+				// Hvis den valgte ejendom er af typen PropertySpace og der er bygget huse på
+				// ejendommen
 			} else if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
 				int currentBuildLevel = ((PropertySpace) selectedSpace).getHousesBuilt();
 				int housesToSell = gooey.getUserInteger(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey()) + selection
-						+ jsonData.getString(JSONKey.HOUSES_ON_PROPERTY.getKey()),
-						0, currentBuildLevel);
+						+ jsonData.getString(JSONKey.HOUSES_ON_PROPERTY.getKey()), 0, currentBuildLevel);
 				sellHouses((PropertySpace) selectedSpace, housesToSell);
-			//Hvis den valgte ejendom er af typen StationSpace
+				// Hvis den valgte ejendom er af typen StationSpace
 			} else if (selectedSpace instanceof StationSpace) {
-				action = gooey.getUserButtonPressed(jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey() + selection + jsonData.getString(JSONKey.WHAT_DO.getKey())), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
+				action = gooey.getUserButtonPressed(
+						jsonData.getString(JSONKey.YOU_HAVE_CHOSEN.getKey() + selection
+								+ jsonData.getString(JSONKey.WHAT_DO.getKey())),
+						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
+						jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
 				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
 					sellToBank((StationSpace) selectedSpace);
 				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
@@ -226,26 +245,58 @@ public class PropertyController {
 		}
 	}
 
+	/*
+	 * Trade: Metode til at foretage byttehandler med andre spillere. Ejendomme
+	 * tages kun i bytte for penge.
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
+
 	public void trade(Player trader) {
-		// TODO: Implementer
-		HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
 		boolean trade = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE_WTIH_ANOTHER_PLAYER.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())); 
 		while (trade) {
 			boolean sell = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.BUY_OR_SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), jsonData.getString(JSONKey.BUY_PROPERTY.getKey())); 
 			
 			if (sell) {
+				HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
+				HashMap<String, Player> nameToPlayer = new HashMap<>();
 				ArrayList<StationSpace> traderOwnedProperties = trader.getOwnedProperties(controller.getGame());
-				String[] names = new String[traderOwnedProperties.size()];
+				String[] propertyNames = new String[traderOwnedProperties.size()];
 				for (int i = 0; i < traderOwnedProperties.size(); i++) {
-					names[i] = traderOwnedProperties.get(i).getName();
-					nameToOwnableSpace.put(names[i], traderOwnedProperties.get(i));
+					propertyNames[i] = traderOwnedProperties.get(i).getName();
+					nameToOwnableSpace.put(propertyNames[i], traderOwnedProperties.get(i));
 				}
-				String selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.WHICH_PROPERTY_DO_YOU_WANT.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+				String selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.WHICH_PROPERTY_DO_YOU_WANT.getKey()), jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
 				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
 				if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
 					gooey.showMessage(jsonData.getString(JSONKey.CANT_SELL_PROPERTY.getKey()));
 					sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
 				}
+				List<Player> otherPlayers = controller.getGame().getPlayers();
+				otherPlayers.remove(trader);
+				String[] otherPlayersNames = new String[otherPlayers.size()];
+				for (int i = 0; i < otherPlayers.size(); i++) {
+					otherPlayersNames[i] = otherPlayers.get(i).getName();
+					nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
+				}
+				String playerToTrade = JOptionPane.showInputDialog(null, "Choose player to trade with.",
+						"Sell property", JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0])
+						.toString();
+				Player tradee = nameToPlayer.get(playerToTrade);
+				boolean accept = gooey.getUserLeftButtonPressed(tradee.getName() + ", do you accept the trade?", "Yes",
+						"No");
+				if (accept) {
+					int amount = gooey.getUserInteger(
+							tradee.getName() + ", how much do you wish to pay for the property?", 0,
+							tradee.getAccountBalance());
+					trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.removeOwner(controller.getGame());
+					tradee.addToOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.setOwner(tradee);
+					controller.cashController.payment(tradee, amount, trader);
+				}
+			} else {
+				HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
 				HashMap<String, Player> nameToPlayer = new HashMap<>();
 				List<Player> otherPlayers = controller.getGame().getPlayers();
 				otherPlayers.remove(trader);
@@ -254,62 +305,88 @@ public class PropertyController {
 					otherPlayersNames[i] = otherPlayers.get(i).getName();
 					nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
 				}
-				String choice = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PLAYER_TO_SELL.getKey()),jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
-				Player tradee = nameToPlayer.get(choice);
-				int amount = gooey.getUserInteger(tradee.getName() + jsonData.getString(JSONKey.AMOUNT_TO_PAY_FOR_PROPERTY.getKey()),0, tradee.getAccountBalance());
-				trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
-				selectedSpace.removeOwner(controller.getGame());
-				tradee.addToOwnedProperties(selectedSpace, controller.getGame());
-				selectedSpace.setOwner(tradee);
-				controller.cashController.payment(tradee, amount, trader);
+				String playerToTrade = JOptionPane.showInputDialog(null, "Choose player to trade with.", "Buy property",
+						JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
+				Player tradee = nameToPlayer.get(playerToTrade);
+				ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
+				String[] propertyNames = new String[tradeeOwnedProperties.size()];
+				for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
+					propertyNames[i] = tradeeOwnedProperties.get(i).getName();
+					nameToOwnableSpace.put(propertyNames[i], tradeeOwnedProperties.get(i));
+				}
+				String selection = JOptionPane.showInputDialog(null, "Choose property.", "Buy property",
+						JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
+				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
+				int amount = gooey.getUserInteger(trader.getName() + ", how much do you wish to pay for the property?",
+						0, trader.getAccountBalance());
+				boolean accept = gooey.getUserLeftButtonPressed(tradee.getName() + ", do you accept the trade?", "Yes",
+						"No");
+				if (accept) {
+					if (selectedSpace instanceof PropertySpace
+							&& ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
+						gooey.showMessage(
+								"The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.");
+						sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
+					}
+					tradee.removeFromOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.removeOwner(controller.getGame());
+					trader.addToOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.setOwner(trader);
+					controller.cashController.payment(trader, amount, tradee);
+				}
 			}
+			trade = gooey.getUserLeftButtonPressed(trader.getName() + ", do you want to trade with another player?",
+					"Yes", "No");
 		}
 	}
-    /*
-     * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine ejendomme.
-     *
-     * @author Anders Brandt, s185016
-     */
-	public void offerToBuild(Player player) {
-        Set<Color> colors = new HashSet<Color>();
-	    for (StationSpace property : player.getOwnedProperties(controller.getGame())){
-	        if (property instanceof PropertySpace){
-	            colors.add(((PropertySpace) property).getColour());
-            }
-        }
-	    List<PropertySpace> propertiesYouCanBuildOn = new ArrayList<PropertySpace>();
-	    for (Color color : colors){
-	        List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
-	        for (Space space : controller.getGame().getBoard()){
-	            if (space instanceof PropertySpace){
-	                PropertySpace property = (PropertySpace) space;
-	                if (property.getColour().equals(color)){
-	                    if(property.getOwner(controller.getGame()).equals(player)){
-	                        matchedProperties.add(property);
 
-                        } else {
-	                        matchedProperties.clear();
-	                        break;
-                        }
-                    }
-                }
-            }
-	        propertiesYouCanBuildOn.addAll(matchedProperties);
-        }
-	    if (!propertiesYouCanBuildOn.isEmpty()){
-	        do {
-                PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn();
-                if (chosen != null) {
-                    int houseChosen = controller.view.getGUI().getUserInteger(jsonData.getString(JSONKey.MAX_BUILT_HOUSES.getKey()), 0, 5);
-                    if (houseChosen > chosen.getHousesBuilt()) {
-                        buildHouses(chosen, houseChosen - chosen.getHousesBuilt());
-                    } else if (houseChosen < chosen.getHousesBuilt()) {
-                        sellHouses(chosen, chosen.getHousesBuilt() - houseChosen);
-                    }
-                }
-            } while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TO_BUILD_MORE.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
+	/*
+	 * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine
+	 * ejendomme.
+	 *
+	 * @author Anders Brandt, s185016
+	 */
+
+	public void offerToBuild(Player player) {
+		Set<Color> colors = new HashSet<Color>();
+		for (StationSpace property : player.getOwnedProperties(controller.getGame())) {
+			if (property instanceof PropertySpace) {
+				colors.add(((PropertySpace) property).getColour());
+			}
+		}
+		List<PropertySpace> propertiesYouCanBuildOn = new ArrayList<PropertySpace>();
+		for (Color color : colors) {
+			List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
+			for (PropertySpace property : controller.getGame().getSpacesForType(PropertySpace.class)) {
+				if (property.getColour().equals(color)) {
+					if (property.getOwner(controller.getGame()).equals(player)) {
+						matchedProperties.add(property);
+
+					} else {
+						matchedProperties.clear();
+						break;
+					}
+				}
+			}
+			propertiesYouCanBuildOn.addAll(matchedProperties);
+		}
+		if (!propertiesYouCanBuildOn.isEmpty()) {
+			do {
+				PropertySpace chosen = controller.view.whichPropertyDoWantToBuildOn(propertiesYouCanBuildOn);
+				if (chosen != null) {
+					int max = chosen.getHousesBuilt() + player.getAccountBalance() / (chosen.getPrice() / 2);
+					if (max > 5)
+						max = 5;
+					int houseChosen = controller.view.getGUI()
+							.getUserInteger(jsonData.getString(JSONKey.MAX_BUILT_HOUSES.getKey()), 0, max);
+					if (houseChosen > chosen.getHousesBuilt()) {
+						buildHouses(chosen, houseChosen - chosen.getHousesBuilt());
+					} else if (houseChosen < chosen.getHousesBuilt()) {
+						sellHouses(chosen, chosen.getHousesBuilt() - houseChosen);
+					}
+				}
+			} while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TO_BUILD_MORE.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
         } else gooey.showMessage(jsonData.getString(JSONKey.CANT_BUILD_ANYMORE.getKey()));
-	    gooey.showMessage(jsonData.getString(JSONKey.BUILD_ON_PROPERTY.getKey()));
-		// TODO: Tjek om spiller rent faktisk har råd til at bygge
+	    gooey.showMessage(jsonData.getString(JSONKey.BUILD_ON_PROPERTY.getKey())); 
 	}
 }

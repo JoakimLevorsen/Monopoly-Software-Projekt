@@ -64,22 +64,20 @@ public class StationSpace extends Space {
     }
 
     /*
-    SetOwner:
-    Sætter en spiller som ejer af stationen.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * SetOwner: Sætter en spiller som ejer af stationen.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void setOwner(Player player) {
         player.add(this);
     }
 
     /*
-    RemoveOwner:
-    Fjerner den nuværende ejer af stationen.
-
-    @author Cecilie Krog Drejer, s185032
-    */
+     * RemoveOwner: Fjerner den nuværende ejer af stationen.
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
 
     public void removeOwner(Game game) {
         Player owner = this.getOwner(game);
@@ -116,16 +114,17 @@ public class StationSpace extends Space {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         int amountOwned = 0;
         Player owner = this.getOwner(game);
-        if (owner == null) return 0;
+        if (owner == null)
+            return 0;
         for (Space space : game.getBoard()) {
             if (space instanceof StationSpace && !(space instanceof PropertySpace)) {
-                if (((StationSpace)space).getOwner(game).equals(owner)) amountOwned++;
+                if (((StationSpace) space).getOwner(game).equals(owner))
+                    amountOwned++;
             }
         }
         return baseRent * amountOwned;
     }
 
-    // TODO: Tilføj resterende metoder
     /**
      * Variabler og metoder til at implementere Subject
      *
@@ -151,8 +150,8 @@ public class StationSpace extends Space {
     }
 
     /*
-    * @author Helle Achari, s180317
-    */
+     * @author Helle Achari, s180317
+     */
 
     public int getPrice() {
         return this.getInteger(Properties.PRICE.getProperty());

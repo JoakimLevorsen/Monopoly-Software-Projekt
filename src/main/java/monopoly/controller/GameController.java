@@ -2,16 +2,16 @@ package monopoly.controller;
 
 import monopoly.model.Game;
 import monopoly.model.Player;
-import monopoly.model.cards.*;
+import monopoly.model.cards.GetOutOfJailCard;
 import monopoly.model.spaces.*;
 import monopoly.view.View;
 import resources.json.JSONKey;
 import org.json.JSONObject;
 
 public class GameController {
-    public CashController cashController = new CashController(this);
-    public MovementController movementController = new MovementController(this);
-    public PropertyController propertyController = new PropertyController(this);
+    public CashController cashController;
+    public MovementController movementController;
+    public PropertyController propertyController;
     public View view;
     private Game game;
     private JSONObject jsonData; 
@@ -20,6 +20,9 @@ public class GameController {
         this.game = game;
         this.view = view;
         this.jsonData = game.getLanguageData(); 
+        this.movementController = new MovementController(this);
+        this.cashController = new CashController(this);
+        this.propertyController = new PropertyController(this);
     }
 
     public Game getGame() {
@@ -27,7 +30,7 @@ public class GameController {
     }
 
     public void play() {
-        while(playersLeft() > 1) {
+        while (playersLeft() > 1) {
             int currentPlayerTurn = game.getCurrentTurn();
             Player playerWithTurn = getGame().getPlayers().get(currentPlayerTurn);
             // Hvis spilleren er gået konkurs, ignorer dem
@@ -42,9 +45,9 @@ public class GameController {
                     do {
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
-                            for (Space space: game.getBoard()) {
+                            for (Space space : game.getBoard()) {
                                 if (space instanceof JailSpace) {
-                                    ((JailSpace)space).jail(playerWithTurn);
+                                    ((JailSpace) space).jail(playerWithTurn);
                                 }
                             }
                         } else {
@@ -55,14 +58,15 @@ public class GameController {
                 }
                 // Kom spiller i fængsel i sit ryk?
                 if (!playerWithTurn.isInJail()) {
-                    propertyController.trade();
+                    propertyController.trade(playerWithTurn);
                     propertyController.offerToBuild(playerWithTurn);
                 }
-            } 
+            }
             incrementTurn(currentPlayerTurn);
             if (!game.saveIt()) {
                 System.out.println("Save of game failed");
-            };
+            }
+            ;
         }
     }
 
@@ -80,13 +84,18 @@ public class GameController {
             view.getGUI().showMessage(jsonData.getString(JSONKey.ROLLED_DOUBLE.getKey()));
             for (Space space: game.getBoard()) {
                 if (space instanceof JailSpace) {
-                    ((JailSpace)space).release(player);
+                    ((JailSpace) space).release(player);
                 }
             }
         } else {
             if (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.OUT_OF_JAIL.getKey()), 
             jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
-                // TODO: Alt det her
+                GetOutOfJailCard jailCard = player.getGetOutOfJailCard(game);
+                if (jailCard == null) {
+                    player.changeAccountBalance(-50);
+                } else
+                    jailCard.setOwner(null);
+                game.getSpacesForType(JailSpace.class).get(0).release(player);
             }
         }
     }
@@ -96,8 +105,8 @@ public class GameController {
         int roll2;
 
         public DiceRoll() {
-            this.roll1 = (int)(Math.random() * 6 + 1);
-            this.roll2 = (int)(Math.random() * 6 + 1);
+            this.roll1 = (int) (Math.random() * 6 + 1);
+            this.roll2 = (int) (Math.random() * 6 + 1);
             view.getGUI().setDice(roll1, roll2);
         }
 
@@ -105,13 +114,16 @@ public class GameController {
             return roll1 == roll2;
         }
 
-        public int sum() {return roll1 + roll2;}
+        public int sum() {
+            return roll1 + roll2;
+        }
     }
 
     public int playersLeft() {
         int count = 0;
         for (Player player : getGame().getPlayers()) {
-            if (!player.isBroke()) count++;
+            if (!player.isBroke())
+                count++;
         }
         return count;
     }
