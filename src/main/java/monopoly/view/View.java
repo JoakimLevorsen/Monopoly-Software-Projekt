@@ -75,14 +75,14 @@ public class View implements Observer {
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
 
         boolean loadGame = chooseGameGUI.getUserLeftButtonPressed(
-                "Vil du indlæse et gemt spil eller starte et nyt spil?", "Indlæs spil", "Start nyt spil");
+                "Do you want to load a saved game or start a new game? / Vil du indlæse et gemt spil eller starte et nyt spil?", "Load game / Indlæs spil", "Start new game / Start nyt spil");
 
         if (loadGame == true) {
             List<Game> savedGames = Game.findAll();
             if (savedGames.isEmpty()) {
                 String saveName = chooseGameGUI
-                        .getUserString("Der er ingen gemte spil. Angiv et navn for at starte et nyt spil.");
-                int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 1, 4);
+                        .getUserString("There are no saved games. Type a name to start a new game / Der er ingen gemte spil. Angiv et navn for at starte et nyt spil.");
+                int playerAmount = chooseGameGUI.getUserInteger("How many players? / Hvor mange spillere?", 1, 4);
                 try {
                     JSONFile language = chooseLanguage();
                     JSONObject languageData = rm.readFile(language);
@@ -99,15 +99,15 @@ public class View implements Observer {
                     saveNameToGame.put(saveNames[i], savedGames.get(i));
                 }
 
-                String selection = JOptionPane.showInputDialog(null, "Vælg et spil.", "Indlæs spil",
+                String selection = JOptionPane.showInputDialog(null, "Choose a game / Vælg et spil.", "Load game / Indlæs spil",
                         JOptionPane.QUESTION_MESSAGE, null, saveNames, saveNames[0]).toString();
 
                 Game loadedGame = saveNameToGame.get(selection);
                 return loadedGame;
             }
         } else {
-            String saveName = chooseGameGUI.getUserString("Angiv et navn til dit nye spil.");
-            int playerAmount = chooseGameGUI.getUserInteger("Hvor mange spillere?", 2, 4);
+            String saveName = chooseGameGUI.getUserString("Type a name for your new game / Angiv et navn til dit nye spil.");
+            int playerAmount = chooseGameGUI.getUserInteger("How many players? / Hvor mange spillere?", 2, 4);
             try {
                 JSONFile language = chooseLanguage();
                 JSONObject languageData = rm.readFile(language);
@@ -142,7 +142,7 @@ public class View implements Observer {
             stringChoices.add(text);
         }
         String[] stringArray = stringChoices.toArray(new String[stringChoices.size()]);
-        String choice = JOptionPane.showInputDialog(null, "Choose a language", "Choose language",
+        String choice = JOptionPane.showInputDialog(null, "Choose a language / Vælg et sprog", "Vælg sprog / Choose language",
                 JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
         return languageChoices.get(choice);
     }
@@ -155,7 +155,7 @@ public class View implements Observer {
             choices.add(p.getName());
         }
         String[] stringArray = choices.toArray(new String[choices.size()]);
-        String choice = JOptionPane.showInputDialog(null, "Which property do you want to build on?", "Choose",
+        String choice = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.WHICH_PROPERTY_TO_BUILD_ON.getKey()), jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
                 JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]).toString();
         return targets.get(choice);
     }
