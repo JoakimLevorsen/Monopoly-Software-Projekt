@@ -226,27 +226,54 @@ public class PropertyController {
 		}
 	}
 
+	/*
+	 * Trade: Metode til at foretage byttehandler med andre spillere. Ejendomme tages kun i bytte for penge.
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
+
 	public void trade(Player trader) {
 		// TODO: Implementer
-		HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
-		boolean trade = gooey.getUserLeftButtonPressed("Do you want to trade with another player?", "Yes", "No");
+		boolean trade = gooey.getUserLeftButtonPressed(trader.getName() + ", do you want to trade with another player?", "Yes", "No");
 		while (trade) {
 			boolean sell = gooey.getUserLeftButtonPressed("Do you want to sell or buy property?", "Sell property", "Buy property");
 			if (sell) {
+				HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
+				HashMap<String, Player> nameToPlayer = new HashMap<>();
 				ArrayList<StationSpace> traderOwnedProperties = trader.getOwnedProperties(controller.getGame());
-				String[] names = new String[traderOwnedProperties.size()];
+				String[] propertyNames = new String[traderOwnedProperties.size()];
 				for (int i = 0; i < traderOwnedProperties.size(); i++) {
-					names[i] = traderOwnedProperties.get(i).getName();
-					nameToOwnableSpace.put(names[i], traderOwnedProperties.get(i));
+					propertyNames[i] = traderOwnedProperties.get(i).getName();
+					nameToOwnableSpace.put(propertyNames[i], traderOwnedProperties.get(i));
 				}
 				String selection = JOptionPane.showInputDialog(null,
-					"Which property do you wish to sell?",
-					"Sell property", JOptionPane.QUESTION_MESSAGE, null, names, names[0]).toString();
+					"Choose property.",
+					"Sell property", JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
 				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
 				if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
 					gooey.showMessage("The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.");
 					sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
 				}
+				List<Player> otherPlayers = controller.getGame().getPlayers();
+				otherPlayers.remove(trader);
+				String[] otherPlayersNames = new String[otherPlayers.size()];
+				for (int i = 0; i < otherPlayers.size(); i++) {
+					otherPlayersNames[i] = otherPlayers.get(i).getName();
+					nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
+				}
+				String playerToTrade = JOptionPane.showInputDialog(null, "Choose player to trade with.", "Sell property", JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
+				Player tradee = nameToPlayer.get(playerToTrade);
+				boolean accept = gooey.getUserLeftButtonPressed(tradee.getName() + ", do you accept the trade?", "Yes", "No");
+				if (accept) {
+					int amount = gooey.getUserInteger(tradee.getName() + ", how much do you wish to pay for the property?", 0, tradee.getAccountBalance());
+					trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.removeOwner(controller.getGame());
+					tradee.addToOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.setOwner(tradee);
+					controller.cashController.payment(tradee, amount, trader);
+				}
+			} else {
+				HashMap<String, StationSpace> nameToOwnableSpace = new HashMap<>();
 				HashMap<String, Player> nameToPlayer = new HashMap<>();
 				List<Player> otherPlayers = controller.getGame().getPlayers();
 				otherPlayers.remove(trader);
@@ -255,22 +282,42 @@ public class PropertyController {
 					otherPlayersNames[i] = otherPlayers.get(i).getName();
 					nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
 				}
-				String choice = JOptionPane.showInputDialog(null, "Which player do you wish to sell to?", "Sell property", JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
-				Player tradee = nameToPlayer.get(choice);
-				int amount = gooey.getUserInteger(tradee.getName() + ", how much do you wish to pay for the property?", 0, tradee.getAccountBalance());
-				trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
-				selectedSpace.removeOwner(controller.getGame());
-				tradee.addToOwnedProperties(selectedSpace, controller.getGame());
-				selectedSpace.setOwner(tradee);
-				controller.cashController.payment(tradee, amount, trader);
+				String playerToTrade = JOptionPane.showInputDialog(null, "Choose player to trade with.", "Buy property", JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0]).toString();
+				Player tradee = nameToPlayer.get(playerToTrade);
+				ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
+				String[] propertyNames = new String[tradeeOwnedProperties.size()];
+				for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
+					propertyNames[i] = tradeeOwnedProperties.get(i).getName();
+					nameToOwnableSpace.put(propertyNames[i], tradeeOwnedProperties.get(i));
+				}
+				String selection = JOptionPane.showInputDialog(null,
+					"Choose property.",
+					"Buy property", JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0]).toString();
+				StationSpace selectedSpace = nameToOwnableSpace.get(selection);
+				int amount = gooey.getUserInteger(trader.getName() + ", how much do you wish to pay for the property?", 0, trader.getAccountBalance());
+				boolean accept = gooey.getUserLeftButtonPressed(tradee.getName() + ", do you accept the trade?", "Yes", "No");
+				if (accept) {
+					if (selectedSpace instanceof PropertySpace && ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
+						gooey.showMessage("The selected property has houses on it and cannot be sold. All houses will now be sold in order to sell the property.");
+						sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
+					}
+					tradee.removeFromOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.removeOwner(controller.getGame());
+					trader.addToOwnedProperties(selectedSpace, controller.getGame());
+					selectedSpace.setOwner(trader);
+					controller.cashController.payment(trader, amount, tradee);
+				}
 			}
+			trade = gooey.getUserLeftButtonPressed(trader.getName() + ", do you want to trade with another player?", "Yes", "No");
 		}
 	}
+
     /*
      * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine ejendomme.
      *
      * @author Anders Brandt, s185016
      */
+
 	public void offerToBuild(Player player) {
         Set<Color> colors = new HashSet<Color>();
 	    for (StationSpace property : player.getOwnedProperties(controller.getGame())){
