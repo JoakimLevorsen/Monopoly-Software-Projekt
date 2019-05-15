@@ -37,7 +37,7 @@ public class StationSpace extends Space {
             if (!owner.equals(player)) {
                 controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
             }
-        }
+        } else controller.propertyController.offerProperty(this, player);
     }
 
     public static StationSpace create(int position, String name, int price, int baseRent) {
