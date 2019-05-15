@@ -67,7 +67,7 @@ public class PropertySpace extends StationSpace {
      *
      * @Author Anders Brandt, s185016
      */
-    public Color getColour() {
+    public Color getColor() {
         String hex = this.getString(PropertySpace.Properties.COLOUR.getProperty());
         return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
                 Integer.valueOf(hex.substring(4, 6), 16));

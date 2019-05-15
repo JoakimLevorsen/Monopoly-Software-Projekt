@@ -78,7 +78,7 @@ public class PlayerPanel extends JFrame {
                 PropertySpace propertySpace = (PropertySpace) property;
                 pLabel = new JLabel(propertySpace.getName());
                 propPanel.add(pLabel);
-                propPanel.setBackground(propertySpace.getColour());
+                propPanel.setBackground(propertySpace.getColor());
                 pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey())+ propertySpace.getHousesBuilt());
                 propPanel.add(pLabel);
                 pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent(game));

@@ -352,17 +352,16 @@ public class PropertyController {
 		Set<Color> colors = new HashSet<Color>();
 		for (StationSpace property : player.getOwnedProperties(controller.getGame())) {
 			if (property instanceof PropertySpace) {
-				colors.add(((PropertySpace) property).getColour());
+				colors.add(((PropertySpace) property).getColor());
 			}
 		}
 		List<PropertySpace> propertiesYouCanBuildOn = new ArrayList<PropertySpace>();
 		for (Color color : colors) {
 			List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
 			for (PropertySpace property : controller.getGame().getSpacesForType(PropertySpace.class)) {
-				if (property.getColour().equals(color)) {
+				if (property.getColor().equals(color)) {
 					if (property.getOwner(controller.getGame()).equals(player)) {
 						matchedProperties.add(property);
-
 					} else {
 						matchedProperties.clear();
 						break;
@@ -388,6 +387,5 @@ public class PropertyController {
 				}
 			} while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TO_BUILD_MORE.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
         } else gooey.showMessage(jsonData.getString(JSONKey.CANT_BUILD_ANYMORE.getKey()));
-	    gooey.showMessage(jsonData.getString(JSONKey.BUILD_ON_PROPERTY.getKey())); 
 	}
 }
