@@ -86,8 +86,6 @@ public class PropertySpace extends StationSpace {
      * @Author Anders Brandt, s185016
      * @Author Joakim Levorsen, s185023
      */
-    // TODO: Tiføj så den udregner hvad lejen skal være, ud fra hvor mange stationer
-    // spilleren ejer.
     public int getRent() {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         baseRent += (this.getHousesBuilt() * baseRent) / 2;
