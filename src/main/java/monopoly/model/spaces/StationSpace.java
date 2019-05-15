@@ -125,7 +125,6 @@ public class StationSpace extends Space {
         return baseRent * amountOwned;
     }
 
-    // TODO: Tilføj resterende metoder
     /**
      * Variabler og metoder til at implementere Subject
      *
