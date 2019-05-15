@@ -22,4 +22,11 @@ public enum JSONFile {
     public String getPackName() {
         return this.value;
     }
+
+    public static JSONFile getFile(String name) {
+        for (JSONFile file : JSONFile.values()) {
+            if (file.getPackName().equals(name)) return file;
+        }
+        return null;
+    }
 }

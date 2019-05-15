@@ -7,6 +7,7 @@ import java.util.Set;
 
 import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import designpatterns.Subject;
@@ -14,6 +15,7 @@ import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
 import resources.json.JSONFile;
 import resources.json.JSONKey;
+import resources.json.ResourceManager;
 import monopoly.model.spaces.*;
 
 /*
@@ -177,6 +179,14 @@ public class Game extends Model implements Subject {
     public void setCurrentTurn(int turn) {
         this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
         this.updated();
+    }
+
+    public JSONObject getLanguageData() throws JSONException {
+        String packName = this.getString(Properties.JSON_PACK.getProperty());
+        JSONFile file = JSONFile.getFile(packName);
+        if (file == null) throw new JSONException("Json pakken med navnet " + packName + " was not found");
+        ResourceManager rm = new ResourceManager();
+        return rm.readFile(file);
     }
 
     /**
