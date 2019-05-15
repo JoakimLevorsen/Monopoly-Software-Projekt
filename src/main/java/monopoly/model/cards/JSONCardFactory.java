@@ -41,8 +41,6 @@ public class JSONCardFactory {
                 int spaceID = chanceCard.getInt(JSONKey.SPACE.getKey());
                 GoToJailCard newCard = GoToJailCard.create(text, spaceID);
                 chanceCards.add(newCard);
-                // TODO: Den her create kører en Create metode, siden det andet parameter er den
-                // forkerte type.
                 break;
             default:
                 throw new JSONException("Unexpected space type: " + type);
