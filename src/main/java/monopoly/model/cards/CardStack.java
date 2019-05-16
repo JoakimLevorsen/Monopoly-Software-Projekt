@@ -96,4 +96,25 @@ public class CardStack extends Model {
     public boolean isChanceCardStack() {
         return this.getBoolean(CardStack.Properties.CHANCE_CARD.getProperty());
     }
+
+    /*
+     * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
+     * elementer.
+     *
+     * @Author Joakim Levorsen, S185023
+     */
+    @Override
+    public boolean save() {
+        if (super.save() == false) return false;
+
+        for (Card c : this.getCards()) {
+            if (!c.save()) {
+                System.out.println("card save error:");
+                System.out.println(c.errors());
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

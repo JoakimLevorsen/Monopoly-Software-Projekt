@@ -223,6 +223,7 @@ public class PropertyController {
 						propertyNames[i] = tradeeOwnedProperties.get(i).getName();
 						nameToOwnableSpace.put(propertyNames[i], tradeeOwnedProperties.get(i));
 					}
+					// propertyNames[0] crasher hvis en spiller ikke ejer noget.
 					String selection = JOptionPane
 							.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
 									jsonData.getString(JSONKey.BUY_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE,
@@ -324,7 +325,8 @@ public class PropertyController {
 			List<PropertySpace> matchedProperties = new ArrayList<PropertySpace>();
 			for (PropertySpace property : controller.getGame().getSpacesForType(PropertySpace.class)) {
 				if (property.getColor().equals(color)) {
-					if (property.getOwner(controller.getGame()).equals(player)) {
+					Player owner = property.getOwner(controller.getGame());
+					if (owner != null && owner.equals(player)) {
 						matchedProperties.add(property);
 					} else {
 						matchedProperties.clear();
