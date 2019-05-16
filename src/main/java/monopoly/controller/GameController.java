@@ -45,9 +45,8 @@ public class GameController {
                     DiceRoll r;
                     int doubleCount = 0;
                     do {
-                        // TODO: nedenstående er udkommenteret for hurtig debugging. Fjern kommentar
-                        // inden aflevering
-                        view.getGUI().showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
+                        view.getGUI()
+                                .showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
                             for (Space space : game.getBoard()) {
@@ -74,8 +73,8 @@ public class GameController {
                 System.out.println("Save of game failed");
                 e.printStackTrace();
             }
-            ;
         }
+        System.out.println("SPILLET ER OVRE");
     }
 
     public void incrementTurn(int currentPlayerTurn) {
