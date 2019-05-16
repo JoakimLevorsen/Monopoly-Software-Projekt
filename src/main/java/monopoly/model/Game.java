@@ -161,7 +161,8 @@ public class Game extends Model implements Subject {
     }
 
     public void addPlayer(Player player) {
-        this.getPlayers().add(player);
+        if (this.players == null) this.getPlayers();
+        this.players.add(player);
         this.add(player);
     }
 
@@ -169,7 +170,8 @@ public class Game extends Model implements Subject {
         if (this.players == null) {
             this.players = this.getAll(Player.class).load();
         }
-        return this.players;
+        // Sender kopi af listen så man ikke kan ændre den
+        return new ArrayList<Player>(this.players);
     }
 
     public Player getPlayerForID(long id) {
