@@ -128,7 +128,6 @@ public class Game extends Model implements Subject {
             Space space = board.get(i);
             if (space instanceof PropertySpace) {
                 PropertySpace pS = (PropertySpace) space;
-                System.out.println(String.valueOf(pS.getRent(this)) + "money");
                 guiBoard[i] = new GUI_Street(pS.getName(), String.valueOf(pS.getRent(this)), pS.getName(), "",
                         pS.getColor(), Color.WHITE);
             } else if (space instanceof StationSpace) {
