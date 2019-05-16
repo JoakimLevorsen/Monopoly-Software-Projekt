@@ -15,12 +15,12 @@ public enum JSONKey {
     CHANCE_CARDS("chanceCards"), COMMUNITY_CHEST_CARDS("communityChestCards"), TEXT("text"), SPACE("space"),
     AMOUNT("amount"), TAX("tax"), ROLLED_DOUBLE("rolledDouble"), OUT_OF_JAIL("outOfJail"), YES("yes"), NO("no"),
     BALANCE("balance"), PLAYER_IS_IN_JAIL("playerIsInJail"), HOUSES_BUILT("housesBuilt"), RENT("rent"),
-    MORTGAGE_BY("mortgageBY"), OWNED_BY("ownedby"), AUCTIONED_OFF("auctionedOff"), BID("bid"),
+    MORTGAGE_BY("mortagedBy"), OWNED_BY("ownedBy"), AUCTIONED_OFF("auctionedOff"), BID("bid"),
     BID_NOT_VALID("bidNotValid"), WINNER("winner"), OFFER_PROPERTY("offerProperty"), PROPERTY_COST("propertyCost"),
     BOUGHT_PROPERTY("boughtProperty"), TRADE("trade"), BUY_OR_SELL_PROPERTY("buyOrSellProperty"),
     BUY_PROPERTY("buyProperty"), CHOOSE_PROPERTY("chooseProperty"), CHOOSE_PLAYER("choosePlayer"),
     AMOUNT_TO_PAY("amountToPay"), ACCEPT("accept"), MAX_BUILT_HOUSES("maxBuiltHouses"),
-    CANT_BUILD_ANYMORE("cantBuildAnymore"), BUILD_ON_PROPERTY("buildOnYourProperty"),
+    CANT_BUILD_ANYMORE("cantBuildAnymore"), BUILD_ON_PROPERTY("buildOnProperty"),
     WHICH_PROPERTY_TO_BUILD_ON("whichPropertyToBuildOn"), TAX_MESSAGE("taxMessage"), ROLL_DICE("rollDice"),
     PLAYER("player"), PLAYER_OWNS_NO_PROPERTIES("playerOwnsNoProperties"), YOU_OWN_NO_PROPERTIES("youOwnNoProperties"),;
 
