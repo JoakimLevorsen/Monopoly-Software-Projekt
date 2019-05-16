@@ -77,7 +77,7 @@ public class View implements Observer {
         boolean loadGame = chooseGameGUI.getUserLeftButtonPressed(
                 "Do you want to load a saved game or start a new game? / Vil du indlæse et gemt spil eller starte et nyt spil?", "Load game / Indlæs spil", "Start new game / Start nyt spil");
 
-        if (loadGame == true) {
+        if (loadGame) {
             List<Game> savedGames = Game.findAll();
             if (savedGames.isEmpty()) {
                 String saveName = chooseGameGUI

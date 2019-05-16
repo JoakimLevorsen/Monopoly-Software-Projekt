@@ -197,9 +197,8 @@ public class PropertyController {
 
 	public void trade(Player trader) {
 		if (!trader.getOwnedProperties(controller.getGame()).isEmpty()) {
-			boolean trade = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE.getKey()),
-					jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
-			while (trade) {
+			while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE.getKey()),
+			jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
 				boolean buy = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.BUY_OR_SELL_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.BUY_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()));
@@ -314,8 +313,6 @@ public class PropertyController {
 						}
 					}
 				}
-				trade = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE.getKey()),
-						jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
 			}
 		}
 	}
