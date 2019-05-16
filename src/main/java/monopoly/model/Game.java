@@ -74,15 +74,17 @@ public class Game extends Model implements Subject {
      * @Author Anders Brandt, s185016
      */
     @Override
-    public boolean saveIt() {
+    public boolean save() {
 
-        if (super.saveIt() == false) {
+        if (super.save() == false) {
             return false;
         }
 
         if (players != null) {
             for (Player player : players) {
-                if (player.saveIt() == false) {
+                if (!player.save()) {
+                    System.out.println("Player save error:");
+                    System.out.println(player.errors());
                     return false;
                 }
             }
@@ -90,7 +92,9 @@ public class Game extends Model implements Subject {
 
         if (stacks != null) {
             for (CardStack cardStack : stacks) {
-                if (cardStack.saveIt() == false) {
+                if (!cardStack.save()) {
+                    System.out.println("cardStack save error:");
+                    System.out.println(cardStack.errors());
                     return false;
                 }
             }
@@ -98,7 +102,9 @@ public class Game extends Model implements Subject {
 
         if (board != null) {
             for (Space space : board) {
-                if (space.saveIt() == false) {
+                if (!space.save()) {
+                    System.out.println("space save error:");
+                    System.out.println(space.errors());
                     return false;
                 }
             }
@@ -118,10 +124,10 @@ public class Game extends Model implements Subject {
         return this.players;
     }
 
-    public Player getPlayerForID(int id) {
+    public Player getPlayerForID(long id) {
         List<Player> players = this.getPlayers();
         for (Player p : players) {
-            if ((int) p.getId() == id) {
+            if (p.getLongId() == id) {
                 return p;
             }
         }

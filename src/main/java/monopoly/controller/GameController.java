@@ -65,8 +65,9 @@ public class GameController {
                 }
             }
             incrementTurn(currentPlayerTurn);
-            if (!game.saveIt()) {
+            if (!game.save()) {
                 System.out.println("Save of game failed");
+                System.out.println(game.errors());
             }
             ;
         }

@@ -42,7 +42,7 @@ public class GetOutOfJailCard extends Card {
     public Player getOwner(Game game) {
         Player owner = this.parent(Player.class);
         if (owner != null) {
-            int id = (int) owner.getId();
+            long id = owner.getLongId();
             return game.getPlayerForID(id);
         }
         return null;
