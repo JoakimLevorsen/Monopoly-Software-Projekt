@@ -38,6 +38,7 @@
     "cantBuildAnymore": "You are not able to build on any of your properties.", 
     "buildOnProperty": "Do you want to build houses on a property?",
     "whichPropertyToBuildOn": "Which property do you want to build on?",
+    "rollDice": ", roll the dice",
     "spaces": [{
         "name": "Go",
         "type": 0,

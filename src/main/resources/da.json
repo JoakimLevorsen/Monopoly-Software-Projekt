@@ -38,6 +38,7 @@
     "cantBuildAnymore": "Du kan ikke bygge på nogle af dine ejendomme.", 
     "buildOnProperty": "Vil du bygge huse på en ejendom?",
     "whichPropertyToBuildOn": "Hvilken ejendom vil du bygge på?",
+    "rollDice": ", slå med terningerne",
     "spaces": [{
         "name": "Start",
         "type": 0,
