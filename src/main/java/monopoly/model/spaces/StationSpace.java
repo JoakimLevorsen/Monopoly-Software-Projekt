@@ -16,8 +16,7 @@ Et objekt til at repræsentere stationer.
 public class StationSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
-        OWNER("owner");
+        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"), OWNER("player_id");
 
         private String value;
 
@@ -80,11 +79,7 @@ public class StationSpace extends Space {
      */
 
     public void removeOwner(Game game) {
-        Player owner = this.getOwner(game);
-        if (owner == null) {
-            return;
-        }
-        owner.remove(this);
+        this.set(Properties.OWNER.getProperty(), null);
     }
 
     public Player getOwner(Game game) {
@@ -114,11 +109,13 @@ public class StationSpace extends Space {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         int amountOwned = 0;
         Player owner = this.getOwner(game);
-        if (owner == null)
+        if (owner == null) {
             return 0;
+        }
         for (Space space : game.getBoard()) {
             if (space instanceof StationSpace && !(space instanceof PropertySpace)) {
-                if (((StationSpace) space).getOwner(game).equals(owner))
+                Player otherOwner = ((StationSpace) space).getOwner(game);
+                if (otherOwner != null && otherOwner.equals(owner))
                     amountOwned++;
             }
         }

@@ -82,7 +82,7 @@ public class View implements Observer {
             if (savedGames.isEmpty()) {
                 String saveName = chooseGameGUI
                         .getUserString("There are no saved games. Type a name to start a new game / Der er ingen gemte spil. Angiv et navn for at starte et nyt spil.");
-                int playerAmount = chooseGameGUI.getUserInteger("How many players? / Hvor mange spillere?", 1, 4);
+                int playerAmount = chooseGameGUI.getUserInteger("How many players? / Hvor mange spillere?", 2, 4);
                 try {
                     JSONFile language = chooseLanguage();
                     JSONObject languageData = rm.readFile(language);
