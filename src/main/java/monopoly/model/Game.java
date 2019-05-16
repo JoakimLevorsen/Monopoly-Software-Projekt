@@ -17,6 +17,7 @@ import gui_fields.*;
 import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
 import resources.json.JSONFile;
+import resources.json.JSONKey;
 import resources.json.ResourceManager;
 import monopoly.model.spaces.*;
 
@@ -128,7 +129,7 @@ public class Game extends Model implements Subject {
             Space space = board.get(i);
             if (space instanceof PropertySpace) {
                 PropertySpace pS = (PropertySpace) space;
-                guiBoard[i] = new GUI_Street(pS.getName(), String.valueOf(pS.getRent(this)), pS.getName(), "",
+                guiBoard[i] = new GUI_Street(pS.getName(), getLanguageData().getString(JSONKey.RENT.getKey()) + " "  + String.valueOf(pS.getRent(this)), pS.getName(), "",
                         pS.getColor(), Color.WHITE);
             } else if (space instanceof StationSpace) {
                 StationSpace sS = (StationSpace) space;

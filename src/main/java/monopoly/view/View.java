@@ -227,7 +227,7 @@ public class View implements Observer {
     private void updateProperty(StationSpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
         GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
-        thisOwnableField.setRentLabel(String.valueOf(property.getRent(game)));
+        thisOwnableField.setRentLabel(jsonData.getString(JSONKey.RENT.getKey()) + " " + String.valueOf(property.getRent(game)));
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
                 if (property.isMortgaged()) {
