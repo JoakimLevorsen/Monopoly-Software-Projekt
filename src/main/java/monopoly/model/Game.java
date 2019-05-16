@@ -30,7 +30,7 @@ public class Game extends Model implements Subject {
     private List<Player> players = null;
     private List<CardStack> stacks = null;
     private List<Space> board = null;
-    private static String[] colors = {"FF0000", "0000FF", "008000", "FFFF00"};
+    private static String[] colors = { "FF0000", "0000FF", "008000", "FFFF00" };
 
     public enum Properties {
         CURRENT_TURN("currentTurn"), SAVE_NAME("saveName"), JSON_PACK("jsonPack");
@@ -81,8 +81,7 @@ public class Game extends Model implements Subject {
 
         try {
             super.saveIt();
-        }
-        catch (ValidationException e) {
+        } catch (ValidationException e) {
             e.printStackTrace();
             return false;
         }
@@ -91,8 +90,7 @@ public class Game extends Model implements Subject {
             for (Player player : players) {
                 try {
                     player.saveIt();
-                }
-                catch (ValidationException e) {
+                } catch (ValidationException e) {
                     e.printStackTrace();
                     return false;
                 }
@@ -103,8 +101,7 @@ public class Game extends Model implements Subject {
             for (CardStack cardStack : stacks) {
                 try {
                     cardStack.saveIt();
-                }
-                catch (ValidationException e) {
+                } catch (ValidationException e) {
                     e.printStackTrace();
                     return false;
                 }
@@ -115,8 +112,7 @@ public class Game extends Model implements Subject {
             for (Space space : board) {
                 try {
                     space.saveIt();
-                }
-                catch (ValidationException e) {
+                } catch (ValidationException e) {
                     e.printStackTrace();
                     return false;
                 }
@@ -131,30 +127,32 @@ public class Game extends Model implements Subject {
         for (int i = 0; i < board.size(); i++) {
             Space space = board.get(i);
             if (space instanceof PropertySpace) {
-                PropertySpace pS = (PropertySpace)space;
-                guiBoard[i] = new GUI_Street(pS.getName(), "", "", String.valueOf(pS.getRent(this)), pS.getColor(), Color.WHITE);
+                PropertySpace pS = (PropertySpace) space;
+                System.out.println(String.valueOf(pS.getRent(this)) + "money");
+                guiBoard[i] = new GUI_Street(pS.getName(), String.valueOf(pS.getRent(this)), pS.getName(), "",
+                        pS.getColor(), Color.WHITE);
             } else if (space instanceof StationSpace) {
-                StationSpace sS = (StationSpace)space;
-                guiBoard[i] = new GUI_Street(sS.getName(), "", "", String.valueOf(sS.getRent(this)), Color.BLACK, Color.WHITE);
+                StationSpace sS = (StationSpace) space;
+                guiBoard[i] = new GUI_Shipping("default", sS.getName(), "", "", String.valueOf(sS.getRent(this)),
+                        sS.getColor(), Color.WHITE);
             } else if (space instanceof FreeParkingSpace) {
-                guiBoard[i] = new GUI_Refuge("Cones", "Park", "", "", Color.GREEN, Color.WHITE);
+                FreeParkingSpace fS = (FreeParkingSpace) space;
+                guiBoard[i] = new GUI_Refuge("default", fS.getName(), fS.getName(), "", fS.getColor(), Color.BLACK);
             } else if (space instanceof JailSpace) {
-                JailSpace jail = (JailSpace)space;
-                guiBoard[i] = new GUI_Jail("Jail", "Jail", "", "", Color.MAGENTA, Color.WHITE);
+                JailSpace jS = (JailSpace) space;
+                guiBoard[i] = new GUI_Jail("default", jS.getName(), jS.getName(), "", jS.getColor(), Color.BLACK);
             } else if (space instanceof GoToJailSpace) {
-                guiBoard[i] = new GUI_Refuge("GoToJail", "GoToJail", "", "", Color.RED, Color.WHITE);
+                GoToJailSpace gS = (GoToJailSpace) space;
+                guiBoard[i] = new GUI_Jail("default", gS.getName(), gS.getName(), "", gS.getColor(), Color.BLACK);
             } else if (space instanceof CardSpace) {
-                CardSpace cS = (CardSpace)space;
-                CardStack stack = cS.getStack(this);
-                String title = "ERROR";
-                if (stack != null) {
-                    title = stack.isChanceCardStack() ? "Chance" : "CChest";
-                }
-                guiBoard[i] = new GUI_Chance("?", title, "", Color.BLUE, Color.CYAN);
+                CardSpace cS = (CardSpace) space;
+                guiBoard[i] = new GUI_Chance("?", cS.getName(), "", cS.getColor(), Color.BLACK);
             } else if (space instanceof TaxSpace) {
-                guiBoard[i] = new GUI_Tax("Tax", "", "", Color.pink, Color.white);
+                TaxSpace tS = (TaxSpace) space;
+                guiBoard[i] = new GUI_Tax(tS.getName(), String.valueOf(tS.getTax()), "", tS.getColor(), Color.white);
             } else if (space instanceof StartSpace) {
-                guiBoard[i] = new GUI_Start("Start", "", "", Color.YELLOW, Color.CYAN);
+                StartSpace sS = (StartSpace) space;
+                guiBoard[i] = new GUI_Start(sS.getName(), sS.getName(), "", sS.getColor(), Color.BLACK);
             } else {
                 System.out.println("Item not put on board");
             }
