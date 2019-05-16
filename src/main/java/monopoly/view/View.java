@@ -227,7 +227,7 @@ public class View implements Observer {
     private void updateProperty(StationSpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
         GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
-        GUI_Street thisStreet = (GUI_Street) thisField;
+        thisOwnableField.setRentLabel(String.valueOf(property.getRent(game)));
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
                 if (property.isMortgaged()) {
@@ -245,7 +245,8 @@ public class View implements Observer {
                 thisOwnableField.setBorder(null);
             }
         }
-        if (thisStreet != null && (property instanceof PropertySpace)) {
+        if (property instanceof PropertySpace) {
+            GUI_Street thisStreet = (GUI_Street) thisField;
             if (((PropertySpace) property).getHousesBuilt() == 5) {
                 thisStreet.setHotel(true);
                 thisStreet.setHouses(0);
