@@ -86,10 +86,12 @@ public class View implements Observer {
                 try {
                     JSONFile language = chooseLanguage();
                     JSONObject languageData = rm.readFile(language);
+                    chooseGameGUI.close();
                     return Game.newGame(saveName, language, languageData, playerAmount);
                 } catch (JSONException e) {
                     System.out.println("Could not find resource");
                     System.err.println(e);
+                    chooseGameGUI.close();
                     return null;
                 }
             } else {
@@ -103,6 +105,7 @@ public class View implements Observer {
                         JOptionPane.QUESTION_MESSAGE, null, saveNames, saveNames[0]).toString();
 
                 Game loadedGame = saveNameToGame.get(selection);
+                chooseGameGUI.close();
                 return loadedGame;
             }
         } else {
@@ -111,10 +114,12 @@ public class View implements Observer {
             try {
                 JSONFile language = chooseLanguage();
                 JSONObject languageData = rm.readFile(language);
+                chooseGameGUI.close();
                 return Game.newGame(saveName, language, languageData, playerAmount);
             } catch (JSONException e) {
                 System.out.println("Could not find resource");
                 System.err.println(e);
+                chooseGameGUI.close();
                 return null;
             }
         }
