@@ -79,11 +79,12 @@ public class GameController {
     }
 
     public void incrementTurn(int currentPlayerTurn) {
-        if (currentPlayerTurn + 1 == game.getPlayers().size()) {
-            game.setCurrentTurn(0);
-        } else {
-            game.setCurrentTurn(currentPlayerTurn + 1);
+        int nextPlayerTurn = currentPlayerTurn + 1;
+        if (nextPlayerTurn == game.getPlayers().size()) {
+            nextPlayerTurn = 0;
         }
+        game.setCurrentTurn(nextPlayerTurn);
+        System.out.println("Next turn is " + game.getCurrentTurn());
     }
 
     public void prisonTurn(Player player) {
