@@ -25,8 +25,8 @@ public class MovementController {
     public void moveForward(int amount, Player player) {
         int moveAmount = player.getBoardPosition() + amount;
 
-        if (moveAmount > 40) {
-            moveAmount = -40;
+        if (moveAmount >= 40) {
+            moveAmount -= 40;
             StartSpace s = (StartSpace) controller.getGame().getAll(StartSpace.class).load().get(0);
             player.changeAccountBalance(s.getPayment());
         }
