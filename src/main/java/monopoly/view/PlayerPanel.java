@@ -33,7 +33,7 @@ public class PlayerPanel extends JFrame {
         frame.setTitle(player.getName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(700, game.getPlayers().indexOf(player) * 200);
-        frame.setPreferredSize(new Dimension(500, 200));
+        frame.setPreferredSize(new Dimension(730, 150));
         frame.add(mainPanel);
         frame.pack();
         frame.setVisible(true);
