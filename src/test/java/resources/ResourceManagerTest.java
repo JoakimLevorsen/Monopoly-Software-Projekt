@@ -46,8 +46,9 @@ public class ResourceManagerTest {
         for (JSONFile file : JSONFile.values()) {
             try {
                 JSONObject jFile = manager.readFile(file);
+                // Test for alle keys i denne fil
                 for (JSONKey key : JSONKey.values()) {
-                    assertTrue("Key " + key + " was not found in " + file, keyExists(jFile, key.getKey()));
+                    assertTrue("Key " + key + " was not found in " + file, objectContainsKey(jFile, key));
                 }
             } catch (JSONException e) {
                 fail("File named " + file.getFileName() + " not found");
@@ -55,6 +56,48 @@ public class ResourceManagerTest {
             }
         }
 
+    }
+
+    /*
+     * objectContainsKey: Tjekker om nøgle findes mindst en gang i et array eller
+     * objekt.
+     * 
+     * @author Joakim Levorsen, S185023
+     */
+    public boolean objectContainsKey(JSONArray object, JSONKey key) {
+        for (Object child : object) {
+            if (child instanceof JSONArray) {
+                if (objectContainsKey((JSONArray) child, key))
+                    return true;
+            }
+            if (child instanceof JSONObject) {
+                if (objectContainsKey((JSONObject) child, key))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean objectContainsKey(JSONObject object, JSONKey key) {
+        for (String childKey : object.keySet()) {
+            if (childKey.equals("spaces") && key.getKey().equals("price")) {
+                System.out.println("Ayyy");
+            } else {
+                System.out.println(key.getKey() + " in " + childKey);
+            }
+            if (childKey.equals(key.getKey()))
+                return true;
+            Object atKey = object.get(childKey);
+            if (atKey instanceof JSONArray) {
+                if (objectContainsKey((JSONArray) atKey, key))
+                    return true;
+            }
+            if (atKey instanceof JSONObject) {
+                if (objectContainsKey((JSONObject) atKey, key))
+                    return true;
+            }
+        }
+        return false;
     }
 
     /*
