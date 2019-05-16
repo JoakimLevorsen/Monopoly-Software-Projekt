@@ -197,6 +197,15 @@ public class Player extends Model implements Subject {
         return null;
     }
 
+    /*
+     * getOutOfJail: Kom ud af fængsel.
+     *
+     * @author Joakim Levorsen, s185023
+     */
+    public void getOutOfJail() {
+        this.set(Properties.JAIL_SPACE.getProperty(), null);
+    }
+
     /**
      * Variabler og metoder til at implementere Subject
      *

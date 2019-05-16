@@ -56,7 +56,7 @@ public class JailSpace extends Space {
     }
 
     public void release(Player player) {
-        this.remove(player);
+        player.getOutOfJail();
     }
 
     /**
