@@ -158,7 +158,7 @@ public class Player extends Model implements Subject {
      *
      * @Author Anders Brandt, s185016
      */
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.set(Player.Properties.COLOR.getProperty(), color);
         this.updated();
     }
