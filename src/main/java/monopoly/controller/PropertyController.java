@@ -122,6 +122,8 @@ public class PropertyController {
 			controller.cashController.paymentToBank(player, property.getPrice());
 			property.setOwner(player);
 			player.addToOwnedProperties(property, controller.getGame());
+		} else {
+			auction(property);
 		}
 	}
 	/*

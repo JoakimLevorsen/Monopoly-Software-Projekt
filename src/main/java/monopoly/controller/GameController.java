@@ -6,6 +6,8 @@ import monopoly.model.cards.GetOutOfJailCard;
 import monopoly.model.spaces.*;
 import monopoly.view.View;
 import resources.json.JSONKey;
+
+import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONObject;
 
 public class GameController {
@@ -19,7 +21,7 @@ public class GameController {
     public GameController(Game game, View view) {
         this.game = game;
         this.view = view;
-        this.jsonData = game.getLanguageData(); 
+        this.jsonData = game.getLanguageData();
         this.movementController = new MovementController(this);
         this.cashController = new CashController(this);
         this.propertyController = new PropertyController(this);
@@ -43,8 +45,9 @@ public class GameController {
                     DiceRoll r;
                     int doubleCount = 0;
                     do {
-                        //TODO: nedenstående er udkommenteret for hurtig debugging. Fjern kommentar inden aflevering
-                        //view.getGUI().showMessage(playerWithTurn.getName() + ", roll the dice");
+                        // TODO: nedenstående er udkommenteret for hurtig debugging. Fjern kommentar
+                        // inden aflevering
+                        // view.getGUI().showMessage(playerWithTurn.getName() + ", roll the dice");
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
                             for (Space space : game.getBoard()) {
@@ -65,9 +68,11 @@ public class GameController {
                 }
             }
             incrementTurn(currentPlayerTurn);
-            if (!game.save()) {
+            try {
+                game.saveIt();
+            } catch (ValidationException e) {
                 System.out.println("Save of game failed");
-                System.out.println(game.errors());
+                e.printStackTrace();
             }
             ;
         }
@@ -85,14 +90,14 @@ public class GameController {
         DiceRoll r = new DiceRoll();
         if (r.isDoubles()) {
             view.getGUI().showMessage(jsonData.getString(JSONKey.ROLLED_DOUBLE.getKey()));
-            for (Space space: game.getBoard()) {
+            for (Space space : game.getBoard()) {
                 if (space instanceof JailSpace) {
                     ((JailSpace) space).release(player);
                 }
             }
         } else {
-            if (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.OUT_OF_JAIL.getKey()), 
-            jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
+            if (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.OUT_OF_JAIL.getKey()),
+                    jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
                 GetOutOfJailCard jailCard = player.getGetOutOfJailCard(game);
                 if (jailCard == null) {
                     player.changeAccountBalance(-50);

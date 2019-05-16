@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONObject;
 
 import monopoly.model.Game;
@@ -104,13 +105,21 @@ public class CardStack extends Model {
      * @Author Joakim Levorsen, S185023
      */
     @Override
-    public boolean save() {
-        if (super.save() == false) return false;
+    public boolean saveIt() {
+        try {
+            super.saveIt();
+        }
+        catch (ValidationException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         for (Card c : this.getCards()) {
-            if (!c.save()) {
-                System.out.println("card save error:");
-                System.out.println(c.errors());
+            try {
+                c.saveIt();
+            }
+            catch (ValidationException e) {
+                e.printStackTrace();
                 return false;
             }
         }

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import designpatterns.Observer;
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,17 +75,23 @@ public class Game extends Model implements Subject {
      * @Author Anders Brandt, s185016
      */
     @Override
-    public boolean save() {
+    public boolean saveIt() {
 
-        if (super.save() == false) {
+        try {
+            super.saveIt();
+        }
+        catch (ValidationException e) {
+            e.printStackTrace();
             return false;
         }
 
         if (players != null) {
             for (Player player : players) {
-                if (!player.save()) {
-                    System.out.println("Player save error:");
-                    System.out.println(player.errors());
+                try {
+                    player.saveIt();
+                }
+                catch (ValidationException e) {
+                    e.printStackTrace();
                     return false;
                 }
             }
@@ -92,9 +99,11 @@ public class Game extends Model implements Subject {
 
         if (stacks != null) {
             for (CardStack cardStack : stacks) {
-                if (!cardStack.save()) {
-                    System.out.println("cardStack save error:");
-                    System.out.println(cardStack.errors());
+                try {
+                    cardStack.saveIt();
+                }
+                catch (ValidationException e) {
+                    e.printStackTrace();
                     return false;
                 }
             }
@@ -102,9 +111,11 @@ public class Game extends Model implements Subject {
 
         if (board != null) {
             for (Space space : board) {
-                if (!space.save()) {
-                    System.out.println("space save error:");
-                    System.out.println(space.errors());
+                try {
+                    space.saveIt();
+                }
+                catch (ValidationException e) {
+                    e.printStackTrace();
                     return false;
                 }
             }
