@@ -47,7 +47,7 @@ public class GameController {
                     do {
                         // TODO: nedenstående er udkommenteret for hurtig debugging. Fjern kommentar
                         // inden aflevering
-                        // view.getGUI().showMessage(playerWithTurn.getName() + ", roll the dice");
+                        view.getGUI().showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
                         r = new DiceRoll();
                         if (doubleCount == 2 && r.isDoubles()) {
                             for (Space space : game.getBoard()) {
