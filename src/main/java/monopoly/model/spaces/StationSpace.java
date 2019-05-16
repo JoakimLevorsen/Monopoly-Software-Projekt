@@ -35,6 +35,7 @@ public class StationSpace extends Space {
         if (owner != null) {
             if (!owner.equals(player)) {
                 controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
+                controller.view.getGUI().showMessage(player.getName() + " betaler " + getRent(controller.getGame()) + " til " + owner.getName());
             }
         } else controller.propertyController.offerProperty(this, player);
     }
