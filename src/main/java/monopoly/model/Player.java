@@ -26,7 +26,7 @@ public class Player extends Model implements Subject {
 
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"),
-        JAIL_SPACE("jailSpace"), BROKE("broke"), COLOR("color");
+        JAIL_SPACE("jail_space_id"), BROKE("broke"), COLOR("color");
 
         private final String value;
 

@@ -29,13 +29,12 @@ public class PropertySpace extends StationSpace {
 
     public static PropertySpace create(int position, String name, int price, int baseRent, String color) {
         PropertySpace space = new PropertySpace();
+        space = (PropertySpace)(Space.setValues(space, name, color));
         space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);
-        space.set(PropertySpace.Properties.NAME.getProperty(), name);
         space.set(PropertySpace.Properties.MORTGAGED.getProperty(), false);
         space.set(PropertySpace.Properties.PRICE.getProperty(), price);
         space.set(PropertySpace.Properties.BASE_RENT.getProperty(), baseRent);
         space.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), 0);
-        space.set(PropertySpace.Properties.COLOR.getProperty(), color);
         return space;
     }
 
@@ -60,17 +59,6 @@ public class PropertySpace extends StationSpace {
             }
         }
         return true;
-    }
-
-    /*
-     * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
-     *
-     * @Author Anders Brandt, s185016
-     */
-    public Color getColor() {
-        String hex = this.getString(PropertySpace.Properties.COLOR.getProperty());
-        return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
-                Integer.valueOf(hex.substring(4, 6), 16));
     }
 
     /*

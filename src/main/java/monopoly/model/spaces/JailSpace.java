@@ -34,8 +34,9 @@ public class JailSpace extends Space {
         // Da man bare på besøg, sker der ikke noget når man lander på dette felt.
     }
 
-    public static JailSpace create(int position) {
+    public static JailSpace create(int position, String name, String color) {
         JailSpace space = new JailSpace();
+        space = (JailSpace)(Space.setValues(space, name, color));
         space.set(JailSpace.Properties.BOARD_POSITION.getProperty(), position);
         return space;
     }

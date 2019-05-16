@@ -44,8 +44,9 @@ public class CardSpace extends Space {
         return game.getStackForID(this.getCardStackId());
     }
 
-    public static CardSpace create(int position, CardStack stack) {
+    public static CardSpace create(int position, CardStack stack, String name, String color) {
         CardSpace space = new CardSpace();
+        space = (CardSpace)(Space.setValues(space, name, color));
         space.set(CardSpace.Properties.BOARD_POSITION.getProperty(), position);
         stack.add(space);
         return space;

@@ -39,8 +39,9 @@ public class TaxSpace extends Space {
         }
     }
 
-    public static TaxSpace create(int position, int tax) {
+    public static TaxSpace create(int position, int tax, String name, String color) {
         TaxSpace space = new TaxSpace();
+        space = (TaxSpace)(Space.setValues(space, name, color));
         space.set(Properties.BOARD_POSITION.getProperty(), position);
         space.set(Properties.TAX.getProperty(), tax);
         return space;

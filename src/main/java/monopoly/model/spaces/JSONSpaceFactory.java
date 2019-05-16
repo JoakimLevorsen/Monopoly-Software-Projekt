@@ -26,7 +26,8 @@ public class JSONSpaceFactory {
             int type = space.getInt(JSONKey.TYPE.getKey());
             switch (type) {
             case 0:
-                resultSet[i] = StartSpace.create(i, startPayment);
+                resultSet[i] = StartSpace.create(i, startPayment, space.getString(JSONKey.NAME.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 1:
                 resultSet[i] = PropertySpace.create(i, space.getString(JSONKey.NAME.getKey()),
@@ -35,23 +36,29 @@ public class JSONSpaceFactory {
                 break;
             case 2:
                 resultSet[i] = StationSpace.create(i, space.getString(JSONKey.NAME.getKey()),
-                        space.getInt(JSONKey.PRICE.getKey()), space.getInt(JSONKey.BASE_RENT.getKey()));
+                        space.getInt(JSONKey.PRICE.getKey()), space.getInt(JSONKey.BASE_RENT.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 3:
-                resultSet[i] = FreeParkingSpace.create(i);
+                resultSet[i] = FreeParkingSpace.create(i, space.getString(JSONKey.NAME.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 4:
-                resultSet[i] = JailSpace.create(i);
+                resultSet[i] = JailSpace.create(i, space.getString(JSONKey.NAME.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 5:
-                resultSet[i] = GoToJailSpace.create(i);
+                resultSet[i] = GoToJailSpace.create(i, space.getString(JSONKey.NAME.getKey()),
+                        space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 6:
             case 7:
-                resultSet[i] = CardSpace.create(i, type == 6 ? chanceStack : communityStack);
+                resultSet[i] = CardSpace.create(i, type == 6 ? chanceStack : communityStack,
+                        space.getString(JSONKey.NAME.getKey()), space.getString(JSONKey.COLOR.getKey()));
                 break;
             case 8:
-                resultSet[i] = TaxSpace.create(i, space.getInt(JSONKey.TAX.getKey()));
+                resultSet[i] = TaxSpace.create(i, space.getInt(JSONKey.TAX.getKey()),
+                        space.getString(JSONKey.NAME.getKey()), space.getString(JSONKey.COLOR.getKey()));
                 break;
             default:
                 throw new JSONException("Unexpected space type " + type);

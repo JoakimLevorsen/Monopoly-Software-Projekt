@@ -34,8 +34,9 @@ public class StartSpace extends Space {
         player.changeAccountBalance(this.getPayment());
     }
 
-    public static StartSpace create(int position, int payment) {
+    public static StartSpace create(int position, int payment, String name, String color) {
         StartSpace space = new StartSpace();
+        space = (StartSpace)(Space.setValues(space, name, color));
         space.set(StartSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StartSpace.Properties.PAYMENT.getProperty(), payment);
         return space;

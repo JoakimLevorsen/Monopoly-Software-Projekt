@@ -40,8 +40,9 @@ public class StationSpace extends Space {
         } else controller.propertyController.offerProperty(this, player);
     }
 
-    public static StationSpace create(int position, String name, int price, int baseRent) {
+    public static StationSpace create(int position, String name, int price, int baseRent, String color) {
         StationSpace space = new StationSpace();
+        space = (StationSpace)(Space.setValues(space, name, color));
         space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StationSpace.Properties.NAME.getProperty(), name);
         space.set(StationSpace.Properties.MORTGAGED.getProperty(), false);
@@ -94,15 +95,6 @@ public class StationSpace extends Space {
             return game.getPlayerForID(id);
         }
         return null;
-    }
-
-    /*
-     * getName: Henter navnet på stationen.
-     * 
-     * @Author Anders Brandt, s185016
-     */
-    public String getName() {
-        return this.getString(Properties.NAME.getProperty());
     }
 
     /*
