@@ -3,13 +3,15 @@ package monopoly.model.spaces;
 import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
+import org.json.JSONObject;
+import resources.json.JSONKey;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class TaxSpace extends Space {
     public enum Properties {
-        BOARD_POSITION("boardPosition"), TAX("tax");
+        BOARD_POSITION("boardPosition"), TAX("tax"), TAX_MESSAGE("taxMessage");
 
         private String value;
 
@@ -37,6 +39,8 @@ public class TaxSpace extends Space {
                 ((FreeParkingSpace) space).addToTreasure(getTax());
             }
         }
+        //controller.view.getGUI().showMessage(jsonData.getString(JSONKey.TAX_MESSAGE.getKey()));
+        //TODO: der mangler jsondata
     }
 
     public static TaxSpace create(int position, int tax, String name, String color) {

@@ -38,6 +38,7 @@
     "cantBuildAnymore": "You are not able to build on any of your properties.", 
     "buildOnProperty": "Do you want to build houses on a property?",
     "whichPropertyToBuildOn": "Which property do you want to build on?",
+    "taxMessage": "You have to pay tax on your assets, pay §100/200 to the bank",
     "spaces": [{
         "name": "Go",
         "type": 0,

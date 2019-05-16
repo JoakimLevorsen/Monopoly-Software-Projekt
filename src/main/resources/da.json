@@ -38,6 +38,7 @@
     "cantBuildAnymore": "Du kan ikke bygge på nogle af dine ejendomme.", 
     "buildOnProperty": "Vil du bygge huse på en ejendom?",
     "whichPropertyToBuildOn": "Hvilken ejendom vil du bygge på?",
+    "taxMessage": "Du skal betale skat at dine likvider, betal §100/200 til banken",
     "spaces": [{
         "name": "Start",
         "type": 0,
