@@ -76,19 +76,24 @@ public class PlayerPanel extends JFrame {
                 PropertySpace propertySpace = (PropertySpace) property;
                 pLabel = new JLabel(propertySpace.getName());
                 propPanel.add(pLabel);
+                pLabel.setForeground(Color.white);
                 propPanel.setBackground(propertySpace.getColor());
                 pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey())+ propertySpace.getHousesBuilt());
+                pLabel.setForeground(Color.white);
                 propPanel.add(pLabel);
                 pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent(game));
+                pLabel.setForeground(Color.white);
                 propPanel.add(pLabel);
             }
 
             else if (property instanceof StationSpace) {
                 StationSpace stationSpace = (StationSpace) property;
                 pLabel = new JLabel("" + stationSpace.getName());
+                pLabel.setForeground(Color.white);
                 propPanel.add(pLabel);
-                propPanel.setBackground(Color.getHSBColor(38, 38, 38));
+                propPanel.setBackground(property.getColor());
                 pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + stationSpace.getRent(game));
+                pLabel.setForeground(Color.white);
                 propPanel.add(pLabel);
             }
 
