@@ -20,7 +20,7 @@ public enum JSONKey {
     BOUGHT_PROPERTY("boughtProperty"), TRADE("trade"), BUY_OR_SELL_PROPERTY("buyOrSellProperty"),
     BUY_PROPERTY("buyProperty"), CHOOSE_PROPERTY("chooseProperty"), CHOOSE_PLAYER("choosePlayer"),
     AMOUNT_TO_PAY("amountToPay"), ACCEPT("accept"), MAX_BUILT_HOUSES("maxBuiltHouses"),
-    CANT_BUILD_ANYMORE("cantBuildAnymore"), BUILD_ON_PROPERTY("buildOnYourProperty"),
+    CANT_BUILD_ANYMORE("cantBuildAnymore"), BUILD_ON_PROPERTY("buildOnProperty"),
     WHICH_PROPERTY_TO_BUILD_ON("whichPropertyToBuildOn"), TAX_MESSAGE("taxMessage"), ROLL_DICE("rollDice"),
     PLAYER("player"), PLAYER_OWNS_NO_PROPERTIES("playerOwnsNoProperties"), YOU_OWN_NO_PROPERTIES("youOwnNoProperties"),;
 
