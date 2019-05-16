@@ -37,11 +37,11 @@ public class PlayerPanel extends JFrame {
         frame.add(mainPanel);
         frame.pack();
         frame.setVisible(true);
-        Update();
     }
 
     public void Update() {
         panel.removeAll();
+        mainPanel.removeAll();
 
         panel.setMinimumSize(new Dimension(100, 100));
         panel.setMaximumSize(new Dimension(100, 100));
