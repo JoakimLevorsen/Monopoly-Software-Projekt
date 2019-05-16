@@ -223,9 +223,7 @@ public class PropertyController {
 					// Hvis den spiller ikke har ejendom skip
 					ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
 					if (tradeeOwnedProperties.size() == 0) {
-						// TODO: Læs fra JSON
-						gooey.showMessage(
-								"Spiller " + tradee.getName() + " har ingen ejendomme, så du kan ikke købe fra dem");
+						gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName() + jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey())); 
 					} else {
 						String[] propertyNames = new String[tradeeOwnedProperties.size()];
 						for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
@@ -265,8 +263,7 @@ public class PropertyController {
 					HashMap<String, Player> nameToPlayer = new HashMap<>();
 					ArrayList<StationSpace> traderOwnedProperties = trader.getOwnedProperties(controller.getGame());
 					if (traderOwnedProperties.size() == 0) {
-						// TODO: JSON
-						gooey.showMessage("Du ejer ikke nogle ejendomme at sælge.");
+						gooey.showMessage(jsonData.getString(JSONKey.YOU_OWN_NO_PROPERTIES.getKey()));
 					} else {
 						String[] propertyNames = new String[traderOwnedProperties.size()];
 						for (int i = 0; i < traderOwnedProperties.size(); i++) {

@@ -40,6 +40,10 @@
     "whichPropertyToBuildOn": "Hvilken ejendom vil du bygge på?",
     "taxMessage": "Du skal betale skat at dine likvider, betal §100/200 til banken",
     "rollDice": ", slå med terningerne",
+    "player": "Spiller ", 
+    "playerOwnsNoProperties":" ejer ingen ejendommem, så du kan ikke købe fra dem", 
+    "youOwnNoProperties":"Du ejer ikke nogle ejendomme, så du kan ikke sælge noget.", 
+
     "spaces": [{
         "name": "Start",
         "type": 0,
