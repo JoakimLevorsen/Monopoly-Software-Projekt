@@ -1,5 +1,7 @@
 package monopoly.model.cards;
 
+import org.javalite.activejdbc.annotations.BelongsTo;
+
 import monopoly.controller.MovementController;
 import monopoly.model.Game;
 import monopoly.model.Player;
@@ -11,6 +13,7 @@ Implementering af Get Out of Jail Free Card
 @author Cecilie Krog Drejer, s185032
 */
 
+@BelongsTo(parent = Player.class, foreignKeyName = "player_id")
 public class GetOutOfJailCard extends Card {
 
     public enum Properties {

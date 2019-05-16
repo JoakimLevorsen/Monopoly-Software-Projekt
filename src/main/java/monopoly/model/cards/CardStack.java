@@ -63,20 +63,23 @@ public class CardStack extends Model {
         return matches;
     }
 
-    public Card drawCard() {
-        // TODO: DONT GIVE GET OUT OF JAIL CARDS WITH AN OWNER OUT
-        this.setNextIndex(this.getNextIndex() + 1);
-        if (this.getNextIndex() == this.getCards().size()) {
-            // We get the cards, shuffle them and save their new position
-            List<Card> cards = this.getCards();
-            Collections.shuffle(cards);
-            for (int i = 0; i < cards.size(); i++) {
-                Card card = cards.get(i);
-                card.setStackPosition(i);
+    public Card drawCard(Game game) {
+        Card drawnCard;
+        do {
+            this.setNextIndex(this.getNextIndex() + 1);
+            if (this.getNextIndex() == this.getCards().size()) {
+                // We get the cards, shuffle them and save their new position
+                List<Card> cards = this.getCards();
+                Collections.shuffle(cards);
+                for (int i = 0; i < cards.size(); i++) {
+                    Card card = cards.get(i);
+                    card.setStackPosition(i);
+                }
+                this.setNextIndex(0);
             }
-            this.setNextIndex(0);
-        }
-        return this.getCards().get(this.getNextIndex());
+            drawnCard = this.getCards().get(this.getNextIndex());
+        } while(drawnCard instanceof GetOutOfJailCard && ((GetOutOfJailCard)drawnCard).getOwner(game) != null);
+        return drawnCard;
     }
 
     private int getNextIndex() {
