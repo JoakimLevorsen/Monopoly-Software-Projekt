@@ -32,7 +32,7 @@ public class PlayerPanel extends JFrame {
         this.jsonData = game.getLanguageData();
         frame.setTitle(player.getName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(700, game.getPlayers().indexOf(player) * 300);
+        frame.setLocation(700, game.getPlayers().indexOf(player) * 200);
         frame.setPreferredSize(new Dimension(500, 200));
         frame.add(mainPanel);
         frame.pack();
