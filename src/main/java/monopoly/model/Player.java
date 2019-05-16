@@ -123,7 +123,6 @@ public class Player extends Model implements Subject {
 
     public void addToOwnedProperties(StationSpace property, Game game) {
         this.getOwnedProperties(game).add(property);
-        this.add(property);
     }
 
     /*
@@ -135,7 +134,6 @@ public class Player extends Model implements Subject {
 
     public void removeFromOwnedProperties(StationSpace property, Game game) {
         this.getOwnedProperties(game).remove(property);
-        this.remove(property);
     }
 
     public boolean hasOverdrawnAccount() {
