@@ -40,8 +40,8 @@
     "whichPropertyToBuildOn": "Which property do you want to build on?",
     "taxMessage": "You have to pay tax on your assets, pay §100/200 to the bank",
     "rollDice": ", roll the dice",
-    "player": "Player ", 
-    "playerOwnsNoProperties":" does not own any properties so you cannot buy from them.", 
+    "player": "Player: ", 
+    "playerOwnsNoProperties":" does not own any properties so you cannot buy any.", 
     "youOwnNoProperties":" You own no properties so you cannot sell any.", 
 
     "spaces": [{
