@@ -27,6 +27,7 @@ public class Game extends Model implements Subject {
     private List<Player> players = null;
     private List<CardStack> stacks = null;
     private List<Space> board = null;
+    private static String[] colors = {"FF0000", "0000FF", "008000", "FFFF00"};
 
     public enum Properties {
         CURRENT_TURN("currentTurn"), SAVE_NAME("saveName"), JSON_PACK("jsonPack");
@@ -52,7 +53,7 @@ public class Game extends Model implements Subject {
         CardStack communityStack = CardStack.create(jsonData, g, false, 0);
         JSONSpaceFactory.createSpaces(jsonData, g, chanceStack, communityStack);
         for (int i = 0; i < playerCount; i++) {
-            Player newPlayer = Player.newPlayer("Player " + (i + 1), i, 2000);
+            Player newPlayer = Player.newPlayer("Player " + (i + 1), i, 2000, colors[i]);
             g.addPlayer(newPlayer);
         }
         return g;

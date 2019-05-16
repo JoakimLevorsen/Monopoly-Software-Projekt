@@ -22,12 +22,11 @@ Implementering af Player model objektet, med ORM for databasen.
 */
 
 public class Player extends Model implements Subject {
-    private Color color;
     private ArrayList<StationSpace> ownedProperties;
 
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"),
-        JAIL_SPACE("jailSpace"), BROKE("broke");
+        JAIL_SPACE("jailSpace"), BROKE("broke"), COLOR("color");
 
         private final String value;
 
@@ -40,11 +39,12 @@ public class Player extends Model implements Subject {
         }
     }
 
-    public static Player newPlayer(String name, int index, int balance) {
+    public static Player newPlayer(String name, int index, int balance, String color) {
         return new Player().set(Player.Properties.NAME.getProperty(), name)
                 .set(Player.Properties.PLAYER_INDEX.getProperty(), index)
                 .set(Player.Properties.BOARD_POSITION.getProperty(), 0)
-                .set(Player.Properties.ACCOUNT_BALANCE.getProperty(), balance);
+                .set(Player.Properties.ACCOUNT_BALANCE.getProperty(), balance)
+                .set(Player.Properties.COLOR.getProperty(), color);
     }
 
     public static List<Player> playerList() {
@@ -143,12 +143,14 @@ public class Player extends Model implements Subject {
     }
 
     /*
-     * getColor: Henter farven for spilleren.
+     * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      *
      * @Author Anders Brandt, s185016
      */
     public Color getColor() {
-        return color;
+        String hex = this.getString(PropertySpace.Properties.COLOR.getProperty());
+        return new Color(Integer.valueOf(hex.substring(0, 2), 16), Integer.valueOf(hex.substring(2, 4), 16),
+                Integer.valueOf(hex.substring(4, 6), 16));
     }
 
     /*
@@ -157,7 +159,7 @@ public class Player extends Model implements Subject {
      * @Author Anders Brandt, s185016
      */
     public void setColor(Color color) {
-        this.color = color;
+        this.set(Player.Properties.COLOR.getProperty(), color);
         this.updated();
     }
 
