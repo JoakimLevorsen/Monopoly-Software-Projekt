@@ -171,8 +171,6 @@ public class View implements Observer {
         if (!disposed) {
             if (subject instanceof Player) {
                 updatePlayer((Player) subject);
-            } else if (subject instanceof PropertySpace) {
-                updateProperty((PropertySpace) subject);
             } else if (subject instanceof StationSpace) {
                 updateProperty((StationSpace) subject);
             }

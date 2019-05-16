@@ -12,7 +12,7 @@ public final class Monopoly {
 
         DatabaseBase.openBase();
         Game ourGame = View.chooseGame();
-        GUI gameGUI = new GUI();
+        GUI gameGUI = new GUI(ourGame.exportGUIFields());
 
         View gameView = new View(ourGame, gameGUI);
         GameController controller = new GameController(ourGame, gameView);

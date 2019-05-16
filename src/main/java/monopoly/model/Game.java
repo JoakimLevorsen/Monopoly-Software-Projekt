@@ -1,5 +1,6 @@
 package monopoly.model;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import designpatterns.Subject;
+import gui_fields.*;
 import monopoly.model.cards.CardStack;
 import monopoly.model.spaces.DatabaseSpaceFactory;
 import resources.json.JSONFile;
@@ -123,6 +125,43 @@ public class Game extends Model implements Subject {
         return true;
     }
 
+    public GUI_Field[] exportGUIFields() {
+        List<Space> board = this.getBoard();
+        GUI_Field[] guiBoard = new GUI_Field[board.size()];
+        for (int i = 0; i < board.size(); i++) {
+            Space space = board.get(i);
+            if (space instanceof PropertySpace) {
+                PropertySpace pS = (PropertySpace)space;
+                guiBoard[i] = new GUI_Street(pS.getName(), "", "", String.valueOf(pS.getRent(this)), pS.getColor(), Color.WHITE);
+            } else if (space instanceof StationSpace) {
+                StationSpace sS = (StationSpace)space;
+                guiBoard[i] = new GUI_Street(sS.getName(), "", "", String.valueOf(sS.getRent(this)), Color.BLACK, Color.WHITE);
+            } else if (space instanceof FreeParkingSpace) {
+                guiBoard[i] = new GUI_Refuge("Cones", "Park", "", "", Color.GREEN, Color.WHITE);
+            } else if (space instanceof JailSpace) {
+                JailSpace jail = (JailSpace)space;
+                guiBoard[i] = new GUI_Jail("Jail", "Jail", "", "", Color.MAGENTA, Color.WHITE);
+            } else if (space instanceof GoToJailSpace) {
+                guiBoard[i] = new GUI_Refuge("GoToJail", "GoToJail", "", "", Color.RED, Color.WHITE);
+            } else if (space instanceof CardSpace) {
+                CardSpace cS = (CardSpace)space;
+                CardStack stack = cS.getStack(this);
+                String title = "ERROR";
+                if (stack != null) {
+                    title = stack.isChanceCardStack() ? "Chance" : "CChest";
+                }
+                guiBoard[i] = new GUI_Chance("?", title, "", Color.BLUE, Color.CYAN);
+            } else if (space instanceof TaxSpace) {
+                guiBoard[i] = new GUI_Tax("Tax", "", "", Color.pink, Color.white);
+            } else if (space instanceof StartSpace) {
+                guiBoard[i] = new GUI_Start("Start", "", "", Color.YELLOW, Color.CYAN);
+            } else {
+                System.out.println("Item not put on board");
+            }
+        }
+        return guiBoard;
+    }
+
     public void addPlayer(Player player) {
         this.getPlayers().add(player);
         this.add(player);
@@ -169,10 +208,10 @@ public class Game extends Model implements Subject {
         return this.board;
     }
 
-    public CardStack getStackForID(int id) {
+    public CardStack getStackForID(long id) {
         List<CardStack> stacks = this.getCardStacks();
         for (CardStack c : stacks) {
-            if ((int) c.getId() == id) {
+            if (c.getLongId() == id) {
                 return c;
             }
         }
