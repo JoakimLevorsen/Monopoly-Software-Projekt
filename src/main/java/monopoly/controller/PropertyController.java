@@ -171,7 +171,7 @@ public class PropertyController {
 	}
 
 	/*
-	 * sellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
+	 * SellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
 	 */
@@ -193,8 +193,8 @@ public class PropertyController {
 	}
 
 	/*
-	 * Trade: Metode til at foretage byttehandler med andre spillere. Ejendomme
-	 * tages kun i bytte for penge.
+	 * Trade: Metode til at foretage byttehandler med andre spillere.
+	 * OBS: Ejendomme tages kun i bytte for penge.
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
 	 */

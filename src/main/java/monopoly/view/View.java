@@ -69,6 +69,14 @@ public class View implements Observer {
         }
     }
 
+    /*
+     * ChooseGame: Metode til at vælge om man vil hente et gemt spil (og i så fald
+     * hvilket) eller om man vil starte et nyt spil
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public static Game chooseGame() {
         HashMap<String, Game> saveNameToGame = new HashMap<>();
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
@@ -87,7 +95,8 @@ public class View implements Observer {
             } else {
                 String[] saveNames = new String[savedGames.size()];
                 for (int i = 0; i < savedGames.size(); i++) {
-                    String saveGameName = savedGames.get(i).getGameName() + " " + savedGames.get(i).getUpdateTime().toGMTString();
+                    String saveGameName = savedGames.get(i).getGameName() + " "
+                            + savedGames.get(i).getUpdateTime().toGMTString();
                     saveNames[i] = saveGameName;
                     saveNameToGame.put(saveGameName, savedGames.get(i));
                 }
@@ -109,6 +118,12 @@ public class View implements Observer {
         }
     }
 
+    /*
+     * StartNewGame: Metode til at få information til at starte et nyt spil fra
+     * spilleren
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
     public static Game startNewGame(GUI gooey, ResourceManager rm) {
         String saveName = gooey.getUserString("Type a name for your new game / Angiv et navn til dit nye spil.");
         int playerAmount = gooey.getUserInteger("How many players? / Hvor mange spillere?", 2, 4);
@@ -128,6 +143,13 @@ public class View implements Observer {
         }
     }
 
+    /*
+     * ChooseLanguage: Metode til at vælge sprog
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
     public static JSONFile chooseLanguage() throws JSONException {
         HashMap<String, JSONFile> languageChoices = new HashMap<String, JSONFile>();
         List<String> stringChoices = new ArrayList<String>();
@@ -159,6 +181,14 @@ public class View implements Observer {
             return null;
     }
 
+    /*
+     * WhichPropertyDoYouWantToBuildOn: Metode til at vælge hvilken ejendom man vil
+     * bygge på
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
     public PropertySpace whichPropertyDoWantToBuildOn(List<PropertySpace> possibleChoices) {
         HashMap<String, PropertySpace> targets = new HashMap<String, PropertySpace>();
         List<String> choices = new ArrayList<String>();
