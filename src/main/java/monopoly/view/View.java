@@ -97,7 +97,7 @@ public class View implements Observer {
             } else {
                 String[] saveNames = new String[savedGames.size()];
                 for (int i = 0; i < savedGames.size(); i++) {
-                    String saveGameName = savedGames.get(i).getGameName() + savedGames.get(i).getUpdateTime().toGMTString();
+                    String saveGameName = savedGames.get(i).getGameName() + " " + savedGames.get(i).getUpdateTime().toGMTString();
                     saveNames[i] = saveGameName;
                     saveNameToGame.put(saveGameName, savedGames.get(i));
                 }
