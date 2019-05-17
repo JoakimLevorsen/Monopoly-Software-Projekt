@@ -231,29 +231,6 @@ public class Game extends Model implements Subject {
         return (int) this.get(Properties.CURRENT_TURN.getProperty());
     }
 
-    public List<Space> getOwnedSpaces(Player player) {
-        List<Space> board = this.getBoard();
-        List<Space> ownedProperty = new ArrayList<Space>();
-        for (Space boardSpace : board) {
-            if (boardSpace instanceof PropertySpace) {
-                Player owner = ((PropertySpace) boardSpace).getOwner(this);
-                if (owner != null) {
-                    long ownerID = owner.getLongId();
-                    if (player.getLongId().longValue() == ownerID)
-                        ownedProperty.add(boardSpace);
-                }
-            } else if (boardSpace instanceof StationSpace) {
-                Player owner = ((StationSpace) boardSpace).getOwner(this);
-                if (owner != null) {
-                    long ownerID = owner.getLongId();
-                    if (player.getLongId().longValue() == ownerID)
-                        ownedProperty.add(boardSpace);
-                }
-            }
-        }
-        return ownedProperty;
-    }
-
     public void setCurrentTurn(int turn) {
         this.set(Game.Properties.CURRENT_TURN.getProperty(), turn);
         this.updated();

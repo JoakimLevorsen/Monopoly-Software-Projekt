@@ -63,7 +63,7 @@ public class PlayerPanel extends JFrame {
         this.getContentPane().setLayout(null);
         JPanel propPanel = new JPanel();
 
-        for (Space property : game.getOwnedSpaces(player)) {
+        for (Space property : player.getOwnedProperties(game)) {
             propPanel = new JPanel();
             propPanel.setMinimumSize(new Dimension(150, 100));
             propPanel.setPreferredSize(new Dimension(150, 100));
