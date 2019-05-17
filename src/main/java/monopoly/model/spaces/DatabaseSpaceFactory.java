@@ -1,10 +1,10 @@
 package monopoly.model.spaces;
 
+import monopoly.model.Game;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import monopoly.model.Game;
 
 /*
 DatabaseSpaceFactory:

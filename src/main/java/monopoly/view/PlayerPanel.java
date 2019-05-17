@@ -5,8 +5,8 @@ import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
 import monopoly.model.spaces.Space;
 import monopoly.model.spaces.StationSpace;
-import resources.json.JSONKey;
 import org.json.JSONObject;
+import resources.json.JSONKey;
 
 import javax.swing.*;
 import java.awt.*;

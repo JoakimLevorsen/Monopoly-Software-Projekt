@@ -2,7 +2,8 @@ package monopoly.model.cards;
 
 import monopoly.controller.MovementController;
 import monopoly.model.Player;
-import monopoly.model.spaces.*;
+import monopoly.model.spaces.JailSpace;
+import monopoly.model.spaces.Space;
 
 /*
 GoToJailCard:

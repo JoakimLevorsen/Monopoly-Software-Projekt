@@ -1,13 +1,12 @@
 package monopoly.model.cards;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import resources.json.JSONKey;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /*
 JSONCardFactory:

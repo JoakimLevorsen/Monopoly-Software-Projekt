@@ -1,6 +1,8 @@
 package monopoly.model.cards;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*
 DatabaseCardFactory:

@@ -1,11 +1,10 @@
 package monopoly.model.spaces;
 
+import monopoly.model.Game;
+import monopoly.model.cards.CardStack;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import monopoly.model.*;
-import monopoly.model.cards.CardStack;
 import resources.json.JSONKey;
 
 /*

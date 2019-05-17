@@ -3,8 +3,6 @@ package monopoly.model.spaces;
 import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
-import org.json.JSONObject;
-import resources.json.JSONKey;
 
 import java.util.HashSet;
 import java.util.Set;

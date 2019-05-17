@@ -1,10 +1,9 @@
 package monopoly.model.cards;
 
-import org.javalite.activejdbc.annotations.BelongsTo;
-
 import monopoly.controller.MovementController;
 import monopoly.model.Game;
 import monopoly.model.Player;
+import org.javalite.activejdbc.annotations.BelongsTo;
 
 /*
 GetOutOfJailCard:

@@ -1,12 +1,11 @@
 package monopoly.model.spaces;
 
-import java.awt.Color;
-
+import designpatterns.Subject;
+import monopoly.controller.GameController;
+import monopoly.model.Player;
 import org.javalite.activejdbc.Model;
 
-import designpatterns.Subject;
-import monopoly.controller.*;
-import monopoly.model.*;
+import java.awt.*;
 
 /*
 Space:

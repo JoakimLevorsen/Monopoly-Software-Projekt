@@ -1,7 +1,7 @@
 package monopoly.model.cards;
 
 import monopoly.controller.MovementController;
-import monopoly.model.*;
+import monopoly.model.Player;
 
 /*
 GoToSpaceCard:

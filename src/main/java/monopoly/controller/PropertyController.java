@@ -1,20 +1,17 @@
 package monopoly.controller;
 
+import gui_main.GUI;
 import monopoly.model.Player;
 import monopoly.model.spaces.PropertySpace;
-import monopoly.model.spaces.StationSpace;
-import resources.json.JSONKey;
 import monopoly.model.spaces.Space;
-
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
+import monopoly.model.spaces.StationSpace;
 import org.json.JSONObject;
+import resources.json.JSONKey;
 
-import gui_main.GUI;
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+import java.util.*;
 
 public class PropertyController {
 	private GameController controller;

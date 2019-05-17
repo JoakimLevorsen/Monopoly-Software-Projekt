@@ -1,26 +1,24 @@
 package monopoly.model;
 
-import java.awt.Color;
+import designpatterns.Observer;
+import designpatterns.Subject;
+import gui_fields.*;
+import monopoly.model.cards.CardStack;
+import monopoly.model.spaces.*;
+import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.validation.ValidationException;
+import org.json.JSONException;
+import org.json.JSONObject;
+import resources.json.JSONFile;
+import resources.json.JSONKey;
+import resources.json.ResourceManager;
+
+import java.awt.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import designpatterns.Observer;
-import org.javalite.activejdbc.Model;
-import org.javalite.activejdbc.validation.ValidationException;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import designpatterns.Subject;
-import gui_fields.*;
-import monopoly.model.cards.CardStack;
-import monopoly.model.spaces.DatabaseSpaceFactory;
-import resources.json.JSONFile;
-import resources.json.JSONKey;
-import resources.json.ResourceManager;
-import monopoly.model.spaces.*;
 
 /*
 Game:

@@ -2,7 +2,6 @@ package monopoly;
 
 import gui_main.GUI;
 import monopoly.controller.GameController;
-import monopoly.DatabaseBase;
 import monopoly.model.Game;
 import monopoly.view.View;
 

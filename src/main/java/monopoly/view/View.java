@@ -1,24 +1,25 @@
 package monopoly.view;
 
-import java.awt.*;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import designpatterns.*;
+import designpatterns.Observer;
+import designpatterns.Subject;
 import gui_fields.*;
 import gui_main.GUI;
-import monopoly.model.*;
-import monopoly.model.spaces.*;
+import monopoly.model.Game;
+import monopoly.model.Player;
+import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.Space;
+import monopoly.model.spaces.StationSpace;
+import org.json.JSONException;
+import org.json.JSONObject;
 import resources.json.JSONFile;
 import resources.json.JSONKey;
 import resources.json.ResourceManager;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class View implements Observer {
 

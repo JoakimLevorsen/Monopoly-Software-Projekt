@@ -1,14 +1,13 @@
 package monopoly.model.cards;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import monopoly.model.Game;
 import org.javalite.activejdbc.Model;
 import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONObject;
 
-import monopoly.model.Game;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /*
 CardStack:

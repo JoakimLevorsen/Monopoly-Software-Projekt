@@ -1,6 +1,7 @@
 package monopoly.model.spaces;
 
-import monopoly.model.*;
+import monopoly.model.Game;
+import monopoly.model.Player;
 
 /*
 PropertySpace:
