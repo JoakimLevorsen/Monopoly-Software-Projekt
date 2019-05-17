@@ -19,7 +19,7 @@ Opretter paneler med information omkring spilleren og dets ejendomme.
 */
 
 public class PlayerPanel extends JFrame {
-    private JSONObject jsonData; 
+    private JSONObject jsonData;
     private Game game;
     private Player player;
     final JFrame frame = new JFrame();
@@ -56,8 +56,10 @@ public class PlayerPanel extends JFrame {
 
         pLabel = new JLabel(jsonData.getString(JSONKey.BALANCE.getKey()) + player.getAccountBalance());
         panel.add(pLabel);
-         if (player.isInJail()) { pLabel = new JLabel(jsonData.getString(JSONKey.PLAYER_IS_IN_JAIL.getKey()));
-         panel.add(pLabel); }
+        if (player.isInJail()) {
+            pLabel = new JLabel(jsonData.getString(JSONKey.PLAYER_IS_IN_JAIL.getKey()));
+            panel.add(pLabel);
+        }
 
         mainPanel.add(panel);
         this.getContentPane().setLayout(null);
@@ -78,7 +80,7 @@ public class PlayerPanel extends JFrame {
                 propPanel.add(pLabel);
                 pLabel.setForeground(Color.white);
                 propPanel.setBackground(propertySpace.getColor());
-                pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey())+ propertySpace.getHousesBuilt());
+                pLabel = new JLabel(jsonData.getString(JSONKey.HOUSES_BUILT.getKey()) + propertySpace.getHousesBuilt());
                 pLabel.setForeground(Color.white);
                 propPanel.add(pLabel);
                 pLabel = new JLabel(jsonData.getString(JSONKey.RENT.getKey()) + propertySpace.getRent(game));

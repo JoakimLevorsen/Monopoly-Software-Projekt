@@ -17,7 +17,8 @@ Et objekt til at repræsentere stationer.
 public class StationSpace extends Space {
 
     public enum Properties {
-        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"), OWNER("player_id");
+        BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
+        OWNER("player_id");
 
         private String value;
 
@@ -36,14 +37,16 @@ public class StationSpace extends Space {
         if (owner != null) {
             if (!owner.equals(player)) {
                 controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
-                controller.view.getGUI().showMessage(player.getName() + " betaler " + getRent(controller.getGame()) + " til " + owner.getName());
+                controller.view.getGUI().showMessage(
+                        player.getName() + " betaler " + getRent(controller.getGame()) + " til " + owner.getName());
             }
-        } else controller.propertyController.offerProperty(this, player);
+        } else
+            controller.propertyController.offerProperty(this, player);
     }
 
     public static StationSpace create(int position, String name, int price, int baseRent, String color) {
         StationSpace space = new StationSpace();
-        space = (StationSpace)(Space.setValues(space, name, color));
+        space = (StationSpace) (Space.setValues(space, name, color));
         space.set(StationSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StationSpace.Properties.NAME.getProperty(), name);
         space.set(StationSpace.Properties.MORTGAGED.getProperty(), false);

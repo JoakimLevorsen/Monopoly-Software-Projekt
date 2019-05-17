@@ -3,6 +3,7 @@ package monopoly.model.spaces;
 import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
+import resources.json.JSONKey;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,13 +38,13 @@ public class TaxSpace extends Space {
                 ((FreeParkingSpace) space).addToTreasure(getTax());
             }
         }
-        //controller.view.getGUI().showMessage(jsonData.getString(JSONKey.TAX_MESSAGE.getKey()));
-        //TODO: der mangler jsondata
+        String message = controller.getGame().getLanguageData().getString(JSONKey.TAX_MESSAGE.getKey());
+        controller.view.getGUI().showMessage(message);
     }
 
     public static TaxSpace create(int position, int tax, String name, String color) {
         TaxSpace space = new TaxSpace();
-        space = (TaxSpace)(Space.setValues(space, name, color));
+        space = (TaxSpace) (Space.setValues(space, name, color));
         space.set(Properties.BOARD_POSITION.getProperty(), position);
         space.set(Properties.TAX.getProperty(), tax);
         return space;

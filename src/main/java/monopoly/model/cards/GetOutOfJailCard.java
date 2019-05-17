@@ -45,12 +45,12 @@ public class GetOutOfJailCard extends Card {
         Object playerID = this.get(Properties.OWNER.getProperty());
         if (playerID != null) {
             if (playerID instanceof Integer) {
-                Integer id = (Integer)playerID;
+                Integer id = (Integer) playerID;
                 return game.getPlayerForID(id.longValue());
             } else {
                 System.out.println("Woah unexpected type of player id");
             }
-            
+
         }
         return null;
     }
@@ -83,8 +83,9 @@ public class GetOutOfJailCard extends Card {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof GetOutOfJailCard)) return false;
-        return ((GetOutOfJailCard)obj).getLongId().equals(this.getLongId());
+        if (!(obj instanceof GetOutOfJailCard))
+            return false;
+        return ((GetOutOfJailCard) obj).getLongId().equals(this.getLongId());
     }
 
     public void execute(MovementController moveController, Player player) {

@@ -36,7 +36,7 @@ public class JailSpace extends Space {
 
     public static JailSpace create(int position, String name, String color) {
         JailSpace space = new JailSpace();
-        space = (JailSpace)(Space.setValues(space, name, color));
+        space = (JailSpace) (Space.setValues(space, name, color));
         space.set(JailSpace.Properties.BOARD_POSITION.getProperty(), position);
         return space;
     }
@@ -44,7 +44,7 @@ public class JailSpace extends Space {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof JailSpace) {
-            JailSpace other = (JailSpace)obj;
+            JailSpace other = (JailSpace) obj;
             return other.getLongId().equals(this.getLongId());
         }
         return false;

@@ -49,8 +49,9 @@ public class GoToSpaceCard extends Card {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof GoToSpaceCard)) return false;
-        return ((GoToSpaceCard)obj).getLongId().equals(this.getLongId());
+        if (!(obj instanceof GoToSpaceCard))
+            return false;
+        return ((GoToSpaceCard) obj).getLongId().equals(this.getLongId());
     }
 
     /*

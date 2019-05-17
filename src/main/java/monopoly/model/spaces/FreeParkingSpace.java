@@ -43,7 +43,7 @@ public class FreeParkingSpace extends Space {
 
     public static FreeParkingSpace create(int position, String name, String color) {
         FreeParkingSpace space = new FreeParkingSpace();
-        space = (FreeParkingSpace)(Space.setValues(space, name, color));
+        space = (FreeParkingSpace) (Space.setValues(space, name, color));
         space.set(FreeParkingSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(FreeParkingSpace.Properties.TREASURE.getProperty(), 0);
         return space;

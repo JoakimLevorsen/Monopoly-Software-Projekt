@@ -28,7 +28,7 @@ public class PropertySpace extends StationSpace {
 
     public static PropertySpace create(int position, String name, int price, int baseRent, String color) {
         PropertySpace space = new PropertySpace();
-        space = (PropertySpace)(Space.setValues(space, name, color));
+        space = (PropertySpace) (Space.setValues(space, name, color));
         space.set(PropertySpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(PropertySpace.Properties.MORTGAGED.getProperty(), false);
         space.set(PropertySpace.Properties.PRICE.getProperty(), price);

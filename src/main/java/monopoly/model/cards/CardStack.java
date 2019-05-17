@@ -77,7 +77,7 @@ public class CardStack extends Model {
                 this.setNextIndex(0);
             }
             drawnCard = this.getCards().get(this.getNextIndex());
-        } while(drawnCard instanceof GetOutOfJailCard && ((GetOutOfJailCard)drawnCard).getOwner(game) != null);
+        } while (drawnCard instanceof GetOutOfJailCard && ((GetOutOfJailCard) drawnCard).getOwner(game) != null);
         return drawnCard;
     }
 
@@ -110,8 +110,7 @@ public class CardStack extends Model {
     public boolean saveIt() {
         try {
             super.saveIt();
-        }
-        catch (ValidationException e) {
+        } catch (ValidationException e) {
             e.printStackTrace();
             return false;
         }
@@ -119,8 +118,7 @@ public class CardStack extends Model {
         for (Card c : this.getCards()) {
             try {
                 c.saveIt();
-            }
-            catch (ValidationException e) {
+            } catch (ValidationException e) {
                 e.printStackTrace();
                 return false;
             }

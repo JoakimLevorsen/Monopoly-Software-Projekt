@@ -8,510 +8,511 @@
     "whatDo": "Hvad vil du gøre ved den valgte ejendom?",
     "housesOnPropertyChooseHouses": "Den valgte ejendom kan ikke sælges eller pantsættes, da der er huse på den. Hvor mange huse vil du sælge?",
     "housesOnPropertySellAllHouses": "Den valgte ejendom kan ikke sælges eller pantsættes, da der er huse på den. Alle huse vil nu blive solgt.",
-    "rolledDouble": "Du slog to ens og løslades fra fængslet gratis", 
-    "outOfJail": "Vil du ud af fængslet?", 
-    "yes": "Ja", 
-    "no": "Nej", 
+    "rolledDouble": "Du slog to ens og løslades fra fængslet gratis",
+    "outOfJail": "Vil du ud af fængslet?",
+    "yes": "Ja",
+    "no": "Nej",
     "questionMark": "?",
     "name": "Navn: ",
-    "balance": "Balance: ", 
-    "playerIsInJail": "Du er i fængsel", 
-    "housesBuilt": "Huse bygget: " ,
+    "balance": "Balance: ",
+    "playerIsInJail": "Du er i fængsel",
+    "housesBuilt": "Huse bygget: ",
     "rent": "Leje: ",
-    "mortagedBy": "Pantsat af: ", 
-    "ownedBy": "Ejet af: ", 
-    "auctionedOff": " auktioneres nu bort.", 
+    "mortagedBy": "Pantsat af: ",
+    "ownedBy": "Ejet af: ",
+    "auctionedOff": " auktioneres nu bort.",
     "bid": ", vil du byde (angiv 0 hvis nej)? Nuværende bud er: ",
-    "bidNotValid": "Dit bud var ikke gyldigt, så du er blevet sprunget over.", 
-    "winner": " vandt auktionen, med buddet ", 
-    "offerProperty": "Vil du købe ", 
-    "propertyCost": "? Den koster: ", 
-    "boughtProperty": "Juhu, du købte ", 
-    "trade": "Vil du handle med en anden spiller?", 
-    "buyOrSellProperty": "Vil du købe eller sælge en ejendom?", 
+    "bidNotValid": "Dit bud var ikke gyldigt, så du er blevet sprunget over.",
+    "winner": " vandt auktionen, med buddet ",
+    "offerProperty": "Vil du købe ",
+    "propertyCost": "? Den koster: ",
+    "boughtProperty": "Juhu, du købte ",
+    "trade": "Vil du handle med en anden spiller?",
+    "buyOrSellProperty": "Vil du købe eller sælge en ejendom?",
     "buyProperty": "Køb ejendom",
-    "chooseProperty": "Vælg ejendom.", 
+    "chooseProperty": "Vælg ejendom.",
     "choosePlayer": "Vælg en spiller at handle med.",
     "amountToPay": ", hvor meget vil du betale for ",
     "accept": ", accepterer du handelen?",
     "maxBuiltHouses": "Hvor mange huse skal der være på ejendommen?",
-    "cantBuildAnymore": "Du kan ikke bygge på nogle af dine ejendomme.", 
+    "cantBuildAnymore": "Du kan ikke bygge på nogle af dine ejendomme.",
     "buildOnProperty": "Vil du bygge huse på en ejendom?",
     "whichPropertyToBuildOn": "Hvilken ejendom vil du bygge på?",
-    "taxMessage": "Du skal betale skat at dine likvider, betal §100/200 til banken",
+    "taxMessage": "Du skal betale skat af dine likvider, betal §100/200 til banken",
     "rollDice": ", slå med terningerne",
-    "player": "Spiller: ", 
-    "playerOwnsNoProperties":" ejer ingen ejendomme, så du kan ikke købe nogle", 
-    "youOwnNoProperties":"Du ejer ikke nogle ejendomme, så du kan ikke sælge noget.", 
-
-    "spaces": [{
-        "name": "Start",
-        "type": 0,
-        "message": "Modtag §200 når du passerer Start.",
-        "color": "FFFFFF",
-        "textColor": "C60000"
-    },
-    {
-        "name": "Mjølnerparken",
-        "type": 1,
-        "price": 60,
-        "baseRent": 20,
-        "color": "1A1B41",
-        "textColor": "000000"
-
-    },
-    {
-        "name": "Prøv Lykken",
-        "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
-        "color": "FFFFFF",
-        "textColor": "00A8E8"
-    },
-    {
-        "name": "Indkomstskat",
-        "type": 8,
-        "value": 1,
-        "tax": 200,
-        "color": "E8A945",
-        "textColor": "000000"
-    },
-    {
-        "name": "Istedgade",
-        "type": 1,
-        "price": 60,
-        "baseRent": 20,
-        "color": "1A1B41",
-        "textColor": "000000"
-    },
-    {
-        "name": "Københavns Hovedbanegård",
-        "type": 2,
-        "price": 200,
-        "baseRent": 70,
-        "color": "262626",
-        "textColor": "FFFFFF"
-    },
-    {
-        "name": "Nørregade",
-        "type": 1,
-        "price": 100,
-        "baseRent": 35,
-        "color": "F18701",
-        "textColor": "000000"
-    },
-    {
-        "name": "Chance",
-        "type": 6,
-        "message": "Træk et Chancekort",
-        "color": "EA7C79",
-        "textColor": "000000"
-    },
-    {
-        "name": "Kongevejen",
-        "type": 1,
-        "price": 100,
-        "baseRent": 35,
-        "color": "F18701",
-        "textColor": "000000"
-    },
-    {
-        "name": "Jagtvej",
-        "type": 1,
-        "price": 120,
-        "baseRent": 40,
-        "color": "F18701",
-        "textColor": "000000"
-    },
-    {
-        "name": "Fængsel",
-        "type": 4,
-        "color": "FFFFFF",
-        "textColor": "000000",
-        "image": "default"
-    },
-    {
-        "name": "Sjællandsgade",
-        "type": 1,
-        "price": 140,
-        "baseRent": 50,
-        "color": "E3B505",
-        "textColor": "000000"
-    },
-    {
-        "name": "Chance",
-        "type": 6,
-        "message": "Træk et Chancekort",
-        "color": "EA7C79",
-        "textColor": "000000"
-    },
-    {
-        "name": "Kronprinsessegade",
-        "type": 1,
-        "price": 140,
-        "baseRent": 50,
-        "color": "E3B505",
-        "textColor": "000000"
-    },
-    {
-        "name": "Kongens Have",
-        "type": 1,
-        "price": 160,
-        "baseRent": 55,
-        "color": "E3B505",
-        "textColor": "000000"
-    },
-    {
-        "name": "Vejle Station",
-        "type": 2,
-        "price": 200,
-        "baseRent": 70,
-        "color": "262626",
-        "textColor": "FFFFFF"
-    },
-    {
-        "name": "Anker Engelundsvej",
-        "type": 1,
-        "price": 180,
-        "baseRent": 60,
-        "color": "5A0046",
-        "textColor": "000000"
-    },
-    {
-        "name": "Prøv Lykken",
-        "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
-        "color": "FFFFFF",
-        "textColor": "00A8E8"
-    },
-    {
-        "name": "Jomfru Ane Gade",
-        "type": 1,
-        "price": 180,
-        "baseRent": 60,
-        "color": "5A0046",
-        "textColor": "000000"
-    },
-    {
-        "name": "Åboulevarden",
-        "type": 1,
-        "price": 200,
-        "baseRent": 70,
-        "color": "5A0046",
-        "textColor": "000000"
-    },
-    {
-        "name": "Gratis Parkering",
-        "type": 3,
-        "color": "FFFFFF",
-        "textColor": "000000",
-        "image": "default"
-    },
-    {
-        "name": "Kongestien",
-        "type": 1,
-        "price": 220,
-        "baseRent": 75,
-        "color": "1CA351",
-        "textColor": "000000"
-    },
-    {
-        "name": "Chance",
-        "type": 6,
-        "message": "Træk et Chancekort",
-        "color": "EA7C79",
-        "textColor": "000000"
-    },
-    {
-        "name": "Christiania",
-        "type": 1,
-        "price": 220,
-        "baseRent": 75,
-        "color": "1CA351",
-        "textColor": "000000"
-    },
-    {
-        "name": "Lærkevej",
-        "type": 1,
-        "price": 240,
-        "baseRent": 80,
-        "color": "1CA351",
-        "textColor": "000000"
-    },
-    {
-        "name": "Nørreport Station",
-        "type": 2,
-        "price": 200,
-        "baseRent": 70,
-        "color": "262626",
-        "textColor": "FFFFFF"
-    },
-    {
-        "name": "Fynsvej",
-        "type": 1,
-        "price": 260,
-        "baseRent": 85,
-        "color": "FF8014",
-        "textColor": "000000"
-    },
-    {
-        "name": "Lyngbyvej",
-        "type": 1,
-        "price": 260,
-        "baseRent": 85,
-        "color": "FF8014",
-        "textColor": "000000"
-    },
-    {
-        "name": "Prøv Lykken",
-        "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
-        "color": "FFFFFF",
-        "textColor": "00A8E8"
-    },
-    {
-        "name": "H. C. Andersens Gade",
-        "type": 1,
-        "price": 280,
-        "baseRent": 90,
-        "color": "FF8014",
-        "textColor": "000000"
-    },
-    {
-        "name": "Gå i fængsel",
-        "type": 5,
-        "color": "FFFFFF",
-        "textColor": "000000",
-        "image": "default"
-    },
-    {
-        "name": "Jyllandsvej",
-        "type": 1,
-        "price": 300,
-        "baseRent": 100,
-        "color": "69A2B0",
-        "textColor": "000000"
-    },
-    {
-        "name": "Amalienborg",
-        "type": 1,
-        "price": 300,
-        "baseRent": 100,
-        "color": "69A2B0",
-        "textColor": "000000"
-    },
-    {
-        "name": "Prøv Lykken",
-        "type": 7,
-        "message": "Træk et Prøv Lykken-kort.",
-        "color": "FFFFFF",
-        "textColor": "00A8E8"
-    },
-    {
-        "name": "Dronninggårds Alle",
-        "type": 1,
-        "price": 320,
-        "baseRent": 105,
-        "color": "69A2B0",
-        "textColor": "000000"
-    },
-    {
-        "name": "Billund Lufthavn",
-        "type": 2,
-        "price": 200,
-        "baseRent": 70,
-        "color": "262626",
-        "textColor": "FFFFFF"
-    },
-    {
-        "name": "Chance",
-        "type": 6,
-        "message": "Træk et Chancekort",
-        "color": "EA7C79",
-        "textColor": "000000"
-    },
-    {
-        "name": "Strøget",
-        "type": 1,
-        "price": 350,
-        "baseRent": 120,
-        "color": "A50822",
-        "textColor": "000000"
-    },
-    {
-        "name": "Topskat",
-        "type": 8,
-        "value": 1,
-        "tax": 100,
-        "color": "E8A945",
-        "textColor": "000000"
-    },
-    {
-        "name": "Strandvejen",
-        "type": 1,
-        "price": 400,
-        "baseRent": 135,
-        "color": "A50822",
-        "textColor": "000000"
-    }
-],
-    "chanceCards": [{
-        "text": "Du er blevet taget i at stjæle fra en af dine medspillere. Du fængsles og modtager ikke §200, hvis du passerer Start.",
-        "type": 3,
-        "space": 10
-    },
-    {
-        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
-        "type": 0,
-        "space": 0
-    },
-    {
-        "text": "Snup en tur med Tullebanen til Vejle Station.",
-        "type": 0,
-        "space": 15
-    },
-    {
-        "text": "Du mangler at købe en fødselsdagsgave til din mor. Gå til Strøget.",
-        "type": 0,
-        "space": 37
-    },
-    {
-        "text": "Du skal betale restskat. Betal banken §250.",
-        "type": 1,
-        "amount": -250
-    },
-    {
-        "text": "Gå til Nørreport Station og kør en tur med metroen.",
-        "type": 0,
-        "space": 25
-    },
-    {
-        "text": "Dine venner inviterer dig i byen. Gå til Jomfru Ane Gade.",
-        "type": 0,
-        "space": 18
-    },
-    {
-        "text": "Du står og mangler et massageapparat. Gå til Istedgade.",
-        "type": 0,
-        "space": 4
-    },
-    {
-        "text": "Du får en parkeringsbøde. Betal banken §75.",
-        "type": 1,
-        "amount": -75
-    },
-    {
-        "text": "Dine forældre er gode kunder hos banken. Du kan komme gratis ud af fængslet.",
-        "type": 2
-    },
-    {
-        "text": "Gå til fængslet. Der er besøgsdag og din onkel savner dig.",
-        "type": 0,
-        "space": 10
-    },
-    {
-        "text": "Du mangler noget sødt og tager til Christiania for at købe noget brunt sukker",
-        "type": 0,
-        "space": 23
-    },
-    {
-        "text": "Gå til det første Prøv Lykken-felt på brættet.",
-        "type": 0,
-        "space": 2
-    },
-    {
-        "text": "Du modtager en besynderlig SMS fra et ukendt nummer. 7 minutter senere er §133 forsvundet fra din konto.",
-        "type": 1,
-        "amount": -133
-    },
-    {
-        "text": "Du har betalt for meget i skat, og får derfor §200 tilbage.",
-        "type": 1,
-        "amount": 200
-    },
-    {
-        "text": "Du vinder i Lotto! §350 bliver indbetalt på din konto.",
-        "type": 1,
-        "amount": 350
-    }
-],
-    "communityChestCards": [{
-        "text": "Du skal på ferie! Tag Tullebanen til Billund Lufthavn.",
-        "type": 0,
-        "space": 35
-    },
-    {
-        "text": "Du er kommet på andenpladsen i en skønhedskonkurrence! Modtag §60 i præmie.",
-        "type": 1,
-        "amount": 60
-    },
-    {
-        "text": "Gå til det første Chancefelt på brættet.",
-        "type": 0,
-        "space": 7
-    },
-    {
-        "text": "Du har fødselsdag og din mormor sender dig et kort med §5 i. Tillykke!",
-        "type": 1,
-        "amount": 5
-    },
-    {
-        "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
-        "type": 0,
-        "space": 0
-    },
-    {
-        "text": "Du har en god advokat og kan komme gratis ud af fængsel.",
-        "type": 2
-    },
-    {
-        "text": "Der er gået renter ind på din konto. Du modtager §23.",
-        "type": 1,
-        "amount": 23
-    },
-    {
-        "text": "Du vinder i Lotto! §10 bliver indbetalt på din konto.",
-        "type": 1,
-        "amount": 10
-    },
-    {
-        "text": "Dit Netflix abonnement er udløbet. Du betaler §35 for at forny det.",
-        "type": 1,
-        "amount": -35
-    },
-    {
-        "text": "Du har fået løn for denne måned. §150 bliver indbetalt på din konto.",
-        "type": 1,
-        "amount": 150
-    },
-    {
-        "text": "Du har fået et brev fra kommunen og betaler §5 i posteringsgebyr.",
-        "type": 1,
-        "amount": -5
-    },
-    {
-        "text": "Du har taget toget uden billet. Betal §50 i bøde.",
-        "type": 1,
-        "amount": -50
-    },
-    {
-        "text": "Dine venner havde glemt din fødselsdag, men giver dig §40 som trøst.",
-        "type": 1,
-        "amount": 40
-    },
-    {
-        "text": "En af dine venner skyldte dig §30 og har endelig betalt tilbage!",
-        "type": 1,
-        "amount": 30
-    },
-    {
-        "text": "Du fandt nogle penge på gaden! Modtag §2.",
-        "type": 1,
-        "amount": 2
-    },
-    {
-        "text": "Du får en gratis sodavand i en kiosk, men skal stadig betale pant. Betal §1.",
-        "type": 1,
-        "amount": -1
-    }
-]
+    "player": "Spiller: ",
+    "playerOwnsNoProperties": " ejer ingen ejendomme, så du kan ikke købe nogle",
+    "youOwnNoProperties": "Du ejer ikke nogle ejendomme, så du kan ikke sælge noget.",
+    "spaces": [
+        {
+            "name": "Start",
+            "type": 0,
+            "message": "Modtag §200 når du passerer Start.",
+            "color": "FFFFFF",
+            "textColor": "C60000"
+        },
+        {
+            "name": "Mjølnerparken",
+            "type": 1,
+            "price": 60,
+            "baseRent": 20,
+            "color": "1A1B41",
+            "textColor": "000000"
+        },
+        {
+            "name": "Prøv Lykken",
+            "type": 7,
+            "message": "Træk et Prøv Lykken-kort.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Indkomstskat",
+            "type": 8,
+            "value": 1,
+            "tax": 200,
+            "color": "E8A945",
+            "textColor": "000000"
+        },
+        {
+            "name": "Istedgade",
+            "type": 1,
+            "price": 60,
+            "baseRent": 20,
+            "color": "1A1B41",
+            "textColor": "000000"
+        },
+        {
+            "name": "Københavns Hovedbanegård",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Nørregade",
+            "type": 1,
+            "price": 100,
+            "baseRent": 35,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Træk et Chancekort",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Kongevejen",
+            "type": 1,
+            "price": 100,
+            "baseRent": 35,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Jagtvej",
+            "type": 1,
+            "price": 120,
+            "baseRent": 40,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Fængsel",
+            "type": 4,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Sjællandsgade",
+            "type": 1,
+            "price": 140,
+            "baseRent": 50,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Træk et Chancekort",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Kronprinsessegade",
+            "type": 1,
+            "price": 140,
+            "baseRent": 50,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Kongens Have",
+            "type": 1,
+            "price": 160,
+            "baseRent": 55,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Vejle Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Anker Engelundsvej",
+            "type": 1,
+            "price": 180,
+            "baseRent": 60,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Prøv Lykken",
+            "type": 7,
+            "message": "Træk et Prøv Lykken-kort.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Jomfru Ane Gade",
+            "type": 1,
+            "price": 180,
+            "baseRent": 60,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Åboulevarden",
+            "type": 1,
+            "price": 200,
+            "baseRent": 70,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Gratis Parkering",
+            "type": 3,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Kongestien",
+            "type": 1,
+            "price": 220,
+            "baseRent": 75,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Træk et Chancekort",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Christiania",
+            "type": 1,
+            "price": 220,
+            "baseRent": 75,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Lærkevej",
+            "type": 1,
+            "price": 240,
+            "baseRent": 80,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Nørreport Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Fynsvej",
+            "type": 1,
+            "price": 260,
+            "baseRent": 85,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Lyngbyvej",
+            "type": 1,
+            "price": 260,
+            "baseRent": 85,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Prøv Lykken",
+            "type": 7,
+            "message": "Træk et Prøv Lykken-kort.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "H. C. Andersens Gade",
+            "type": 1,
+            "price": 280,
+            "baseRent": 90,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Gå i fængsel",
+            "type": 5,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Jyllandsvej",
+            "type": 1,
+            "price": 300,
+            "baseRent": 100,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Amalienborg",
+            "type": 1,
+            "price": 300,
+            "baseRent": 100,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Prøv Lykken",
+            "type": 7,
+            "message": "Træk et Prøv Lykken-kort.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Dronninggårds Alle",
+            "type": 1,
+            "price": 320,
+            "baseRent": 105,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Billund Lufthavn",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Træk et Chancekort",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Strøget",
+            "type": 1,
+            "price": 350,
+            "baseRent": 120,
+            "color": "A50822",
+            "textColor": "000000"
+        },
+        {
+            "name": "Topskat",
+            "type": 8,
+            "value": 1,
+            "tax": 100,
+            "color": "E8A945",
+            "textColor": "000000"
+        },
+        {
+            "name": "Strandvejen",
+            "type": 1,
+            "price": 400,
+            "baseRent": 135,
+            "color": "A50822",
+            "textColor": "000000"
+        }
+    ],
+    "chanceCards": [
+        {
+            "text": "Du er blevet taget i at stjæle fra en af dine medspillere. Du fængsles og modtager ikke §200, hvis du passerer Start.",
+            "type": 3,
+            "space": 10
+        },
+        {
+            "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+            "type": 0,
+            "space": 0
+        },
+        {
+            "text": "Snup en tur med Tullebanen til Vejle Station.",
+            "type": 0,
+            "space": 15
+        },
+        {
+            "text": "Du mangler at købe en fødselsdagsgave til din mor. Gå til Strøget.",
+            "type": 0,
+            "space": 37
+        },
+        {
+            "text": "Du skal betale restskat. Betal banken §250.",
+            "type": 1,
+            "amount": -250
+        },
+        {
+            "text": "Gå til Nørreport Station og kør en tur med metroen.",
+            "type": 0,
+            "space": 25
+        },
+        {
+            "text": "Dine venner inviterer dig i byen. Gå til Jomfru Ane Gade.",
+            "type": 0,
+            "space": 18
+        },
+        {
+            "text": "Du står og mangler et massageapparat. Gå til Istedgade.",
+            "type": 0,
+            "space": 4
+        },
+        {
+            "text": "Du får en parkeringsbøde. Betal banken §75.",
+            "type": 1,
+            "amount": -75
+        },
+        {
+            "text": "Dine forældre er gode kunder hos banken. Du kan komme gratis ud af fængslet.",
+            "type": 2
+        },
+        {
+            "text": "Gå til fængslet. Der er besøgsdag og din onkel savner dig.",
+            "type": 0,
+            "space": 10
+        },
+        {
+            "text": "Du mangler noget sødt og tager til Christiania for at købe noget brunt sukker",
+            "type": 0,
+            "space": 23
+        },
+        {
+            "text": "Gå til det første Prøv Lykken-felt på brættet.",
+            "type": 0,
+            "space": 2
+        },
+        {
+            "text": "Du modtager en besynderlig SMS fra et ukendt nummer. 7 minutter senere er §133 forsvundet fra din konto.",
+            "type": 1,
+            "amount": -133
+        },
+        {
+            "text": "Du har betalt for meget i skat, og får derfor §200 tilbage.",
+            "type": 1,
+            "amount": 200
+        },
+        {
+            "text": "Du vinder i Lotto! §350 bliver indbetalt på din konto.",
+            "type": 1,
+            "amount": 350
+        }
+    ],
+    "communityChestCards": [
+        {
+            "text": "Du skal på ferie! Tag Tullebanen til Billund Lufthavn.",
+            "type": 0,
+            "space": 35
+        },
+        {
+            "text": "Du er kommet på andenpladsen i en skønhedskonkurrence! Modtag §60 i præmie.",
+            "type": 1,
+            "amount": 60
+        },
+        {
+            "text": "Gå til det første Chancefelt på brættet.",
+            "type": 0,
+            "space": 7
+        },
+        {
+            "text": "Du har fødselsdag og din mormor sender dig et kort med §5 i. Tillykke!",
+            "type": 1,
+            "amount": 5
+        },
+        {
+            "text": "Gå til Start. Du modtager §200, når du passerer feltet næste gang det er din tur.",
+            "type": 0,
+            "space": 0
+        },
+        {
+            "text": "Du har en god advokat og kan komme gratis ud af fængsel.",
+            "type": 2
+        },
+        {
+            "text": "Der er gået renter ind på din konto. Du modtager §23.",
+            "type": 1,
+            "amount": 23
+        },
+        {
+            "text": "Du vinder i Lotto! §10 bliver indbetalt på din konto.",
+            "type": 1,
+            "amount": 10
+        },
+        {
+            "text": "Dit Netflix abonnement er udløbet. Du betaler §35 for at forny det.",
+            "type": 1,
+            "amount": -35
+        },
+        {
+            "text": "Du har fået løn for denne måned. §150 bliver indbetalt på din konto.",
+            "type": 1,
+            "amount": 150
+        },
+        {
+            "text": "Du har fået et brev fra kommunen og betaler §5 i posteringsgebyr.",
+            "type": 1,
+            "amount": -5
+        },
+        {
+            "text": "Du har taget toget uden billet. Betal §50 i bøde.",
+            "type": 1,
+            "amount": -50
+        },
+        {
+            "text": "Dine venner havde glemt din fødselsdag, men giver dig §40 som trøst.",
+            "type": 1,
+            "amount": 40
+        },
+        {
+            "text": "En af dine venner skyldte dig §30 og har endelig betalt tilbage!",
+            "type": 1,
+            "amount": 30
+        },
+        {
+            "text": "Du fandt nogle penge på gaden! Modtag §2.",
+            "type": 1,
+            "amount": 2
+        },
+        {
+            "text": "Du får en gratis sodavand i en kiosk, men skal stadig betale pant. Betal §1.",
+            "type": 1,
+            "amount": -1
+        }
+    ]
 }

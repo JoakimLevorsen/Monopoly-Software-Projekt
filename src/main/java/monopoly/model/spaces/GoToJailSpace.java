@@ -43,7 +43,7 @@ public class GoToJailSpace extends Space {
 
     public static GoToJailSpace create(int position, String name, String color) {
         GoToJailSpace space = new GoToJailSpace();
-        space = (GoToJailSpace)(Space.setValues(space, name, color));
+        space = (GoToJailSpace) (Space.setValues(space, name, color));
         space.set(GoToJailSpace.Properties.BOARD_POSITION.getProperty(), position);
         return space;
     }

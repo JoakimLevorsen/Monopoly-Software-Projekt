@@ -190,8 +190,8 @@ public class PropertyController {
 	}
 
 	/*
-	 * Trade: Metode til at foretage byttehandler med andre spillere.
-	 * OBS: Ejendomme tages kun i bytte for penge.
+	 * Trade: Metode til at foretage byttehandler med andre spillere. OBS: Ejendomme
+	 * tages kun i bytte for penge.
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
 	 */
@@ -401,7 +401,9 @@ public class PropertyController {
 			// mulighederne afhænger af ejendomstypen
 			Object selection = null;
 			do {
-				selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()), jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names, names[0]);
+				selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
+						jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null,
+						names, names[0]);
 			} while (selection == null);
 			String selectionString = selection.toString();
 			Space selectedSpace = nameToSpace.get(selectionString);

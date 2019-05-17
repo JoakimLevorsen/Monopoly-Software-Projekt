@@ -56,13 +56,15 @@ public class ModelTest {
                     if (createdStack.getLongId().equals(loadedStack.getLongId())) {
                         for (int i = 0; i < loadedStack.getCards().size(); i++) {
                             Card a = loadedStack.getCards().get(i);
-                            Card b =  createdStack.getCards().get(i);
-                            assertTrue("Cards different: " + a + b + ",Stack: " + loadedStack + createdStack, a.equals(b));
+                            Card b = createdStack.getCards().get(i);
+                            assertTrue("Cards different: " + a + b + ",Stack: " + loadedStack + createdStack,
+                                    a.equals(b));
                         }
                         stackIdentical = true;
                     }
                 }
-                assertTrue("Card stacks were not identical" + loadedGame.getCardStacks() + newGame.getCardStacks(), stackIdentical);
+                assertTrue("Card stacks were not identical" + loadedGame.getCardStacks() + newGame.getCardStacks(),
+                        stackIdentical);
             }
             newGame.deleteThisGame();
         } catch (JSONException e) {

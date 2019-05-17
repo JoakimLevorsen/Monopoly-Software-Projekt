@@ -36,7 +36,7 @@ public class StartSpace extends Space {
 
     public static StartSpace create(int position, int payment, String name, String color) {
         StartSpace space = new StartSpace();
-        space = (StartSpace)(Space.setValues(space, name, color));
+        space = (StartSpace) (Space.setValues(space, name, color));
         space.set(StartSpace.Properties.BOARD_POSITION.getProperty(), position);
         space.set(StartSpace.Properties.PAYMENT.getProperty(), payment);
         return space;
@@ -46,7 +46,7 @@ public class StartSpace extends Space {
     public boolean equals(Object obj) {
         if (!(obj instanceof StartSpace))
             return false;
-        StartSpace other = (StartSpace)obj;
+        StartSpace other = (StartSpace) obj;
         return other.getLongId().equals(this.getLongId()) && this.getBoardPosition() == other.getBoardPosition();
     }
 

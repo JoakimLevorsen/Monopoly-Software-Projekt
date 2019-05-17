@@ -58,8 +58,9 @@ public class GetLoseMoneyCard extends Card {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof GetLoseMoneyCard)) return false;
-        return ((GetLoseMoneyCard)obj).getLongId().equals(this.getLongId());
+        if (!(obj instanceof GetLoseMoneyCard))
+            return false;
+        return ((GetLoseMoneyCard) obj).getLongId().equals(this.getLongId());
     }
 
     public void execute(MovementController moveController, Player player) {

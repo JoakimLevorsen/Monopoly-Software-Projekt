@@ -47,8 +47,8 @@ public class GameController {
                         DiceRoll r;
                         int doubleCount = 0;
                         do {
-                            view.getGUI()
-                                    .showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
+                            view.getGUI().showMessage(
+                                    playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
                             r = new DiceRoll();
                             if (doubleCount == 2 && r.isDoubles()) {
                                 for (Space space : game.getBoard()) {
