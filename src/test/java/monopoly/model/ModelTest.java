@@ -2,7 +2,6 @@ package monopoly.model;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -11,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import monopoly.DatabaseBase;
 import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import resources.json.*;

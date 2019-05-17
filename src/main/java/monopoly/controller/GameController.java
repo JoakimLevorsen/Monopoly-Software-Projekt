@@ -1,6 +1,6 @@
 package monopoly.controller;
 
-import monopoly.model.DatabaseBase;
+import monopoly.DatabaseBase;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.cards.GetOutOfJailCard;

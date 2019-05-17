@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import monopoly.DatabaseBase;
+
 public class GameTest {
     @Before
     public void setupTest() {

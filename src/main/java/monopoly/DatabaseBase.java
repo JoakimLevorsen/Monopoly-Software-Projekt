@@ -1,4 +1,4 @@
-package monopoly.model;
+package monopoly;
 
 import org.javalite.activejdbc.Base;
 
