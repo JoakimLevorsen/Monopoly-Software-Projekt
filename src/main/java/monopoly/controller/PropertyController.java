@@ -456,7 +456,7 @@ public class PropertyController {
 		List<StationSpace> mortgagedProperty = new ArrayList<StationSpace>();
 		for (StationSpace space : ownedProperty) {
 			// Check property is mortgaged, and you can afford to unmorgage them.
-			if (!space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
+			if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
 		}
 			while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.UNMORTGAGE_PROPERTY.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
 				String[] names = new String[mortgagedProperty.size()];
@@ -470,12 +470,11 @@ public class PropertyController {
 				names, names[0]);
 				if (selection != null) {
 					StationSpace selectedProperty = options.get(selection);
-					selectedProperty.setMortgaged(false);
-					player.changeAccountBalance(selectedProperty.getPrice() / 2);
+					unmortgage(selectedProperty);
 					mortgagedProperty = new ArrayList<StationSpace>();
 					for (StationSpace space : ownedProperty) {
 						// Check property is mortgaged, and you can afford to unmorgage them.
-						if (!space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
+						if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
 					}
 				}
 			}
