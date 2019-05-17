@@ -39,7 +39,7 @@ public class PlayerPanel extends JFrame {
         frame.setVisible(true);
     }
 
-    public void Update() {
+    public void update() {
         panel.removeAll();
         mainPanel.removeAll();
 

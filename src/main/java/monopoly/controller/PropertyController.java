@@ -113,10 +113,14 @@ public class PropertyController {
 	 */
 
 	public void offerProperty(StationSpace property, Player player) {
-		boolean didChoose = gooey.getUserLeftButtonPressed(
-				jsonData.getString(JSONKey.OFFER_PROPERTY.getKey()) + property.getName()
-						+ jsonData.getString(JSONKey.PROPERTY_COST.getKey()) + property.getPrice(),
-				jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
+		boolean didChoose;
+		if (player.getAccountBalance() >= property.getPrice()) {
+			didChoose = gooey.getUserLeftButtonPressed(
+					jsonData.getString(JSONKey.OFFER_PROPERTY.getKey()) + property.getName()
+							+ jsonData.getString(JSONKey.PROPERTY_COST.getKey()) + property.getPrice(),
+					jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
+		} else
+			didChoose = false;
 		if (didChoose) {
 			gooey.showMessage(jsonData.getString(JSONKey.BOUGHT_PROPERTY.getKey()) + property.getName());
 			controller.cashController.paymentToBank(player, property.getPrice());
@@ -198,7 +202,7 @@ public class PropertyController {
 	public void trade(Player trader) {
 		if (!trader.getOwnedProperties(controller.getGame()).isEmpty()) {
 			while (gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.TRADE.getKey()),
-			jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
+					jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
 				boolean buy = gooey.getUserLeftButtonPressed(jsonData.getString(JSONKey.BUY_OR_SELL_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.BUY_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()));
@@ -222,7 +226,8 @@ public class PropertyController {
 					// Hvis den spiller ikke har ejendom skip
 					ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
 					if (tradeeOwnedProperties.size() == 0) {
-						gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName() + jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey())); 
+						gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName()
+								+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey()));
 					} else {
 						String[] propertyNames = new String[tradeeOwnedProperties.size()];
 						for (int i = 0; i < tradeeOwnedProperties.size(); i++) {

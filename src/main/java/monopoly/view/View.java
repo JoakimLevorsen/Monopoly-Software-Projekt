@@ -212,7 +212,7 @@ public class View implements Observer {
                 guiPlayer.setName(name);
             }
         }
-        panels.get(player).Update();
+        panels.get(player).update();
     }
 
     /*
