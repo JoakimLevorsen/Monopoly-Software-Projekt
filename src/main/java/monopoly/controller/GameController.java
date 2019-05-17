@@ -124,8 +124,8 @@ public class GameController {
     }
 
     private class DiceRoll {
-        int roll1;
-        int roll2;
+        private int roll1;
+        private int roll2;
 
         public DiceRoll() {
             this.roll1 = (int) (Math.random() * 6 + 1);
