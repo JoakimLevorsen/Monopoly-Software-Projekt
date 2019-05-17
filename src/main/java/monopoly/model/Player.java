@@ -191,8 +191,8 @@ public class Player extends Model implements Subject {
     public GetOutOfJailCard getGetOutOfJailCard(Game game) {
         for (CardStack stack : game.getCardStacks()) {
             for (GetOutOfJailCard getOutCard : stack.getCardForType(GetOutOfJailCard.class)) {
-                Player jailCard = getOutCard.getOwner(game);
-                if (jailCard.equals(this))
+                Player jailCardOwner = getOutCard.getOwner(game);
+                if (jailCardOwner != null && jailCardOwner.equals(this))
                     return getOutCard;
             }
         }
