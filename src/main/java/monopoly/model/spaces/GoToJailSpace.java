@@ -53,7 +53,7 @@ public class GoToJailSpace extends Space {
         if (!(obj instanceof GoToJailSpace))
             return false;
         GoToJailSpace other = (GoToJailSpace) obj;
-        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId().equals(this.getLongId()) && this.getBoardPosition() == other.getBoardPosition();
     }
 
     /**

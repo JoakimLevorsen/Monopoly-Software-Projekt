@@ -44,6 +44,14 @@ public class GoToJailCard extends Card {
         return this.getInteger(GoToJailCard.Properties.STACK_POSITION.getProperty());
     }
 
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GoToJailCard)) return false;
+        return ((GoToJailCard)obj).getLongId().equals(this.getLongId());
+    }
+
     /*
      * GetText: Returnerer teksten der står på kortet.
      *

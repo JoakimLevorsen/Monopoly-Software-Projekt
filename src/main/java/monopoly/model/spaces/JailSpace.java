@@ -45,7 +45,7 @@ public class JailSpace extends Space {
     public boolean equals(Object obj) {
         if (obj instanceof JailSpace) {
             JailSpace other = (JailSpace)obj;
-            return other.getLongId() == this.getLongId();
+            return other.getLongId().equals(this.getLongId());
         }
         return false;
     }

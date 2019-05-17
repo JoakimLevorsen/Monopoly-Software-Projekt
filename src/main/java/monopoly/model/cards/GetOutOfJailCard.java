@@ -82,6 +82,12 @@ public class GetOutOfJailCard extends Card {
         return this.getInteger(GetOutOfJailCard.Properties.STACK_POSITION.getProperty());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GetOutOfJailCard)) return false;
+        return ((GetOutOfJailCard)obj).getLongId().equals(this.getLongId());
+    }
+
     public void execute(MovementController moveController, Player player) {
         setOwner(player);
 

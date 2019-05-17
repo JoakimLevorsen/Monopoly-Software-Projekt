@@ -56,6 +56,12 @@ public class GetLoseMoneyCard extends Card {
         return this.getInteger(GetLoseMoneyCard.Properties.STACK_POSITION.getProperty());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GetLoseMoneyCard)) return false;
+        return ((GetLoseMoneyCard)obj).getLongId().equals(this.getLongId());
+    }
+
     public void execute(MovementController moveController, Player player) {
         player.changeAccountBalance(this.getAmount());
 

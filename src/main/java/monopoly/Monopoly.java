@@ -8,8 +8,6 @@ import monopoly.view.View;
 
 public final class Monopoly {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-
         DatabaseBase.openBase();
         Game ourGame = View.chooseGame();
         GUI gameGUI = new GUI(ourGame.exportGUIFields());

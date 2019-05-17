@@ -51,7 +51,7 @@ public class PropertySpace extends StationSpace {
             }
         } else {
             // This means both have an owner
-            if (myOwner.getLongId() != otherOwner.getLongId()) {
+            if (!myOwner.getLongId().equals(otherOwner.getLongId())) {
                 // Not the same owner, not the same field.
                 return false;
             }

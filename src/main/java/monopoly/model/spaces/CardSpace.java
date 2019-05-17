@@ -65,7 +65,7 @@ public class CardSpace extends Space {
     public void performAction(GameController controller, Player player) {
 
         for (CardStack stack : controller.getGame().getCardStacks()) {
-            if (stack.getLongId() == this.getCardStackId()) {
+            if (stack.getLongId().longValue() == this.getCardStackId()) {
                 Card drawnCard = stack.drawCard(controller.getGame());
                 controller.view.getGUI().displayChanceCard(drawnCard.getText());
                 drawnCard.execute(controller.movementController, player);

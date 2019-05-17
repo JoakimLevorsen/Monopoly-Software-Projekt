@@ -53,10 +53,10 @@ public class TaxSpace extends Space {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof StartSpace))
+        if (!(obj instanceof TaxSpace))
             return false;
-        StartSpace other = (StartSpace) obj;
-        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
+        TaxSpace other = (TaxSpace) obj;
+        return other.getLongId().equals(this.getLongId()) && this.getBoardPosition() == other.getBoardPosition();
     }
 
     public int getTax() {
