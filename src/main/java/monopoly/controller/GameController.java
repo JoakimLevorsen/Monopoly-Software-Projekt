@@ -66,6 +66,7 @@ public class GameController {
                     if (!playerWithTurn.isInJail()) {
                         propertyController.trade(playerWithTurn);
                         propertyController.offerToBuild(playerWithTurn);
+                        propertyController.unmortgageProperties(playerWithTurn);
                     }
                     // Hvis spilleren ikke har flere penge start konkurs flow
                     if (playerWithTurn.hasOverdrawnAccount()) {

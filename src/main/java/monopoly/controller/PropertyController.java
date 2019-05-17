@@ -443,4 +443,42 @@ public class PropertyController {
 			failure.setBrokeStatus(true);
 		}
 	}
+
+	/*
+	 * Unmorgage properties: Afpantsæt ens ejendomme
+	 * 
+	 * @author Cecilie Krog Drejer, s185032
+	 */
+
+	public void unmortgageProperties(Player player) {
+		// Tjek at spilleren har noget at afpantsætte
+		List<StationSpace> ownedProperty = player.getOwnedProperties(controller.getGame());
+		List<StationSpace> mortgagedProperty = new ArrayList<StationSpace>();
+		for (StationSpace space : ownedProperty) {
+			// Check property is mortgaged, and you can afford to unmorgage them.
+			if (!space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
+		}
+			// TODO: JSONIFY
+			while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed("Do you want to unmorgage a property?", "Yes", "No")) {
+				String[] names = new String[mortgagedProperty.size()];
+				HashMap<Object, StationSpace> options = new HashMap<Object, StationSpace>();
+				for (int i = 0; i < mortgagedProperty.size(); i++) {
+					names[i] = mortgagedProperty.get(i).getName();
+					options.put(mortgagedProperty.get(i).getName(), mortgagedProperty.get(i));
+				}
+				Object selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
+				jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null,
+				names, names[0]);
+				if (selection != null) {
+					StationSpace selectedProperty = options.get(selection);
+					selectedProperty.setMortgaged(false);
+					player.changeAccountBalance(selectedProperty.getPrice() / 2);
+					mortgagedProperty = new ArrayList<StationSpace>();
+					for (StationSpace space : ownedProperty) {
+						// Check property is mortgaged, and you can afford to unmorgage them.
+						if (!space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
+					}
+				}
+			}
+	}
 }
