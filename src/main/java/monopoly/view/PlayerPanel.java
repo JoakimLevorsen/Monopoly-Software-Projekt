@@ -23,8 +23,8 @@ public class PlayerPanel extends JFrame {
     private Game game;
     private Player player;
     final JFrame frame = new JFrame();
-    JPanel panel = new JPanel();
-    JPanel mainPanel = new JPanel();
+    private JPanel panel = new JPanel();
+    private JPanel mainPanel = new JPanel();
 
     public PlayerPanel(Game game, Player player) {
         this.player = player;
