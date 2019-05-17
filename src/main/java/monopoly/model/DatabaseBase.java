@@ -19,6 +19,18 @@ public class DatabaseBase {
                 "s185023", "t0MzfHeQBfHIlo8ociaB2");
     }
 
+    public static void openTransaction() {
+        Base.openTransaction();
+    }
+
+    public static void commitTransaction() {
+        Base.commitTransaction();
+    }
+
+    public static void rollBackTransaction() {
+        Base.rollbackTransaction();
+    }
+
     public static void closeBase() {
         Base.close();
     }

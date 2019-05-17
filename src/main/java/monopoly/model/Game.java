@@ -1,6 +1,7 @@
 package monopoly.model;
 
 import java.awt.Color;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Game extends Model implements Subject {
     private List<Space> board = null;
 
     public enum Properties {
-        CURRENT_TURN("currentTurn"), SAVE_NAME("saveName"), JSON_PACK("jsonPack");
+        CURRENT_TURN("currentTurn"), SAVE_NAME("saveName"), JSON_PACK("jsonPack"), UPDATED_AT("updated_at");
 
         private String value;
 
@@ -219,11 +220,15 @@ public class Game extends Model implements Subject {
     }
 
     public String getGameName() {
-        return (String) this.get(Game.Properties.SAVE_NAME.getProperty());
+        return (String) this.get(Properties.SAVE_NAME.getProperty());
+    }
+
+    public Timestamp getUpdateTime() {
+        return this.getTimestamp(Properties.UPDATED_AT.getProperty());
     }
 
     public int getCurrentTurn() {
-        return (int) this.get(Game.Properties.CURRENT_TURN.getProperty());
+        return (int) this.get(Properties.CURRENT_TURN.getProperty());
     }
 
     public List<Space> getOwnedSpaces(Player player) {
