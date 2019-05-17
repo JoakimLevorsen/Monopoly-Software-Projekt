@@ -1,18 +1,19 @@
 package monopoly.model;
 
+import designpatterns.Observer;
+import designpatterns.Subject;
+import monopoly.model.cards.CardStack;
+import monopoly.model.cards.GetOutOfJailCard;
+import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.Space;
+import monopoly.model.spaces.StationSpace;
+import org.javalite.activejdbc.Model;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import designpatterns.Observer;
-import org.javalite.activejdbc.Model;
-
-import designpatterns.Subject;
-import monopoly.model.cards.CardStack;
-import monopoly.model.cards.GetOutOfJailCard;
-import monopoly.model.spaces.*;
 
 /*
 Player:

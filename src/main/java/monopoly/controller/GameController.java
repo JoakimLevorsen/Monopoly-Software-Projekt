@@ -4,12 +4,12 @@ import monopoly.DatabaseBase;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.cards.GetOutOfJailCard;
-import monopoly.model.spaces.*;
+import monopoly.model.spaces.JailSpace;
+import monopoly.model.spaces.Space;
 import monopoly.view.View;
-import resources.json.JSONKey;
-
 import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONObject;
+import resources.json.JSONKey;
 
 public class GameController {
     public CashController cashController;
