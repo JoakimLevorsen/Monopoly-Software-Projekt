@@ -97,8 +97,9 @@ public class View implements Observer {
             } else {
                 String[] saveNames = new String[savedGames.size()];
                 for (int i = 0; i < savedGames.size(); i++) {
-                    saveNames[i] = savedGames.get(i).getGameName();
-                    saveNameToGame.put(saveNames[i], savedGames.get(i));
+                    String saveGameName = savedGames.get(i).getGameName() + savedGames.get(i).getUpdateTime().toGMTString();
+                    saveNames[i] = saveGameName;
+                    saveNameToGame.put(saveGameName, savedGames.get(i));
                 }
 
                 String selection = JOptionPane.showInputDialog(null, "Choose a game / Vælg et spil.", "Load game / Indlæs spil",

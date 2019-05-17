@@ -1,5 +1,6 @@
 package monopoly.controller;
 
+import monopoly.model.DatabaseBase;
 import monopoly.model.Game;
 import monopoly.model.Player;
 import monopoly.model.cards.GetOutOfJailCard;
@@ -67,14 +68,21 @@ public class GameController {
                 }
             }
             incrementTurn(currentPlayerTurn);
-            try {
-                game.saveIt();
-            } catch (ValidationException e) {
-                System.out.println("Save of game failed");
-                e.printStackTrace();
-            }
+            saveGame();
         }
         System.out.println("SPILLET ER OVRE");
+    }
+
+    public void saveGame() {
+        try {
+            DatabaseBase.openTransaction();
+            game.saveIt();
+            DatabaseBase.commitTransaction();
+        } catch (ValidationException e) {
+            System.out.println("Save of game failed");
+            DatabaseBase.rollBackTransaction();
+            e.printStackTrace();
+        }
     }
 
     public void incrementTurn(int currentPlayerTurn) {
