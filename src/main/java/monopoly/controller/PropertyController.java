@@ -143,6 +143,7 @@ public class PropertyController {
 		controller.cashController.paymentFromBank(owner, amount);
 		owner.removeFromOwnedProperties(property, controller.getGame());
 		property.removeOwner(controller.getGame());
+		property.setMortgaged(false);
 	}
 
 	/*
@@ -352,7 +353,7 @@ public class PropertyController {
 			for (PropertySpace property : controller.getGame().getSpacesForType(PropertySpace.class)) {
 				if (property.getColor().equals(color)) {
 					Player owner = property.getOwner(controller.getGame());
-					if (owner != null && owner.equals(player)) {
+					if (owner != null && owner.equals(player) && !property.isMortgaged()) {
 						matchedProperties.add(property);
 					} else {
 						matchedProperties.clear();
