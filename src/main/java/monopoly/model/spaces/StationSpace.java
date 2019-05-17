@@ -34,7 +34,7 @@ public class StationSpace extends Space {
     @Override
     public void performAction(GameController controller, Player player) {
         Player owner = this.getOwner(controller.getGame());
-        if (owner != null) {
+        if (owner != null && !isMortgaged()) {
             if (!owner.equals(player)) {
                 controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
                 controller.view.getGUI().showMessage(
