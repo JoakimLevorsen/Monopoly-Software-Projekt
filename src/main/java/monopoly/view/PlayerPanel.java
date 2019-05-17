@@ -12,19 +12,19 @@ import javax.swing.*;
 import java.awt.*;
 
 /*
-PlayerPanel:
-Opretter paneler med information omkring spilleren og dets ejendomme.
-
-@author Anders Brandt, s185016
-*/
+ * PlayerPanel:
+ * Opretter paneler med information omkring spilleren og dets ejendomme.
+ *
+ * @author Anders Brandt, s185016
+ */
 
 public class PlayerPanel extends JFrame {
     private JSONObject jsonData;
     private Game game;
     private Player player;
-    final JFrame frame = new JFrame();
-    JPanel panel = new JPanel();
-    JPanel mainPanel = new JPanel();
+    public final JFrame frame = new JFrame();
+    private JPanel panel = new JPanel();
+    private JPanel mainPanel = new JPanel();
 
     public PlayerPanel(Game game, Player player) {
         this.player = player;
