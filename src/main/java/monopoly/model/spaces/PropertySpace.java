@@ -2,8 +2,6 @@ package monopoly.model.spaces;
 
 import monopoly.model.*;
 
-import java.awt.*;
-
 /*
 PropertySpace:
 Et objekt til at repræsentere ejendoms felter.
