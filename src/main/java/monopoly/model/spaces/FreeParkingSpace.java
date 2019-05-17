@@ -58,10 +58,6 @@ public class FreeParkingSpace extends Space {
                 && this.getBoardPosition() == other.getBoardPosition();
     }
 
-    public int getBoardPosition() {
-        return this.getInteger(FreeParkingSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     public int getTreasure() {
         return this.getInteger(FreeParkingSpace.Properties.TREASURE.getProperty()).intValue();
     }

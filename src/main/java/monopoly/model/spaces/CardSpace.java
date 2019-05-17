@@ -32,10 +32,6 @@ public class CardSpace extends Space {
         }
     }
 
-    public int getBoardPosition() {
-        return this.getInteger(CardSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     public long getCardStackId() {
         return this.getLong(Properties.CARD_STACK_ID.getProperty()).longValue();
     }

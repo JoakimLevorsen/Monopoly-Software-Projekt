@@ -50,10 +50,6 @@ public class StartSpace extends Space {
         return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
-    public int getBoardPosition() {
-        return this.getInteger(StartSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     public int getPayment() {
         return this.getInteger(StartSpace.Properties.PAYMENT.getProperty()).intValue();
     }

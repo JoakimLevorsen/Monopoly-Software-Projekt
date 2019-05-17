@@ -56,10 +56,6 @@ public class GoToJailSpace extends Space {
         return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
-    public int getBoardPosition() {
-        return this.getInteger(GoToJailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     /**
      * Variabler og metoder til at implementere Subject
      *

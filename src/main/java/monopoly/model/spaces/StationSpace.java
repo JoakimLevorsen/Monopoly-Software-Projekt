@@ -59,11 +59,6 @@ public class StationSpace extends Space {
         return this.getBoardPosition() == other.getBoardPosition();
     }
 
-    public int getBoardPosition() {
-        this.getId();
-        return this.getInteger(StationSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     /*
      * SetOwner: Sætter en spiller som ejer af stationen.
      * 

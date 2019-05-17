@@ -59,10 +59,6 @@ public class TaxSpace extends Space {
         return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
     }
 
-    public int getBoardPosition() {
-        return this.getInteger(Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-
     public int getTax() {
         return this.getInteger(Properties.TAX.getProperty()).intValue();
     }

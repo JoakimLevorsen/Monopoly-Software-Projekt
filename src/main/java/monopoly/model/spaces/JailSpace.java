@@ -43,12 +43,11 @@ public class JailSpace extends Space {
 
     @Override
     public boolean equals(Object obj) {
-        // FIX THIS, URGENT
-        return true;
-    }
-
-    public int getBoardPosition() {
-        return this.getInteger(JailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+        if (obj instanceof JailSpace) {
+            JailSpace other = (JailSpace)obj;
+            return other.getLongId() == this.getLongId();
+        }
+        return false;
     }
 
     public void jail(Player player) {

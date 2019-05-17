@@ -17,7 +17,9 @@ Et objekt til at repræsentere hvad et startfelt skal have af metoder.
 public abstract class Space extends Model implements Comparable<Space>, Subject {
     public abstract void performAction(GameController controller, Player player);
 
-    public abstract int getBoardPosition();
+    public int getBoardPosition() {
+        return this.getInteger(CardSpace.Properties.BOARD_POSITION.getProperty()).intValue();
+    }
 
     public static Space setValues(Space space, String name, String color) {
         space.set(PropertySpace.Properties.NAME.getProperty(), name);
