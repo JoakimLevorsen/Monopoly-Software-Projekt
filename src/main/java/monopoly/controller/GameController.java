@@ -74,6 +74,8 @@ public class GameController {
                 e.printStackTrace();
             }
         }
+        // TODO: JSON this shit up
+        view.getGUI().showMessage(getWinner().getName() + " won the game! Congratulations!");
         System.out.println("SPILLET ER OVRE");
     }
 
@@ -125,6 +127,15 @@ public class GameController {
         public int sum() {
             return roll1 + roll2;
         }
+    }
+
+    public Player getWinner() {
+        Player winner = null;
+        for (Player player : getGame().getPlayers()) {
+            if (!player.isBroke())
+                winner = player;
+        }
+        return winner;
     }
 
     public int playersLeft() {

@@ -217,48 +217,53 @@ public class PropertyController {
 						otherPlayersNames[i] = otherPlayers.get(i).getName();
 						nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
 					}
-					String playerToTrade = JOptionPane
-							.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PLAYER.getKey()),
-									jsonData.getString(JSONKey.BUY_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE,
-									null, otherPlayersNames, otherPlayersNames[0])
-							.toString();
-					Player tradee = nameToPlayer.get(playerToTrade);
-					// Hvis den spiller ikke har ejendom skip
-					ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
-					if (tradeeOwnedProperties.size() == 0) {
-						gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName()
-								+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey()));
-					} else {
-						String[] propertyNames = new String[tradeeOwnedProperties.size()];
-						for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
-							propertyNames[i] = tradeeOwnedProperties.get(i).getName();
-							nameToOwnableSpace.put(propertyNames[i], tradeeOwnedProperties.get(i));
-						}
-						String selection = JOptionPane
-								.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
-										jsonData.getString(JSONKey.BUY_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE,
-										null, propertyNames, propertyNames[0])
-								.toString();
-						StationSpace selectedSpace = nameToOwnableSpace.get(selection);
-						int amount = gooey.getUserInteger(
-								trader.getName() + jsonData.getString(JSONKey.AMOUNT_TO_PAY.getKey()) + selection, 0,
-								trader.getAccountBalance());
-						boolean accept = gooey.getUserLeftButtonPressed(
-								tradee.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
-								jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
-						if (accept) {
-							if (selectedSpace instanceof PropertySpace
-									&& ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
-								gooey.showMessage(
-										jsonData.getString(JSONKey.HOUSES_ON_PROPERTY_SELL_ALL_HOUSES.getKey()));
-								sellHouses((PropertySpace) selectedSpace,
-										((PropertySpace) selectedSpace).getHousesBuilt());
+					Object playerToTrade = JOptionPane.showInputDialog(null,
+							jsonData.getString(JSONKey.CHOOSE_PLAYER.getKey()),
+							jsonData.getString(JSONKey.BUY_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null,
+							otherPlayersNames, otherPlayersNames[0]);
+					if (playerToTrade != null) {
+						String playerToTradeString = playerToTrade.toString();
+						Player tradee = nameToPlayer.get(playerToTradeString);
+						// Hvis den spiller ikke har ejendom skip
+						ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
+						if (tradeeOwnedProperties.size() == 0) {
+							gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName()
+									+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey()));
+						} else {
+							String[] propertyNames = new String[tradeeOwnedProperties.size()];
+							for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
+								propertyNames[i] = tradeeOwnedProperties.get(i).getName();
+								nameToOwnableSpace.put(propertyNames[i], tradeeOwnedProperties.get(i));
 							}
-							tradee.removeFromOwnedProperties(selectedSpace, controller.getGame());
-							selectedSpace.removeOwner(controller.getGame());
-							trader.addToOwnedProperties(selectedSpace, controller.getGame());
-							selectedSpace.setOwner(trader);
-							controller.cashController.payment(trader, amount, tradee);
+							Object selection = JOptionPane.showInputDialog(null,
+									jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
+									jsonData.getString(JSONKey.BUY_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE,
+									null, propertyNames, propertyNames[0]);
+							if (selection != null) {
+								String selectionString = selection.toString();
+								StationSpace selectedSpace = nameToOwnableSpace.get(selectionString);
+								int amount = gooey.getUserInteger(trader.getName()
+										+ jsonData.getString(JSONKey.AMOUNT_TO_PAY.getKey()) + selection, 0,
+										trader.getAccountBalance());
+								boolean accept = gooey.getUserLeftButtonPressed(
+										tradee.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
+										jsonData.getString(JSONKey.YES.getKey()),
+										jsonData.getString(JSONKey.NO.getKey()));
+								if (accept) {
+									if (selectedSpace instanceof PropertySpace
+											&& ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
+										gooey.showMessage(jsonData
+												.getString(JSONKey.HOUSES_ON_PROPERTY_SELL_ALL_HOUSES.getKey()));
+										sellHouses((PropertySpace) selectedSpace,
+												((PropertySpace) selectedSpace).getHousesBuilt());
+									}
+									tradee.removeFromOwnedProperties(selectedSpace, controller.getGame());
+									selectedSpace.removeOwner(controller.getGame());
+									trader.addToOwnedProperties(selectedSpace, controller.getGame());
+									selectedSpace.setOwner(trader);
+									controller.cashController.payment(trader, amount, tradee);
+								}
+							}
 						}
 					}
 				} else {
@@ -274,46 +279,54 @@ public class PropertyController {
 							propertyNames[i] = traderOwnedProperties.get(i).getName();
 							nameToOwnableSpace.put(propertyNames[i], traderOwnedProperties.get(i));
 						}
-						String selection = JOptionPane
-								.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
-										jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
-										JOptionPane.QUESTION_MESSAGE, null, propertyNames, propertyNames[0])
-								.toString();
-						StationSpace selectedSpace = nameToOwnableSpace.get(selection);
-						if (selectedSpace instanceof PropertySpace
-								&& ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
-							gooey.showMessage(jsonData.getString(JSONKey.HOUSES_ON_PROPERTY_SELL_ALL_HOUSES.getKey()));
-							sellHouses((PropertySpace) selectedSpace, ((PropertySpace) selectedSpace).getHousesBuilt());
-						}
-						List<Player> otherPlayers = controller.getGame().getPlayers();
-						otherPlayers.remove(trader);
-						String[] otherPlayersNames = new String[otherPlayers.size()];
-						for (int i = 0; i < otherPlayers.size(); i++) {
-							otherPlayersNames[i] = otherPlayers.get(i).getName();
-							nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
-						}
-						String playerToTrade = JOptionPane
-								.showInputDialog(null, jsonData.getString(JSONKey.CHOOSE_PLAYER.getKey()),
-										jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
-										JOptionPane.QUESTION_MESSAGE, null, otherPlayersNames, otherPlayersNames[0])
-								.toString();
-						Player tradee = nameToPlayer.get(playerToTrade);
-						boolean tradeeAccept = gooey.getUserLeftButtonPressed(
-								tradee.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
-								jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
-						if (tradeeAccept) {
-							int amount = gooey.getUserInteger(
-									tradee.getName() + jsonData.getString(JSONKey.AMOUNT_TO_PAY.getKey()) + selection,
-									0, tradee.getAccountBalance());
-							boolean traderAccept = gooey.getUserLeftButtonPressed(
-									trader.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
-									jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()));
-							if (traderAccept) {
-								trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
-								selectedSpace.removeOwner(controller.getGame());
-								tradee.addToOwnedProperties(selectedSpace, controller.getGame());
-								selectedSpace.setOwner(tradee);
-								controller.cashController.payment(tradee, amount, trader);
+						Object selection = JOptionPane.showInputDialog(null,
+								jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()),
+								jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null,
+								propertyNames, propertyNames[0]);
+						if (selection != null) {
+							String selectionString = selection.toString();
+							StationSpace selectedSpace = nameToOwnableSpace.get(selectionString);
+							if (selectedSpace instanceof PropertySpace
+									&& ((PropertySpace) selectedSpace).getHousesBuilt() > 0) {
+								gooey.showMessage(
+										jsonData.getString(JSONKey.HOUSES_ON_PROPERTY_SELL_ALL_HOUSES.getKey()));
+								sellHouses((PropertySpace) selectedSpace,
+										((PropertySpace) selectedSpace).getHousesBuilt());
+							}
+							List<Player> otherPlayers = controller.getGame().getPlayers();
+							otherPlayers.remove(trader);
+							String[] otherPlayersNames = new String[otherPlayers.size()];
+							for (int i = 0; i < otherPlayers.size(); i++) {
+								otherPlayersNames[i] = otherPlayers.get(i).getName();
+								nameToPlayer.put(otherPlayersNames[i], otherPlayers.get(i));
+							}
+							Object playerToTrade = JOptionPane.showInputDialog(null,
+									jsonData.getString(JSONKey.CHOOSE_PLAYER.getKey()),
+									jsonData.getString(JSONKey.SELL_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE,
+									null, otherPlayersNames, otherPlayersNames[0]);
+							if (playerToTrade != null) {
+								String playerToTradeString = playerToTrade.toString();
+								Player tradee = nameToPlayer.get(playerToTradeString);
+								boolean tradeeAccept = gooey.getUserLeftButtonPressed(
+										tradee.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
+										jsonData.getString(JSONKey.YES.getKey()),
+										jsonData.getString(JSONKey.NO.getKey()));
+								if (tradeeAccept) {
+									int amount = gooey.getUserInteger(tradee.getName()
+											+ jsonData.getString(JSONKey.AMOUNT_TO_PAY.getKey()) + selection, 0,
+											tradee.getAccountBalance());
+									boolean traderAccept = gooey.getUserLeftButtonPressed(
+											trader.getName() + jsonData.getString(JSONKey.ACCEPT.getKey()),
+											jsonData.getString(JSONKey.YES.getKey()),
+											jsonData.getString(JSONKey.NO.getKey()));
+									if (traderAccept) {
+										trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
+										selectedSpace.removeOwner(controller.getGame());
+										tradee.addToOwnedProperties(selectedSpace, controller.getGame());
+										selectedSpace.setOwner(tradee);
+										controller.cashController.payment(tradee, amount, trader);
+									}
+								}
 							}
 						}
 					}
@@ -389,10 +402,12 @@ public class PropertyController {
 			}
 			// Spilleren bliver promptet for at vælge en ejendom at bearbejde og
 			// mulighederne afhænger af ejendomstypen
-			String selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
-					jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names,
-					names[0]).toString();
-			Space selectedSpace = nameToSpace.get(selection);
+			Object selection = null;
+			do {
+				selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()), jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names, names[0]);
+			} while (selection == null);
+			String selectionString = selection.toString();
+			Space selectedSpace = nameToSpace.get(selectionString);
 			String action;
 			// Hvis den valgte ejendom er af typen PropertySpace og der ikke er bygget huse
 			// på ejendommen
@@ -423,7 +438,7 @@ public class PropertyController {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}
-		} while (failure.hasOverdrawnAccount() && (!ownedProperties.isEmpty() || !ownedProperties.isEmpty()));
+		} while (failure.hasOverdrawnAccount() && !ownedProperties.isEmpty());
 		if (failure.hasOverdrawnAccount()) {
 			failure.setBrokeStatus(true);
 		}
