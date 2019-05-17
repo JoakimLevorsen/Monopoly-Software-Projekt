@@ -33,46 +33,47 @@ public class GameController {
     }
 
     public void play() {
-        while (playersLeft() > 1) {
-            int currentPlayerTurn = game.getCurrentTurn();
-            Player playerWithTurn = getGame().getPlayers().get(currentPlayerTurn);
-            // Hvis spilleren er gået konkurs, ignorer dem
-            if (!playerWithTurn.isBroke()) {
-                if (playerWithTurn.isInJail()) {
-                    prisonTurn(playerWithTurn);
-                }
-                // Spilleren er måske kommet ud, ellers perform turn
-                if (!playerWithTurn.isInJail()) {
-                    DiceRoll r;
-                    int doubleCount = 0;
-                    do {
-                        view.getGUI()
-                                .showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
-                        r = new DiceRoll();
-                        if (doubleCount == 2 && r.isDoubles()) {
-                            for (Space space : game.getBoard()) {
-                                if (space instanceof JailSpace) {
-                                    ((JailSpace) space).jail(playerWithTurn);
+        do {
+            while (playersLeft() > 1) {
+                int currentPlayerTurn = game.getCurrentTurn();
+                Player playerWithTurn = getGame().getPlayers().get(currentPlayerTurn);
+                // Hvis spilleren er gået konkurs, ignorer dem
+                if (!playerWithTurn.isBroke()) {
+                    if (playerWithTurn.isInJail()) {
+                        prisonTurn(playerWithTurn);
+                    }
+                    // Spilleren er måske kommet ud, ellers perform turn
+                    if (!playerWithTurn.isInJail()) {
+                        DiceRoll r;
+                        int doubleCount = 0;
+                        do {
+                            view.getGUI()
+                                    .showMessage(playerWithTurn.getName() + jsonData.getString(JSONKey.ROLL_DICE.getKey()));
+                            r = new DiceRoll();
+                            if (doubleCount == 2 && r.isDoubles()) {
+                                for (Space space : game.getBoard()) {
+                                    if (space instanceof JailSpace) {
+                                        ((JailSpace) space).jail(playerWithTurn);
+                                    }
                                 }
+                            } else {
+                                movementController.moveForward(r.sum(), playerWithTurn);
                             }
-                        } else {
-                            movementController.moveForward(r.sum(), playerWithTurn);
-                        }
-                        doubleCount++;
-                    } while (r.isDoubles() && doubleCount < 2);
+                            doubleCount++;
+                        } while (r.isDoubles() && doubleCount < 2);
+                    }
+                    // Kom spiller i fængsel i sit ryk?
+                    if (!playerWithTurn.isInJail()) {
+                        propertyController.trade(playerWithTurn);
+                        propertyController.offerToBuild(playerWithTurn);
+                    }
                 }
-                // Kom spiller i fængsel i sit ryk?
-                if (!playerWithTurn.isInJail()) {
-                    propertyController.trade(playerWithTurn);
-                    propertyController.offerToBuild(playerWithTurn);
-                }
+                incrementTurn(currentPlayerTurn);
+                saveGame();
             }
-            incrementTurn(currentPlayerTurn);
-            saveGame();
-        }
-        // TODO: JSON this shit up
-        view.getGUI().showMessage(getWinner().getName() + " won the game! Congratulations!");
-        System.out.println("SPILLET ER OVRE");
+            // TODO: JSON this shit up
+            view.getGUI().showMessage(getWinner().getName() + " won the game! Congratulations!");
+        } while (view.getGUI().getUserLeftButtonPressed("Do you want to play another game", "Yes", "No"));
     }
 
     public void saveGame() {
