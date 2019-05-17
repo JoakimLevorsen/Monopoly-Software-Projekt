@@ -17,7 +17,7 @@ Implementering af Get Out of Jail Free Card
 public class GetOutOfJailCard extends Card {
 
     public enum Properties {
-        TEXT("text"), OWNER("owner"), STACK_POSITION("stackPosition");
+        TEXT("text"), OWNER("player_id"), STACK_POSITION("stackPosition");
 
         private String value;
 
@@ -43,9 +43,9 @@ public class GetOutOfJailCard extends Card {
      * @author Joakim Levorsen, S185023
      */
     public Player getOwner(Game game) {
-        Player owner = this.parent(Player.class);
-        if (owner != null) {
-            long id = owner.getLongId();
+        Object playerID = this.get(Properties.OWNER.getProperty());
+        if (playerID != null) {
+            long id = (long)playerID;
             return game.getPlayerForID(id);
         }
         return null;
@@ -61,7 +61,10 @@ public class GetOutOfJailCard extends Card {
     }
 
     public void setOwner(Player player) {
-        this.add(player);
+        if (player == null) {
+            this.set(Properties.OWNER.getProperty(), null);
+        }
+        this.set(Properties.OWNER.getProperty(), player.getLongId());
     }
 
     @Override
