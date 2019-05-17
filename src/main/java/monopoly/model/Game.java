@@ -177,7 +177,7 @@ public class Game extends Model implements Subject {
     public Player getPlayerForID(long id) {
         List<Player> players = this.getPlayers();
         for (Player p : players) {
-            if (p.getLongId() == id) {
+            if (p.getLongId().longValue() == id) {
                 return p;
             }
         }
@@ -211,7 +211,7 @@ public class Game extends Model implements Subject {
     public CardStack getStackForID(long id) {
         List<CardStack> stacks = this.getCardStacks();
         for (CardStack c : stacks) {
-            if (c.getLongId() == id) {
+            if (c.getLongId().longValue() == id) {
                 return c;
             }
         }
@@ -234,14 +234,14 @@ public class Game extends Model implements Subject {
                 Player owner = ((PropertySpace) boardSpace).getOwner(this);
                 if (owner != null) {
                     long ownerID = owner.getLongId();
-                    if (player.getLongId() == ownerID)
+                    if (player.getLongId().longValue() == ownerID)
                         ownedProperty.add(boardSpace);
                 }
             } else if (boardSpace instanceof StationSpace) {
                 Player owner = ((StationSpace) boardSpace).getOwner(this);
                 if (owner != null) {
                     long ownerID = owner.getLongId();
-                    if (player.getLongId() == ownerID)
+                    if (player.getLongId().longValue() == ownerID)
                         ownedProperty.add(boardSpace);
                 }
             }

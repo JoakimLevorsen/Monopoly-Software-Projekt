@@ -80,11 +80,6 @@ public class ResourceManagerTest {
 
     public boolean objectContainsKey(JSONObject object, JSONKey key) {
         for (String childKey : object.keySet()) {
-            if (childKey.equals("spaces") && key.getKey().equals("price")) {
-                System.out.println("Ayyy");
-            } else {
-                System.out.println(key.getKey() + " in " + childKey);
-            }
             if (childKey.equals(key.getKey()))
                 return true;
             Object atKey = object.get(childKey);
