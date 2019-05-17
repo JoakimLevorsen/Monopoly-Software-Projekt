@@ -19,6 +19,7 @@ import java.awt.*;
  */
 
 public class PlayerPanel extends JFrame {
+    private static final long serialVersionUID = -3176977364745853778L;
     private JSONObject jsonData;
     private Game game;
     private Player player;

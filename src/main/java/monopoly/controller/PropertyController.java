@@ -415,9 +415,9 @@ public class PropertyController {
 				action = gooey.getUserButtonPressed(jsonData.getString(JSONKey.WHAT_DO.getKey()),
 						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
-				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
+				if (Objects.equals(action, jsonData.getString(JSONKey.SELL_PROPERTY.getKey()))) {
 					sellToBank((PropertySpace) selectedSpace);
-				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
+				} else if (Objects.equals(action, jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()))) {
 					mortgage((PropertySpace) selectedSpace);
 				}
 				// Hvis den valgte ejendom er af typen PropertySpace og der er bygget huse på
@@ -432,9 +432,9 @@ public class PropertyController {
 				action = gooey.getUserButtonPressed(jsonData.getString(jsonData.getString(JSONKey.WHAT_DO.getKey())),
 						jsonData.getString(JSONKey.SELL_PROPERTY.getKey()),
 						jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()));
-				if (action == jsonData.getString(JSONKey.SELL_PROPERTY.getKey())) {
+				if (Objects.equals(action, jsonData.getString(JSONKey.SELL_PROPERTY.getKey()))) {
 					sellToBank((StationSpace) selectedSpace);
-				} else if (action == jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey())) {
+				} else if (Objects.equals(action, jsonData.getString(JSONKey.MORTGAGE_PROPERTY.getKey()))) {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}

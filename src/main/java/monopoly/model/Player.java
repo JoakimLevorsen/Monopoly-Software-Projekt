@@ -48,10 +48,6 @@ public class Player extends Model implements Subject {
                 .set(Player.Properties.COLOR.getProperty(), color);
     }
 
-    public static List<Player> playerList() {
-        return Player.findAll().load();
-    }
-
     public String getName() {
         return (String) this.get(Player.Properties.NAME.getProperty());
     }

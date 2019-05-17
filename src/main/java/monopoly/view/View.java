@@ -250,8 +250,6 @@ public class View implements Observer {
             }
 
             String name = player.getName();
-            if (player.hasOverdrawnAccount()) {
-            }
             if (!name.equals(guiPlayer.getName())) {
                 guiPlayer.setName(name);
             }
