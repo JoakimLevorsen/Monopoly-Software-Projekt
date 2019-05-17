@@ -23,7 +23,7 @@
     "auctionedOff": " will now be auctioned off.",
     "bid": ", do you want to bid (enter 0 if no)? Current bid is: ",
     "bidNotValid": "Your bid was not valid and therefore you have been skipped.",
-    "winner": " won the auktion with the bid: ",
+    "auctionWinner": " won the auktion with the bid: ",
     "offerProperty": "Do you want to buy ",
     "propertyCost": "? It costs: ",
     "boughtProperty": "Woohoo, you have bought ",
@@ -40,9 +40,12 @@
     "whichPropertyToBuildOn": "Which property do you want to build on?",
     "taxMessage": "You have to pay tax on your assets, pay §100/200 to the bank",
     "rollDice": ", roll the dice",
-    "player": "Player: ",
+    "player": "Player ",
     "playerOwnsNoProperties": " does not own any properties so you cannot buy any.",
     "youOwnNoProperties": " You own no properties so you cannot sell any.",
+    "unmortgageProperty": "Do you want to buy back a mortgaged property from the bank?",
+    "gameWinner": " won the game! Congratulations!",
+    "playAgain": "Do you want to play again?",
     "spaces": [
         {
             "name": "Go",

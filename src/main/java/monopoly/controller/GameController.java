@@ -76,9 +76,8 @@ public class GameController {
                 incrementTurn(currentPlayerTurn);
                 saveGame();
             }
-            // TODO: JSON this shit up
-            view.getGUI().showMessage(getWinner().getName() + " won the game! Congratulations!");
-        } while (view.getGUI().getUserLeftButtonPressed("Do you want to play another game", "Yes", "No"));
+            view.getGUI().showMessage(getWinner().getName() + jsonData.getString(JSONKey.GAME_WINNER.getKey()));
+        } while (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.PLAY_AGAIN.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
     }
 
     public void saveGame() {

@@ -225,8 +225,8 @@ public class PropertyController {
 						// Hvis den spiller ikke har ejendom skip
 						ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
 						if (tradeeOwnedProperties.size() == 0) {
-							gooey.showMessage(jsonData.getString(JSONKey.PLAYER.getKey()) + tradee.getName()
-									+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey()));
+							gooey.showMessage(jsonData.getString(tradee.getName()
+									+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey())));
 						} else {
 							String[] propertyNames = new String[tradeeOwnedProperties.size()];
 							for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
@@ -458,8 +458,7 @@ public class PropertyController {
 			// Check property is mortgaged, and you can afford to unmorgage them.
 			if (!space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
 		}
-			// TODO: JSONIFY
-			while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed("Do you want to unmorgage a property?", "Yes", "No")) {
+			while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.UNMORTGAGE_PROPERTY.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
 				String[] names = new String[mortgagedProperty.size()];
 				HashMap<Object, StationSpace> options = new HashMap<Object, StationSpace>();
 				for (int i = 0; i < mortgagedProperty.size(); i++) {

@@ -23,7 +23,7 @@
     "auctionedOff": " auktioneres nu bort.",
     "bid": ", vil du byde (angiv 0 hvis nej)? Nuværende bud er: ",
     "bidNotValid": "Dit bud var ikke gyldigt, så du er blevet sprunget over.",
-    "winner": " vandt auktionen, med buddet ",
+    "auctionWinner": " vandt auktionen, med buddet ",
     "offerProperty": "Vil du købe ",
     "propertyCost": "? Den koster: ",
     "boughtProperty": "Juhu, du købte ",
@@ -40,9 +40,12 @@
     "whichPropertyToBuildOn": "Hvilken ejendom vil du bygge på?",
     "taxMessage": "Du skal betale skat af dine likvider, betal §100/200 til banken",
     "rollDice": ", slå med terningerne",
-    "player": "Spiller: ",
-    "playerOwnsNoProperties": " ejer ingen ejendomme, så du kan ikke købe nogle",
+    "player": "Spiller ",
+    "playerOwnsNoProperties": " ejer ingen ejendomme, så du kan ikke købe nogle.",
     "youOwnNoProperties": "Du ejer ikke nogle ejendomme, så du kan ikke sælge noget.",
+    "unmortgageProperty": "Vil du tilbagekøbe en pantsat ejendom fra banken?",
+    "gameWinner": " vandt spillet! Tillykke!",
+    "playAgain": "Vil du spille igen?",
     "spaces": [
         {
             "name": "Start",
