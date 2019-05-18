@@ -115,7 +115,7 @@ public class GameController {
                     jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
                 GetOutOfJailCard jailCard = player.getGetOutOfJailCard(game);
                 if (jailCard == null) {
-                    player.changeAccountBalance(-50);
+                    player.changeAccountBalance(-100);
                 } else
                     jailCard.setOwner(null);
                 game.getSpacesForType(JailSpace.class).get(0).release(player);
