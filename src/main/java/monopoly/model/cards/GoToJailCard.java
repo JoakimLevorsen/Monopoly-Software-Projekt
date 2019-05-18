@@ -65,7 +65,7 @@ public class GoToJailCard extends Card {
      * execute: sørger for at spilleren bliver rykket hen til fængsels feltet samt
      * ryger i fængsel status.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public void execute(MovementController moveController, Player player) {
         JailSpace target = null;

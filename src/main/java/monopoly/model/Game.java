@@ -74,7 +74,7 @@ public class Game extends Model implements Subject {
      * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
      * elementer.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     @Override
     public boolean saveIt() {

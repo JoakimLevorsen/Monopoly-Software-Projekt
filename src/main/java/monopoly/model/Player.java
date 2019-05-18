@@ -72,7 +72,7 @@ public class Player extends Model implements Subject {
     /*
      * getPrisonStatus: Henter om spilleren er på fængsels feltet eller ej,
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public boolean isInJail() {
         return this.get(Properties.JAIL_SPACE.getProperty()) != null;
@@ -142,7 +142,7 @@ public class Player extends Model implements Subject {
     /*
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public Color getColor() {
         String hex = this.getString(PropertySpace.Properties.COLOR.getProperty());
@@ -153,7 +153,7 @@ public class Player extends Model implements Subject {
     /*
      * setColor: sætter farven for spilleren.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public void setColor(String color) {
         this.set(Player.Properties.COLOR.getProperty(), color);

@@ -29,7 +29,7 @@ public abstract class Space extends Model implements Comparable<Space>, Subject 
     /*
      * getName: Henter navnet på stationen.
      * 
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public String getName() {
         return this.getString(StationSpace.Properties.NAME.getProperty());
@@ -38,7 +38,7 @@ public abstract class Space extends Model implements Comparable<Space>, Subject 
     /*
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public Color getColor() {
         String hex = this.getString(PropertySpace.Properties.COLOR.getProperty());

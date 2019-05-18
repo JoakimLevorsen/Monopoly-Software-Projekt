@@ -104,7 +104,7 @@ public class CardStack extends Model {
      * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
      * elementer.
      *
-     * @Author Joakim Levorsen, S185023
+     * @author Joakim Levorsen, S185023
      */
     @Override
     public boolean saveIt() {

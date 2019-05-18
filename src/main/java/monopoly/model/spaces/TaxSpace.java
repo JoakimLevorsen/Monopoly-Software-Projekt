@@ -27,7 +27,7 @@ public class TaxSpace extends Space {
      * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet
      * til gevinsten på gratis parkering.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     @Override
     public void performAction(GameController controller, Player player) {

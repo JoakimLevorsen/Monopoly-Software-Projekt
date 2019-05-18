@@ -33,7 +33,7 @@ public class FreeParkingSpace extends Space {
      * performAction: Udbetaler gevinsten til spilleren samt nulstiller gevinst
      * beløbet.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     @Override
     public void performAction(GameController controller, Player player) {

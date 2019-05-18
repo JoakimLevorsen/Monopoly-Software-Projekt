@@ -59,7 +59,7 @@ public class CardSpace extends Space {
     /*
      * performAction: trækker et chancekort og ekskverer det.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     @Override
     public void performAction(GameController controller, Player player) {

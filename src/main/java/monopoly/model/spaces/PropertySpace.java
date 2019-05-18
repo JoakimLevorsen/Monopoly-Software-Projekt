@@ -63,9 +63,9 @@ public class PropertySpace extends StationSpace {
     /*
      * getName: Henter lejen for ejendommen.
      * 
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      * 
-     * @Author Joakim Levorsen, s185023
+     * @author Joakim Levorsen, s185023
      */
     public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
@@ -76,7 +76,7 @@ public class PropertySpace extends StationSpace {
     /*
      * getHousesBuilt: Henter hvor mange huse der er bygget på ejendommen.
      *
-     * @Author Anders Brandt, s185016
+     * @author Anders Brandt, s185016
      */
     public int getHousesBuilt() {
         return this.getInteger(Properties.BUILD_LEVEL.getProperty());
