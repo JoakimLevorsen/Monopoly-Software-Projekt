@@ -1,7 +1,7 @@
 # Author noter
 ### Når man laver Author noter strukureres det som følgende:
 ```Java
-/*
+/**
 METODENAVN:
 HVAD GØR DEN
 

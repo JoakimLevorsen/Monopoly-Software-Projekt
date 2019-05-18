@@ -23,7 +23,7 @@ public class TaxSpace extends Space {
         }
     }
 
-    /*
+    /**
      * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet
      * til gevinsten på gratis parkering.
      *
@@ -78,7 +78,7 @@ public class TaxSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

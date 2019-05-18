@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import resources.json.JSONKey;
 
-/*
+/**
 JSONSpaceFactory:
 Et objekt til at hente alle start felter fra vores JSON resourcer.
 

@@ -7,7 +7,7 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 GoToJailSpace:
 Et objekt til at repræsentere gå i fængsel feltet.
 
@@ -72,7 +72,7 @@ public class GoToJailSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

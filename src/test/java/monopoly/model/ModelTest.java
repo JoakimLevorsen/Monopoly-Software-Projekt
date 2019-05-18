@@ -15,7 +15,7 @@ import monopoly.model.cards.*;
 import monopoly.model.spaces.*;
 import resources.json.*;
 
-/*
+/**
 ModelTest:
 En test til at verificere model klasserne virker korrekt.
 

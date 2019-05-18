@@ -3,7 +3,7 @@ package monopoly.model.spaces;
 import monopoly.model.Game;
 import monopoly.model.Player;
 
-/*
+/**
 PropertySpace:
 Et objekt til at repræsentere ejendoms felter.
 
@@ -60,7 +60,7 @@ public class PropertySpace extends StationSpace {
         return true;
     }
 
-    /*
+    /**
      * getName: Henter lejen for ejendommen.
      * 
      * @author Anders Brandt, s185016
@@ -73,7 +73,7 @@ public class PropertySpace extends StationSpace {
         return baseRent;
     }
 
-    /*
+    /**
      * getHousesBuilt: Henter hvor mange huse der er bygget på ejendommen.
      *
      * @author Anders Brandt, s185016
@@ -82,7 +82,7 @@ public class PropertySpace extends StationSpace {
         return this.getInteger(Properties.BUILD_LEVEL.getProperty());
     }
 
-    /*
+    /**
      * SetBuildLevel: Sætter antallet af huse bygget på ejendommen.
      * 
      * @author Cecilie Krog Drejer, s185032

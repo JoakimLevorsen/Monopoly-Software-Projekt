@@ -7,7 +7,7 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 StartSpace:
 Et objekt til at repræsentere start feltet.
 
@@ -70,7 +70,7 @@ public class StartSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

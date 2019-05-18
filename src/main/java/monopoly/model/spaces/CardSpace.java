@@ -10,7 +10,7 @@ import monopoly.model.cards.CardStack;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 CardSpace:
 Implementering af CardSpace
 
@@ -56,7 +56,7 @@ public class CardSpace extends Space {
         return this.getBoardPosition() == other.getBoardPosition();
     }
 
-    /*
+    /**
      * performAction: trækker et chancekort og ekskverer det.
      *
      * @author Anders Brandt, s185016
@@ -90,7 +90,7 @@ public class CardSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

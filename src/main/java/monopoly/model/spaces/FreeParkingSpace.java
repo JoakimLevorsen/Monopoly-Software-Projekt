@@ -7,7 +7,7 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 FreeParkingSpace:
 Et objekt til at repræsentere gratis parkering feltet.
 
@@ -29,7 +29,7 @@ public class FreeParkingSpace extends Space {
         }
     }
 
-    /*
+    /**
      * performAction: Udbetaler gevinsten til spilleren samt nulstiller gevinst
      * beløbet.
      *
@@ -87,7 +87,7 @@ public class FreeParkingSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

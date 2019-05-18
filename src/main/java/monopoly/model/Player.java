@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/*
+/**
 Player:
 Implementering af Player model objektet, med ORM for databasen.
 
@@ -69,7 +69,7 @@ public class Player extends Model implements Subject {
         return (int) this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
     }
 
-    /*
+    /**
      * getPrisonStatus: Henter om spilleren er på fængsels feltet eller ej,
      *
      * @author Anders Brandt, s185016
@@ -89,7 +89,7 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
-    /*
+    /**
      * GetOwnedProperties: Henter og returnerer liste af ejendomme ejet af brugeren.
      * 
      * @author Cecilie Krog Drejer, s185032
@@ -111,7 +111,7 @@ public class Player extends Model implements Subject {
         return ownedProperties;
     }
 
-    /*
+    /**
      * AddToOwnedProperties: Tilføjer ejendom til liste af ejendomme ejet af
      * brugeren.
      * 
@@ -123,7 +123,7 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
-    /*
+    /**
      * RemoveFromOwnedProperties: Fjerner ejendom fra liste af ejendomme ejet af
      * brugeren.
      *
@@ -139,7 +139,7 @@ public class Player extends Model implements Subject {
         return this.getAccountBalance() < 0;
     }
 
-    /*
+    /**
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      *
      * @author Anders Brandt, s185016
@@ -150,7 +150,7 @@ public class Player extends Model implements Subject {
                 Integer.valueOf(hex.substring(4, 6), 16));
     }
 
-    /*
+    /**
      * setColor: sætter farven for spilleren.
      *
      * @author Anders Brandt, s185016
@@ -160,7 +160,7 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
-    /*
+    /**
      * isBroke: Viser om spiller er gået konkurs
      *
      * @author Joakim Levorsen, s185023
@@ -169,7 +169,7 @@ public class Player extends Model implements Subject {
         return this.getBoolean(Properties.BROKE.getProperty());
     }
 
-    /*
+    /**
      * setBrokeStatus: Sætter konkurs status.
      *
      * @author Joakim Levorsen, s185023
@@ -179,7 +179,7 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
-    /*
+    /**
      * getOutOfJailFreeCard: Finder get out of jailFreeCard.
      *
      * @author Joakim Levorsen, s185023
@@ -195,7 +195,7 @@ public class Player extends Model implements Subject {
         return null;
     }
 
-    /*
+    /**
      * getOutOfJail: Kom ud af fængsel.
      *
      * @author Joakim Levorsen, s185023
@@ -220,7 +220,7 @@ public class Player extends Model implements Subject {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

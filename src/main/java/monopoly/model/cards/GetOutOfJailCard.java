@@ -5,7 +5,7 @@ import monopoly.model.Game;
 import monopoly.model.Player;
 import org.javalite.activejdbc.annotations.BelongsTo;
 
-/*
+/**
 GetOutOfJailCard:
 Implementering af Get Out of Jail Free Card
 
@@ -36,7 +36,7 @@ public class GetOutOfJailCard extends Card {
         return getOutOfJailCard;
     }
 
-    /*
+    /**
      * Get Owner: Returnerer ejeren af det pågældende Get Out of Jail Free Card.
      *
      * @author Joakim Levorsen, S185023
@@ -55,7 +55,7 @@ public class GetOutOfJailCard extends Card {
         return null;
     }
 
-    /*
+    /**
      * GetText: Returnerer teksten der står på kortet.
      *
      * @author Anders Brandt, S185016

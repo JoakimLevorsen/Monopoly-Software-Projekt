@@ -4,7 +4,7 @@ import monopoly.controller.MovementController;
 import monopoly.model.Player;
 import org.javalite.activejdbc.Model;
 
-/*
+/**
 Card:
 Implementering af abstract kort-klasse.
 

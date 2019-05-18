@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/*
+/**
 DatabaseSpaceFactory:
 Et objekt til at hente alle spaces der er gemt i databasen for et spil.
 

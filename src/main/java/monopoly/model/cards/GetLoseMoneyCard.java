@@ -3,7 +3,7 @@ package monopoly.model.cards;
 import monopoly.controller.MovementController;
 import monopoly.model.Player;
 
-/*
+/**
 GetLoseMoneyCard:
 Implementering af Get/Lose Money Card
 
@@ -33,7 +33,7 @@ public class GetLoseMoneyCard extends Card {
         return getLoseMoneyCard;
     }
 
-    /*
+    /**
      * GetText: Returnerer teksten der står på kortet.
      *
      * @author Anders Brandt, S185016

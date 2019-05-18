@@ -33,7 +33,7 @@ public class View implements Observer {
     private HashMap<Player, PlayerPanel> panels = new HashMap<>();
     private boolean disposed = false;
 
-    /*
+    /**
      * View: opretter felter og spillere
      * 
      * @author Ekkart Kindler
@@ -70,7 +70,7 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * ChooseGame: Metode til at vælge om man vil hente et gemt spil (og i så fald
      * hvilket) eller om man vil starte et nyt spil
      * 
@@ -119,7 +119,7 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * StartNewGame: Metode til at få information til at starte et nyt spil fra
      * spilleren
      * 
@@ -144,7 +144,7 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * ChooseLanguage: Metode til at vælge sprog
      * 
      * @author Joakim Bøegh Levorsen, s185023
@@ -182,7 +182,7 @@ public class View implements Observer {
             return null;
     }
 
-    /*
+    /**
      * WhichPropertyDoYouWantToBuildOn: Metode til at vælge hvilken ejendom man vil
      * bygge på
      * 
@@ -209,7 +209,7 @@ public class View implements Observer {
             return null;
     }
 
-    /*
+    /**
      * View: opdaterer brættet
      * 
      * @author Ekkart Kindler
@@ -227,7 +227,7 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * View: Opdaterer spilleren
      * 
      * @author Ekkart Kindler
@@ -257,7 +257,7 @@ public class View implements Observer {
         panels.get(player).update();
     }
 
-    /*
+    /**
      * View: Opdaterer ejendommene
      * 
      * @author Ekkart Kindler
@@ -301,7 +301,7 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * getGUI: Retuner dette views gui
      * 
      * @author Joakim Levorsen, S185023

@@ -2,7 +2,7 @@ package monopoly;
 
 import org.javalite.activejdbc.Base;
 
-/*
+/**
 DatabaseBase:
 En klasse til at åbne og lukke forbindelser til databasen.
 

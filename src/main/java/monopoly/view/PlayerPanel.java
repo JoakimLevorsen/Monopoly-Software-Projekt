@@ -11,7 +11,7 @@ import resources.json.JSONKey;
 import javax.swing.*;
 import java.awt.*;
 
-/*
+/**
  * PlayerPanel:
  * Opretter paneler med information omkring spilleren og dets ejendomme.
  *

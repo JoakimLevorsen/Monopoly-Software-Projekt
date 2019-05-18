@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/*
+/**
 CardStack:
 Implementering af klasse til håndtering af et sæt kort.
 
@@ -47,10 +47,11 @@ public class CardStack extends Model {
         return cardStack;
     }
 
-    /*
-     * getCardForType: Finder alle kort af en type i sig selv.
-     *
-     * @author Joakim Levorsen, s185023
+    /**
+     * @param type man vil finde kort for
+     * @return Alle kort af typen C
+     * @author jake
+     * @author Joakim Levorsen s185023
      */
     public <C extends Card> List<C> getCardForType(Class<C> type) {
         List<C> matches = new ArrayList<C>();
@@ -100,7 +101,7 @@ public class CardStack extends Model {
         return this.getBoolean(CardStack.Properties.CHANCE_CARD.getProperty());
     }
 
-    /*
+    /**
      * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
      * elementer.
      *

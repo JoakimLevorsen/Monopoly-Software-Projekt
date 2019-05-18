@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/*
+/**
 DatabaseCardFactory:
 Klasse til at hente kort fra databasen.
 
