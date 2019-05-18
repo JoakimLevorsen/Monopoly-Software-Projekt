@@ -21,6 +21,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * View, klasse der fungere som View i MVC-modellen.
+ * @author Ekkart Kindler, ekki@dtu.dk
+ * @author Anders Brandt s185016
+ * @author Cecilie Krog Drejer, s185032
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class View implements Observer {
 
     private Game game;
@@ -38,7 +45,7 @@ public class View implements Observer {
      * 
      * @param game
      * @param gui
-     * @author Ekkart Kindler
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -222,7 +229,7 @@ public class View implements Observer {
     /**
      * View: opdaterer brættet
      * 
-     * @author Ekkart Kindler
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -241,7 +248,7 @@ public class View implements Observer {
      * View: Opdaterer spilleren
      * 
      * @param player Spilleren der skal opdateres
-     * @author Ekkart Kindler
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -272,7 +279,7 @@ public class View implements Observer {
      * View: Opdaterer ejendommene
      * 
      * @param property Ejendommen der skal opdateres
-     * @author Ekkart Kindler
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      * 
