@@ -20,6 +20,8 @@ public class MovementController {
     /**
      * moveForward: rykker spilleren frem ud fra hvad de har slået med terningen.
      *
+     * @param amount
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void moveForward(int amount, Player player) {
@@ -38,6 +40,7 @@ public class MovementController {
     /**
      * goToJail: rykker spilleren i fængsel
      *
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void goToJail(Player player) {
@@ -48,6 +51,9 @@ public class MovementController {
     /**
      * goTo: rykker spilleren til et bestemt felt.
      *
+     * @param space
+     * @param ignoreStart
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void goTo(Space space, Boolean ignoreStart, Player player) {

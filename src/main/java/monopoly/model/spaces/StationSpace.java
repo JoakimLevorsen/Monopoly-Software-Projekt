@@ -95,7 +95,9 @@ public class StationSpace extends Space {
     /**
      * getName: Henter lejen for stationen.
      * 
+     * @param game
      * @author Anders Brandt, s185016
+     * @return returnerer lejen for stationen.
      */
     public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());

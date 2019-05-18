@@ -27,6 +27,10 @@ public class PlayerPanel extends JFrame {
     private JPanel panel = new JPanel();
     private JPanel mainPanel = new JPanel();
 
+    /**
+     * @param game
+     * @param player
+     */
     public PlayerPanel(Game game, Player player) {
         this.player = player;
         this.game = game;
@@ -39,6 +43,7 @@ public class PlayerPanel extends JFrame {
         frame.pack();
         frame.setVisible(true);
     }
+
 
     public void update() {
         panel.removeAll();
