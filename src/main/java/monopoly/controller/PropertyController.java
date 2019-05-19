@@ -27,7 +27,9 @@ public class PropertyController {
 	/**
 	 * Auction: Metode til at sælge en ejendom ved auktion.
 	 * 
-	 * @author Anders Brandt, s185016
+	 * @param property
+     *
+     * @author Anders Brandt, s185016
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
 	 * 
@@ -73,7 +75,9 @@ public class PropertyController {
 	/**
 	 * Mortgage: Metode til at pantsætte en ejendom
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param property
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void mortgage(StationSpace property) {
@@ -90,7 +94,9 @@ public class PropertyController {
 	/**
 	 * Unmortgage: Metode til at tilbagekøbe en pantsat ejendom
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param property
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void unmortgage(StationSpace property) {
@@ -106,7 +112,10 @@ public class PropertyController {
 	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber
 	 * den
 	 * 
-	 * @author Helle Achari, s180317
+	 * @param property
+     * @param player
+     *
+     * @author Helle Achari, s180317
 	 */
 
 	public void offerProperty(StationSpace property, Player player) {
@@ -130,7 +139,9 @@ public class PropertyController {
 	/**
 	 * SellToBank: Metode til at sælge ejendom til banken
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param property
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void sellToBank(StationSpace property) {
@@ -149,7 +160,10 @@ public class PropertyController {
 	/**
 	 * BuildHouses: Metode til at bygge huse på ejendomme af typen PropertySpace
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param property
+     * @param houses
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void buildHouses(PropertySpace property, int houses) {
@@ -171,7 +185,10 @@ public class PropertyController {
 	/**
 	 * SellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param property
+     * @param houses
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void sellHouses(PropertySpace property, int houses) {
@@ -194,7 +211,9 @@ public class PropertyController {
 	 * Trade: Metode til at foretage byttehandler med andre spillere. OBS: Ejendomme
 	 * tages kun i bytte for penge.
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param trader
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void trade(Player trader) {
@@ -337,7 +356,9 @@ public class PropertyController {
 	 * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine
 	 * ejendomme.
 	 *
-	 * @author Anders Brandt, s185016
+	 * @param player
+     *
+     * @author Anders Brandt, s185016
 	 */
 
 	public void offerToBuild(Player player) {
@@ -386,7 +407,9 @@ public class PropertyController {
 	/**
 	 * PlayerBroke: Metode til konkurshåndtering
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param failure
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void playerBroke(Player failure) {
@@ -447,7 +470,9 @@ public class PropertyController {
 	/**
 	 * Unmorgage properties: Afpantsæt ens ejendomme
 	 * 
-	 * @author Cecilie Krog Drejer, s185032
+	 * @param player
+     *
+     * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void unmortgageProperties(Player player) {

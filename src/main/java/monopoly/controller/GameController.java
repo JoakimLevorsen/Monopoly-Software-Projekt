@@ -92,6 +92,9 @@ public class GameController {
         }
     }
 
+    /**
+     * @param currentPlayerTurn
+     */
     public void incrementTurn(int currentPlayerTurn) {
         int nextPlayerTurn = currentPlayerTurn + 1;
         if (nextPlayerTurn == game.getPlayers().size()) {
@@ -101,6 +104,9 @@ public class GameController {
         System.out.println("Next turn is " + game.getCurrentTurn());
     }
 
+    /**
+     * @param player
+     */
     public void prisonTurn(Player player) {
         DiceRoll r = new DiceRoll();
         if (r.isDoubles()) {
@@ -142,6 +148,9 @@ public class GameController {
         }
     }
 
+    /**
+     * @return Returnerer vinderen af spillet.
+     */
     public Player getWinner() {
         Player winner = null;
         for (Player player : getGame().getPlayers()) {
@@ -151,6 +160,9 @@ public class GameController {
         return winner;
     }
 
+    /**
+     * @return Returnerer hvor mange spillere der er tilbage i spillet.
+     */
     public int playersLeft() {
         int count = 0;
         for (Player player : getGame().getPlayers()) {
