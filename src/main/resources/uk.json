@@ -1,0 +1,523 @@
+{
+    "test": "OK",
+    "startPayment": 200,
+    "currentlyBroke": "You are currently broke, but you own several spaces on the board. Which space do you want to process?",
+    "playerBrokeTitle": "Player Broke: Save Yourself",
+    "sellProperty": "Sell property",
+    "mortgageProperty": "Mortgage property",
+    "whatDo": "What do you want to do with the selected property?",
+    "housesOnPropertyChooseHouses": "The selected property cannot be sold or mortgaged as there are houses on it. How many houses do you want to sell?",
+    "housesOnPropertySellAllHouses": "The selected property cannot be sold or mortgaged as there are houses on it. All houses will now be sold.",
+    "rolledDouble": "You rolled a double and got out of jail for free",
+    "outOfJail": "Do you want to get out of jail?",
+    "yes": "Yes",
+    "no": "No",
+    "questionMark": "?",
+    "name": "Name: ",
+    "balance": "Balance: ",
+    "playerIsInJail": "You're in jail",
+    "housesBuilt": "Houses built: ",
+    "rent": "Rent: ",
+    "mortagedBy": " Mortgaged by: ",
+    "ownedBy": "Owned by: ",
+    "auctionedOff": " will now be auctioned off.",
+    "bid": ", do you want to bid (enter 0 if no)? Current bid is: ",
+    "bidNotValid": "Your bid was not valid and therefore you have been skipped.",
+    "auctionWinner": " won the auktion with the bid: ",
+    "offerProperty": "Do you want to buy ",
+    "propertyCost": "? It costs: ",
+    "boughtProperty": "Woohoo, you have bought ",
+    "trade": "Do you want to trade with another player?",
+    "buyOrSellProperty": "Do you want to buy or sell property?",
+    "buyProperty": "Buy property",
+    "chooseProperty": "Choose property.",
+    "choosePlayer": "Choose player to trade with.",
+    "amountToPay": ", how much do you want to pay for ",
+    "accept": ", do you accept the trade?",
+    "maxBuiltHouses": "How many houses do you want there to be on the property?",
+    "cantBuildAnymore": "You are not able to build on any of your properties.",
+    "buildOnProperty": "Do you want to build houses on a property?",
+    "whichPropertyToBuildOn": "Which property do you want to build on?",
+    "taxMessage": "You have to pay tax on your assets, pay §100/200 to the bank",
+    "rollDice": ", roll the dice",
+    "player": "Player ",
+    "playerOwnsNoProperties": " does not own any properties so you cannot buy any.",
+    "youOwnNoProperties": " You own no properties so you cannot sell any.",
+    "unmortgageProperty": "Do you want to buy back a mortgaged property from the bank?",
+    "gameWinner": " won the game! Congratulations!",
+    "playAgain": "Do you want to play again?",
+    "pays": " pays ",
+    "to": " to ",
+    "spaces": [
+        {
+            "name": "Go",
+            "type": 0,
+            "message": "Receive §200 when you pass Go.",
+            "color": "FFFFFF",
+            "textColor": "C60000"
+        },
+        {
+            "name": "Old Kent Road",
+            "type": 1,
+            "price": 60,
+            "baseRent": 20,
+            "color": "1A1B41",
+            "textColor": "000000"
+        },
+        {
+            "name": "Community Chest",
+            "type": 7,
+            "message": "Draw a Community Chest card.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Income Tax",
+            "type": 8,
+            "value": 1,
+            "tax": 200,
+            "color": "E8A945",
+            "textColor": "000000"
+        },
+        {
+            "name": "Whitechapel Road",
+            "type": 1,
+            "price": 60,
+            "baseRent": 20,
+            "color": "1A1B41",
+            "textColor": "000000"
+        },
+        {
+            "name": "King's Cross Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "The Angel, Islington",
+            "type": 1,
+            "price": 100,
+            "baseRent": 35,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Draw a Chance card",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Euston Road",
+            "type": 1,
+            "price": 100,
+            "baseRent": 35,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Pentonville Road",
+            "type": 1,
+            "price": 120,
+            "baseRent": 40,
+            "color": "F18701",
+            "textColor": "000000"
+        },
+        {
+            "name": "Jail",
+            "type": 4,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Pall Mall",
+            "type": 1,
+            "price": 140,
+            "baseRent": 50,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Draw a Chance card",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Whitehall",
+            "type": 1,
+            "price": 140,
+            "baseRent": 50,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Northumberland Avenue",
+            "type": 1,
+            "price": 160,
+            "baseRent": 55,
+            "color": "E3B505",
+            "textColor": "000000"
+        },
+        {
+            "name": "Marylebone Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Bow Street",
+            "type": 1,
+            "price": 180,
+            "baseRent": 60,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Community Chest",
+            "type": 7,
+            "message": "Draw a Community Chest card.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Marlborough Street",
+            "type": 1,
+            "price": 180,
+            "baseRent": 60,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Vine Street",
+            "type": 1,
+            "price": 200,
+            "baseRent": 70,
+            "color": "5A0046",
+            "textColor": "000000"
+        },
+        {
+            "name": "Free Parking",
+            "type": 3,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Strand",
+            "type": 1,
+            "price": 220,
+            "baseRent": 75,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Draw a Chance card",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Fleet Street",
+            "type": 1,
+            "price": 220,
+            "baseRent": 75,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Trafalgar Square",
+            "type": 1,
+            "price": 240,
+            "baseRent": 80,
+            "color": "1CA351",
+            "textColor": "000000"
+        },
+        {
+            "name": "Fenchurch Street Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Leicester Square",
+            "type": 1,
+            "price": 260,
+            "baseRent": 85,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Coventry Street",
+            "type": 1,
+            "price": 260,
+            "baseRent": 85,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Community Chest",
+            "type": 7,
+            "message": "Draw a Community Chest card.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Piccadilly",
+            "type": 1,
+            "price": 280,
+            "baseRent": 90,
+            "color": "FF8014",
+            "textColor": "000000"
+        },
+        {
+            "name": "Go to jail",
+            "type": 5,
+            "color": "FFFFFF",
+            "textColor": "000000",
+            "image": "default"
+        },
+        {
+            "name": "Regent Street",
+            "type": 1,
+            "price": 300,
+            "baseRent": 100,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Oxford Street",
+            "type": 1,
+            "price": 300,
+            "baseRent": 100,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Community Chest",
+            "type": 7,
+            "message": "Draw a Community Chest card.",
+            "color": "FFFFFF",
+            "textColor": "00A8E8"
+        },
+        {
+            "name": "Bond Street",
+            "type": 1,
+            "price": 320,
+            "baseRent": 105,
+            "color": "69A2B0",
+            "textColor": "000000"
+        },
+        {
+            "name": "Liverpool Street Station",
+            "type": 2,
+            "price": 200,
+            "baseRent": 70,
+            "color": "262626",
+            "textColor": "FFFFFF"
+        },
+        {
+            "name": "Chance",
+            "type": 6,
+            "message": "Draw a Chance card",
+            "color": "EA7C79",
+            "textColor": "000000"
+        },
+        {
+            "name": "Park Lane",
+            "type": 1,
+            "price": 350,
+            "baseRent": 120,
+            "color": "A50822",
+            "textColor": "000000"
+        },
+        {
+            "name": "Luxury Tax",
+            "type": 8,
+            "value": 1,
+            "tax": 100,
+            "color": "E8A945",
+            "textColor": "000000"
+        },
+        {
+            "name": "Mayfair",
+            "type": 1,
+            "price": 400,
+            "baseRent": 135,
+            "color": "A50822",
+            "textColor": "000000"
+        }
+    ],
+    "chanceCards": [
+        {
+            "text": "You have been caught stealing from one of your fellow players. You are sent to jail and will not receive §200, if you pass Go.",
+            "type": 3,
+            "space": 10
+        },
+        {
+            "text": "Go to Go. You will receive §200 when you pass Go on you next turn.",
+            "type": 0,
+            "space": 0
+        },
+        {
+            "text": "Take a trip on the Metropolitan line to Liverpool Street Station.",
+            "type": 0,
+            "space": 35
+        },
+        {
+            "text": "You have yet to buy a birthday present for your mum. Go to Oxford Street.",
+            "type": 0,
+            "space": 32
+        },
+        {
+            "text": "You have outstanding taxes. Pay the bank §250.",
+            "type": 1,
+            "amount": -250
+        },
+        {
+            "text": "Yer a wizard, Harry. Go to King's Cross Station, in time to catch the Hogwarts Express.",
+            "type": 0,
+            "space": 5
+        },
+        {
+            "text": "Your friends invite you to a pub. Go to The Angel, Islington.",
+            "type": 0,
+            "space": 6
+        },
+        {
+            "text": "You fancy playing a ball game. Go to Pall Mall.",
+            "type": 0,
+            "space": 11
+        },
+        {
+            "text": "You got a parking ticket. Pay the bank §75.",
+            "type": 1,
+            "amount": -75
+        },
+        {
+            "text": "Your parents are very good customers at the bank. You can get out of jail for free.",
+            "type": 2
+        },
+        {
+            "text": "Go to jail. It is visiting day and your uncle misses you.",
+            "type": 0,
+            "space": 10
+        },
+        {
+            "text": "You miss nature and want to visit Hyde Park. Go to Park Lane.",
+            "type": 0,
+            "space": 37
+        },
+        {
+            "text": "Go to the first Community Chest field on the board.",
+            "type": 0,
+            "space": 2
+        },
+        {
+            "text": "You receive a strange text from an unknown number. 7 minutes later §133 has disappeared from your account.",
+            "type": 1,
+            "amount": -133
+        },
+        {
+            "text": "You have paid too much in taxes and get §200 back.",
+            "type": 1,
+            "amount": 200
+        },
+        {
+            "text": "You win the lottery! §350 is added to your account.",
+            "type": 1,
+            "amount": 350
+        }
+    ],
+    "communityChestCards": [
+        {
+            "text": "You are going on holiday to the Lake District! You are travelling by train from London Euston Station and must go to Euston Road.",
+            "type": 0,
+            "space": 8
+        },
+        {
+            "text": "You placed second in a beauty contest! Receive §60 in prize money.",
+            "type": 1,
+            "amount": 60
+        },
+        {
+            "text": "Go to the first Chance field on the board.",
+            "type": 0,
+            "space": 7
+        },
+        {
+            "text": "It is your birthday and your grandmother sends you a card with §5 in it. Congratulations!",
+            "type": 1,
+            "amount": 5
+        },
+        {
+            "text": "Go to Go. You will receive §200 when you pass Go on you next turn.",
+            "type": 0,
+            "space": 0
+        },
+        {
+            "text": "You have a good lawyer and can get out of jail for free.",
+            "type": 2
+        },
+        {
+            "text": "Interest has been added to your account. You receive §23.",
+            "type": 1,
+            "amount": 23
+        },
+        {
+            "text": "You won the lottery! §10 are added to your account.",
+            "type": 1,
+            "amount": 10
+        },
+        {
+            "text": "Your Netflix subscription is expired. You pay §35 to renew it.",
+            "type": 1,
+            "amount": -35
+        },
+        {
+            "text": "Your salary has been paid. §150 are added to your account.",
+            "type": 1,
+            "amount": 150
+        },
+        {
+            "text": "You have received a letter from the government and pay §5 in postage.",
+            "type": 1,
+            "amount": -5
+        },
+        {
+            "text": "You rode the tube without a ticket. Pay a fine of §50.",
+            "type": 1,
+            "amount": -50
+        },
+        {
+            "text": "Your friends forgot your birthday, but give you §40 to make up for it.",
+            "type": 1,
+            "amount": 40
+        },
+        {
+            "text": "One of your friends owed you §30 and finally paid you back!",
+            "type": 1,
+            "amount": 30
+        },
+        {
+            "text": "You found some money on the street! Receive §2.",
+            "type": 1,
+            "amount": 2
+        },
+        {
+            "text": "You get a free soda in a kiosk, but still have to pay the sugar tax. Pay §1.",
+            "type": 1,
+            "amount": -1
+        }
+    ]
+}

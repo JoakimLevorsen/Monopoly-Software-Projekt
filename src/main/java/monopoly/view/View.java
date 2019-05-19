@@ -1,57 +1,67 @@
 package monopoly.view;
 
-import java.awt.*;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import java.util.HashMap;
-
-import designpatterns.*;
+import designpatterns.Observer;
+import designpatterns.Subject;
 import gui_fields.*;
 import gui_main.GUI;
-import monopoly.model.*;
-import monopoly.model.spaces.*;
+import monopoly.model.Game;
+import monopoly.model.Player;
+import monopoly.model.spaces.PropertySpace;
+import monopoly.model.spaces.Space;
+import monopoly.model.spaces.StationSpace;
+import org.json.JSONException;
+import org.json.JSONObject;
+import resources.json.JSONFile;
+import resources.json.JSONKey;
+import resources.json.ResourceManager;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * View: Klasse der fungerer som View i MVC-modellen
+ * 
+ * @author Ekkart Kindler, ekki@dtu.dk
+ * @author Anders Brandt s185016
+ * @author Cecilie Krog Drejer, s185032
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class View implements Observer {
-
     private Game game;
     private GUI gui;
+    private JSONObject jsonData;
 
     private HashMap<Player, Integer> playerToPosition = new HashMap<>();
     private HashMap<Space, GUI_Field> spaceToField = new HashMap<>();
     private HashMap<Player, GUI_Player> playerToGUIPlayer = new HashMap<>();
-    private HashMap<String, Game> saveNameToGame = new HashMap<>();
     private HashMap<Player, PlayerPanel> panels = new HashMap<>();
     private boolean disposed = false;
 
-    /*
-    View:
-    opretter felter og spillere
-
-    @author Ekkart Kindler
-    @author Anders Brandt s185016
-    */
+    /**
+     * View constructor
+     * 
+     * @param game Spillet, som view'et skal tilhøre
+     * @param gui  GUI, som View'et skal arbejde med
+     * 
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @author Anders Brandt s185016
+     */
     public View(Game game, GUI gui) {
         this.game = game;
         this.gui = gui;
+        this.jsonData = game.getLanguageData();
         GUI_Field[] guiFields = gui.getFields();
-
         int i = 0;
-        for (Space space: game.getBoard()) {
-            // TODO, here we assume that the games fields fit to the GUI's fields;
-            // the GUI fields should actually be created according to the game's
-            // fields
+        for (Space space : game.getBoard()) {
             space.addObserver(this);
             spaceToField.put(space, guiFields[i++]);
-
-            // TODO we should also register with the properties as observer; but
-            // the current version does not update anything for the spaces, so we do not
-            // register the view as an observer for now
         }
 
         // create the players in the GUI
-        for (Player player: game.getPlayers()) {
+        for (Player player : game.getPlayers()) {
             GUI_Car car = new GUI_Car(player.getColor(), Color.black, GUI_Car.Type.CAR, GUI_Car.Pattern.FILL);
             GUI_Player guiPlayer = new GUI_Player(player.getName(), player.getAccountBalance(), car);
             playerToGUIPlayer.put(player, guiPlayer);
@@ -66,68 +76,183 @@ public class View implements Observer {
         }
     }
 
-
-    public Game chooseGame() {
+    /**
+     * ChooseGame: Metode til at vælge om man vil hente et gemt spil (og i så fald
+     * hvilket) eller om man vil starte et nyt spil. Hvis man henter et spil kan man
+     * vælge mellem de 50 nyeste
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer det valgte savegame eller et nyt spil
+     */
+    public static Game chooseGame() {
+        HashMap<String, Game> saveNameToGame = new HashMap<>();
         GUI chooseGameGUI = new GUI(new GUI_Field[0]);
+        ResourceManager rm = new ResourceManager();
 
         boolean loadGame = chooseGameGUI.getUserLeftButtonPressed(
-                "Vil du indlæse et gemt spil eller starte et nyt spil?", "Indlæs spil", "Start nyt spil");
+                "Do you want to load a saved game or start a new game? / Vil du indlæse et gemt spil eller starte et nyt spil?",
+                "Load game / Indlæs spil", "Start new game / Start nyt spil");
 
-        if (loadGame == true) {
-            List<Game> savedGames = Game.findAll();
+        if (loadGame) {
+            List<Game> savedGames = Game.findAll().limit(50).orderBy("updated_at desc");
             if (savedGames.isEmpty()) {
-                String saveName = chooseGameGUI
-                        .getUserString("Der er ingen gemte spil. Angiv et navn for at starte et nyt spil.");
-                return Game.newGame(saveName);
+                chooseGameGUI.showMessage(
+                        "There are no saved games. Press 'OK' or the 'Enter'-key on your keyboard to start a new game. / Der er ingen gemte spil. Tryk 'OK' eller tryke på 'Enter'-tasten på dit tastatur for at starte et nyt spil.");
+                return startNewGame(chooseGameGUI, rm);
             } else {
                 String[] saveNames = new String[savedGames.size()];
                 for (int i = 0; i < savedGames.size(); i++) {
-                    saveNames[i] = savedGames.get(i).getGameName();
-                    saveNameToGame.put(saveNames[i], savedGames.get(i));
+                    String saveGameName = savedGames.get(i).getGameName() + " "
+                            + savedGames.get(i).getUpdateTime().toGMTString();
+                    saveNames[i] = saveGameName;
+                    saveNameToGame.put(saveGameName, savedGames.get(i));
                 }
-
-                String selection = JOptionPane.showInputDialog(null, "Vælg et spil.", "Indlæs spil",
-                        JOptionPane.QUESTION_MESSAGE, null, saveNames, saveNames[0]).toString();
-
-                Game loadedGame = saveNameToGame.get(selection);
-                return loadedGame;
+                Object selection = JOptionPane.showInputDialog(null, "Choose a game / Vælg et spil.",
+                        "Load game / Indlæs spil", JOptionPane.QUESTION_MESSAGE, null, saveNames, saveNames[0]);
+                if (selection != null) {
+                    String selectionString = selection.toString();
+                    Game loadedGame = saveNameToGame.get(selectionString);
+                    chooseGameGUI.close();
+                    return loadedGame;
+                } else {
+                    chooseGameGUI.showMessage(
+                            "You cancelled choosing a saved game. Press 'OK' or the 'Enter'-key on your keyboard to start a new game. / Du afbrød at vælge et gemt spil. Tryk 'OK' eller tryke på 'Enter'-tasten på dit tastatur for at starte et nyt spil.");
+                    return startNewGame(chooseGameGUI, rm);
+                }
             }
         } else {
-            String saveName = chooseGameGUI.getUserString("Angiv et navn til dit nye spil.");
-            return Game.newGame(saveName);
+            return startNewGame(chooseGameGUI, rm);
         }
     }
-    /*
-  View:
-  opdaterer brættet
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /**
+     * StartNewGame: Metode til at få information til at starte et nyt spil fra
+     * spilleren
+     * 
+     * @param gooey GUI man vil bruge til beskeder
+     * @param rm    En instans af ResourceManager
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return Returnerer det nye Game spilleren har oprettet
+     */
+    public static Game startNewGame(GUI gooey, ResourceManager rm) {
+        String saveName = gooey.getUserString("Type a name for your new game / Angiv et navn til dit nye spil.");
+        int playerAmount = gooey.getUserInteger("How many players? / Hvor mange spillere?", 2, 4);
+        try {
+            JSONFile language;
+            do {
+                language = chooseLanguage();
+            } while (language == null);
+            JSONObject languageData = rm.readFile(language);
+            gooey.close();
+            return Game.newGame(saveName, language, languageData, playerAmount);
+        } catch (JSONException e) {
+            System.out.println("Could not find resource");
+            System.err.println(e);
+            gooey.close();
+            return null;
+        }
+    }
+
+    /**
+     * ChooseLanguage: Metode til at vælge sprog
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return JSONFile-objekt for det sprog brugeren valgte
+     * 
+     * @throws JSONException
+     */
+    public static JSONFile chooseLanguage() throws JSONException {
+        HashMap<String, JSONFile> languageChoices = new HashMap<String, JSONFile>();
+        List<String> stringChoices = new ArrayList<String>();
+        for (JSONFile file : JSONFile.values()) {
+            String text;
+            switch (file.getPackName()) {
+            case "da":
+                text = "Dansk";
+                break;
+            case "uk":
+                text = "English (UK)";
+                break;
+            case "us":
+                text = "English (US)";
+                break;
+            default:
+                text = "Unknown Language: " + file.getPackName();
+            }
+            languageChoices.put(text, file);
+            stringChoices.add(text);
+        }
+        String[] stringArray = stringChoices.toArray(new String[stringChoices.size()]);
+        Object choice = JOptionPane.showInputDialog(null, "Choose a language / Vælg et sprog",
+                "Vælg sprog / Choose language", JOptionPane.QUESTION_MESSAGE, null, stringArray, stringArray[0]);
+        if (choice != null) {
+            String choiceString = choice.toString();
+            return languageChoices.get(choiceString);
+        } else
+            return null;
+    }
+
+    /**
+     * WhichPropertyDoYouWantToBuildOn: Metode til at vælge hvilken ejendom man vil
+     * bygge på
+     * 
+     * @param possibleChoices Properties spilleren må bygge på
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * @return det PropertySpace brugeren vil bygge på
+     */
+    public PropertySpace whichPropertyDoWantToBuildOn(List<PropertySpace> possibleChoices) {
+        HashMap<String, PropertySpace> targets = new HashMap<String, PropertySpace>();
+        List<String> choices = new ArrayList<String>();
+        for (PropertySpace p : possibleChoices) {
+            targets.put(p.getName(), p);
+            choices.add(p.getName());
+        }
+        String[] stringArray = choices.toArray(new String[choices.size()]);
+        Object choice = JOptionPane.showInputDialog(null,
+                jsonData.getString(JSONKey.WHICH_PROPERTY_TO_BUILD_ON.getKey()),
+                jsonData.getString(JSONKey.CHOOSE_PROPERTY.getKey()), JOptionPane.QUESTION_MESSAGE, null, stringArray,
+                stringArray[0]);
+        if (choice != null) {
+            String choiceString = choice.toString();
+            return targets.get(choiceString);
+        } else
+            return null;
+    }
+
+    /**
+     * Update: Opdaterer GUI'en
+     * 
+     * @param subject Det subjekt, der skal opdateres
+     * 
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @author Anders Brandt s185016
+     */
     public void update(Subject subject) {
         if (!disposed) {
             if (subject instanceof Player) {
                 updatePlayer((Player) subject);
-            }
-            else if (subject instanceof PropertySpace) {
-                updateProperty((PropertySpace) subject);
             } else if (subject instanceof StationSpace) {
-                updateStation((StationSpace) subject);
+                updateProperty((StationSpace) subject);
             }
-
-
-            // TODO update other subjects in the GUI
-            //      in particular properties (sold, houses, ...)
-
         }
     }
-    /*
-  View:
-  Opdaterer spilleren
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
+    /**
+     * View: Opdaterer spilleren
+     * 
+     * @param player Spiller der skal opdateres
+     * 
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @author Anders Brandt s185016
+     */
     private void updatePlayer(Player player) {
         GUI_Player guiPlayer = this.playerToGUIPlayer.get(player);
         if (guiPlayer != null) {
@@ -139,85 +264,70 @@ public class View implements Observer {
             }
             int pos = player.getBoardPosition();
             if (pos < guiFields.length) {
-                playerToPosition.put(player,pos);
+                playerToPosition.put(player, pos);
                 guiFields[pos].setCar(guiPlayer, true);
             }
 
             String name = player.getName();
-            if (player.IsBroke(player)) {
-            }
             if (!name.equals(guiPlayer.getName())) {
                 guiPlayer.setName(name);
             }
         }
-        panels.get(player).Update();
+        panels.get(player).update();
     }
-    /*
-  View:
-  Opdaterer ejendommene
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
-    private void updateProperty(PropertySpace property) {
+    /**
+     * View: Opdaterer ejendommene
+     * 
+     * @param property Ejendom der skal opdateres
+     * 
+     * @author Ekkart Kindler, ekki@dtu.dk
+     * @author Anders Brandt s185016
+     * @author Cecilie Krog Drejer, s185032
+     */
+    private void updateProperty(StationSpace property) {
         GUI_Field thisField = this.spaceToField.get(property);
-        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
-        GUI_Street thisStreet = (GUI_Street) thisField;
+        GUI_Ownable thisOwnableField = (GUI_Ownable) thisField;
+        thisOwnableField
+                .setRentLabel(jsonData.getString(JSONKey.RENT.getKey()) + " " + String.valueOf(property.getRent(game)));
         if (thisOwnableField != null) {
             if (property.getOwner(game) != null) {
-                thisOwnableField.setOwnableLabel("Owned by ");
-                thisOwnableField.setOwnerName(property.getOwner(game).getName());
-                thisOwnableField.setBorder(property.getOwner(game).getColor());
+                if (property.isMortgaged()) {
+                    thisOwnableField.setOwnableLabel(jsonData.getString(JSONKey.MORTGAGE_BY.getKey()));
+                    thisOwnableField.setOwnerName(property.getOwner(game).getName());
+                    thisOwnableField.setBorder(Color.BLACK);
+                } else {
+                    thisOwnableField.setOwnableLabel(jsonData.getString(JSONKey.OWNED_BY.getKey()));
+                    thisOwnableField.setOwnerName(property.getOwner(game).getName());
+                    thisOwnableField.setBorder(property.getOwner(game).getColor());
+                }
             } else {
                 thisOwnableField.setOwnableLabel("");
                 thisOwnableField.setOwnerName("");
                 thisOwnableField.setBorder(null);
             }
         }
-        if (thisStreet != null) {
-            if (property.getHousesBuilt() == 5) {
+        if (property instanceof PropertySpace) {
+            GUI_Street thisStreet = (GUI_Street) thisField;
+            if (((PropertySpace) property).getHousesBuilt() == 5) {
                 thisStreet.setHotel(true);
                 thisStreet.setHouses(0);
             } else {
                 thisStreet.setHotel(false);
-                thisStreet.setHouses(property.getHousesBuilt());
+                thisStreet.setHouses(((PropertySpace) property).getHousesBuilt());
             }
             this.updateProperty(property);
         }
     }
-    /*
-  View:
-  Opdaterer stationerne
 
-  @author Ekkart Kindler
-  @author Anders Brandt s185016
-  */
-    private void updateStation(StationSpace station) {
-        GUI_Field thisField = this.spaceToField.get(station);
-        GUI_Ownable thisOwnableField = (GUI_Ownable)thisField;
-        if (thisOwnableField != null) {
-            if (station.getOwner(game) != null) {
-                thisOwnableField.setOwnableLabel("Owned by ");
-                thisOwnableField.setOwnerName(station.getOwner(game).getName());
-                thisOwnableField.setBorder(station.getOwner(game).getColor());
-            } else {
-                thisOwnableField.setOwnableLabel("");
-                thisOwnableField.setOwnerName("");
-                thisOwnableField.setBorder(null);
-            }
-        }
+    /**
+     * GetGUI: Henter dette views GUI
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer dette views GUI
+     */
+    public GUI getGUI() {
+        return gui;
     }
-
-    public void dispose() {
-        if (!disposed) {
-            disposed = true;
-            for (Player player: game.getPlayers()) {
-                player.removeObserver(this);
-            }
-            for (Space space: game.getBoard()) {
-                space.removeObserver(this);
-            }
-        }
-    }
-
 }

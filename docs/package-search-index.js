@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"designpatterns"},{"l":"monopoly"},{"l":"monopoly.controller"},{"l":"monopoly.model"},{"l":"monopoly.model.cards"},{"l":"monopoly.model.spaces"},{"l":"monopoly.view"},{"l":"resources"},{"l":"resources.json"}]

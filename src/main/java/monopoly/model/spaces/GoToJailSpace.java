@@ -1,20 +1,18 @@
 package monopoly.model.spaces;
 
-import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
-import java.util.HashSet;
-import java.util.Set;
-
-/*
-GoToJailSpace:
-Et objekt til at repræsentere gå i fængsel feltet.
-
-@author Joakim Levorsen, S185023
-*/
+/**
+ * GoToJailSpace: Et objekt til at repræsentere gå i fængsel feltet.
+ *
+ * @author Joakim Bøegh Levorsen, s185023
+ * @author Anders Brandt, s185016
+ */
 public class GoToJailSpace extends Space {
-
+    /**
+     * Properties: Enumeration til at sikre mod stavefejl
+     */
     public enum Properties {
         BOARD_POSITION("boardPosition");
 
@@ -29,50 +27,58 @@ public class GoToJailSpace extends Space {
         }
     }
 
+    /**
+     * PerformAction: Sender en spiller til fængslet og fængsler dem
+     * 
+     * @param controller en GameController
+     * @param player Spilleren, der landet på feltet
+     *
+     * @author Anders Brandt, s105016
+     */
     @Override
     public void performAction(GameController controller, Player player) {
-        // TODO: Implement jail routine.
+        JailSpace target = null;
+        for (Space space : controller.getGame().getBoard()) {
+            if (space instanceof JailSpace) {
+                target = (JailSpace) space;
+            }
+        }
+        controller.movementController.goTo(target, true, player);
+        target.jail(player);
     }
 
-    public static GoToJailSpace create(int position) {
+    /**
+     * Create: Opretter et GoToJailSpace
+     * 
+     * @param position Feltets placering på spillebrættet
+     * @param name Feltets navn
+     * @param color Feltets farve
+     *
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer et GoToJailSpace
+     */
+    public static GoToJailSpace create(int position, String name, String color) {
         GoToJailSpace space = new GoToJailSpace();
+        space = (GoToJailSpace) (Space.setValues(space, name, color));
         space.set(GoToJailSpace.Properties.BOARD_POSITION.getProperty(), position);
         return space;
     }
 
+    /**
+     * Equals: Bestemmer om et GoToJailSpace ligner et andet
+     * 
+     * @param obj Det objekt, som det pågældende GoToJailSpace skal sammenlignes med
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om de to ojekter er ens eller ej 
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof GoToJailSpace))
             return false;
         GoToJailSpace other = (GoToJailSpace) obj;
-        return other.getLongId() == this.getLongId() && this.getBoardPosition() == other.getBoardPosition();
+        return other.getLongId().equals(this.getLongId()) && this.getBoardPosition() == other.getBoardPosition();
     }
-
-    public int getBoardPosition() {
-        return this.getInteger(GoToJailSpace.Properties.BOARD_POSITION.getProperty()).intValue();
-    }
-    /**
-     * Variabler og metoder til at implementere Subject
-     *
-     * @author Ekkart Kindler, ekki@dtu.dk
-     *
-     */
-    private Set<Observer> observers = new HashSet<Observer>();
-
-    final public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    final public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    /*
-    @author Helle Achari, s180317
-     */
-
-    public Set<Observer> getObservers() {
-        return observers;
-    }
-
 }

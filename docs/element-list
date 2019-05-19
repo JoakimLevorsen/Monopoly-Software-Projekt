@@ -1,0 +1,9 @@
+designpatterns
+monopoly
+monopoly.controller
+monopoly.model
+monopoly.model.cards
+monopoly.model.spaces
+monopoly.view
+resources
+resources.json

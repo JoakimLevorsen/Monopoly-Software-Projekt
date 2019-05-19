@@ -1,13 +1,13 @@
 package resources.json;
 
-/*
-JSONFile:
-Enum der indeholder alle JSON fil navne i projektet, det kan også retunere filnavet for en værdi.
-
-@author Joakim Levorsen, S185023
-*/
+/**
+ * JSONFile: Enumeration der indeholder alle JSON filnavne i projektet
+ *           Kan også retunere filnavnet for en værdi
+ * 
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public enum JSONFile {
-    DA("da");
+    DA("da"), UK("uk"), US("us");
 
     private final String value;
 
@@ -17,5 +17,17 @@ public enum JSONFile {
 
     public String getFileName() {
         return this.value + ".json";
+    }
+
+    public String getPackName() {
+        return this.value;
+    }
+
+    public static JSONFile getFile(String name) {
+        for (JSONFile file : JSONFile.values()) {
+            if (file.getPackName().equals(name))
+                return file;
+        }
+        return null;
     }
 }
