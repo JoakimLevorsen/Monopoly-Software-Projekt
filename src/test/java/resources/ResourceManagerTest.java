@@ -16,10 +16,10 @@ import org.json.JSONObject;
 
 public class ResourceManagerTest {
     /**
-     * testAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk
-     * findes i projektet.
+     * TestAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk
+     * findes i projektet
      * 
-     * @author Joakim Levorsen, S185023
+     * @author Joakim Bøegh Levorsen, s185023
      */
     @Test
     public void testAllFilesPresent() {
@@ -35,10 +35,10 @@ public class ResourceManagerTest {
     }
 
     /**
-     * testAllKeysPresent: Tjekker om alle nøgler nævnt i JSONKey findes mindst en
+     * TestAllKeysPresent: Tjekker om alle nøgler nævnt i JSONKey findes mindst en
      * gang i alle JSON filer nævnt i JSONFile
      * 
-     * @author Joakim Levorsen, S185023
+     * @author Joakim Bøegh Levorsen, s185023
      */
     @Test
     public void testAllKeysPresent() {
@@ -59,10 +59,13 @@ public class ResourceManagerTest {
     }
 
     /**
-     * objectContainsKey: Tjekker om nøgle findes mindst en gang i et array eller
-     * objekt.
+     * ObjectContainsKey: Tjekker om nøgle findes mindst en gang i et array eller
+     * objekt
      * 
-     * @author Joakim Levorsen, S185023
+     * @param object JSONArray, der skal testes
+     * @param key JSON nøgle, der skal tjekkes for
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
      */
     public boolean objectContainsKey(JSONArray object, JSONKey key) {
         for (Object child : object) {
@@ -78,6 +81,15 @@ public class ResourceManagerTest {
         return false;
     }
 
+    /**
+     * ObjectContainsKey: Tjekker om nøgle findes mindst en gang i et array eller
+     * objekt
+     * 
+     * @param object JSONObject, der skal testes
+     * @param key JSON nøgle, der skal tjekkes for
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public boolean objectContainsKey(JSONObject object, JSONKey key) {
         for (String childKey : object.keySet()) {
             if (childKey.equals(key.getKey()))
@@ -96,12 +108,17 @@ public class ResourceManagerTest {
     }
 
     /**
-     * keyExists: Kode taget fra StackOverflow, til at undersøge rekusivt om et
+     * KeyExists: Kode taget fra StackOverflow, til at undersøge rekusivt om et
      * JSONObject indeholder en nøgle mindst en gang. Original kilde:
      * https://stackoverflow.com/questions/31043606/check-whether-a-key-exists-or-
      * not-in-a-nested-json/31044236
      * 
-     * @author Joakim Levorsen, S185023
+     * @param object JSONObject, der skal testes
+     * @param searchedKey String-nøgle, der skal tjekkes for
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om nøglen findes eller ej
      */
     private boolean keyExists(JSONObject object, String searchedKey) {
         boolean exists = object.has(searchedKey);
@@ -121,9 +138,14 @@ public class ResourceManagerTest {
     }
 
     /**
-     * keyExists: Kør key exists på alle elementer i JSONArray
+     * KeyExists: Kører keyExists på alle elementer i JSONArray
      * 
-     * @author Joakim Levorsen, S185023
+     * @param array JSONArray, der skal testes
+     * @param searchedKey String-nøgle, der skal tjekkes for
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om nøglen findes eller ej
      */
 
     private boolean keyExists(JSONArray array, String searchedKey) {
@@ -140,12 +162,12 @@ public class ResourceManagerTest {
     }
 
     /**
-     * testAllFilesLayoutIdentical: Tjekker om layoutet af JSON filer er identisk,
+     * TestAllFilesLayoutIdentical: Tjekker om layoutet af JSON filer er identisk,
      * dvs at alle JSON filer har de samme nøgler. Den tjekker IKKE typerne af
      * værdierne ved nøgler(Med untagelse af hvis værdien er at objekt eller array,
      * så tjekkes den).
      * 
-     * @author Joakim Levorsen, S185023
+     * @author Joakim Bøegh Levorsen, s185023
      */
     @Test
     public void testAllFilesLayoutIdentical() {
@@ -176,9 +198,14 @@ public class ResourceManagerTest {
     }
 
     /**
-     * keysMatch: Tjekker to JSON objekter har de samme nøgler.
+     * KeysMatch: Tjekker to JSON-objekter har de samme nøgler
      * 
-     * @author Joakim Levorsen, S185023
+     * @param a Det ene JSONObject
+     * @param b Det andet JSONObject
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om nøglerne i de to JSON-objekter matcher eller ej
      */
     private boolean keysMatch(JSONObject a, JSONObject b) {
         // First check all keys from a exist in b
@@ -210,9 +237,14 @@ public class ResourceManagerTest {
     }
 
     /**
-     * arrayMatch: Sammenlign to JSONArrays, og deres værdier.
+     * ArrayMatch: Sammenlign to JSONArrays, og deres værdier
      * 
-     * @author Joakim Levorsen, S185023
+     * @param a Det ene JSONArray
+     * @param b Det andet JSONArray
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om de to JSONArray'er matcher
      */
     private boolean arrayMatch(JSONArray a, JSONArray b) {
         if (a.length() != b.length()) {
@@ -229,10 +261,15 @@ public class ResourceManagerTest {
     }
 
     /**
-     * compareObjectFromJSON: Sammenlign to Objekt typer, om de er dybere JSON
-     * objeckter, og så videre om de stemmer overens.
+     * CompareObjectsFromJSON: Sammenlign to Objekt typer, om de er dybere JSON
+     * objekter, og så videre om de stemmer overens
      * 
-     * @author Joakim Levorsen, S185023
+     * @param a Det ene objekt
+     * @param b Det andet objekt
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om to objekter stemmer overens
      */
     private boolean compareObjectsFromJSON(Object a, Object b) {
         if (a instanceof JSONObject) {

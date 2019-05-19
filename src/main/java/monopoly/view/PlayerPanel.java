@@ -12,8 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * PlayerPanel:
- * Opretter paneler med information omkring spilleren og dets ejendomme.
+ * PlayerPanel: Opretter paneler med information omkring spilleren og dets ejendomme.
  *
  * @author Anders Brandt, s185016
  */
@@ -28,8 +27,12 @@ public class PlayerPanel extends JFrame {
     private JPanel mainPanel = new JPanel();
 
     /**
-     * @param game
-     * @param player
+     * PlayerPanel constructor
+     * 
+     * @param game Spillet, som panelet skal tilhøre
+     * @param player Spilleren, som panelet skal beskrive
+     * 
+     * @author Anders Brandt, s185016
      */
     public PlayerPanel(Game game, Player player) {
         this.player = player;
@@ -44,7 +47,11 @@ public class PlayerPanel extends JFrame {
         frame.setVisible(true);
     }
 
-
+    /**
+     * Update: Opdaterer paneler
+     * 
+     * @author Anders Brandt, s185016
+     */
     public void update() {
         panel.removeAll();
         mainPanel.removeAll();

@@ -1,11 +1,14 @@
 package resources.json;
 
 /**
-JSONKey:
-Enum der indeholder alle JSON nøgler i projektet, for at undgå stavefejl mens JSON læses.
-
-@author Joakim Levorsen, S185023
-*/
+ * JSONKey: Enumeration der indeholder alle JSON nøgler i projektet, for at undgå stavefejl mens JSON læses
+ *
+ * @author Anders Brandt, s185016
+ * @author Cecilie Krog Drejer, s185032
+ * @author Frederik Lykke Ullstad, s185018
+ * @author Helle Achari, s180317
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public enum JSONKey {
     TEST("test"), START_PAYMENT("startPayment"), CURRENTLY_BROKE("currentlyBroke"),
     PLAYER_BROKE_TITLE("playerBrokeTitle"), SELL_PROPERTY("sellProperty"), MORTGAGE_PROPERTY("mortgageProperty"),

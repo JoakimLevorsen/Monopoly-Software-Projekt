@@ -22,14 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * View, klasse der fungere som View i MVC-modellen.
+ * View: Klasse der fungerer som View i MVC-modellen
+ * 
  * @author Ekkart Kindler, ekki@dtu.dk
  * @author Anders Brandt s185016
  * @author Cecilie Krog Drejer, s185032
  * @author Joakim Bøegh Levorsen, s185023
  */
 public class View implements Observer {
-
     private Game game;
     private GUI gui;
     private JSONObject jsonData;
@@ -41,12 +41,12 @@ public class View implements Observer {
     private boolean disposed = false;
 
     /**
-     * View: opretter felter og spillere
+     * View constructor
      * 
-     * @param game
-     * @param gui
+     * @param game Spillet, som view'et skal tilhøre
+     * @param gui GUI, som View'et skal arbejde med
+     * 
      * @author Ekkart Kindler, ekki@dtu.dk
-     * 
      * @author Anders Brandt s185016
      */
     public View(Game game, GUI gui) {
@@ -54,13 +54,10 @@ public class View implements Observer {
         this.gui = gui;
         this.jsonData = game.getLanguageData();
         GUI_Field[] guiFields = gui.getFields();
-
         int i = 0;
         for (Space space : game.getBoard()) {
-
             space.addObserver(this);
             spaceToField.put(space, guiFields[i++]);
-
         }
 
         // create the players in the GUI
@@ -84,9 +81,9 @@ public class View implements Observer {
      * hvilket) eller om man vil starte et nyt spil
      * 
      * @author Cecilie Krog Drejer, s185032
-     * 
      * @author Joakim Bøegh Levorsen, s185023
-     * @return Det valgte savegame
+     * 
+     * @return Returnerer det valgte savegame eller et nyt spil
      */
     public static Game chooseGame() {
         HashMap<String, Game> saveNameToGame = new HashMap<>();
@@ -133,10 +130,12 @@ public class View implements Observer {
      * StartNewGame: Metode til at få information til at starte et nyt spil fra
      * spilleren
      * 
-     * @param gooey En gui man vil bruge til beskeder
-     * @param rm En resourceManager instans
+     * @param gooey GUI man vil bruge til beskeder
+     * @param rm En instans af ResourceManager
+     * 
      * @author Cecilie Krog Drejer, s185032
-     * @return Det nye game spilleren har oprettet
+     * 
+     * @return Returnerer det nye Game spilleren har oprettet
      */
     public static Game startNewGame(GUI gooey, ResourceManager rm) {
         String saveName = gooey.getUserString("Type a name for your new game / Angiv et navn til dit nye spil.");
@@ -161,9 +160,10 @@ public class View implements Observer {
      * ChooseLanguage: Metode til at vælge sprog
      * 
      * @author Joakim Bøegh Levorsen, s185023
-     * 
      * @author Cecilie Krog Drejer, s185032
-     * @return JSONFile objekt for det sprog brugeren valgte
+     * 
+     * @return JSONFile-objekt for det sprog brugeren valgte
+     * 
      * @throws JSONException
      */
     public static JSONFile chooseLanguage() throws JSONException {
@@ -227,10 +227,11 @@ public class View implements Observer {
     }
 
     /**
-     * View: opdaterer brættet
+     * Update: Opdaterer GUI'en
+     * 
+     * @param subject Det subjekt, der skal opdateres
      * 
      * @author Ekkart Kindler, ekki@dtu.dk
-     * 
      * @author Anders Brandt s185016
      */
     public void update(Subject subject) {
@@ -240,16 +241,15 @@ public class View implements Observer {
             } else if (subject instanceof StationSpace) {
                 updateProperty((StationSpace) subject);
             }
-
         }
     }
 
     /**
      * View: Opdaterer spilleren
      * 
-     * @param player Spilleren der skal opdateres
-     * @author Ekkart Kindler, ekki@dtu.dk
+     * @param player Spiller der skal opdateres
      * 
+     * @author Ekkart Kindler, ekki@dtu.dk
      * @author Anders Brandt s185016
      */
     private void updatePlayer(Player player) {
@@ -278,11 +278,10 @@ public class View implements Observer {
     /**
      * View: Opdaterer ejendommene
      * 
-     * @param property Ejendommen der skal opdateres
+     * @param property Ejendom der skal opdateres
+     * 
      * @author Ekkart Kindler, ekki@dtu.dk
-     * 
      * @author Anders Brandt s185016
-     * 
      * @author Cecilie Krog Drejer, s185032
      */
     private void updateProperty(StationSpace property) {
@@ -321,25 +320,13 @@ public class View implements Observer {
     }
 
     /**
-     * getGUI: Retuner dette views gui
+     * GetGUI: Henter dette views GUI
      * 
-     * @author Joakim Levorsen, S185023
-     * @return Dette Views gui
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer dette views GUI
      */
     public GUI getGUI() {
         return gui;
     }
-
-    public void dispose() {
-        if (!disposed) {
-            disposed = true;
-            for (Player player : game.getPlayers()) {
-                player.removeObserver(this);
-            }
-            for (Space space : game.getBoard()) {
-                space.removeObserver(this);
-            }
-        }
-    }
-
 }

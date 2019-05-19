@@ -1,11 +1,11 @@
 package resources.json;
 
 /**
-JSONFile:
-Enum der indeholder alle JSON fil navne i projektet, det kan også retunere filnavet for en værdi.
-
-@author Joakim Levorsen, S185023
-*/
+ * JSONFile: Enumeration der indeholder alle JSON filnavne i projektet
+ *           Kan også retunere filnavnet for en værdi
+ * 
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public enum JSONFile {
     DA("da"), UK("uk"), US("us");
 

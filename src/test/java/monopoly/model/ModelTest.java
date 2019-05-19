@@ -16,12 +16,11 @@ import monopoly.model.spaces.*;
 import resources.json.*;
 
 /**
-ModelTest:
-En test til at verificere model klasserne virker korrekt.
-
-@author Joakim Levorsen, S185023
-*/
-
+ * ModelTest: En test til at verificere at alle modelklasserne virker korrekt
+ *
+ * @author Joakim Bøegh Levorsen, s185023
+ * @author Cecilie Krog Drejer, s185032
+ */
 public class ModelTest {
     @Before
     public void setupTest() {
@@ -38,18 +37,18 @@ public class ModelTest {
             newGame.saveIt();
             List<Space> board = newGame.getBoard();
 
-            // Now the game has been created and saved, so we retrive it again, and check.
-
+            // Et spil er blevet oprettet, så nu hentes spillet igen fra databasen og der
+            // tjekkes om det oprettede spil og det hentede spil stemmer overens
             Game loadedGame = Game.findFirst("id = ?", newGame.getId());
             List<Space> loadedBoard = loadedGame.getBoard();
+            // Først tjekker vi at spillebrættet i de to spil er ens
             for (int i = 0; i < loadedBoard.size(); i++) {
                 Space loadedSpace = loadedBoard.get(i);
                 Space oldSpace = board.get(i);
                 boolean comparison = loadedSpace.equals(oldSpace);
                 assertTrue("Spaces not indentical: " + loadedSpace.toString() + "; " + oldSpace.toString(), comparison);
             }
-
-            // Check the cards
+            // Så tjekker vi at alle kortene i de to spil er ens
             for (CardStack loadedStack : loadedGame.getCardStacks()) {
                 boolean stackIdentical = false;
                 for (CardStack createdStack : newGame.getCardStacks()) {
