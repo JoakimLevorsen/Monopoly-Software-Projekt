@@ -44,7 +44,7 @@ public class View implements Observer {
      * View constructor
      * 
      * @param game Spillet, som view'et skal tilhøre
-     * @param gui GUI, som View'et skal arbejde med
+     * @param gui  GUI, som View'et skal arbejde med
      * 
      * @author Ekkart Kindler, ekki@dtu.dk
      * @author Anders Brandt s185016
@@ -78,7 +78,8 @@ public class View implements Observer {
 
     /**
      * ChooseGame: Metode til at vælge om man vil hente et gemt spil (og i så fald
-     * hvilket) eller om man vil starte et nyt spil
+     * hvilket) eller om man vil starte et nyt spil. Hvis man henter et spil kan man
+     * vælge mellem de 50 nyeste
      * 
      * @author Cecilie Krog Drejer, s185032
      * @author Joakim Bøegh Levorsen, s185023
@@ -95,7 +96,7 @@ public class View implements Observer {
                 "Load game / Indlæs spil", "Start new game / Start nyt spil");
 
         if (loadGame) {
-            List<Game> savedGames = Game.findAll();
+            List<Game> savedGames = Game.findAll().limit(50).orderBy("updated_at desc");
             if (savedGames.isEmpty()) {
                 chooseGameGUI.showMessage(
                         "There are no saved games. Press 'OK' or the 'Enter'-key on your keyboard to start a new game. / Der er ingen gemte spil. Tryk 'OK' eller tryke på 'Enter'-tasten på dit tastatur for at starte et nyt spil.");
@@ -131,7 +132,7 @@ public class View implements Observer {
      * spilleren
      * 
      * @param gooey GUI man vil bruge til beskeder
-     * @param rm En instans af ResourceManager
+     * @param rm    En instans af ResourceManager
      * 
      * @author Cecilie Krog Drejer, s185032
      * 
