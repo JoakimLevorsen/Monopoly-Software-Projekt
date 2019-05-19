@@ -82,7 +82,7 @@ public class Game extends Model implements Subject {
     }
 
     /**
-     * DeleteThisGame: Sletter et spil og alle dets børn fra databasen.
+     * DeleteThisGame: Sletter et spil og alle dets børn fra databasen
      *
      * @author Joakim Bøegh Levorsen, s185023
      */
@@ -95,7 +95,7 @@ public class Game extends Model implements Subject {
     }
 
     /**
-     * SaveIt: Overskriver saveIt() for game, men kalder den på alle dens "børne"-elementer.
+     * SaveIt: Overskriver saveIt() for game, men kalder den på alle dens "børne"-elementer
      *
      * @author Anders Brandt, s185016
      * 
@@ -373,7 +373,6 @@ public class Game extends Model implements Subject {
      * Variabler og metoder til at implementere Subject
      *
      * @author Ekkart Kindler, ekki@dtu.dk
-     *
      */
     private Set<Observer> observers = new HashSet<Observer>();
 
@@ -381,7 +380,6 @@ public class Game extends Model implements Subject {
      * Variabler og metoder til at implementere Subject
      *
      * @author Ekkart Kindler, ekki@dtu.dk
-     *
      */
     final public void addObserver(Observer observer) {
         observers.add(observer);
@@ -391,7 +389,6 @@ public class Game extends Model implements Subject {
      * Variabler og metoder til at implementere Subject
      *
      * @author Ekkart Kindler, ekki@dtu.dk
-     *
      */
     final public void removeObserver(Observer observer) {
         observers.remove(observer);
@@ -404,7 +401,6 @@ public class Game extends Model implements Subject {
      * 
      * @return Returnerer et Set af Observers
      */
-
     public Set<Observer> getObservers() {
         return observers;
     }

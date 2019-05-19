@@ -151,7 +151,7 @@ public class PropertyController {
 		int amount = property.getPrice() / 2;
 		controller.cashController.paymentFromBank(owner, amount);
 		owner.removeFromOwnedProperties(property, controller.getGame());
-		property.removeOwner(controller.getGame());
+		property.removeOwner();
 		property.setMortgaged(false);
 	}
 
@@ -273,7 +273,7 @@ public class PropertyController {
 												((PropertySpace) selectedSpace).getHousesBuilt());
 									}
 									tradee.removeFromOwnedProperties(selectedSpace, controller.getGame());
-									selectedSpace.removeOwner(controller.getGame());
+									selectedSpace.removeOwner();
 									trader.addToOwnedProperties(selectedSpace, controller.getGame());
 									selectedSpace.setOwner(trader);
 									controller.cashController.payment(trader, amount, tradee);
@@ -336,7 +336,7 @@ public class PropertyController {
 											jsonData.getString(JSONKey.NO.getKey()));
 									if (traderAccept) {
 										trader.removeFromOwnedProperties(selectedSpace, controller.getGame());
-										selectedSpace.removeOwner(controller.getGame());
+										selectedSpace.removeOwner();
 										tradee.addToOwnedProperties(selectedSpace, controller.getGame());
 										selectedSpace.setOwner(tradee);
 										controller.cashController.payment(tradee, amount, trader);

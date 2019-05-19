@@ -1,20 +1,17 @@
 package monopoly.model.spaces;
 
-import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
-JailSpace:
-Et objekt til at repræsentere fængsels feltet.
-
-@author Joakim Levorsen, S185023
-*/
+ * JailSpace: Et objekt til at repræsentere fængsels feltet.
+ *
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class JailSpace extends Space {
-
+    /**
+     * Properties: Enumeration til at sikre mod stavefejl
+     */
     public enum Properties {
         BOARD_POSITION("boardPosition");
 
@@ -29,11 +26,28 @@ public class JailSpace extends Space {
         }
     }
 
+    /**
+     * PerformAction: Gør intet, da man bare er på besøg hvis man lander på JailSpace
+     * 
+     * @param controller en GameController
+     * @param player Spilleren, der landet på feltet
+     */
     @Override
     public void performAction(GameController controller, Player player) {
         // Da man bare på besøg, sker der ikke noget når man lander på dette felt.
     }
 
+    /**
+     * Create: Opretter et JailSpace
+     * 
+     * @param position Feltets placering på spillebrættet
+     * @param name Feltets navn
+     * @param color Feltets farve
+     *
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer et JailSpace
+     */
     public static JailSpace create(int position, String name, String color) {
         JailSpace space = new JailSpace();
         space = (JailSpace) (Space.setValues(space, name, color));
@@ -41,6 +55,15 @@ public class JailSpace extends Space {
         return space;
     }
 
+    /**
+     * Equals: Bestemmer om et JailSpace ligner et andet
+     * 
+     * @param obj Det objekt, som det pågældende JailSpace skal sammenlignes med
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om de to ojekter er ens eller ej 
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof JailSpace) {
@@ -50,35 +73,25 @@ public class JailSpace extends Space {
         return false;
     }
 
+    /**
+     * Jail: Fængsler en spiller
+     * 
+     * @param player Spilleren, der skal fængsles
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void jail(Player player) {
         this.add(player);
     }
 
+    /**
+     * Release: Løslader en spiller
+     * 
+     * @param player Spilleren, der skal løslades
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void release(Player player) {
         player.getOutOfJail();
-    }
-
-    /**
-     * Variabler og metoder til at implementere Subject
-     *
-     * @author Ekkart Kindler, ekki@dtu.dk
-     *
-     */
-    private Set<Observer> observers = new HashSet<Observer>();
-
-    final public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    final public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    /**
-     * @author Helle Achari, s180317
-     */
-
-    public Set<Observer> getObservers() {
-        return observers;
     }
 }

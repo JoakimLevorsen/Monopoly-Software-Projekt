@@ -1,16 +1,18 @@
 package monopoly.model.spaces;
 
-import monopoly.model.Game;
 import monopoly.model.Player;
 
 /**
-PropertySpace:
-Et objekt til at repræsentere ejendoms felter.
-
-@author Joakim Levorsen, S185023
-*/
+ * PropertySpace: Et objekt til at repræsentere ejendoms felter
+ * 
+ * @author Joakim Bøegh Levorsen, s185023
+ * @author Cecilie Krog Drejer, s185032
+ * @author Anders Brandt, s185016
+ */
 public class PropertySpace extends StationSpace {
-
+    /**
+     * Properties: Enumeration til at sikre mod stavefejl
+     */
     public enum Properties {
         BOARD_POSITION("boardPosition"), NAME("name"), MORTGAGED("mortgaged"), PRICE("price"), BASE_RENT("baseRent"),
         OWNER("owner"), BUILD_LEVEL("buildLevel"), COLOR("color");
@@ -26,6 +28,20 @@ public class PropertySpace extends StationSpace {
         }
     }
 
+    /**
+     * Create: Opretter et PropertySpace
+     * 
+     * @param position Feltets placering på spillebrættet
+     * @param name Feltets navn
+     * @param price Ejendommens pris
+     * @param baseRent Ejendommens basisleje
+     * @param color Feltets farve
+     *
+     * @author Joakim Bøegh Levorsen, s185023
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return Returnerer et PropertySpace
+     */
     public static PropertySpace create(int position, String name, int price, int baseRent, String color) {
         PropertySpace space = new PropertySpace();
         space = (PropertySpace) (Space.setValues(space, name, color));
@@ -37,6 +53,15 @@ public class PropertySpace extends StationSpace {
         return space;
     }
 
+    /**
+     * Equals: Bestemmer om et PropertySpace ligner et andet
+     * 
+     * @param obj Det objekt, som det pågældende PropertySpace skal sammenlignes med
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om de to ojekter er ens eller ej 
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof PropertySpace))
@@ -61,41 +86,36 @@ public class PropertySpace extends StationSpace {
     }
 
     /**
-     * getName: Henter lejen for ejendommen.
+     * GetRent: Henter lejen for ejendommen
      * 
      * @author Anders Brandt, s185016
-     * 
      * @author Joakim Levorsen, s185023
      */
-    public int getRent(Game game) {
+    public int getRent() {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         baseRent += (this.getHousesBuilt() * baseRent) / 2;
         return baseRent;
     }
 
     /**
-     * getHousesBuilt: Henter hvor mange huse der er bygget på ejendommen.
+     * GetHousesBuilt: Henter antallet af huse der er bygget på ejendommen
      *
      * @author Anders Brandt, s185016
+     * 
+     * @return Returnerer antallet af huse bygget på ejendommen
      */
     public int getHousesBuilt() {
         return this.getInteger(Properties.BUILD_LEVEL.getProperty());
     }
 
     /**
-     * SetBuildLevel: Sætter antallet af huse bygget på ejendommen.
+     * SetBuildLevel: Sætter antallet af huse bygget på ejendommen
+     * 
+     * @param amount Antallet af huse, der skal være på ejendommen
      * 
      * @author Cecilie Krog Drejer, s185032
      */
-
     public void setBuildLevel(int amount) {
         this.set(PropertySpace.Properties.BUILD_LEVEL.getProperty(), amount);
     }
-
-    /**
-     * Variabler og metoder til at implementere Subject
-     *
-     * @author Ekkart Kindler, ekki@dtu.dk
-     *
-     */
 }

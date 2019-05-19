@@ -8,12 +8,25 @@ import org.json.JSONObject;
 import resources.json.JSONKey;
 
 /**
-JSONSpaceFactory:
-Et objekt til at hente alle start felter fra vores JSON resourcer.
-
-@author Joakim Levorsen, S185023
-*/
+ * JSONSpaceFactory: Et objekt til at hente alle start felter fra vores JSON resourcer
+ * 
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class JSONSpaceFactory {
+    /**
+     * CreateSpaces: Opretter felter ud fra data fra JSON
+     * 
+     * @param boardData Dataobjekt fra JSON
+     * @param game Spillet, som felterne tilhører
+     * @param chanceStack Kortbunke med Chancekort
+     * @param communityStack Kortbunke med Prøv Lykken-kort
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer et spillebræt i form af et array af Spaces
+     * 
+     * @throws JSONException
+     */
     public static Space[] createSpaces(JSONObject boardData, Game game, CardStack chanceStack, CardStack communityStack)
             throws JSONException {
         JSONArray spaceData = boardData.getJSONArray(JSONKey.SPACES.getKey());

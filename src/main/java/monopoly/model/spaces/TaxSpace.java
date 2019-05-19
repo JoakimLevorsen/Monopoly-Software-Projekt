@@ -1,14 +1,19 @@
 package monopoly.model.spaces;
 
-import designpatterns.Observer;
 import monopoly.controller.GameController;
 import monopoly.model.Player;
 import resources.json.JSONKey;
 
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * TaxSpace: Et objekt til at repræsentere skattefeltet
+ * 
+ * @author Anders Brandt, s185016
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class TaxSpace extends Space {
+    /**
+     * Properties: Enumeration til at sikre mod stavefejl
+     */
     public enum Properties {
         BOARD_POSITION("boardPosition"), TAX("tax"), TAX_MESSAGE("taxMessage");
 
@@ -24,9 +29,12 @@ public class TaxSpace extends Space {
     }
 
     /**
-     * performAction trækker skat fra spillerens konto samt tilføjer skatte beløbet
-     * til gevinsten på gratis parkering.
+     * PerformAction: Trækker skat fra spillerens konto samt tilføjer beløbet til
+     * gevinsten på gratis parkering
      *
+     * @param controller en GameController
+     * @param player Spilleren, som lander på feltet
+     * 
      * @author Anders Brandt, s185016
      */
     @Override
@@ -42,6 +50,19 @@ public class TaxSpace extends Space {
         controller.view.getGUI().showMessage(message);
     }
 
+    /**
+     * Create: Opretter et TaxSpace
+     * 
+     * @param position Feltets placering på spillebrættet
+     * @param tax Beløbet, som skal betales i skat
+     * @param name Feltets navn
+     * @param color Feltets farve
+     *
+     * @author Joakim Bøegh Levorsen, s185023
+     * @author Anders Brandt, s185016
+     * 
+     * @return Returnerer et TaxSpace
+     */
     public static TaxSpace create(int position, int tax, String name, String color) {
         TaxSpace space = new TaxSpace();
         space = (TaxSpace) (Space.setValues(space, name, color));
@@ -50,6 +71,15 @@ public class TaxSpace extends Space {
         return space;
     }
 
+    /**
+     * Equals: Bestemmer om et TaxSpace ligner et andet
+     * 
+     * @param obj Det objekt, som det pågældende TaxSpace skal sammenlignes med
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om de to ojekter er ens eller ej 
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof TaxSpace))
@@ -58,31 +88,14 @@ public class TaxSpace extends Space {
         return other.getLongId().equals(this.getLongId()) && this.getBoardPosition() == other.getBoardPosition();
     }
 
+    /**
+     * GetTax: Henter det beløb, som skal betales på det pågældende TaxSpace
+     * 
+     * @author Anders Brandt, s185016
+     * 
+     * @return Returnerer beløbet
+     */
     public int getTax() {
         return this.getInteger(Properties.TAX.getProperty()).intValue();
-    }
-
-    /**
-     * Variabler og metoder til at implementere Subject
-     *
-     * @author Ekkart Kindler, ekki@dtu.dk
-     *
-     */
-    private Set<Observer> observers = new HashSet<Observer>();
-
-    final public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
-
-    final public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    /**
-     * @author Helle Achari, s180317
-     */
-
-    public Set<Observer> getObservers() {
-        return observers;
     }
 }
