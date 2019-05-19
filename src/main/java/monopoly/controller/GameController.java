@@ -11,6 +11,15 @@ import org.javalite.activejdbc.validation.ValidationException;
 import org.json.JSONObject;
 import resources.json.JSONKey;
 
+/**
+ * GameController står for at spille spillet og holde styr på hvem der vinder
+ * 
+ * @author Anders Brandt, s185016
+ * @author Cecilie Krog Drejer, s185032
+ * @author Frederik Lykke Ullstad, s185018
+ * @author Helle Achari, s180317
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class GameController {
     public CashController cashController;
     public MovementController movementController;
@@ -19,6 +28,12 @@ public class GameController {
     private Game game;
     private JSONObject jsonData;
 
+    /**
+     * GameController constructor
+     * 
+     * @param game Spillet, som skal kontrolleres
+     * @param view View'et, som tilhører spillet
+     */
     public GameController(Game game, View view) {
         this.game = game;
         this.view = view;
@@ -28,10 +43,24 @@ public class GameController {
         this.propertyController = new PropertyController(this);
     }
 
+    /**
+     * GetGame: Henter spillet associeret med GameController
+     * 
+     * @return Returnerer spillet associeret med GameController
+     */
     public Game getGame() {
         return game;
     }
 
+    /**
+     * Play: Spiller spillet
+     * 
+     * @author Anders Brandt, s185016
+     * @author Cecilie Krog Drejer, s185032
+     * @author Frederik Lykke Ullstad, s185018
+     * @author Helle Achari, s180317
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void play() {
         do {
             while (playersLeft() > 1) {
@@ -40,7 +69,7 @@ public class GameController {
                 // Hvis spilleren er gået konkurs, ignorer dem
                 if (!playerWithTurn.isBroke()) {
                     if (playerWithTurn.isInJail()) {
-                        prisonTurn(playerWithTurn);
+                        jailTurn(playerWithTurn);
                     }
                     // Spilleren er måske kommet ud, ellers perform turn
                     if (!playerWithTurn.isInJail()) {
@@ -77,7 +106,8 @@ public class GameController {
                 saveGame();
             }
             view.getGUI().showMessage(getWinner().getName() + jsonData.getString(JSONKey.GAME_WINNER.getKey()));
-        } while (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.PLAY_AGAIN.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
+        } while (view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.PLAY_AGAIN.getKey()),
+                jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
     }
 
     public void saveGame() {
@@ -93,7 +123,11 @@ public class GameController {
     }
 
     /**
-     * @param currentPlayerTurn
+     * IncrementTurn: Holder styr på hvilken spiller, der har tur
+     * 
+     * @param currentPlayerTurn index på den spiller, der har tur nu
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
      */
     public void incrementTurn(int currentPlayerTurn) {
         int nextPlayerTurn = currentPlayerTurn + 1;
@@ -105,9 +139,18 @@ public class GameController {
     }
 
     /**
-     * @param player
+     * JailTurn: Tager en spiller igennem processen at forsøge at undslippe fra
+     * fængsel
+     * 
+     * @param player spilleren, som skal igennem fængsels-flow'et
+     * 
+     * @author Anders Brandt, s185016
+     * @author Cecilie Krog Drejer, s185032
+     * @author Frederik Lykke Ullstad, s185018
+     * @author Helle Achari, s180317
+     * @author Joakim Bøegh Levorsen, s185023
      */
-    public void prisonTurn(Player player) {
+    public void jailTurn(Player player) {
         DiceRoll r = new DiceRoll();
         if (r.isDoubles()) {
             view.getGUI().showMessage(jsonData.getString(JSONKey.ROLLED_DOUBLE.getKey()));
@@ -129,6 +172,16 @@ public class GameController {
         }
     }
 
+    /**
+     * DiceRoll: Klasse, der står for at slå med terningerne Klassens metoder bruges
+     * kun i GameController, hvorfor den ligger her
+     * 
+     * @author Anders Brandt, s185016
+     * @author Cecilie Krog Drejer, s185032
+     * @author Frederik Lykke Ullstad, s185018
+     * @author Helle Achari, s180317
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     private class DiceRoll {
         private int roll1;
         private int roll2;
@@ -139,16 +192,26 @@ public class GameController {
             view.getGUI().setDice(roll1, roll2);
         }
 
+        /**
+         * @return Returnerer om et slag består at to ens eller ej
+         */
         public boolean isDoubles() {
             return roll1 == roll2;
         }
 
+        /**
+         * @return Returnerer summen af de to terningers øjne
+         */
         public int sum() {
             return roll1 + roll2;
         }
     }
 
     /**
+     * GetWinner: Finder vinderen af spiller
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * 
      * @return Returnerer vinderen af spillet.
      */
     public Player getWinner() {
@@ -161,6 +224,10 @@ public class GameController {
     }
 
     /**
+     * PlayersLeft: Holder styr på hvor mange spillere, der er tilbage i spiller
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
      * @return Returnerer hvor mange spillere der er tilbage i spillet.
      */
     public int playersLeft() {

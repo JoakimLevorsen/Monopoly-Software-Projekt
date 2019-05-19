@@ -27,14 +27,11 @@ public class PropertyController {
 	/**
 	 * Auction: Metode til at sælge en ejendom ved auktion.
 	 * 
-	 * @param property
-     *
-     * @author Anders Brandt, s185016
-	 * 
+	 * @param property Ejendommen, som skal auktioneres bort
+	 *
+	 * @author Anders Brandt, s185016
 	 * @author Cecilie Krog Drejer, s185032
-	 * 
 	 * @author Helle Achari, s180317
-	 * 
 	 * @author Joakim Bøegh Levorsen, s185023
 	 */
 
@@ -75,9 +72,9 @@ public class PropertyController {
 	/**
 	 * Mortgage: Metode til at pantsætte en ejendom
 	 * 
-	 * @param property
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param property Ejendommen, som skal pantsættes
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void mortgage(StationSpace property) {
@@ -94,9 +91,9 @@ public class PropertyController {
 	/**
 	 * Unmortgage: Metode til at tilbagekøbe en pantsat ejendom
 	 * 
-	 * @param property
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param property Den pantsatte ejendom, som skal tilbagekøbes
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void unmortgage(StationSpace property) {
@@ -112,10 +109,10 @@ public class PropertyController {
 	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber
 	 * den
 	 * 
-	 * @param property
-     * @param player
-     *
-     * @author Helle Achari, s180317
+	 * @param property Ejendom, som tilbydes
+	 * @param player   Spilleren, der tilbydes ejendommen
+	 *
+	 * @author Helle Achari, s180317
 	 */
 
 	public void offerProperty(StationSpace property, Player player) {
@@ -136,12 +133,13 @@ public class PropertyController {
 			auction(property);
 		}
 	}
+
 	/**
 	 * SellToBank: Metode til at sælge ejendom til banken
 	 * 
-	 * @param property
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param property Ejendom, som skal sælges til banken
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void sellToBank(StationSpace property) {
@@ -160,10 +158,10 @@ public class PropertyController {
 	/**
 	 * BuildHouses: Metode til at bygge huse på ejendomme af typen PropertySpace
 	 * 
-	 * @param property
-     * @param houses
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param property Ejendom, som der skal bygges på
+	 * @param houses   Antal huse, der skal bygges
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void buildHouses(PropertySpace property, int houses) {
@@ -185,10 +183,10 @@ public class PropertyController {
 	/**
 	 * SellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
 	 * 
-	 * @param property
-     * @param houses
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param property Ejendom, hvorfra huse skal sælges
+	 * @param houses   Antal huse, der skal sælges
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void sellHouses(PropertySpace property, int houses) {
@@ -211,9 +209,9 @@ public class PropertyController {
 	 * Trade: Metode til at foretage byttehandler med andre spillere. OBS: Ejendomme
 	 * tages kun i bytte for penge.
 	 * 
-	 * @param trader
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param trader Spiller, som skal handle (den spiller, der pt. har tur)
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void trade(Player trader) {
@@ -244,8 +242,8 @@ public class PropertyController {
 						// Hvis den spiller ikke har ejendom skip
 						ArrayList<StationSpace> tradeeOwnedProperties = tradee.getOwnedProperties(controller.getGame());
 						if (tradeeOwnedProperties.size() == 0) {
-							gooey.showMessage(jsonData.getString(tradee.getName()
-									+ jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey())));
+							gooey.showMessage(jsonData.getString(
+									tradee.getName() + jsonData.getString(JSONKey.PLAYER_OWNS_NO_PROPERTIES.getKey())));
 						} else {
 							String[] propertyNames = new String[tradeeOwnedProperties.size()];
 							for (int i = 0; i < tradeeOwnedProperties.size(); i++) {
@@ -356,9 +354,9 @@ public class PropertyController {
 	 * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine
 	 * ejendomme.
 	 *
-	 * @param player
-     *
-     * @author Anders Brandt, s185016
+	 * @param player Spiller, der tilbydes at bygge huse
+	 *
+	 * @author Anders Brandt, s185016
 	 */
 
 	public void offerToBuild(Player player) {
@@ -407,9 +405,9 @@ public class PropertyController {
 	/**
 	 * PlayerBroke: Metode til konkurshåndtering
 	 * 
-	 * @param failure
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param failure Spiller, der har en negativ balance
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void playerBroke(Player failure) {
@@ -468,11 +466,12 @@ public class PropertyController {
 	}
 
 	/**
-	 * Unmorgage properties: Afpantsæt ens ejendomme
+	 * UnmortgageProperties: Afpantsæt ens ejendomme
 	 * 
-	 * @param player
-     *
-     * @author Cecilie Krog Drejer, s185032
+	 * @param player Spiller, som har pantsatte ejendomme og tilbydes at tilbagekøbe
+	 *               dem
+	 *
+	 * @author Cecilie Krog Drejer, s185032
 	 */
 
 	public void unmortgageProperties(Player player) {
@@ -481,27 +480,31 @@ public class PropertyController {
 		List<StationSpace> mortgagedProperty = new ArrayList<StationSpace>();
 		for (StationSpace space : ownedProperty) {
 			// Check property is mortgaged, and you can afford to unmorgage them.
-			if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
+			if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance())
+				mortgagedProperty.add(space);
 		}
-			while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed(jsonData.getString(JSONKey.UNMORTGAGE_PROPERTY.getKey()), jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey()))) {
-				String[] names = new String[mortgagedProperty.size()];
-				HashMap<Object, StationSpace> options = new HashMap<Object, StationSpace>();
-				for (int i = 0; i < mortgagedProperty.size(); i++) {
-					names[i] = mortgagedProperty.get(i).getName();
-					options.put(mortgagedProperty.get(i).getName(), mortgagedProperty.get(i));
-				}
-				Object selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
-				jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null,
-				names, names[0]);
-				if (selection != null) {
-					StationSpace selectedProperty = options.get(selection);
-					unmortgage(selectedProperty);
-					mortgagedProperty = new ArrayList<StationSpace>();
-					for (StationSpace space : ownedProperty) {
-						// Check property is mortgaged, and you can afford to unmorgage them.
-						if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance()) mortgagedProperty.add(space);
-					}
+		while (mortgagedProperty.size() > 0 && controller.view.getGUI().getUserLeftButtonPressed(
+				jsonData.getString(JSONKey.UNMORTGAGE_PROPERTY.getKey()), jsonData.getString(JSONKey.YES.getKey()),
+				jsonData.getString(JSONKey.NO.getKey()))) {
+			String[] names = new String[mortgagedProperty.size()];
+			HashMap<Object, StationSpace> options = new HashMap<Object, StationSpace>();
+			for (int i = 0; i < mortgagedProperty.size(); i++) {
+				names[i] = mortgagedProperty.get(i).getName();
+				options.put(mortgagedProperty.get(i).getName(), mortgagedProperty.get(i));
+			}
+			Object selection = JOptionPane.showInputDialog(null, jsonData.getString(JSONKey.CURRENTLY_BROKE.getKey()),
+					jsonData.getString(JSONKey.PLAYER_BROKE_TITLE.getKey()), JOptionPane.QUESTION_MESSAGE, null, names,
+					names[0]);
+			if (selection != null) {
+				StationSpace selectedProperty = options.get(selection);
+				unmortgage(selectedProperty);
+				mortgagedProperty = new ArrayList<StationSpace>();
+				for (StationSpace space : ownedProperty) {
+					// Check property is mortgaged, and you can afford to unmorgage them.
+					if (space.isMortgaged() && space.getPrice() / 2 <= player.getAccountBalance())
+						mortgagedProperty.add(space);
 				}
 			}
+		}
 	}
 }
