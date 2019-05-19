@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ResourceManagerTest {
-    /*
+    /**
      * testAllFilesPresent: Tjekker om alle filer nævnt i JSONFile enum´et faktisk
      * findes i projektet.
      * 
@@ -34,7 +34,7 @@ public class ResourceManagerTest {
         }
     }
 
-    /*
+    /**
      * testAllKeysPresent: Tjekker om alle nøgler nævnt i JSONKey findes mindst en
      * gang i alle JSON filer nævnt i JSONFile
      * 
@@ -58,7 +58,7 @@ public class ResourceManagerTest {
 
     }
 
-    /*
+    /**
      * objectContainsKey: Tjekker om nøgle findes mindst en gang i et array eller
      * objekt.
      * 
@@ -95,7 +95,7 @@ public class ResourceManagerTest {
         return false;
     }
 
-    /*
+    /**
      * keyExists: Kode taget fra StackOverflow, til at undersøge rekusivt om et
      * JSONObject indeholder en nøgle mindst en gang. Original kilde:
      * https://stackoverflow.com/questions/31043606/check-whether-a-key-exists-or-
@@ -120,7 +120,7 @@ public class ResourceManagerTest {
         return exists;
     }
 
-    /*
+    /**
      * keyExists: Kør key exists på alle elementer i JSONArray
      * 
      * @author Joakim Levorsen, S185023
@@ -139,7 +139,7 @@ public class ResourceManagerTest {
         return false;
     }
 
-    /*
+    /**
      * testAllFilesLayoutIdentical: Tjekker om layoutet af JSON filer er identisk,
      * dvs at alle JSON filer har de samme nøgler. Den tjekker IKKE typerne af
      * værdierne ved nøgler(Med untagelse af hvis værdien er at objekt eller array,
@@ -175,7 +175,7 @@ public class ResourceManagerTest {
         }
     }
 
-    /*
+    /**
      * keysMatch: Tjekker to JSON objekter har de samme nøgler.
      * 
      * @author Joakim Levorsen, S185023
@@ -209,7 +209,7 @@ public class ResourceManagerTest {
         return true;
     }
 
-    /*
+    /**
      * arrayMatch: Sammenlign to JSONArrays, og deres værdier.
      * 
      * @author Joakim Levorsen, S185023
@@ -228,7 +228,7 @@ public class ResourceManagerTest {
         return true;
     }
 
-    /*
+    /**
      * compareObjectFromJSON: Sammenlign to Objekt typer, om de er dybere JSON
      * objeckter, og så videre om de stemmer overens.
      * 

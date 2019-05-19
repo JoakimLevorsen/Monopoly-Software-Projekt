@@ -3,7 +3,7 @@ package monopoly.model.cards;
 import monopoly.controller.MovementController;
 import monopoly.model.Player;
 
-/*
+/**
 GoToSpaceCard:
 Implementering af Go To Space Card
 
@@ -54,7 +54,7 @@ public class GoToSpaceCard extends Card {
         return ((GoToSpaceCard) obj).getLongId().equals(this.getLongId());
     }
 
-    /*
+    /**
      * GetText: Returnerer teksten der står på kortet.
      *
      * @author Anders Brandt, S185016

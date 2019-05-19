@@ -8,7 +8,7 @@ import resources.json.JSONKey;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/*
+/**
 JSONCardFactory:
 Implementering af klasse til oprettelse af kort.
 

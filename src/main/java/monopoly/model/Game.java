@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/*
+/**
 Game:
 Implementering af Game model objektet, med ORM for databasen.
 
@@ -70,7 +70,7 @@ public class Game extends Model implements Subject {
         return Game.findAll().orderBy(Game.Properties.CURRENT_TURN.getProperty() + " asc").load();
     }
 
-    /*
+    /**
      * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
      * elementer.
      *
@@ -261,7 +261,7 @@ public class Game extends Model implements Subject {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

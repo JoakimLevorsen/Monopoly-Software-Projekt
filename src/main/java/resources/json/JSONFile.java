@@ -1,6 +1,6 @@
 package resources.json;
 
-/*
+/**
 JSONFile:
 Enum der indeholder alle JSON fil navne i projektet, det kan også retunere filnavet for en værdi.
 

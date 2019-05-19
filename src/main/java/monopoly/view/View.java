@@ -21,6 +21,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * View, klasse der fungere som View i MVC-modellen.
+ * @author Ekkart Kindler, ekki@dtu.dk
+ * @author Anders Brandt s185016
+ * @author Cecilie Krog Drejer, s185032
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 public class View implements Observer {
 
     private Game game;
@@ -33,10 +40,12 @@ public class View implements Observer {
     private HashMap<Player, PlayerPanel> panels = new HashMap<>();
     private boolean disposed = false;
 
-    /*
+    /**
      * View: opretter felter og spillere
      * 
-     * @author Ekkart Kindler
+     * @param game
+     * @param gui
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -70,13 +79,14 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * ChooseGame: Metode til at vælge om man vil hente et gemt spil (og i så fald
      * hvilket) eller om man vil starte et nyt spil
      * 
      * @author Cecilie Krog Drejer, s185032
      * 
      * @author Joakim Bøegh Levorsen, s185023
+     * @return Det valgte savegame
      */
     public static Game chooseGame() {
         HashMap<String, Game> saveNameToGame = new HashMap<>();
@@ -119,11 +129,14 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * StartNewGame: Metode til at få information til at starte et nyt spil fra
      * spilleren
      * 
+     * @param gooey En gui man vil bruge til beskeder
+     * @param rm En resourceManager instans
      * @author Cecilie Krog Drejer, s185032
+     * @return Det nye game spilleren har oprettet
      */
     public static Game startNewGame(GUI gooey, ResourceManager rm) {
         String saveName = gooey.getUserString("Type a name for your new game / Angiv et navn til dit nye spil.");
@@ -144,12 +157,14 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * ChooseLanguage: Metode til at vælge sprog
      * 
      * @author Joakim Bøegh Levorsen, s185023
      * 
      * @author Cecilie Krog Drejer, s185032
+     * @return JSONFile objekt for det sprog brugeren valgte
+     * @throws JSONException
      */
     public static JSONFile chooseLanguage() throws JSONException {
         HashMap<String, JSONFile> languageChoices = new HashMap<String, JSONFile>();
@@ -182,13 +197,15 @@ public class View implements Observer {
             return null;
     }
 
-    /*
+    /**
      * WhichPropertyDoYouWantToBuildOn: Metode til at vælge hvilken ejendom man vil
      * bygge på
      * 
+     * @param possibleChoices Properties spilleren må bygge på
      * @author Joakim Bøegh Levorsen, s185023
      * 
      * @author Cecilie Krog Drejer, s185032
+     * @return det PropertySpace brugeren vil bygge på
      */
     public PropertySpace whichPropertyDoWantToBuildOn(List<PropertySpace> possibleChoices) {
         HashMap<String, PropertySpace> targets = new HashMap<String, PropertySpace>();
@@ -209,10 +226,10 @@ public class View implements Observer {
             return null;
     }
 
-    /*
+    /**
      * View: opdaterer brættet
      * 
-     * @author Ekkart Kindler
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -227,10 +244,11 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * View: Opdaterer spilleren
      * 
-     * @author Ekkart Kindler
+     * @param player Spilleren der skal opdateres
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      */
@@ -257,10 +275,11 @@ public class View implements Observer {
         panels.get(player).update();
     }
 
-    /*
+    /**
      * View: Opdaterer ejendommene
      * 
-     * @author Ekkart Kindler
+     * @param property Ejendommen der skal opdateres
+     * @author Ekkart Kindler, ekki@dtu.dk
      * 
      * @author Anders Brandt s185016
      * 
@@ -301,10 +320,11 @@ public class View implements Observer {
         }
     }
 
-    /*
+    /**
      * getGUI: Retuner dette views gui
      * 
      * @author Joakim Levorsen, S185023
+     * @return Dette Views gui
      */
     public GUI getGUI() {
         return gui;

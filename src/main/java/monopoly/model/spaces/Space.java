@@ -7,7 +7,7 @@ import org.javalite.activejdbc.Model;
 
 import java.awt.*;
 
-/*
+/**
 Space:
 Et objekt til at repræsentere hvad et startfelt skal have af metoder.
 
@@ -26,7 +26,7 @@ public abstract class Space extends Model implements Comparable<Space>, Subject 
         return space;
     }
 
-    /*
+    /**
      * getName: Henter navnet på stationen.
      * 
      * @author Anders Brandt, s185016
@@ -35,7 +35,7 @@ public abstract class Space extends Model implements Comparable<Space>, Subject 
         return this.getString(StationSpace.Properties.NAME.getProperty());
     }
 
-    /*
+    /**
      * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
      *
      * @author Anders Brandt, s185016

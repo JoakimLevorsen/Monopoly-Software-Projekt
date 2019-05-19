@@ -24,7 +24,7 @@ public class PropertyController {
 		this.gooey = owner.view.getGUI();
 	}
 
-	/*
+	/**
 	 * Auction: Metode til at sælge en ejendom ved auktion.
 	 * 
 	 * @author Anders Brandt, s185016
@@ -70,7 +70,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * Mortgage: Metode til at pantsætte en ejendom
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -87,7 +87,7 @@ public class PropertyController {
 		property.setMortgaged(true);
 	}
 
-	/*
+	/**
 	 * Unmortgage: Metode til at tilbagekøbe en pantsat ejendom
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -102,7 +102,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * OfferProperty: Metode som tilbyder spilleren at købe en ejendom og evt. køber
 	 * den
 	 * 
@@ -127,7 +127,7 @@ public class PropertyController {
 			auction(property);
 		}
 	}
-	/*
+	/**
 	 * SellToBank: Metode til at sælge ejendom til banken
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -146,7 +146,7 @@ public class PropertyController {
 		property.setMortgaged(false);
 	}
 
-	/*
+	/**
 	 * BuildHouses: Metode til at bygge huse på ejendomme af typen PropertySpace
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -168,7 +168,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * SellHouses: Metode til at sælge huse på ejendomme af typen PropertySpace
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -190,7 +190,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * Trade: Metode til at foretage byttehandler med andre spillere. OBS: Ejendomme
 	 * tages kun i bytte for penge.
 	 * 
@@ -333,7 +333,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * OfferToBuild: Metode der håndterer at tilbyde spilleren at bygge på sine
 	 * ejendomme.
 	 *
@@ -383,7 +383,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * PlayerBroke: Metode til konkurshåndtering
 	 * 
 	 * @author Cecilie Krog Drejer, s185032
@@ -444,7 +444,7 @@ public class PropertyController {
 		}
 	}
 
-	/*
+	/**
 	 * Unmorgage properties: Afpantsæt ens ejendomme
 	 * 
 	 * @author Cecilie Krog Drejer, s185032

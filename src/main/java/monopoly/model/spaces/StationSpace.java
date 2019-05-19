@@ -8,7 +8,7 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 StationSpace:
 Et objekt til at repræsentere stationer.
 
@@ -63,7 +63,7 @@ public class StationSpace extends Space {
         return this.getBoardPosition() == other.getBoardPosition();
     }
 
-    /*
+    /**
      * SetOwner: Sætter en spiller som ejer af stationen.
      * 
      * @author Cecilie Krog Drejer, s185032
@@ -73,7 +73,7 @@ public class StationSpace extends Space {
         player.add(this);
     }
 
-    /*
+    /**
      * RemoveOwner: Fjerner den nuværende ejer af stationen.
      * 
      * @author Cecilie Krog Drejer, s185032
@@ -92,10 +92,12 @@ public class StationSpace extends Space {
         return null;
     }
 
-    /*
+    /**
      * getName: Henter lejen for stationen.
      * 
+     * @param game
      * @author Anders Brandt, s185016
+     * @return returnerer lejen for stationen.
      */
     public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
@@ -130,7 +132,7 @@ public class StationSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 
@@ -138,7 +140,7 @@ public class StationSpace extends Space {
         return observers;
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

@@ -7,7 +7,7 @@ import monopoly.model.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
+/**
 JailSpace:
 Et objekt til at repræsentere fængsels feltet.
 
@@ -74,7 +74,7 @@ public class JailSpace extends Space {
         observers.remove(observer);
     }
 
-    /*
+    /**
      * @author Helle Achari, s180317
      */
 

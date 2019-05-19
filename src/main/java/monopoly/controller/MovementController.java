@@ -8,7 +8,7 @@ import monopoly.model.spaces.StartSpace;
 public class MovementController {
     public GameController controller;
 
-    /*
+    /**
      * MovementController: kontrollerer de forskellige måder at rykke spilleren
      *
      * @author Anders Brandt, s185016
@@ -17,9 +17,11 @@ public class MovementController {
         this.controller = owner;
     }
 
-    /*
+    /**
      * moveForward: rykker spilleren frem ud fra hvad de har slået med terningen.
      *
+     * @param amount
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void moveForward(int amount, Player player) {
@@ -35,9 +37,10 @@ public class MovementController {
         destination.performAction(controller, player);
     }
 
-    /*
+    /**
      * goToJail: rykker spilleren i fængsel
      *
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void goToJail(Player player) {
@@ -45,9 +48,12 @@ public class MovementController {
         player.setBoardPosition(j.getBoardPosition());
     }
 
-    /*
+    /**
      * goTo: rykker spilleren til et bestemt felt.
      *
+     * @param space
+     * @param ignoreStart
+     * @param player
      * @author Anders Brandt, s185016
      */
     public void goTo(Space space, Boolean ignoreStart, Player player) {

@@ -2,7 +2,7 @@ package monopoly.controller;
 
 import monopoly.model.Player;
 
-/*
+/**
  * CashController er ansvarlig for at flytte penge rundt mellem bank og spillere
  *
  * @author Helle Achari, s180317

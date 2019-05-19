@@ -5,7 +5,7 @@ import monopoly.model.Player;
 import monopoly.model.spaces.JailSpace;
 import monopoly.model.spaces.Space;
 
-/*
+/**
 GoToJailCard:
 Implementering af Go To Jail Card
 
@@ -52,7 +52,7 @@ public class GoToJailCard extends Card {
         return ((GoToJailCard) obj).getLongId().equals(this.getLongId());
     }
 
-    /*
+    /**
      * GetText: Returnerer teksten der står på kortet.
      *
      * @author Anders Brandt, S185016
@@ -61,7 +61,7 @@ public class GoToJailCard extends Card {
         return this.getString(Properties.TEXT.getProperty());
     }
 
-    /*
+    /**
      * execute: sørger for at spilleren bliver rykket hen til fængsels feltet samt
      * ryger i fængsel status.
      *
