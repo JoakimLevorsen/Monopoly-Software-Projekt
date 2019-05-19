@@ -9,13 +9,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
-JSONCardFactory:
-Implementering af klasse til oprettelse af kort.
-
-@author Cecilie Krog Drejer, s185032
-*/
+ * JSONCardFactory: Et objekt til at hente alle start felter fra vores JSON resourcer
+ *
+ * @author Cecilie Krog Drejer, s185032
+ * @author Joakim Bøegh Levorsen, s185023
+ */
 
 public class JSONCardFactory {
+    /**
+     * CreateChanceCards: Opretter Chancekort ud fra data fra JSON
+     * 
+     * @param JSONData Dataobjekt fra JSON
+     * @param chanceStack Kortbunke, som kortene skal tilhøre
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer et ArrayList af Cards
+     * 
+     * @throws JSONException
+     */
     public static ArrayList<Card> createChanceCards(JSONObject JSONData, CardStack chanceStack) throws JSONException {
         JSONArray chanceCardData = JSONData.getJSONArray(JSONKey.CHANCE_CARDS.getKey());
         ArrayList<Card> chanceCards = new ArrayList<Card>();
@@ -56,6 +69,19 @@ public class JSONCardFactory {
         return chanceCards;
     }
 
+    /**
+     * CreateCommunityChestCards: Opretter Prøv Lykken-kort ud fra data fra JSON
+     * 
+     * @param JSONData Dataobjekt fra JSON
+     * @param communityChestStack Kortbunke, som kortene skal tilhøre
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer et ArrayList af Cards
+     * 
+     * @throws JSONException
+     */
     public static ArrayList<Card> createCommunityChestCards(JSONObject JSONData, CardStack communityChestStack)
             throws JSONException {
         JSONArray communityChestCardData = JSONData.getJSONArray(JSONKey.COMMUNITY_CHEST_CARDS.getKey());

@@ -10,16 +10,16 @@ import java.util.Collections;
 import java.util.List;
 
 /**
-CardStack:
-Implementering af klasse til håndtering af et sæt kort.
-
-@author Cecilie Krog Drejer, s185032
-@author Joakim Levorsen, s185023
-*/
-
+ * CardStack: Implementering af klasse til håndtering af en kortbunke
+ *
+ * @author Joakim Levorsen, s185023
+ */
 public class CardStack extends Model {
     private List<Card> cards = null;
 
+    /**
+     * Properties: Enumeration til at beskytte mod stavefejl
+     */
     public enum Properties {
         CHANCE_CARD("chanceCard"), NEXT_CARD_INDEX("nextCardIndex");
 
@@ -34,6 +34,18 @@ public class CardStack extends Model {
         }
     }
 
+    /**
+     * Create: Opretter en kortbunke
+     * 
+     * @param cardData Dataobjekt fra JSON
+     * @param game Det spil, som kortbunken tilhører
+     * @param isChanceCardStack Boolean om kortbunken indeholder Chancekort eller ej
+     * @param nextCardIndex Index på det kort, der ligger øverst i bunken
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer en kortbunke
+     */
     public static CardStack create(JSONObject cardData, Game game, boolean isChanceCardStack, int nextCardIndex) {
         CardStack cardStack = new CardStack();
         cardStack.set(CardStack.Properties.CHANCE_CARD.getProperty(), isChanceCardStack);
@@ -48,10 +60,13 @@ public class CardStack extends Model {
     }
 
     /**
-     * @param type man vil finde kort for
-     * @return Alle kort af typen C
-     * @author jake
-     * @author Joakim Levorsen s185023
+     * GetCardForType: Finder alle kort af en bestemt type i kortbunken
+     * 
+     * @param type Typen af kort på klasse-form (eksempelvis GetLoseMoneyCard.class)
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer en liste af kortene af den angivne type
      */
     public <C extends Card> List<C> getCardForType(Class<C> type) {
         List<C> matches = new ArrayList<C>();
@@ -63,6 +78,15 @@ public class CardStack extends Model {
         return matches;
     }
 
+    /**
+     * DrawCard: Trækker et kort fra en bunke
+     * 
+     * @param game Spillet, hvori der skal trækkes et kort
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer det trukne kort
+     */
     public Card drawCard(Game game) {
         Card drawnCard;
         do {
@@ -82,14 +106,35 @@ public class CardStack extends Model {
         return drawnCard;
     }
 
+    /**
+     * GetNextIndex: Henter index for det øverste kort i bunken
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer index for det "øverste" kort i bunken
+     */
     private int getNextIndex() {
         return this.getInteger(CardStack.Properties.NEXT_CARD_INDEX.getProperty());
     }
 
+    /**
+     * SetNextIndex: Sætter index for det øverste kort i bunken
+     * 
+     * @param to Index, for det kort, der skal ligge øverst
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     private void setNextIndex(int to) {
         this.set(CardStack.Properties.NEXT_CARD_INDEX.getProperty(), to);
     }
 
+    /**
+     * GetCards: Henter alle kort i en kortbunke fra databasen
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer en liste af kort
+     */
     public List<Card> getCards() {
         if (this.cards == null) {
             this.cards = DatabaseCardFactory.getCardsFor(this);
@@ -97,15 +142,23 @@ public class CardStack extends Model {
         return this.cards;
     }
 
+    /**
+     * IsChanceCardStack: Bestemmer om kortbunken består af Chancekort
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer om kortbunken består af Chancekort eller ej
+     */
     public boolean isChanceCardStack() {
         return this.getBoolean(CardStack.Properties.CHANCE_CARD.getProperty());
     }
 
     /**
-     * saveIt: Overskriver saveIt for game, men kalder den på alle dens "børne"
-     * elementer.
+     * SaveIt: Overskriver saveIt() for game, men kalder den på alle dens "børne"-elementer
      *
-     * @author Joakim Levorsen, S185023
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer hvorvidt der blev gemt succesfuldt
      */
     @Override
     public boolean saveIt() {
@@ -124,7 +177,6 @@ public class CardStack extends Model {
                 return false;
             }
         }
-
         return true;
     }
 }
