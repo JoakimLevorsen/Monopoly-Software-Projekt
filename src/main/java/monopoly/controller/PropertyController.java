@@ -413,7 +413,7 @@ public class PropertyController {
 	public void playerBroke(Player failure) {
 		HashMap<String, Space> nameToSpace = new HashMap<>();
 		ArrayList<StationSpace> ownedProperties = failure.getOwnedProperties(controller.getGame());
-		do {
+		while (failure.hasOverdrawnAccount() && !ownedProperties.isEmpty()) {
 			String[] names = new String[ownedProperties.size()];
 			for (int i = 0; i < ownedProperties.size(); i++) {
 				names[i] = ownedProperties.get(i).getName();
@@ -459,7 +459,7 @@ public class PropertyController {
 					mortgage((StationSpace) selectedSpace);
 				}
 			}
-		} while (failure.hasOverdrawnAccount() && !ownedProperties.isEmpty());
+		}
 		if (failure.hasOverdrawnAccount()) {
 			failure.setBrokeStatus(true);
 		}
