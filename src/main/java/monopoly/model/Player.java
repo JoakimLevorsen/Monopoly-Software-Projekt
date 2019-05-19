@@ -16,15 +16,20 @@ import java.util.List;
 import java.util.Set;
 
 /**
-Player:
-Implementering af Player model objektet, med ORM for databasen.
-
-@author Joakim Levorsen, S185023
-*/
-
+ * Player: Implementering af Player model objektet, med ORM for databasen.
+ *
+ * @author Joakim Bøegh Levorsen, s185023
+ * @author Cecilie Krog Drejer, s185032
+ * @author Anders Brandt, s185016
+ * @author Helle Achari, s180317
+ * @author Ekkart Kindler, ekki@dtu.dk
+ */
 public class Player extends Model implements Subject {
     private ArrayList<StationSpace> ownedProperties;
 
+    /**
+     * Properties: Enumeration til at sikre mod stavefejl
+     */
     public enum Properties {
         NAME("name"), PLAYER_INDEX("playerIndex"), BOARD_POSITION("boardPosition"), ACCOUNT_BALANCE("accountBalance"),
         JAIL_SPACE("jail_space_id"), BROKE("broke"), COLOR("color");
@@ -40,6 +45,19 @@ public class Player extends Model implements Subject {
         }
     }
 
+    /**
+     * NewPlayer: Opretter en ny spiller
+     * 
+     * @param name Spillerens navn
+     * @param index Spillerens index
+     * @param balance Spillerens startbalance
+     * @param color Spillerens farve
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return Returnerer en ny spiller
+     */
     public static Player newPlayer(String name, int index, int balance, String color) {
         return new Player().set(Player.Properties.NAME.getProperty(), name)
                 .set(Player.Properties.PLAYER_INDEX.getProperty(), index)
@@ -48,41 +66,92 @@ public class Player extends Model implements Subject {
                 .set(Player.Properties.COLOR.getProperty(), color);
     }
 
+    /**
+     * GetName: Henter spillerens navn
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer spillerens navn som en String
+     */
     public String getName() {
         return (String) this.get(Player.Properties.NAME.getProperty());
     }
 
+    /**
+     * GetPlayerIndex: Henter spillerens index
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer spillerens index som en integer
+     */
     public int getPlayerIndex() {
         return (int) this.get(Player.Properties.PLAYER_INDEX.getProperty());
     }
 
+    /**
+     * GetBoardPosition: Henter spillerens placering på spillebrættet
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer spillerens placering som en integer
+     */
     public int getBoardPosition() {
         return (int) this.get(Player.Properties.BOARD_POSITION.getProperty());
     }
 
+    /**
+     * SetBoardPosition: Sætter spillerens placering på spillebrættet
+     * 
+     * @param position index for det felt, spilleren skal stå på
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void setBoardPosition(int position) {
         this.set(Player.Properties.BOARD_POSITION.getProperty(), position);
         this.updated();
     }
 
+    /**
+     * GetAccountBalance: Henter spillerens kontobalance
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     * 
+     * @return Returnerer spillerens balance som en integer
+     */
     public int getAccountBalance() {
         return (int) this.get(Player.Properties.ACCOUNT_BALANCE.getProperty());
     }
 
     /**
-     * getPrisonStatus: Henter om spilleren er på fængsels feltet eller ej,
+     * getPrisonStatus: Henter om spilleren er fængslet eller ej
      *
      * @author Anders Brandt, s185016
+     * 
+     * @return Returnerer om spilleren er fængslet eller ej som boolean
      */
     public boolean isInJail() {
         return this.get(Properties.JAIL_SPACE.getProperty()) != null;
     }
 
+    /**
+     * SetAccountBalance: Sætter spillerens kontobalance til en bestemt værdi
+     * 
+     * @param newBalance Den nye balances værdi
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void setAccountBalance(int newBalance) {
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
         this.updated();
     }
 
+    /**
+     * ChangeAccountBalance: Ændrer en spillers kontobalance med et beløb
+     * 
+     * @param by Beløbet, balancen skal ændres med - kan også være negativ
+     * 
+     * @author Joakim Bøegh Levorsen, s185023
+     */
     public void changeAccountBalance(int by) {
         int newBalance = this.getAccountBalance() + by;
         this.set(Player.Properties.ACCOUNT_BALANCE.getProperty(), newBalance);
@@ -90,9 +159,13 @@ public class Player extends Model implements Subject {
     }
 
     /**
-     * GetOwnedProperties: Henter og returnerer liste af ejendomme ejet af brugeren.
+     * GetOwnedProperties: Henter og returnerer liste af ejendomme ejet af spilleren
+     * 
+     * @param game Det pågældende spil, som spilleren tilhører
      * 
      * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return Returnerer en liste af de ejendomme, som spilleren ejer
      */
 
     public ArrayList<StationSpace> getOwnedProperties(Game game) {
@@ -113,9 +186,13 @@ public class Player extends Model implements Subject {
 
     /**
      * AddToOwnedProperties: Tilføjer ejendom til liste af ejendomme ejet af
-     * brugeren.
+     * spilleren
+     * 
+     * @param property Ejendom, der skal tilføjes
+     * @param game Det pågældende spil, som spilleren tilhører
      * 
      * @author Cecilie Krog Drejer, s185032
+     * @author Joakim Bøegh Levorsen, s185023
      */
 
     public void addToOwnedProperties(StationSpace property, Game game) {
@@ -125,9 +202,13 @@ public class Player extends Model implements Subject {
 
     /**
      * RemoveFromOwnedProperties: Fjerner ejendom fra liste af ejendomme ejet af
-     * brugeren.
+     * spilleren
      *
+     * @param property Ejendom, der skal fjernes
+     * @param game Det pågældende spil, som spilleren tilhører
+     * 
      * @author Cecilie Krog Drejer, s185032
+     * @author Joakim Bøegh Levorsen, s185023
      */
 
     public void removeFromOwnedProperties(StationSpace property, Game game) {
@@ -135,14 +216,23 @@ public class Player extends Model implements Subject {
         this.updated();
     }
 
+    /**
+     * HasOverdrawnAccount: Tjekker om spillerens kontobalance er negativ
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     * 
+     * @return Returnerer om spillerens balance er negativ eller ej
+     */
     public boolean hasOverdrawnAccount() {
         return this.getAccountBalance() < 0;
     }
 
     /**
-     * getColour: Henter hexkoden for ejendommen og ændrer det til rgb.
+     * GetColour: Henter hexkoden for ejendommen og ændrer det til RGB
      *
      * @author Anders Brandt, s185016
+     * 
+     * @return Returnerer et java Color-objekt
      */
     public Color getColor() {
         String hex = this.getString(PropertySpace.Properties.COLOR.getProperty());
@@ -151,7 +241,9 @@ public class Player extends Model implements Subject {
     }
 
     /**
-     * setColor: sætter farven for spilleren.
+     * SetColor: sætter farven for spilleren
+     * 
+     * @param color Spillerens farve skrevet som hexkode i en String (eksempelvis, blå = 0000FF)
      *
      * @author Anders Brandt, s185016
      */
@@ -161,16 +253,20 @@ public class Player extends Model implements Subject {
     }
 
     /**
-     * isBroke: Viser om spiller er gået konkurs
+     * IsBroke: Viser om spiller er gået konkurs, og dermed ude af spillet
      *
      * @author Joakim Levorsen, s185023
+     * 
+     * @return Returnerer om spilleren er gået konkurs eller ej
      */
     public boolean isBroke() {
         return this.getBoolean(Properties.BROKE.getProperty());
     }
 
     /**
-     * setBrokeStatus: Sætter konkurs status.
+     * SetBrokeStatus: Sætter konkurs status
+     * 
+     * @param to Boolean, som konkursstatus skal sættes til
      *
      * @author Joakim Levorsen, s185023
      */
@@ -180,9 +276,13 @@ public class Player extends Model implements Subject {
     }
 
     /**
-     * getOutOfJailFreeCard: Finder get out of jailFreeCard.
+     * GetOutOfJailCard: Finder spillerens GetOutOfJailCard, hvis de har et
      *
+     * @param game Det spil, som spilleren tilhører
+     * 
      * @author Joakim Levorsen, s185023
+     * 
+     * @return Returnerer et GetOutOfJailCard, hvis spilleren har et, ellers null
      */
     public GetOutOfJailCard getGetOutOfJailCard(Game game) {
         for (CardStack stack : game.getCardStacks()) {
@@ -196,7 +296,7 @@ public class Player extends Model implements Subject {
     }
 
     /**
-     * getOutOfJail: Kom ud af fængsel.
+     * GetOutOfJail: Løslader spilleren fra fængsel
      *
      * @author Joakim Levorsen, s185023
      */
@@ -212,18 +312,33 @@ public class Player extends Model implements Subject {
      */
     private Set<Observer> observers = new HashSet<Observer>();
 
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
     final public void addObserver(Observer observer) {
         observers.add(observer);
     }
 
+    /**
+     * Variabler og metoder til at implementere Subject
+     *
+     * @author Ekkart Kindler, ekki@dtu.dk
+     *
+     */
     final public void removeObserver(Observer observer) {
         observers.remove(observer);
     }
 
     /**
+     * GetObservers: Henter observers
+     * 
      * @author Helle Achari, s180317
+     * 
+     * @return Returnerer et Set af Observers
      */
-
     public Set<Observer> getObservers() {
         return observers;
     }

@@ -33,6 +33,8 @@ public class GameController {
      * 
      * @param game Spillet, som skal kontrolleres
      * @param view View'et, som tilhører spillet
+     * 
+     * @author ?
      */
     public GameController(Game game, View view) {
         this.game = game;
@@ -47,6 +49,8 @@ public class GameController {
      * GetGame: Henter spillet associeret med GameController
      * 
      * @return Returnerer spillet associeret med GameController
+     * 
+     * @author ?
      */
     public Game getGame() {
         return game;
@@ -110,6 +114,11 @@ public class GameController {
                 jsonData.getString(JSONKey.YES.getKey()), jsonData.getString(JSONKey.NO.getKey())));
     }
 
+    /**
+     * SaveGame: Gemmer spillet til databasen
+     * 
+     * @author ?
+     */
     public void saveGame() {
         try {
             DatabaseBase.openTransaction();
