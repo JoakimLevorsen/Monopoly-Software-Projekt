@@ -62,7 +62,7 @@ public class PropertyController {
 				currentBidderIndex = 0;
 		}
 		if (topBidder != null) {
-			gooey.showMessage(topBidder.getName() + jsonData.getString(JSONKey.WINNER.getKey()) + topBid);
+			gooey.showMessage(topBidder.getName() + jsonData.getString(JSONKey.AUCTION_WINNER.getKey()) + topBid);
 			controller.cashController.paymentToBank(topBidder, topBid);
 			property.setOwner(topBidder);
 			topBidder.addToOwnedProperties(property, controller.getGame());

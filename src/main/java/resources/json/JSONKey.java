@@ -16,7 +16,7 @@ public enum JSONKey {
     AMOUNT("amount"), TAX("tax"), ROLLED_DOUBLE("rolledDouble"), OUT_OF_JAIL("outOfJail"), YES("yes"), NO("no"),
     BALANCE("balance"), PLAYER_IS_IN_JAIL("playerIsInJail"), HOUSES_BUILT("housesBuilt"), RENT("rent"),
     MORTGAGE_BY("mortagedBy"), OWNED_BY("ownedBy"), AUCTIONED_OFF("auctionedOff"), BID("bid"),
-    BID_NOT_VALID("bidNotValid"), WINNER("winner"), OFFER_PROPERTY("offerProperty"), PROPERTY_COST("propertyCost"),
+    BID_NOT_VALID("bidNotValid"), AUCTION_WINNER("auctionWinner"), OFFER_PROPERTY("offerProperty"), PROPERTY_COST("propertyCost"),
     BOUGHT_PROPERTY("boughtProperty"), TRADE("trade"), BUY_OR_SELL_PROPERTY("buyOrSellProperty"),
     BUY_PROPERTY("buyProperty"), CHOOSE_PROPERTY("chooseProperty"), CHOOSE_PLAYER("choosePlayer"),
     AMOUNT_TO_PAY("amountToPay"), ACCEPT("accept"), MAX_BUILT_HOUSES("maxBuiltHouses"),
