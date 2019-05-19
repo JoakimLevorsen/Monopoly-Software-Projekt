@@ -46,6 +46,8 @@
     "unmortgageProperty": "Do you want to buy back a mortgaged property from the bank?",
     "gameWinner": " won the game! Congratulations!",
     "playAgain": "Do you want to play again?",
+    "pays": " pays ",
+    "to": " to ",
     "spaces": [
         {
             "name": "Go",

@@ -25,7 +25,7 @@ public enum JSONKey {
     AMOUNT_TO_PAY("amountToPay"), ACCEPT("accept"), MAX_BUILT_HOUSES("maxBuiltHouses"),
     CANT_BUILD_ANYMORE("cantBuildAnymore"), BUILD_ON_PROPERTY("buildOnProperty"),
     WHICH_PROPERTY_TO_BUILD_ON("whichPropertyToBuildOn"), TAX_MESSAGE("taxMessage"), ROLL_DICE("rollDice"),
-    PLAYER("player"), PLAYER_OWNS_NO_PROPERTIES("playerOwnsNoProperties"), YOU_OWN_NO_PROPERTIES("youOwnNoProperties"), UNMORTGAGE_PROPERTY("unmortgageProperty"), GAME_WINNER("gameWinner"), PLAY_AGAIN("playAgain");
+    PLAYER("player"), PLAYER_OWNS_NO_PROPERTIES("playerOwnsNoProperties"), YOU_OWN_NO_PROPERTIES("youOwnNoProperties"), UNMORTGAGE_PROPERTY("unmortgageProperty"), GAME_WINNER("gameWinner"), PLAY_AGAIN("playAgain"), PAYS("pays"), TO("to");
 
     private final String keyValue;
 

@@ -34,7 +34,7 @@ public class GameController {
      * @param game Spillet, som skal kontrolleres
      * @param view View'et, som tilhører spillet
      * 
-     * @author ?
+     * @author Joakim Bøegh Levorsen, s185023
      */
     public GameController(Game game, View view) {
         this.game = game;
@@ -50,10 +50,21 @@ public class GameController {
      * 
      * @return Returnerer spillet associeret med GameController
      * 
-     * @author ?
+     * @author Joakim Bøegh Levorsen, s185023
      */
     public Game getGame() {
         return game;
+    }
+
+    /**
+     * GetJSONData: Henter GameControllers JSON-data
+     * 
+     * @return Returnerer spillet associeret med GameController
+     * 
+     * @author Cecilie Krog Drejer, s185032
+     */
+    public JSONObject getJSONData() {
+        return jsonData;
     }
 
     /**

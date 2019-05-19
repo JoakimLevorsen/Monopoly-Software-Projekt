@@ -3,6 +3,7 @@ package monopoly.model.spaces;
 import monopoly.controller.GameController;
 import monopoly.model.Game;
 import monopoly.model.Player;
+import resources.json.JSONKey;
 
 /**
  * StationSpace: Et objekt til at repræsentere stationer.
@@ -47,9 +48,8 @@ public class StationSpace extends Space {
         if (owner != null && !isMortgaged()) {
             if (!owner.equals(player)) {
                 controller.cashController.payment(player, this.getRent(controller.getGame()), owner);
-                // TODO: JSON it up
                 controller.view.getGUI().showMessage(
-                        player.getName() + " betaler " + getRent(controller.getGame()) + " til " + owner.getName());
+                        player.getName() + controller.getJSONData().getString(JSONKey.PAYS.getKey()) + getRent(controller.getGame()) + controller.getJSONData().getString(JSONKey.TO.getKey()) + owner.getName());
             }
         } else
             controller.propertyController.offerProperty(this, player);

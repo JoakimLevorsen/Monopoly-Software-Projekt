@@ -46,6 +46,8 @@
     "unmortgageProperty": "Vil du tilbagekøbe en pantsat ejendom fra banken?",
     "gameWinner": " vandt spillet! Tillykke!",
     "playAgain": "Vil du spille igen?",
+    "pays": " betaler ",
+    "to": " til ",
     "spaces": [
         {
             "name": "Start",
