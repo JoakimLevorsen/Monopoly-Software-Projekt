@@ -1,5 +1,6 @@
 package monopoly.model.spaces;
 
+import monopoly.model.Game;
 import monopoly.model.Player;
 
 /**
@@ -91,7 +92,8 @@ public class PropertySpace extends StationSpace {
      * @author Anders Brandt, s185016
      * @author Joakim Levorsen, s185023
      */
-    public int getRent() {
+    @Override
+    public int getRent(Game game) {
         int baseRent = this.getInteger(Properties.BASE_RENT.getProperty());
         baseRent += (this.getHousesBuilt() * baseRent) / 2;
         return baseRent;
