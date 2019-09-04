@@ -24,7 +24,7 @@ import resources.json.*;
 public class ModelTest {
     @Before
     public void setupTest() {
-        DatabaseBase.openBase();
+        DatabaseBase.INSTANCE.openBase();
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ModelTest {
             ResourceManager manager = new ResourceManager();
             JSONFile language = JSONFile.DA;
             JSONObject languageData = manager.readFile(language);
-            Game newGame = Game.newGame("Slet mig pls", language, languageData, 4);
+            Game newGame = Game.Companion.newGame("Slet mig pls", language, languageData, 4);
             newGame.saveIt();
             List<Space> board = newGame.getBoard();
 
@@ -73,6 +73,6 @@ public class ModelTest {
 
     @After
     public void endTest() {
-        DatabaseBase.closeBase();
+        DatabaseBase.INSTANCE.closeBase();
     }
 }
